@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="The Confidence Academy - brand guidelines and design system v1.2. Logo usage, Union Jack colour palette, typography, photography direction, voice and tone, UI components and accessibility standards.">
+<meta name="color-scheme" content="light only">
+<title>The Confidence Academy — Brand Guidelines & Design System v1.2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
+<style>
+  :root{
+    --blue:#00247D; --blue-dark:#001A5C; --blue-light:#E6EAF5;
+    --red:#CF142B;  --red-dark:#8C0E1E;  --red-light:#FBE7EA;
+    --gold:#FFB81C; --gold-dark:#8A5C00; --gold-light:#FFF3DC;
+    --sky:#4A90D9;  --sky-dark:#1D4E89;  --sky-light:#E8F1FC;
+    --ink:#0B1C39; --charcoal:#4A5568; --slate:#8A94A6; --mist:#E1E6F0; --cloud:#F4F6FB; --white:#FFFFFF;
+    --gradient: linear-gradient(115deg, var(--blue) 0%, var(--red) 100%);
+    --radius-sm:8px; --radius-md:14px; --radius-lg:24px;
+    --shadow: 0 1px 2px rgba(11,28,57,0.05), 0 8px 24px rgba(11,28,57,0.08);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:'Inter','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;color:var(--ink);background:var(--cloud);line-height:1.6;}
+  h1,h2,h3,h4{font-family:'Sora','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;margin:0;letter-spacing:-0.01em;}
+  p{margin:0;}
+  .mono{font-family:'Space Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;}
+  a{color:inherit;}
+  svg{display:block;}
+  img{max-width:100%;}
+
+  .shell{display:grid;grid-template-columns:264px 1fr;min-height:100vh;}
+  nav.side{background:var(--ink);color:var(--white);padding:32px 26px;position:sticky;top:0;height:100vh;overflow-y:auto;}
+  nav.side .navmark{margin-bottom:26px;background:var(--white);border-radius:10px;padding:14px;}
+  nav.side .navmark img{width:100%;display:block;}
+  nav.side .pillarstrip{display:flex;gap:6px;margin-bottom:28px;}
+  nav.side .pillarstrip div{flex:1;height:4px;border-radius:3px;}
+  nav.side .navsection{font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:#8C9BC4;margin:20px 0 8px;}
+  nav.side a.navlink{display:block;font-size:13.5px;color:#CBD3EA;text-decoration:none;padding:6px 0;border-left:2px solid transparent;padding-left:12px;margin-left:-12px;transition:all .15s;}
+  nav.side a.navlink:hover{color:var(--white);border-left-color:var(--gold);}
+  main{padding:0;}
+  section{padding:84px 60px;max-width:1100px;border-bottom:0.5px solid var(--mist);}
+  section:last-of-type{border-bottom:none;}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue);margin-bottom:14px;}
+  h2.title{font-size:32px;font-weight:700;margin-bottom:16px;max-width:680px;}
+  p.lead{font-size:16.5px;color:var(--charcoal);max-width:680px;margin-bottom:6px;}
+
+  .cover{background:var(--ink);color:var(--white);padding:0;border-bottom:none;min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;}
+  .cover .bar{height:6px;display:flex;}
+  .cover .bar div{flex:1;}
+  .cover-content{padding:80px 60px 40px;}
+  .cover .kicker{font-size:13px;letter-spacing:0.2em;text-transform:uppercase;color:#9FB0DE;margin-bottom:30px;}
+  .cover-logo{background:var(--white);border-radius:16px;padding:28px 34px;display:inline-block;margin-bottom:34px;}
+  .cover-logo img{height:110px;display:block;}
+  .cover p.sub{font-size:17.5px;color:#B9C2DA;max-width:600px;margin-top:6px;}
+  .cover-pillars{display:flex;gap:14px;padding:0 60px;flex-wrap:wrap;}
+  .cover-pillars .p{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:30px;padding:9px 16px 9px 12px;font-size:13px;color:#E4E8F5;}
+  .cover-pillars .p .dot{width:9px;height:9px;border-radius:50%;}
+  .cover-footer{display:flex;justify-content:space-between;align-items:flex-end;padding:40px 60px 52px;font-size:13px;color:#7C87A8;}
+
+  .grid{display:grid;gap:18px;margin-top:30px;}
+  .grid.cols-2{grid-template-columns:1fr 1fr;}
+  .grid.cols-3{grid-template-columns:repeat(3,1fr);}
+  .grid.cols-4{grid-template-columns:repeat(4,1fr);}
+  .card{background:var(--white);border-radius:var(--radius-md);border:0.5px solid var(--mist);padding:22px;}
+  .card.pad-lg{padding:34px;}
+  .card.flat-ink{background:var(--ink);color:var(--white);}
+
+  .pillar-card{background:var(--white);border-radius:var(--radius-md);border:0.5px solid var(--mist);padding:26px;border-top:4px solid var(--ink);}
+  .pillar-card .picon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+  .pillar-card h3{font-size:17px;margin-bottom:8px;}
+  .pillar-card p{font-size:13.5px;color:var(--charcoal);}
+  .pillar-card .keyword{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-top:14px;display:block;}
+
+  .pillar-badge{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;padding:5px 12px 5px 8px;border-radius:20px;}
+  .pillar-badge svg{width:14px;height:14px;}
+
+  .logo-tile{background:var(--white);border:0.5px solid var(--mist);border-radius:var(--radius-md);padding:38px;display:flex;align-items:center;justify-content:center;min-height:160px;}
+  .logo-tile img{max-width:100%;height:auto;}
+  .tile-label{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:13px;color:var(--charcoal);}
+  .tile-label .tag{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--slate);}
+
+  .rules-list{margin-top:14px;}
+  .rule{display:flex;gap:14px;padding:13px 0;border-top:0.5px solid var(--mist);font-size:14.5px;color:var(--charcoal);}
+  .rule:first-child{border-top:none;}
+  .rule .flag{width:22px;height:22px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;margin-top:1px;}
+  .flag.do{background:var(--blue-light);color:var(--blue);}
+  .flag.dont{background:var(--red-light);color:var(--red);}
+  .flag.gap{background:var(--gold-light);color:var(--gold-dark);}
+
+  .tier-label{display:inline-flex;align-items:center;font-size:10.5px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border-radius:6px;margin-bottom:14px;}
+  .swatch{border-radius:var(--radius-md);overflow:hidden;border:0.5px solid var(--mist);background:var(--white);}
+  .swatch .fill{height:104px;}
+  .swatch .info{padding:14px 16px;}
+  .swatch .info .name{font-size:14px;font-weight:600;}
+  .swatch .info .hex{font-size:12.5px;color:var(--slate);margin-top:3px;}
+  .swatch .info .use{font-size:12.5px;color:var(--charcoal);margin-top:8px;}
+  .swatch .info .pillartag{font-size:10.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-top:10px;display:inline-block;}
+
+  .type-row{display:flex;align-items:baseline;justify-content:space-between;padding:18px 0;border-top:0.5px solid var(--mist);}
+  .type-row:first-child{border-top:none;}
+  .type-row .meta{font-size:12.5px;color:var(--slate);width:190px;flex-shrink:0;}
+  .type-row .sample{flex:1;}
+
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:'Inter','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;font-weight:600;font-size:14.5px;padding:12px 22px;border-radius:10px;border:none;cursor:default;}
+  .btn-primary{background:var(--red);color:var(--white);}
+  .btn-secondary{background:var(--white);color:var(--ink);border:1.5px solid var(--ink);}
+  .btn-ghost{background:transparent;color:var(--blue);border:1.5px solid var(--blue-light);}
+  .btn-white-outline{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,0.55);}
+  .badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px;}
+  .badge-gold{background:var(--gold-light);color:var(--gold-dark);}
+  .badge-blue{background:var(--blue-light);color:var(--blue);}
+  .badge-red{background:var(--red-light);color:var(--red-dark);}
+  .badge-sky{background:var(--sky-light);color:var(--sky-dark);}
+
+  .navbar-demo{display:flex;align-items:center;justify-content:space-between;background:var(--ink);color:var(--white);padding:14px 24px;border-radius:var(--radius-md);}
+  .navbar-demo .brandmark{display:flex;align-items:center;gap:10px;}
+  .navbar-demo .brandmark img{height:30px;background:var(--white);border-radius:6px;padding:4px 8px;}
+  .navbar-demo .links{display:flex;gap:24px;font-size:14px;color:#C6CEE5;}
+  .navbar-demo .links b{color:var(--white);font-weight:600;}
+
+  .stat-card{background:var(--ink);color:var(--white);border-radius:var(--radius-md);padding:22px;}
+  .stat-card .num{font-family:'Space Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:28px;font-weight:700;color:#6E94E8;}
+  .stat-card .label{font-size:12.5px;color:#9AA4C2;margin-top:4px;}
+
+  .progress{height:8px;border-radius:6px;background:var(--mist);overflow:hidden;margin-top:10px;}
+  .progress > div{height:100%;background:var(--blue);border-radius:6px;}
+
+  .highlight-panel{background:var(--gradient);}
+
+  .phone{width:280px;background:var(--ink);border-radius:38px;padding:12px;box-shadow:var(--shadow);}
+  .phone .screen{background:var(--cloud);border-radius:28px;overflow:hidden;min-height:540px;display:flex;flex-direction:column;}
+  .phone .status{padding:16px 20px 6px;font-size:11px;color:var(--slate);display:flex;justify-content:space-between;}
+  .phone .header{padding:8px 20px 16px;}
+  .phone .header .hi{font-size:12px;color:var(--slate);}
+  .phone .header .name{font-size:20px;font-weight:700;font-family:'Sora','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;margin-top:2px;}
+  .phone .hero{margin:0 20px;border-radius:18px;padding:20px;color:var(--white);}
+  .phone .hero .l1{font-size:12px;opacity:0.9;}
+  .phone .hero .l2{font-family:'Space Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:24px;font-weight:700;margin-top:4px;}
+  .phone .body{padding:16px 20px;flex:1;}
+  .phone .row-title{font-size:13px;font-weight:600;color:var(--charcoal);margin-bottom:10px;}
+  .phone .pill-card{background:var(--white);border-radius:14px;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;border:0.5px solid var(--mist);}
+  .phone .pill-card .t1{font-size:13px;font-weight:600;}
+  .phone .pill-card .t2{font-size:11px;color:var(--slate);margin-top:2px;}
+  .phone .tabbar{display:flex;justify-content:space-around;padding:14px 0 18px;border-top:0.5px solid var(--mist);background:var(--white);}
+  .phone .tabbar .tab{font-size:10px;color:var(--slate);text-align:center;}
+  .phone .tabbar .tab.active{color:var(--blue);font-weight:700;}
+  .phone .tabbar .dot{width:6px;height:6px;border-radius:50%;background:currentColor;margin:0 auto 4px;}
+
+  .icon-tile{background:var(--white);border:0.5px solid var(--mist);border-radius:var(--radius-md);padding:22px;text-align:center;}
+  .icon-tile .glyph{width:40px;height:40px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;border-radius:10px;}
+  .icon-tile .glyph svg{width:22px;height:22px;}
+  .icon-tile .name{font-size:13px;font-weight:600;}
+
+  .shot-card{border-radius:var(--radius-md);overflow:hidden;border:0.5px solid var(--mist);background:var(--white);}
+  .shot-frame{height:190px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .shot-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .shot-frame .tag-corner{position:absolute;top:12px;left:12px;font-size:9.5px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:rgba(11,28,57,0.6);color:#fff;padding:4px 8px;border-radius:5px;z-index:2;}
+  .shot-info{padding:16px 18px;}
+  .shot-info .stitle{font-size:14px;font-weight:700;font-family:'Sora','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;}
+  .shot-info .sbrief{font-size:12.5px;color:var(--charcoal);margin-top:6px;}
+  .shot-info .spillar{font-size:10.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-top:10px;display:inline-block;}
+
+  .style-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px;}
+  .style-grid figure{margin:0;border-radius:var(--radius-md);overflow:hidden;border:0.5px solid var(--mist);background:var(--white);}
+  .style-grid img{width:100%;height:170px;object-fit:cover;display:block;}
+  .style-grid figcaption{padding:10px 14px;font-size:12px;color:var(--charcoal);}
+
+  .overlay-demo{position:relative;border-radius:var(--radius-md);overflow:hidden;height:360px;}
+  .overlay-demo .imgfill{position:absolute;inset:0;overflow:hidden;}
+  .overlay-demo .imgfill img{width:100%;height:100%;object-fit:cover;display:block;}
+  .overlay-demo .scrim{position:absolute;left:0;right:0;bottom:0;height:52%;background:rgba(11,28,57,0.82);}
+  .overlay-demo .content{position:absolute;left:0;right:0;bottom:0;padding:26px 28px;max-width:78%;}
+  .overlay-demo .content .tag{margin-bottom:12px;}
+  .overlay-demo .content h4{color:#fff;font-size:24px;font-weight:700;line-height:1.15;}
+  .overlay-demo .content p{color:rgba(255,255,255,0.78);font-size:13.5px;margin-top:8px;}
+  .overlay-demo .content .cta{margin-top:16px;}
+
+  .side-panel-demo{display:grid;grid-template-columns:1.3fr 1fr;border-radius:var(--radius-md);overflow:hidden;height:230px;}
+  .side-panel-demo .imgfill{position:relative;overflow:hidden;}
+  .side-panel-demo .imgfill img{width:100%;height:100%;object-fit:cover;display:block;}
+  .side-panel-demo .textpanel{background:var(--ink);color:#fff;padding:26px;display:flex;flex-direction:column;justify-content:center;}
+  .side-panel-demo .textpanel h4{font-size:19px;font-weight:700;}
+  .side-panel-demo .textpanel p{font-size:13px;color:#B9C2DA;margin-top:8px;}
+
+  footer.book{background:var(--ink);color:#8C96B6;padding:44px 60px;font-size:13px;display:flex;justify-content:space-between;}
+
+  @media (max-width:900px){
+    .shell{grid-template-columns:1fr;}
+    nav.side{position:relative;height:auto;}
+    section{padding:52px 22px;}
+    .grid.cols-2,.grid.cols-3,.grid.cols-4{grid-template-columns:1fr 1fr;}
+    .style-grid{grid-template-columns:1fr 1fr;}
+    .side-panel-demo{grid-template-columns:1fr;height:auto;}
+  }
+
+  /* ---- v1.2 additions ------------------------------------------------ */
+  /* Graceful degradation when a remote reference photo fails to load */
+  img.img-failed{
+    min-height:120px;
+    background:repeating-linear-gradient(135deg,#E1E6F0 0 10px,#EDF0F7 10px 20px);
+    border:1px dashed #B9C2DA;border-radius:8px;
+    position:relative;object-fit:contain;
+  }
+  img.img-failed::after{
+    content:"Reference photo unavailable offline \2014 see alt text";
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    text-align:center;padding:12px;font-size:11.5px;line-height:1.4;color:#4A5568;
+    background:#F4F6FB;border-radius:8px;
+  }
+  /* Text stand-in if logo-primary.svg is ever missing */
+  .logo-fallback{
+    display:block;font-family:'Sora','Segoe UI',Arial,sans-serif;font-weight:800;
+    font-size:19px;line-height:1.15;color:#CF142B;letter-spacing:-0.01em;
+  }
+  .logo-fallback small{
+    display:block;font-size:10px;font-weight:700;color:#00247D;
+    letter-spacing:0.08em;margin-top:3px;
+  }
+  /* Respect reduced-motion preferences */
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;animation:none !important;}
+  }
+  /* Visible keyboard focus (nav links previously had none) */
+  a:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:3px;}
+
+  /* ---- Print / Save-as-PDF ------------------------------------------- */
+  @media print{
+    @page{size:A4;margin:14mm;}
+    body{background:#fff;}
+    .shell{display:block;}
+    nav.side{display:none;}          /* sidebar would repeat on every page */
+    section{
+      padding:0 0 22pt;max-width:none;page-break-inside:auto;
+      break-inside:auto;border-bottom:0.5pt solid #DDE1EC;
+    }
+    section, .cover{page-break-after:always;break-after:page;}
+    .cover{min-height:auto;color:#0B1C39;background:#fff;}
+    .cover .kicker,.cover p.sub,.cover-footer{color:#4A5568;}
+    .cover-pillars .p{color:#0B1C39;border-color:#B9C2DA;background:#F4F6FB;}
+    h2.title,h3{page-break-after:avoid;break-after:avoid;}
+    .card,.swatch,.pillar-card,.shot-card,.rule,figure{
+      page-break-inside:avoid;break-inside:avoid;
+    }
+    .card.flat-ink,.stat-card,.navbar-demo{
+      background:#0B1C39 !important;color:#fff !important;
+      -webkit-print-color-adjust:exact;print-color-adjust:exact;
+    }
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    a{text-decoration:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="bar"><div style="background:var(--blue);"></div><div style="background:var(--white);"></div><div style="background:var(--red);"></div></div>
+  <div class="cover-content">
+    <div class="kicker">Brand guidelines &amp; design system — v1.2</div>
+    <div class="cover-logo"><img src="logo-primary.svg" alt="The Confidence Academy — Get Britain Moving" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','&lt;span class=&quot;logo-fallback&quot;&gt;THE CONFIDENCE ACADEMY&lt;small&gt;GET BRITAIN MOVING&lt;/small&gt;&lt;/span&gt;');this.removeAttribute('onerror');"></div>
+    <p class="sub">The logo and a palette drawn from the Union Jack — Royal Blue and Red — in service of one tagline: Get Britain Moving.</p>
+  </div>
+  <div class="cover-pillars">
+    <div class="p"><span class="dot" style="background:var(--blue);"></span>Confidence</div>
+    <div class="p"><span class="dot" style="background:var(--gold);"></span>Community</div>
+    <div class="p"><span class="dot" style="background:var(--sky);"></span>Accessibility</div>
+    <div class="p"><span class="dot" style="background:var(--red);"></span>Action</div>
+  </div>
+  <div class="cover-footer">
+    <span>confidenceacademy.uk</span>
+    <span>Prepared 2026 — v1.2 refresh</span>
+  </div>
+</div>
+
+<div class="shell">
+<nav class="side" aria-label="Brand book sections">
+  <div class="navmark"><img src="logo-primary.svg" alt="The Confidence Academy" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','&lt;span class=&quot;logo-fallback&quot;&gt;THE CONFIDENCE ACADEMY&lt;small&gt;GET BRITAIN MOVING&lt;/small&gt;&lt;/span&gt;');this.removeAttribute('onerror');"></div>
+  <div class="pillarstrip">
+    <div style="background:var(--blue);"></div><div style="background:var(--gold);"></div><div style="background:var(--sky);"></div><div style="background:var(--red);"></div>
+  </div>
+  <div class="navsection">Foundation</div>
+  <a class="navlink" href="#pillars">The four pillars</a>
+  <a class="navlink" href="#positioning">Positioning</a>
+  <div class="navsection">Identity</div>
+  <a class="navlink" href="#logo">Logo usage</a>
+  <a class="navlink" href="#color">Colour palette</a>
+  <a class="navlink" href="#type">Typography</a>
+  <div class="navsection">Photography</div>
+  <a class="navlink" href="#imagery">Shot briefs</a>
+  <a class="navlink" href="#style">Photography style</a>
+  <a class="navlink" href="#overlay">Text-on-image treatment</a>
+  <a class="navlink" href="#iconography">Iconography</a>
+  <div class="navsection">Voice</div>
+  <a class="navlink" href="#voice">Voice &amp; tone</a>
+  <div class="navsection">Product</div>
+  <a class="navlink" href="#components">Web components</a>
+  <a class="navlink" href="#mobile">Mobile app</a>
+  <a class="navlink" href="#accessibility">Accessibility standard</a>
+</nav>
+
+<main id="content">
+
+  <section id="pillars">
+    <div class="eyebrow">01 — Foundation</div>
+    <h2 class="title">Four pillars, one system</h2>
+    <p class="lead">Everything downstream in this book — the colours, the type, the photography, the tone — earns its place by serving one of these four. If an element doesn't trace back to a pillar, it doesn't belong in the brand.</p>
+
+    <div class="grid cols-4" style="margin-top:36px;">
+      <div class="pillar-card" style="border-top-color:var(--blue);">
+        <div class="picon" style="background:var(--blue-light);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00247D" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15 L12 9 L18 15"/></svg></div>
+        <h3>Confidence</h3>
+        <p>Belief that's trained, not assumed. We speak to people as capable, and design for the moment they prove it to themselves.</p>
+        <span class="keyword" style="color:var(--blue);">Self-belief, earned</span>
+      </div>
+      <div class="pillar-card" style="border-top-color:var(--gold);">
+        <div class="picon" style="background:var(--gold-light);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8A5C00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="2.3" fill="#8A5C00" stroke="none"/><circle cx="6" cy="18" r="2.3" fill="#8A5C00" stroke="none"/><circle cx="18" cy="18" r="2.3" fill="#8A5C00" stroke="none"/><path d="M12 9.3 L7 15.8 M12 9.3 L17 15.8 M8.3 18 L15.7 18"/></svg></div>
+        <h3>Community</h3>
+        <p>Progress witnessed, not solitary. Every member trains alongside others who want them to succeed.</p>
+        <span class="keyword" style="color:var(--gold-dark);">Belonging, shared</span>
+      </div>
+      <div class="pillar-card" style="border-top-color:var(--sky);">
+        <div class="picon" style="background:var(--sky-light);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D4E89" stroke-width="2.2" stroke-linecap="round"><path d="M12 3 A9 9 0 1 1 3.3 8.2"/></svg></div>
+        <h3>Accessibility</h3>
+        <p>Low barriers to entry, in price, in language, in physical and digital design. Confidence can't be exclusive and mean anything.</p>
+        <span class="keyword" style="color:var(--sky-dark);">Open, by design</span>
+      </div>
+      <div class="pillar-card" style="border-top-color:var(--red);">
+        <div class="picon" style="background:var(--red-light);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#CF142B" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 H17 M12 7 L17 12 L12 17"/></svg></div>
+        <h3>Action</h3>
+        <p>The pillar that turns the other three into results — and the pillar our tagline speaks from directly: Get Britain Moving.</p>
+        <span class="keyword" style="color:var(--red);">Momentum, always</span>
+      </div>
+    </div>
+
+    <div class="card pad-lg flat-ink" style="margin-top:28px;">
+      <h3 style="font-size:15px;color:#C6CEE5;font-weight:600;">How the pillars relate</h3>
+      <p style="font-size:14px;color:#B9C2DA;margin-top:10px;max-width:760px;">They're a loop, not a list: Confidence prompts Action; Action is easier to take inside a Community; a Community only works if it's Accessible to everyone in it; and Accessibility — being able to walk in and belong — is what builds Confidence in the first place. "Get Britain Moving" is the whole loop compressed into three words — everyone, moving, together.</p>
+    </div>
+  </section>
+
+  <section id="positioning">
+    <div class="eyebrow">02 — Positioning</div>
+    <h2 class="title">Where this sits in the market</h2>
+    <p class="lead">The Gym Group leans into blue and green — value and grit. PureGym leans into cool teal-green — scale and convenience. Neither speaks from a national identity. Ours does: Royal Blue and Red aren't picked for taste, they're drawn directly from the Union Jack, in service of a tagline about the whole country moving.</p>
+    <div class="grid cols-2" style="margin-top:32px;">
+      <div class="card pad-lg">
+        <h3 style="font-size:16px;">What's genuinely ownable</h3>
+        <p style="font-size:14px;color:var(--charcoal);margin-top:12px;">A palette a returning member reads as unmistakably British before they read a word of copy. No UK fitness competitor is currently built on this association — it's ours to hold.</p>
+      </div>
+      <div class="card pad-lg">
+        <h3 style="font-size:16px;">What anchors it</h3>
+        <p style="font-size:14px;color:var(--charcoal);margin-top:12px;">The logo itself — a runner in motion, rendered in Royal Blue and Red — already carries this identity. The rest of the system (colour, photography, tone) is built to match what the mark already says, not the other way round.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="logo">
+    <div class="eyebrow">03 — Logo usage</div>
+    <h2 class="title">One mark, used exactly as supplied</h2>
+    <p class="lead">This is our registered mark. It is not redrawn, recoloured, or reinterpreted anywhere in this book — every version below is the same artwork, placed at different sizes on different backgrounds.</p>
+
+    <div class="logo-tile" style="margin-top:28px;padding:56px;">
+      <img src="logo-primary.svg" alt="The Confidence Academy — Get Britain Moving" style="width:100%;max-width:640px;" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','&lt;span class=&quot;logo-fallback&quot;&gt;THE CONFIDENCE ACADEMY&lt;small&gt;GET BRITAIN MOVING&lt;/small&gt;&lt;/span&gt;');this.removeAttribute('onerror');">
+    </div>
+    <div class="tile-label"><span>Primary lockup — runner mark, wordmark and tagline as one fixed unit</span><span class="tag">SVG, vector-wrapped original artwork</span></div>
+
+    <div class="card pad-lg" style="margin-top:26px;background:var(--blue-light);">
+      <h3 style="font-size:15px;color:var(--blue-dark);">Why this file isn't hand-traced</h3>
+      <p style="font-size:14px;color:var(--charcoal);margin-top:10px;max-width:760px;">The SVG delivered with this book embeds the exact pixels of the artwork you supplied, rather than an automatically re-traced outline. Auto-tracing a mark this detailed — the motion lines, the gradient-shaded runner, the interlocking wordmark — risks subtly altering curves and edges. For a registered mark, exact reproduction matters more than file-format purity, so this SVG is a lossless vector wrapper around the original: infinitely embeddable, zero visual alteration.</p>
+    </div>
+
+    <h3 style="font-size:16px;margin-top:36px;margin-bottom:14px;">Clear space &amp; minimum size</h3>
+    <div class="grid cols-2">
+      <div class="card">
+        <h3 style="font-size:14px;color:var(--slate);">Clear space</h3>
+        <p style="font-size:14px;color:var(--charcoal);margin-top:8px;">Minimum clear space on every side equals the height of the word "THE" at the top-left of the lockup. Nothing else — text, edges, other logos — enters that margin.</p>
+      </div>
+      <div class="card">
+        <h3 style="font-size:14px;color:var(--slate);">Minimum size</h3>
+        <p style="font-size:14px;color:var(--charcoal);margin-top:8px;">160px wide minimum for digital use, so the tagline stays legible. Below that, the wordmark and tagline blur into noise before the runner does.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:16px;margin-top:32px;margin-bottom:14px;">Backgrounds</h3>
+    <div class="rules-list">
+      <div class="rule"><span class="flag do">✓</span><span>White, Cloud, or any light neutral background — this is what the artwork was built for, and where it has full contrast.</span></div>
+      <div class="rule"><span class="flag dont">✕</span><span>Never place it on Royal Blue, Red, navy, black, or any dark surface. The runner and the tagline are both rendered in dark navy — on a dark background they disappear almost entirely.</span></div>
+      <div class="rule"><span class="flag dont">✕</span><span>Never place it over busy photography without a solid light card or panel behind it.</span></div>
+    </div>
+
+    <h3 style="font-size:16px;margin-top:32px;margin-bottom:14px;">What's not to be done, ever</h3>
+    <div class="rules-list">
+      <div class="rule"><span class="flag dont">✕</span><span>Don't recolour, restyle, or apply the brand gradient to any part of the mark.</span></div>
+      <div class="rule"><span class="flag dont">✕</span><span>Don't separate the runner from the wordmark, or the tagline from the wordmark — they're supplied, and used, as one fixed unit.</span></div>
+      <div class="rule"><span class="flag dont">✕</span><span>Don't stretch, skew, rotate, or crop the artwork.</span></div>
+      <div class="rule"><span class="flag dont">✕</span><span>Don't re-set "Get Britain Moving" in a different typeface — the tagline as shown is part of the registered artwork, not a separate text element.</span></div>
+    </div>
+
+    <h3 style="font-size:16px;margin-top:32px;margin-bottom:14px;">Known gaps — flagged, not filled</h3>
+    <div class="rules-list">
+      <div class="rule"><span class="flag gap">!</span><span>No standalone icon-only version exists. The runner and wordmark overlap in the artwork, so a clean "icon alone" crop isn't available without redrawing — which we won't do to a registered mark. A true icon-only lockup should be commissioned from the original designer if one is needed for app icons or favicons.</span></div>
+      <div class="rule"><span class="flag gap">!</span><span>No reversed (light-on-dark) version exists. If the brand needs to appear on a dark surface — a stadium screen, a dark app theme — a light/white version should be produced by the original designer, not approximated here.</span></div>
+    </div>
+    <p style="font-size:12.5px;color:var(--slate);margin-top:14px;">Until those versions exist, the safest UI substitute for a small square touchpoint (browser tab favicon, temporary app icon) is a plain "TCA" monogram — shown in the Mobile app section — clearly not presented as the trademark itself.</p>
+  </section>
+
+  <section id="color">
+    <div class="eyebrow">04 — Colour palette</div>
+    <h2 class="title">Union Jack primaries, four pillars</h2>
+    <p class="lead">Royal Blue and Red are drawn directly from the flag and carry the brand everywhere. Three complementary colours extend the system to cover Community and Accessibility without ever competing with the two primaries for attention.</p>
+
+    <div class="grid cols-2" style="margin-top:32px;">
+      <div class="swatch">
+        <div class="fill" style="background:#00247D;"></div>
+        <div class="info">
+          <span class="tier-label" style="background:var(--blue-light);color:var(--blue);">Primary</span>
+          <div class="name">Royal Blue — #00247D</div>
+          <div class="use">Navigation, links, primary brand surfaces, one half of the runner mark. ~30% of any screen.</div>
+          <span class="pillartag" style="color:var(--blue);">Confidence</span>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="fill" style="background:#CF142B;"></div>
+        <div class="info">
+          <span class="tier-label" style="background:var(--red-light);color:var(--red-dark);">Primary</span>
+          <div class="name">Red — #CF142B</div>
+          <div class="use">Reserved almost entirely for primary CTAs and urgent flags, and the wordmark's own colour. ~11% of a screen.</div>
+          <span class="pillartag" style="color:var(--red);">Action</span>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="fill" style="background:#FFB81C;"></div>
+        <div class="info">
+          <span class="tier-label" style="background:var(--gold-light);color:var(--gold-dark);">Secondary</span>
+          <div class="name">Gold — #FFB81C</div>
+          <div class="use">Group and community badges, milestone highlights — a nod to national achievement colour without copying a medal literally. ~6% of a screen.</div>
+          <span class="pillartag" style="color:var(--gold-dark);">Community</span>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="fill" style="background:#4A90D9;"></div>
+        <div class="info">
+          <span class="tier-label" style="background:var(--sky-light);color:var(--sky-dark);">Secondary</span>
+          <div class="name">Sky Blue — #4A90D9</div>
+          <div class="use">Accessibility labels and step-free tags — a lighter, more open relative of Royal Blue, never confused with it at a glance. ~5% of a screen.</div>
+          <span class="pillartag" style="color:var(--sky-dark);">Accessibility</span>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:13px;color:var(--slate);margin-top:14px;">Why these three secondaries and not others: Gold and Sky Blue both read as extensions of a British palette rather than additions to it — gold from honours and achievement culture, sky blue as a natural tint of the flag's own blue. Nothing in the secondary palette introduces a hue that isn't already implied by the primaries.</p>
+
+    <h3 style="font-size:15px;margin-top:36px;margin-bottom:4px;">Text-safe dark variants</h3>
+    <div class="grid cols-4" style="margin-top:14px;">
+      <div class="swatch"><div class="fill" style="background:#001A5C;"></div><div class="info"><div class="name">Blue — dark</div><div class="hex mono">#001A5C</div><div class="use">Hover/pressed states</div></div></div>
+      <div class="swatch"><div class="fill" style="background:#8C0E1E;"></div><div class="info"><div class="name">Red — dark</div><div class="hex mono">#8C0E1E</div><div class="use">Text on light-red fills</div></div></div>
+      <div class="swatch"><div class="fill" style="background:#8A5C00;"></div><div class="info"><div class="name">Gold — dark</div><div class="hex mono">#8A5C00</div><div class="use">Text on light-gold fills</div></div></div>
+      <div class="swatch"><div class="fill" style="background:#1D4E89;"></div><div class="info"><div class="name">Sky — dark</div><div class="hex mono">#1D4E89</div><div class="use">Text on light-sky fills</div></div></div>
+    </div>
+
+    <h3 style="font-size:15px;margin-top:28px;margin-bottom:4px;">Neutrals</h3>
+    <div class="grid cols-4" style="margin-top:14px;">
+      <div class="swatch"><div class="fill" style="background:#0B1C39;"></div><div class="info"><div class="name">Ink</div><div class="hex mono">#0B1C39</div><div class="use">Body text, dark surfaces — a navy-tinted black, not a pure one</div></div></div>
+      <div class="swatch"><div class="fill" style="background:#4A5568;"></div><div class="info"><div class="name">Charcoal</div><div class="hex mono">#4A5568</div><div class="use">Secondary text</div></div></div>
+      <div class="swatch"><div class="fill" style="background:#F4F6FB;border:0.5px solid #DDE1EC;"></div><div class="info"><div class="name">Cloud</div><div class="hex mono">#F4F6FB</div><div class="use">App background</div></div></div>
+      <div class="swatch"><div class="fill" style="background:#FFFFFF;border:0.5px solid #DDE1EC;"></div><div class="info"><div class="name">White</div><div class="hex mono">#FFFFFF</div><div class="use">Cards, surfaces, the only safe background for the logo</div></div></div>
+    </div>
+
+    <div class="card pad-lg" style="margin-top:26px;">
+      <h3 style="font-size:15px;">The signature gradient — updated to the primary colours</h3>
+      <p style="font-size:14px;color:var(--charcoal);margin-top:10px;max-width:700px;">Highlight panels — hero banners, stat cards, feature tiles — use a 115° gradient from Royal Blue into Red. It never touches the logo itself, which stays exactly as supplied; it's reserved for UI moments the brand fully controls.</p>
+      <div class="highlight-panel" style="height:64px;border-radius:10px;margin-top:16px;"></div>
+    </div>
+
+    <p style="margin-top:22px;font-size:13px;color:var(--slate);">Accessibility — Ink on white: 17.8:1. White on Royal Blue: 13.5:1. White on Red: 5.5:1. All meet AA comfortably. Gold and Sky Blue are used as light tints with dark text, never as a solid fill behind white text.</p>
+  </section>
+
+  <section id="type">
+    <div class="eyebrow">05 — Typography</div>
+    <h2 class="title">Sora for statements, Inter for everything you read</h2>
+    <p class="lead">Sora carries conviction in headlines — the Confidence voice. Inter stays legible at small sizes across devices — the Accessibility requirement. Space Mono marks anything measured.</p>
+
+    <div style="margin-top:30px;">
+      <div class="type-row"><div class="meta">Display / Sora 800<br><span class="mono" style="font-size:11px;">48–60px</span></div><div class="sample" style="font-family:'Sora','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:42px;">Get Britain moving</div></div>
+      <div class="type-row"><div class="meta">Heading / Sora 700<br><span class="mono" style="font-size:11px;">26–32px</span></div><div class="sample" style="font-family:'Sora','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:28px;">You never train alone here</div></div>
+      <div class="type-row"><div class="meta">Subhead / Sora 600<br><span class="mono" style="font-size:11px;">18–20px</span></div><div class="sample" style="font-family:'Sora','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;font-weight:600;font-size:19px;">This week's session plan</div></div>
+      <div class="type-row"><div class="meta">Body / Inter 400<br><span class="mono" style="font-size:11px;">16px minimum</span></div><div class="sample" style="font-family:'Inter','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;font-weight:400;font-size:16px;color:var(--charcoal);">Body copy never drops below 16px on any screen — a hard floor set by the Accessibility pillar, not a suggestion.</div></div>
+      <div class="type-row"><div class="meta">UI label / Inter 600<br><span class="mono" style="font-size:11px;">13–14px</span></div><div class="sample" style="font-family:'Inter','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;font-weight:600;font-size:14px;">Start workout</div></div>
+      <div class="type-row"><div class="meta">Data / Space Mono 700<br><span class="mono" style="font-size:11px;">24–30px</span></div><div class="sample" style="font-family:'Space Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weight:700;font-size:26px;">42:18</div></div>
+    </div>
+  </section>
+
+  <section id="imagery">
+    <div class="eyebrow">06 — Photography</div>
+    <h2 class="title">Candid, joyful, real — never staged</h2>
+    <p class="lead">Photography is candid, joyful and real — never staged, never glossy. It prioritises diverse bodies, ages and backgrounds, and it never shows anyone standing still: everyone in frame is either moving or connecting with someone else. Lifestyle and natural imagery from Unsplash, shown below, sets the reference bar.</p>
+
+    <div class="grid cols-4" style="margin-top:32px;">
+      <div class="pillar-card" style="border-top-color:var(--blue);">
+        <div class="picon" style="background:var(--blue-light);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00247D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 L12 20 M6 10 L12 4 L18 10"/></svg></div>
+        <h3>Candid, not staged</h3>
+        <p>Caught in the moment, not directed for camera. If it looks like anyone was asked to "do that again but bigger," it's the wrong shot.</p>
+        <span class="keyword" style="color:var(--blue);">Confidence</span>
+      </div>
+      <div class="pillar-card" style="border-top-color:var(--sky);">
+        <div class="picon" style="background:var(--sky-light);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D4E89" stroke-width="2.2" stroke-linecap="round"><path d="M12 3 A9 9 0 1 1 3.3 8.2"/></svg></div>
+        <h3>Every body, every age, every background</h3>
+        <p>Diverse representation is the rule for every gallery, not a single token image tucked in to check a box.</p>
+        <span class="keyword" style="color:var(--sky-dark);">Accessibility</span>
+      </div>
+      <div class="pillar-card" style="border-top-color:var(--gold);">
+        <div class="picon" style="background:var(--gold-light);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8A5C00" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="7" r="2" fill="#8A5C00" stroke="none"/><circle cx="6" cy="18" r="2" fill="#8A5C00" stroke="none"/><circle cx="18" cy="18" r="2" fill="#8A5C00" stroke="none"/><path d="M12 9 L7 16 M12 9 L17 16 M8 18 L16 18"/></svg></div>
+        <h3>Joyful and in connection</h3>
+        <p>People with people — eye contact, spotting, high-fives. Joy is visible on faces, not implied by a caption.</p>
+        <span class="keyword" style="color:var(--gold-dark);">Community</span>
+      </div>
+      <div class="pillar-card" style="border-top-color:var(--red);">
+        <div class="picon" style="background:var(--red-light);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#CF142B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3 L5 14 H11 L9 21 L19 9 H13 Z"/></svg></div>
+        <h3>Always in motion</h3>
+        <p>Never passive, never posed standing still. Mid-rep, mid-stride, mid-laugh — always doing something, never just present for it.</p>
+        <span class="keyword" style="color:var(--red);">Action</span>
+      </div>
+    </div>
+
+    <h3 style="font-size:16px;margin-top:44px;margin-bottom:6px;">Shot briefs</h3>
+    <p style="font-size:14px;color:var(--charcoal);max-width:700px;">Lifestyle reference photography for each shot type below (Unsplash), plus the brief a photographer should be able to reproduce on our own shoots — same candour, same joy, same visual quality across all four, so no pillar looks like an afterthought.</p>
+
+    <div class="grid cols-4" style="margin-top:22px;">
+      <div class="shot-card">
+        <div class="shot-frame">
+          <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1517130038641-a774d04afb3c?auto=format&fit=crop&w=800&q=60" alt="Group of people in a gym class exercising together" onerror="this.classList.add('img-failed');this.removeAttribute('onerror');">
+          <div class="tag-corner">Reference photo</div>
+        </div>
+        <div class="shot-info">
+          <div class="stitle">Group class energy</div>
+          <div class="sbrief">Candid wide shot, mid-rep, genuine laughter in the room — joy and effort both visible, members connecting with each other, not posing for the camera.</div>
+          <span class="spillar" style="color:var(--gold-dark);">Community</span>
+        </div>
+      </div>
+      <div class="shot-card">
+        <div class="shot-frame">
+          <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1738523686619-1b3b5d2405ee?auto=format&fit=crop&w=800&q=60" alt="A trainer talking with a member during a session in the gym" onerror="this.classList.add('img-failed');this.removeAttribute('onerror');">
+          <div class="tag-corner">Reference photo</div>
+        </div>
+        <div class="shot-info">
+          <div class="stitle">Coaching moment</div>
+          <div class="sbrief">Caught, not posed — real focus and real effort, one person backing another, mid-movement rather than holding a position.</div>
+          <span class="spillar" style="color:var(--blue);">Confidence</span>
+        </div>
+      </div>
+      <div class="shot-card">
+        <div class="shot-frame">
+          <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1638805981949-362f5964521e?auto=format&fit=crop&w=800&q=60" alt="A man using a wheelchair training in a gym" onerror="this.classList.add('img-failed');this.removeAttribute('onerror');">
+          <div class="tag-corner">Reference photo</div>
+        </div>
+        <div class="shot-info">
+          <div class="stitle">Adaptive &amp; modified training</div>
+          <div class="sbrief">Same candid, joyful energy as every other shot in this set — diversity of age and ability shown as the norm, never a separate softer style.</div>
+          <span class="spillar" style="color:var(--sky-dark);">Accessibility</span>
+        </div>
+      </div>
+      <div class="shot-card">
+        <div class="shot-frame">
+          <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1718633561231-864a4c466991?auto=format&fit=crop&w=800&q=60" alt="A woman mid-squat with a barbell in a gym" onerror="this.classList.add('img-failed');this.removeAttribute('onerror');">
+          <div class="tag-corner">Reference photo</div>
+        </div>
+        <div class="shot-info">
+          <div class="stitle">Solo PB moment</div>
+          <div class="sbrief">Mid-lift, mid-effort, never a static held pose — the real moment itself, not a re-enactment of it for the lens.</div>
+          <span class="spillar" style="color:var(--red);">Action</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid cols-2" style="margin-top:26px;">
+      <div class="card pad-lg">
+        <h3 style="font-size:15px;">Colour treatment on photography</h3>
+        <p style="font-size:14px;color:var(--charcoal);margin-top:10px;">No duotone wash, no gradient. If a photo needs brand colour tying it to a page, use a single flat brand colour at low opacity (Royal Blue or Ink at 15–25%) as an even tint across the whole frame — one colour, one opacity, no blend.</p>
+      </div>
+      <div class="card pad-lg">
+        <h3 style="font-size:15px;">What we avoid</h3>
+        <p style="font-size:14px;color:var(--charcoal);margin-top:10px;">Staged or overly polished "glossy" compositions, airbrushed or heavily retouched bodies, gym-selfie mirror shots, anyone standing passively for the camera, empty equipment with no one using it, and any gallery where only one body type, age or background appears.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="style">
+    <div class="eyebrow">07 — Photography style</div>
+    <h2 class="title">The wider mood, in one board</h2>
+    <p class="lead">Beyond the four pillar-specific shot briefs, this is the broader lifestyle aesthetic the brand pulls from — natural light, outdoor and indoor, always movement or connection, never a posed studio shot. All images below are lifestyle stock from Unsplash, shown for creative direction.</p>
+
+    <div class="style-grid">
+      <figure>
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=700&q=60" alt="Silhouette of three women running on a road at pace" onerror="this.classList.add('img-failed');this.removeAttribute('onerror');">
+        <figcaption>Outdoor motion, silhouette energy — echoes the runner in our own mark.</figcaption>
+      </figure>
+      <figure>
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1502904550040-7534597429ae?auto=format&fit=crop&w=700&q=60" alt="Group of people running together on a track" onerror="this.classList.add('img-failed');this.removeAttribute('onerror');">
+        <figcaption>Track and stadium settings — a literal "Britain moving" backdrop.</figcaption>
+      </figure>
+      <figure>
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1590333748338-d629e4564ad9?auto=format&fit=crop&w=700&q=60" alt="People running together on an open road in daylight" onerror="this.classList.add('img-failed');this.removeAttribute('onerror');">
+        <figcaption>Open road, natural light, group pace — nobody posed, everybody moving.</figcaption>
+      </figure>
+      <figure>
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1607962837359-5e7e89f86776?auto=format&fit=crop&w=700&q=60" alt="A man running alone outdoors during the day" onerror="this.classList.add('img-failed');this.removeAttribute('onerror');">
+        <figcaption>Solo outdoor effort — Confidence and Action without a gym setting.</figcaption>
+      </figure>
+      <figure>
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1519311965067-36d3e5f33d39?auto=format&fit=crop&w=700&q=60" alt="Two people sharing a fist bump on the ground after training" onerror="this.classList.add('img-failed');this.removeAttribute('onerror');">
+        <figcaption>Connection over performance — the moment after the effort, not the effort itself.</figcaption>
+      </figure>
+      <figure>
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1518622358385-8ea7d0794bf6?auto=format&fit=crop&w=700&q=60" alt="Three women kneeling and laughing together indoors" onerror="this.classList.add('img-failed');this.removeAttribute('onerror');">
+        <figcaption>Candid indoor connection — genuine laughter, not a directed smile.</figcaption>
+      </figure>
+    </div>
+
+    <p style="font-size:12px;color:var(--slate);margin-top:20px;">All photography on this page is lifestyle stock from Unsplash, shown for creative direction only — replace with commissioned photography of real members before shipping any of this to production.</p>
+  </section>
+
+  <section id="overlay">
+    <div class="eyebrow">07b — Text on imagery</div>
+    <h2 class="title">Legibility first, always</h2>
+    <p class="lead">Text over photography uses a flat solid scrim, not a gradient fade. A flat block guarantees contrast across its entire area; a fade guarantees it only at one end and quietly fails at the other.</p>
+
+    <h3 style="font-size:15px;margin-top:32px;margin-bottom:14px;">Hierarchy, top to bottom</h3>
+    <div class="rules-list">
+      <div class="rule"><span class="flag do">1</span><span><b>Pillar tag</b> — a flat-coloured badge, 11–12px, always present, identifies which pillar the content serves.</span></div>
+      <div class="rule"><span class="flag do">2</span><span><b>Headline</b> — Sora 700, 22–34px depending on context, maximum two lines.</span></div>
+      <div class="rule"><span class="flag do">3</span><span><b>Supporting line</b> — Inter 400, 14–16px, white at ~78% opacity, one line on cards, two maximum on a hero.</span></div>
+      <div class="rule"><span class="flag do">4</span><span><b>CTA</b> (optional) — a solid flat button or a white outline button; never text floating on the image without a button shape around it.</span></div>
+    </div>
+
+    <h3 style="font-size:15px;margin-top:32px;margin-bottom:14px;">Full-bleed hero — bottom scrim, left-aligned</h3>
+    <div class="overlay-demo">
+      <div class="imgfill"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=1400&q=65" alt="Silhouette of three women running together at pace" onerror="this.classList.add('img-failed');this.removeAttribute('onerror');"></div>
+      <div class="scrim"></div>
+      <div class="content">
+        <span class="badge badge-gold tag">Community</span>
+        <h4>Six weeks in, and the 6am crew is unrecognisable</h4>
+        <p>Real members, real progress — see this month's group results.</p>
+        <button class="btn btn-white-outline cta">Read their story</button>
+      </div>
+    </div>
+
+    <h3 style="font-size:15px;margin-top:28px;margin-bottom:14px;">Card / tile — side panel, no overlay needed</h3>
+    <div class="side-panel-demo">
+      <div class="imgfill">
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1638805981949-362f5964521e?auto=format&fit=crop&w=800&q=60" alt="A man using a wheelchair training in a gym" onerror="this.classList.add('img-failed');this.removeAttribute('onerror');">
+      </div>
+      <div class="textpanel">
+        <span class="badge badge-sky" style="width:fit-content;">Accessibility</span>
+        <h4 style="margin-top:12px;">Every class has a step-free option</h4>
+        <p>Shown in the listing, not buried in a filter.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:15px;margin-top:32px;margin-bottom:14px;">Legibility rules</h3>
+    <div class="rules-list">
+      <div class="rule"><span class="flag do">✓</span><span>Text sits only within the scrim or panel area — never directly on unmasked image detail.</span></div>
+      <div class="rule"><span class="flag do">✓</span><span>Scrim is a flat fill at minimum 75% opacity, sized generously enough to guarantee 4.5:1 contrast for every word inside it.</span></div>
+      <div class="rule"><span class="flag do">✓</span><span>Minimum safe margin: 24px on mobile, 40px on web, from every edge of the frame.</span></div>
+      <div class="rule"><span class="flag do">✓</span><span>Headline text never exceeds ~75% of the frame width, keeping a visible margin of image on both sides.</span></div>
+      <div class="rule"><span class="flag dont">✕</span><span>Don't use a gradient fade as a scrim — swap it for a flat block at fixed opacity.</span></div>
+      <div class="rule"><span class="flag dont">✕</span><span>Don't centre-align long text over imagery — centring is reserved for single short tags only.</span></div>
+    </div>
+  </section>
+
+  <section id="iconography">
+    <div class="eyebrow">08 — Iconography</div>
+    <h2 class="title">A glyph for each pillar</h2>
+    <p class="lead">These four marks recur everywhere — section headers, badges, empty states — so a member learns to read them the way they'd learn a wayfinding system. They're generic UI icons, independent of the logo itself.</p>
+
+    <div class="grid cols-4" style="margin-top:28px;">
+      <div class="icon-tile"><div class="glyph" style="background:var(--blue-light);"><svg viewBox="0 0 24 24" fill="none" stroke="#00247D" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15 L12 9 L18 15"/></svg></div><div class="name">Confidence</div></div>
+      <div class="icon-tile"><div class="glyph" style="background:var(--gold-light);"><svg viewBox="0 0 24 24" fill="none" stroke="#8A5C00" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="7" r="2" fill="#8A5C00" stroke="none"/><circle cx="6" cy="18" r="2" fill="#8A5C00" stroke="none"/><circle cx="18" cy="18" r="2" fill="#8A5C00" stroke="none"/><path d="M12 9 L7 16 M12 9 L17 16 M8 18 L16 18"/></svg></div><div class="name">Community</div></div>
+      <div class="icon-tile"><div class="glyph" style="background:var(--sky-light);"><svg viewBox="0 0 24 24" fill="none" stroke="#1D4E89" stroke-width="2.2" stroke-linecap="round"><path d="M12 3 A9 9 0 1 1 3.3 8.2"/></svg></div><div class="name">Accessibility</div></div>
+      <div class="icon-tile"><div class="glyph" style="background:var(--red-light);"><svg viewBox="0 0 24 24" fill="none" stroke="#CF142B" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 H17 M12 7 L17 12 L12 17"/></svg></div><div class="name">Action</div></div>
+    </div>
+
+    <div class="card" style="margin-top:22px;">
+      <h3 style="font-size:15px;">Wider icon set</h3>
+      <p style="font-size:14px;color:var(--charcoal);margin-top:10px;">1.5px stroke, rounded joins, 24px grid, unfilled except for active/selected states — same restraint as the four pillar glyphs above. Icons are always flat single-colour; never two-tone or gradient-filled, and never a substitute for the logo itself.</p>
+    </div>
+  </section>
+
+  <section id="voice">
+    <div class="eyebrow">09 — Voice &amp; tone</div>
+    <h2 class="title">Four pillars, four habits of speech</h2>
+    <p class="lead">Every piece of copy should be checkable against the pillar it's meant to serve. If a line doesn't do one of these four jobs, cut it.</p>
+
+    <div class="grid cols-2" style="margin-top:30px;">
+      <div class="card pad-lg">
+        <div class="pillar-badge badge-blue" style="margin-bottom:14px;">Confidence</div>
+        <h3 style="font-size:16px;">Direct, affirming, specific</h3>
+        <p style="font-size:14px;color:var(--charcoal);margin-top:10px;">Short sentences, active verbs, named progress. "You held that plank ten seconds longer than last week" beats "great effort today!"</p>
+      </div>
+      <div class="card pad-lg">
+        <div class="pillar-badge badge-gold" style="margin-bottom:14px;">Community</div>
+        <h3 style="font-size:16px;">"We" and "together", not "you alone"</h3>
+        <p style="font-size:14px;color:var(--charcoal);margin-top:10px;">Coach, not drill sergeant. Credit the group as often as the individual: "The 6am crew hit a new team total this week."</p>
+      </div>
+      <div class="card pad-lg">
+        <div class="pillar-badge badge-sky" style="margin-bottom:14px;">Accessibility</div>
+        <h3 style="font-size:16px;">Plain language, no jargon left unexplained</h3>
+        <p style="font-size:14px;color:var(--charcoal);margin-top:10px;">Write at a level that needs no fitness background to follow. Every class listing states modifications available, not just the advanced version.</p>
+      </div>
+      <div class="card pad-lg">
+        <div class="pillar-badge badge-red" style="margin-bottom:14px;">Action</div>
+        <h3 style="font-size:16px;">One clear next step, every time</h3>
+        <p style="font-size:14px;color:var(--charcoal);margin-top:10px;">Claims are specific and true, and end in a CTA the member can take now — "Book Tuesday's beginner circuit," in service of getting one more person moving.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="components">
+    <div class="eyebrow">10 — Web components</div>
+    <h2 class="title">Interface building blocks</h2>
+    <p class="lead">8px spacing grid, 10–14px corner radius, one solid-fill action per screen. The signature Royal Blue-to-Red gradient is reserved for highlight panels only — buttons, badges and every other fill stay flat.</p>
+
+    <div class="card pad-lg" style="margin-top:30px;">
+      <h3 style="font-size:14px;color:var(--slate);margin-bottom:16px;">Buttons</h3>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <button class="btn btn-primary">Book your free trial</button>
+        <button class="btn btn-secondary">View classes</button>
+        <button class="btn btn-ghost">Learn more</button>
+      </div>
+      <p style="font-size:12.5px;color:var(--slate);margin-top:14px;">Primary CTA is solid Red — flat fill, no gradient. It's the Action pillar's colour, so it's reserved for the one thing on a screen we most want someone to do.</p>
+    </div>
+
+    <div class="card pad-lg" style="margin-top:18px;">
+      <h3 style="font-size:14px;color:var(--slate);margin-bottom:16px;">Pillar-tagged badges</h3>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <span class="badge badge-blue">Confidence · new PB</span>
+        <span class="badge badge-gold">Community · group class</span>
+        <span class="badge badge-sky">Accessibility · step-free</span>
+        <span class="badge badge-red">Action · book now</span>
+      </div>
+    </div>
+
+    <div style="margin-top:18px;">
+      <h3 style="font-size:14px;color:var(--slate);margin-bottom:16px;">Navigation bar</h3>
+      <div class="navbar-demo">
+        <div class="brandmark">
+          <img src="logo-primary.svg" alt="The Confidence Academy" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','&lt;span class=&quot;logo-fallback&quot;&gt;THE CONFIDENCE ACADEMY&lt;small&gt;GET BRITAIN MOVING&lt;/small&gt;&lt;/span&gt;');this.removeAttribute('onerror');">
+        </div>
+        <div class="links"><span><b>Classes</b></span><span>Community</span><span>Accessibility</span><span>App</span></div>
+        <button class="btn btn-primary" style="padding:9px 18px;font-size:13px;">Join now</button>
+      </div>
+      <p style="font-size:12.5px;color:var(--slate);margin-top:12px;">The logo sits on its own small white card inside dark navigation bars — the one exception to "always on a light background," since the card itself provides that light background.</p>
+    </div>
+
+    <div class="grid cols-4" style="margin-top:18px;">
+      <div class="stat-card"><div class="num">1,248</div><div class="label">Sessions completed this month</div></div>
+      <div class="stat-card"><div class="num">312</div><div class="label">Members in a class group this week</div></div>
+      <div class="stat-card"><div class="num">100%</div><div class="label">Classes with a step-free option</div></div>
+      <div class="stat-card"><div class="num">86%</div><div class="label">Members hitting weekly goal</div></div>
+    </div>
+
+    <div class="card pad-lg" style="margin-top:18px;">
+      <h3 style="font-size:14px;color:var(--slate);margin-bottom:6px;">Progress indicator</h3>
+      <p style="font-size:13.5px;color:var(--charcoal);">Programme completion — week 4 of 6</p>
+      <div class="progress"><div style="width:66%;"></div></div>
+    </div>
+
+    <div class="card pad-lg" style="margin-top:18px;">
+      <h3 style="font-size:14px;color:var(--slate);margin-bottom:14px;">Signature highlight panel</h3>
+      <div class="highlight-panel" style="height:110px;border-radius:12px;"></div>
+      <p style="font-size:12.5px;color:var(--slate);margin-top:12px;">Royal Blue into Red, 115°. Used for hero banners, feature tiles and stat cards — the one gradient moment in the whole system, reserved and consistent.</p>
+    </div>
+  </section>
+
+  <section id="mobile">
+    <div class="eyebrow">11 — Mobile app</div>
+    <h2 class="title">Same system, thumb-sized</h2>
+    <p class="lead">Every home-screen module is tagged to a pillar, so the app teaches the framework through daily use. The hero card uses the signature Royal Blue-to-Red gradient — the one place in the app it appears.</p>
+
+    <div style="display:flex;gap:40px;align-items:flex-start;margin-top:30px;flex-wrap:wrap;">
+      <div class="phone">
+        <div class="screen">
+          <div class="status"><span>9:41</span><span>●●●●</span></div>
+          <div class="header"><div class="hi">Good morning</div><div class="name">Sam</div></div>
+          <div class="hero highlight-panel">
+            <div class="l1">Current streak — Action</div>
+            <div class="l2">12 days</div>
+          </div>
+          <div class="body">
+            <div class="row-title">Today's plan</div>
+            <div class="pill-card"><div><div class="t1">Confidence Circuit</div><div class="t2">30 min · Strength</div></div><span class="badge badge-blue" style="font-size:10px;padding:4px 9px;">9:00</span></div>
+            <div class="pill-card"><div><div class="t1">Group ride — 6 joining</div><div class="t2">45 min · Community</div></div><span class="badge badge-gold" style="font-size:10px;padding:4px 9px;">Evening</span></div>
+            <div class="pill-card"><div><div class="t1">Seated strength option</div><div class="t2">20 min · Step-free</div></div><span class="badge badge-sky" style="font-size:10px;padding:4px 9px;">Anytime</span></div>
+          </div>
+          <div class="tabbar">
+            <div class="tab active"><div class="dot"></div>Home</div>
+            <div class="tab"><div class="dot"></div>Classes</div>
+            <div class="tab"><div class="dot"></div>Community</div>
+            <div class="tab"><div class="dot"></div>Profile</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:260px;">
+        <h3 style="font-size:15px;margin-bottom:14px;">App icon — a flagged gap, not a finished asset</h3>
+        <div style="display:flex;gap:14px;align-items:center;margin-bottom:18px;">
+          <div style="width:64px;height:64px;border-radius:22%;background:var(--blue);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);">
+            <span style="font-family:'Sora','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;font-weight:800;color:#fff;font-size:20px;letter-spacing:0.02em;">TCA</span>
+          </div>
+          <p style="font-size:12.5px;color:var(--charcoal);max-width:340px;">A plain "TCA" monogram, Royal Blue background — a temporary utility icon only, not a version of the trademark. Commission a true icon-only lockup from the original designer before launch.</p>
+        </div>
+        <h3 style="font-size:15px;margin-bottom:10px;margin-top:26px;">Product principles</h3>
+        <div class="rules-list">
+          <div class="rule"><span class="flag do">✓</span><span>Every card on the home screen names its pillar in small type — members should be able to say which of the four a feature serves.</span></div>
+          <div class="rule"><span class="flag do">✓</span><span>A step-free or modified option is surfaced at the same visual weight as the standard class, never buried in a filter.</span></div>
+          <div class="rule"><span class="flag do">✓</span><span>Numbers that matter to the member (time, reps, streaks) are always set in Space Mono for instant scannability.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="accessibility">
+    <div class="eyebrow">12 — Accessibility standard</div>
+    <h2 class="title">Not a footnote — a pillar</h2>
+    <p class="lead">Because Accessibility is one of the four pillars, it gets enforced minimums here rather than being left to a component's default styling.</p>
+
+    <div class="grid cols-2" style="margin-top:30px;">
+      <div class="card pad-lg">
+        <h3 style="font-size:15px;">Visual</h3>
+        <div class="rules-list">
+          <div class="rule"><span class="flag do">✓</span><span>Body text never below 16px; line height 1.5 minimum.</span></div>
+          <div class="rule"><span class="flag do">✓</span><span>Text and interactive elements hold 4.5:1 contrast against their background at minimum, including at both ends of the signature gradient, not just the average.</span></div>
+          <div class="rule"><span class="flag do">✓</span><span>Colour is never the only signal — pillar badges pair colour with a label and an icon, not colour alone.</span></div>
+        </div>
+      </div>
+      <div class="card pad-lg">
+        <h3 style="font-size:15px;">Interaction</h3>
+        <div class="rules-list">
+          <div class="rule"><span class="flag do">✓</span><span>Touch targets minimum 44×44px on mobile, with visible focus states on web for keyboard navigation.</span></div>
+          <div class="rule"><span class="flag do">✓</span><span>All video content carries captions by default; alt text is written for every image, not left blank.</span></div>
+          <div class="rule"><span class="flag do">✓</span><span>Every class format states its physical modifications in the listing itself, not one tap deeper.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="book">
+    <span>The Confidence Academy — Brand guidelines v1.2</span>
+    <span>Get Britain Moving — the source of truth for web and app</span>
+  </footer>
+
+</main>
+</div>
+</body>
+</html>
