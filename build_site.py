@@ -306,9 +306,7 @@ DOC = f'''<!DOCTYPE html>
 
       <ul class="contact__list">
         <li><a href="https://www.linkedin.com/in/suvrasis/" target="_blank" rel="noopener"><span>LinkedIn</span><span>linkedin.com/in/suvrasis&nbsp;↗</span></a></li>
-        <!-- Add your email: uncomment this line and replace both addresses below.
-        <li><a href="mailto:you@yourdomain.com"><span>Email</span><span>you@yourdomain.com&nbsp;↗</span></a></li>
-        -->
+        <li><a href="mailto:suvrasis@outlook.com"><span>suvrasis@outlook.com</span><span>suvrasis@outlook.com&nbsp;↗</span></a></li>
         <li><span class="contact__static"><span>Based in</span><span>London, UK</span></span></li>
       </ul>
     </div>
