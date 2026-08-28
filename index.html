@@ -446,45 +446,7 @@
       <span>Brand / Digital / Product / Experience</span>
     </footer>
 
-  
   </div>
-
-  <script>
-    const exploreCta = document.getElementById("exploreCta");
-    const portfolioPopup = document.getElementById("portfolioPopup");
-    const popupClose = document.getElementById("popupClose");
-
-    function openPortfolioPopup() {
-      portfolioPopup.classList.add("is-visible");
-      portfolioPopup.setAttribute("aria-hidden", "false");
-      popupClose.focus();
-    }
-
-    function closePortfolioPopup() {
-      portfolioPopup.classList.remove("is-visible");
-      portfolioPopup.setAttribute("aria-hidden", "true");
-      exploreCta.focus();
-    }
-
-    exploreCta.addEventListener("click", (event) => {
-      event.preventDefault();
-      openPortfolioPopup();
-    });
-
-    popupClose.addEventListener("click", closePortfolioPopup);
-
-    portfolioPopup.addEventListener("click", (event) => {
-      if (event.target === portfolioPopup) {
-        closePortfolioPopup();
-      }
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && portfolioPopup.classList.contains("is-visible")) {
-        closePortfolioPopup();
-      }
-    });
-  </script>
 
 </body>
 </html>
