@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 104" role="img" aria-labelledby="t"><title id="t">Nexyra Consulting horizontal logo</title>
+  <defs>
+  <clipPath id="cutTop"><polygon points="-60,126 180,6 180,-80 -60,-80"/></clipPath>
+  <clipPath id="cutBot"><polygon points="-60,134 180,14 180,240 -60,240"/></clipPath>
+  </defs>
+  <g transform="translate(14,0)">
+   <g transform="translate(20,20) scale(0.457)">
+    <g clip-path="url(#cutTop)"><path fill="#0E1116" d="M0 140 V0 H24 L96 98 V0 H120 V140 H96 L24 42 V140 Z"/></g>
+    <g clip-path="url(#cutBot)"><path fill="#0E1116" d="M0 140 V0 H24 L96 98 V0 H120 V140 H96 L24 42 V140 Z"/></g>
+    <line stroke="#17A896" stroke-width="7" x1="-30" y1="115" x2="0" y2="100"/>
+    <line stroke="#17A896" stroke-width="7" x1="120" y1="40" x2="150" y2="25"/>
+   </g>
+   <text x="115" y="56" font-family="'Inter Tight','Neue Haas Grotesk Display','Helvetica Neue',Arial,sans-serif" font-size="38" font-weight="500" letter-spacing="4" fill="#0E1116">NEXYRA</text>
+   <text x="117" y="76" font-family="'Inter Tight','Neue Haas Grotesk Display','Helvetica Neue',Arial,sans-serif" font-size="12" font-weight="400" letter-spacing="4.5" fill="#17A896">CONSULTING</text>
+  </g>
+</svg>
