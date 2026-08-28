@@ -1,0 +1,11 @@
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #04040f; }
+::-webkit-scrollbar-thumb { background: rgba(124, 58, 237, 0.4); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(124, 58, 237, 0.7); }
+
+/* Selection color */
+::selection { background: rgba(124, 58, 237, 0.35); color: #e8e8ff; }
+
+/* Smooth scroll */
+html { scroll-behavior: smooth; }
