@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Suvrasis Pal — Brand & Digital Leader | Product & Experience Design" />
+  <title>Suvrasis Pal — Brand & Digital Leader</title>
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --text: #f4f1ea;
+      --muted: #aaa59c;
+      --line: rgba(244, 241, 234, .16);
+      --accent: #d8ff4f;
+      --max: 1440px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      min-height: 100vh;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(circle at 78% 24%, rgba(216,255,79,.13), transparent 24%),
+        radial-gradient(circle at 12% 88%, rgba(255,255,255,.06), transparent 28%),
+        linear-gradient(120deg, #090909 0%, #11110f 48%, #080808 100%);
+    }
+
+    .grid {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: .17;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
+    }
+
+    header {
+      width: min(calc(100% - 48px), var(--max));
+      margin: 0 auto;
+      padding: 28px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 5;
+    }
+
+    .mark {
+      font-weight: 800;
+      letter-spacing: -.04em;
+      font-size: 18px;
+    }
+
+    nav {
+      display: flex;
+      gap: 28px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--muted);
+    }
+
+    nav a:hover { color: var(--text); }
+
+    main {
+      width: min(calc(100% - 48px), var(--max));
+      margin: 0 auto;
+    }
+
+    .hero {
+      min-height: calc(100vh - 76px);
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      gap: 7vw;
+      padding: 7vh 0 10vh;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 30px;
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 20px rgba(216,255,79,.65);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 850px;
+      font-size: clamp(62px, 9.2vw, 150px);
+      line-height: .82;
+      letter-spacing: -.075em;
+      font-weight: 800;
+    }
+
+    h1 span {
+      display: block;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(244,241,234,.65);
+    }
+
+    .role {
+      margin: 38px 0 0;
+      max-width: 680px;
+      font-size: clamp(20px, 2.25vw, 34px);
+      line-height: 1.08;
+      letter-spacing: -.035em;
+    }
+
+    .role strong { color: var(--accent); font-weight: 500; }
+
+    .intro {
+      margin-top: 24px;
+      max-width: 570px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 36px;
+      flex-wrap: wrap;
+    }
+
+    .cta {
+      border: 1px solid rgba(244,241,234,.28);
+      padding: 15px 20px;
+      border-radius: 999px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      transition: .25s ease;
+    }
+
+    .cta.primary {
+      background: var(--accent);
+      color: #0a0a0a;
+      border-color: var(--accent);
+    }
+
+    .cta:hover { transform: translateY(-3px); }
+
+    .visual {
+      min-height: 560px;
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    .orb {
+      width: min(38vw, 560px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      position: relative;
+      background:
+        radial-gradient(circle at 32% 28%, #ffffff 0 1%, transparent 7%),
+        radial-gradient(circle at 52% 47%, rgba(216,255,79,.8), transparent 23%),
+        conic-gradient(from 40deg, #d8ff4f, #4b531f, #f4f1ea, #141414, #d8ff4f);
+      filter: saturate(.8);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,.18),
+        0 40px 100px rgba(0,0,0,.65),
+        0 0 100px rgba(216,255,79,.10);
+      animation: float 7s ease-in-out infinite;
+    }
+
+    .orb::before {
+      content: "";
+      position: absolute;
+      inset: 9%;
+      border-radius: 50%;
+      background:
+        repeating-radial-gradient(circle at 45% 45%, transparent 0 12px, rgba(255,255,255,.13) 13px 14px),
+        radial-gradient(circle at 35% 25%, rgba(255,255,255,.22), transparent 18%),
+        #101010;
+      mix-blend-mode: multiply;
+      opacity: .85;
+    }
+
+    .orb::after {
+      content: "BRAND / DIGITAL / EXPERIENCE";
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      bottom: -48px;
+      left: 0;
+      font-size: 9px;
+      letter-spacing: .25em;
+      color: var(--muted);
+    }
+
+    .orbit {
+      position: absolute;
+      width: min(48vw, 690px);
+      aspect-ratio: 1;
+      border: 1px solid rgba(244,241,234,.14);
+      border-radius: 50%;
+      transform: rotate(-18deg) scaleY(.38);
+    }
+
+    .orbit.two { transform: rotate(38deg) scaleY(.38); }
+
+    .side-note {
+      position: absolute;
+      right: 0;
+      top: 12%;
+      writing-mode: vertical-rl;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-size: 9px;
+    }
+
+    .scroll {
+      position: absolute;
+      bottom: 30px;
+      left: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    .scroll::after {
+      content: "";
+      width: 50px;
+      height: 1px;
+      background: var(--muted);
+    }
+
+    footer {
+      width: min(calc(100% - 48px), var(--max));
+      margin: 0 auto;
+      padding: 22px 0 30px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-16px) rotate(3deg); }
+    }
+
+    @media (max-width: 820px) {
+      header, main, footer { width: min(calc(100% - 32px), var(--max)); }
+      nav { display: none; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 8vh;
+        gap: 5vh;
+      }
+
+      .visual {
+        min-height: 420px;
+        order: -1;
+      }
+
+      .orb { width: min(72vw, 420px); }
+      .orbit { width: 92vw; }
+      .side-note { display: none; }
+      .scroll { display: none; }
+
+      h1 { font-size: clamp(58px, 17vw, 105px); }
+      .role { font-size: 24px; }
+      footer { flex-direction: column; }
+    }
+
+
+    .portfolio-popup {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: rgba(0, 0, 0, .72);
+      backdrop-filter: blur(12px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity .25s ease, visibility .25s ease;
+    }
+
+    .portfolio-popup.is-visible {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .popup-card {
+      width: min(440px, 100%);
+      padding: 34px;
+      border: 1px solid rgba(244,241,234,.2);
+      border-radius: 24px;
+      background: rgba(18,18,17,.96);
+      box-shadow: 0 30px 100px rgba(0,0,0,.6);
+      text-align: center;
+      transform: translateY(12px) scale(.98);
+      transition: transform .25s ease;
+    }
+
+    .portfolio-popup.is-visible .popup-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .popup-label {
+      margin: 0 0 14px;
+      color: var(--accent);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+    }
+
+    .popup-card h2 {
+      margin: 0;
+      font-size: clamp(28px, 5vw, 42px);
+      line-height: .95;
+      letter-spacing: -.05em;
+    }
+
+    .popup-card p {
+      margin: 16px 0 26px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .popup-close {
+      border: 1px solid rgba(244,241,234,.25);
+      background: transparent;
+      color: var(--text);
+      border-radius: 999px;
+      padding: 12px 20px;
+      font: inherit;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      cursor: pointer;
+    }
+
+    .popup-close:hover {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .orb { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="grid"></div>
+
+    <header>
+      <a class="mark" href="#">SP<span style="color:var(--accent)">.</span></a>
+      <nav aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="mailto:hello@suvrasispal.com">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="about">
+        <div class="copy">
+          <div class="eyebrow"><span class="dot"></span> London / UK</div>
+
+          <h1>SUVRAIS<br><span>PAL.</span></h1>
+
+          <p class="role">
+            <strong>Brand &amp; Digital Leader</strong><br>
+            Product &amp; Experience Design
+          </p>
+
+          <p class="intro">
+            Building meaningful brands, digital products and experiences at the intersection
+            of strategy, design, technology and emerging AI.
+          </p>
+
+          <div class="cta-row" id="work">
+            <a class="cta primary" href="mailto:suvrasis@outlook.com">Start a conversation ↗</a>
+            <a class="cta" href="#" id="exploreCta">Explore ↓</a>
+          </div>
+        </div>
+
+        <div class="visual" aria-hidden="true">
+          <div class="orbit"></div>
+          <div class="orbit two"></div>
+          <div class="orb"></div>
+          <div class="side-note">Strategy · Design · Technology · AI</div>
+        </div>
+
+        <div class="scroll">Scroll to explore</div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© 2026 Suvrasis Pal</span>
+      <span>Brand / Digital / Product / Experience</span>
+    </footer>
+
+    <div class="portfolio-popup" id="portfolioPopup" role="dialog" aria-modal="true"
+         aria-labelledby="portfolioPopupTitle" aria-hidden="true">
+      <div class="popup-card">
+        <p class="popup-label">Portfolio</p>
+        <h2 id="portfolioPopupTitle">Detailed Portfolio Coming Soon</h2>
+        <p>A curated selection of brand, digital, product and experience work is currently being prepared.</p>
+        <button class="popup-close" id="popupClose" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const exploreCta = document.getElementById("exploreCta");
+    const portfolioPopup = document.getElementById("portfolioPopup");
+    const popupClose = document.getElementById("popupClose");
+
+    function openPortfolioPopup() {
+      portfolioPopup.classList.add("is-visible");
+      portfolioPopup.setAttribute("aria-hidden", "false");
+      popupClose.focus();
+    }
+
+    function closePortfolioPopup() {
+      portfolioPopup.classList.remove("is-visible");
+      portfolioPopup.setAttribute("aria-hidden", "true");
+      exploreCta.focus();
+    }
+
+    exploreCta.addEventListener("click", (event) => {
+      event.preventDefault();
+      openPortfolioPopup();
+    });
+
+    popupClose.addEventListener("click", closePortfolioPopup);
+
+    portfolioPopup.addEventListener("click", (event) => {
+      if (event.target === portfolioPopup) {
+        closePortfolioPopup();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && portfolioPopup.classList.contains("is-visible")) {
+        closePortfolioPopup();
+      }
+    });
+  </script>
+
+</body>
+</html>
