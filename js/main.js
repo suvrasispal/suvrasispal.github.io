@@ -11,7 +11,6 @@
   var prevBtn = document.getElementById("lbPrev");
   var nextBtn = document.getElementById("lbNext");
   var closeBtn = document.getElementById("lbClose");
-  var fullLink = document.getElementById("lbFull");
 
   var slides = [];
   var index = 0;
@@ -31,7 +30,6 @@
     img.src = srcFor(slides[index]);
     img.alt = titleEl.textContent + " — slide " + (index + 1) + " of " + slides.length;
     countEl.textContent = index + 1 + " / " + slides.length;
-    fullLink.href = srcFor(slides[index]);
     prevBtn.disabled = index === 0;
     nextBtn.disabled = index === slides.length - 1;
     preload(index + 1);
@@ -85,7 +83,7 @@
     else if (e.key === "End") { index = slides.length - 1; render(); }
     else if (e.key === "Tab") {
       // keep focus inside the dialog
-      var f = [closeBtn, fullLink, prevBtn, nextBtn].filter(function (b) { return !b.disabled; });
+      var f = [closeBtn, prevBtn, nextBtn].filter(function (b) { return !b.disabled; });
       var i = f.indexOf(document.activeElement);
       e.preventDefault();
       f[(i + (e.shiftKey ? -1 : 1) + f.length) % f.length].focus();
@@ -191,7 +189,7 @@
     }
 
     var key = form.elements.access_key.value;
-    if (!key || key.indexOf("6a434485-55fa-4f55-9dba-e4066a8c6835") === 0) {
+    if (!key || key.indexOf("REPLACE_WITH") === 0) {
       say("This form isn't connected yet — add your Web3Forms access key.", "bad");
       return;
     }
