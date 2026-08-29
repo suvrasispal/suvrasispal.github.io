@@ -811,26 +811,11 @@ body.lb-open { overflow: hidden; }
 }
 
 
-/* full-size link in the viewer bar */
-.lb__full {
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  color: #fff;
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 0.5rem 0.85rem;
-  white-space: nowrap;
-}
-
-.lb__full:hover { background: var(--mustard); color: var(--ink); border-color: var(--mustard); }
-
 @media (max-width: 34rem) {
   .lb__title { display: none; }
   .lb__bar { gap: 0.6rem; justify-content: flex-end; }
   .lb__count { margin-right: auto; }
-  .lb__full, .lb__close { padding: 0.45rem 0.6rem; font-size: 0.66rem; letter-spacing: 0.08em; }
+  .lb__close { padding: 0.45rem 0.6rem; font-size: 0.66rem; letter-spacing: 0.08em; }
 }
 
 
