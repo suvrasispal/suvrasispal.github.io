@@ -33,6 +33,7 @@
   --blue-deep: #16227e;
   --mustard: #e5a72b;
   --fog: #d5d8e0;
+  --alert: #ffb3a7;   /* form errors on the dark contact panel */
 
   --display: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --body: "Newsreader", Georgia, "Times New Roman", serif;
@@ -951,6 +952,132 @@ body.lb-open { overflow: hidden; }
   .track__main { grid-column: 2; }
 }
 
+/* ============================================================
+   CONTACT FORM
+   ============================================================ */
+
+.cform {
+  margin: clamp(2.5rem, 6vw, 3.5rem) 0 0;
+  max-width: 46rem;
+}
+
+.cform__pot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.cform__row {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 40rem) {
+  .cform__row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.cform__field {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0 0 1.5rem;
+}
+
+.cform__row .cform__field { margin-bottom: 0; }
+
+.cform__field label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--paper) 72%, transparent);
+}
+
+.cform input[type="text"],
+.cform input[type="email"],
+.cform textarea {
+  font-family: var(--body);
+  font-size: 1rem;
+  color: var(--paper);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 0;
+  padding: 0.8rem 0.9rem;
+  width: 100%;
+  transition: border-color 0.18s, background 0.18s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.cform textarea {
+  resize: vertical;
+  min-height: 8rem;
+  line-height: 1.55;
+}
+
+.cform input:hover,
+.cform textarea:hover { background: rgba(255, 255, 255, 0.1); }
+
+.cform input:focus,
+.cform textarea:focus {
+  outline: none;
+  border-color: var(--mustard);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.cform :focus-visible { outline: 2px solid var(--mustard); outline-offset: 2px; }
+
+.cform [aria-invalid="true"] { border-color: var(--alert); }
+
+.cform__err {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--alert);
+}
+
+.cform__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin-top: 1.75rem;
+}
+
+.cform__send {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue-deep);
+  background: var(--paper);
+  border: 1px solid var(--paper);
+  padding: 0.85rem 1.6rem;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
+}
+
+.cform__send:hover:not(:disabled) {
+  background: var(--mustard);
+  border-color: var(--mustard);
+  color: var(--ink);
+}
+
+.cform__send:disabled { opacity: 0.55; cursor: progress; }
+
+.cform__status {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--paper) 80%, transparent);
+}
+
+.cform__status.is-ok { color: var(--mustard); }
+.cform__status.is-bad { color: var(--alert); }
+
 </style>
 
 <script type="application/ld+json">
@@ -1525,6 +1652,45 @@ body.lb-open { overflow: hidden; }
       <p class="eyebrow">Work with me</p>
       <h2 class="contact__title">Building digital products, brands and experience.</h2>
 
+      <form class="cform" id="cform" novalidate>
+        <!-- Web3Forms public access key. Public by design: it identifies the
+             destination inbox and grants no account access. Submissions are
+             delivered to whichever address this key was registered with. -->
+        <input type="hidden" name="access_key" value="6a434485-55fa-4f55-9dba-e4066a8c6835">
+        <input type="hidden" name="subject" value="New message from your portfolio">
+        <input type="hidden" name="from_name" value="Suvrasis Pal portfolio">
+
+        <!-- honeypot: bots fill it, people never see it -->
+        <input type="checkbox" name="botcheck" class="cform__pot" tabindex="-1" autocomplete="off">
+
+        <div class="cform__row">
+          <p class="cform__field">
+            <label for="cf-name">Full name</label>
+            <input id="cf-name" name="name" type="text" autocomplete="name"
+                   required aria-describedby="cf-name-err">
+            <span class="cform__err" id="cf-name-err" hidden></span>
+          </p>
+          <p class="cform__field">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" name="email" type="email" autocomplete="email"
+                   required aria-describedby="cf-email-err">
+            <span class="cform__err" id="cf-email-err" hidden></span>
+          </p>
+        </div>
+
+        <p class="cform__field">
+          <label for="cf-message">Details</label>
+          <textarea id="cf-message" name="message" rows="5"
+                    required aria-describedby="cf-message-err"></textarea>
+          <span class="cform__err" id="cf-message-err" hidden></span>
+        </p>
+
+        <div class="cform__foot">
+          <button class="cform__send" type="submit">Send message</button>
+          <p class="cform__status" id="cf-status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+
       <ul class="contact__list">
         <li><a href="https://www.linkedin.com/in/suvrasis/" target="_blank" rel="noopener"><span>LinkedIn</span><span>linkedin.com/in/suvrasis&nbsp;↗</span></a></li>
         <!-- Add your email: uncomment this line and replace both addresses below.
@@ -1665,6 +1831,131 @@ body.lb-open { overflow: hidden; }
 
   var yr = document.getElementById("yr");
   if (yr) yr.textContent = new Date().getFullYear();
+})();
+
+/* ------------------------------------------------------------
+   Contact form — posts to Web3Forms, no backend of our own.
+   ------------------------------------------------------------ */
+
+(function () {
+  "use strict";
+
+  var form = document.getElementById("cform");
+  if (!form) return;
+
+  var status = document.getElementById("cf-status");
+  var button = form.querySelector(".cform__send");
+  var sending = false;
+
+  var FIELDS = [
+    { id: "cf-name", err: "cf-name-err", msg: "Please enter your name." },
+    { id: "cf-email", err: "cf-email-err", msg: "Please enter your email address.",
+      bad: "That doesn't look like a valid email address." },
+    { id: "cf-message", err: "cf-message-err", msg: "Please tell me a little about it." }
+  ];
+
+  // Deliberately permissive: something@something.tld. Stricter patterns reject
+  // addresses that are perfectly valid.
+  var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  function setError(f, text) {
+    var input = document.getElementById(f.id);
+    var slot = document.getElementById(f.err);
+    if (text) {
+      slot.textContent = text;
+      slot.hidden = false;
+      input.setAttribute("aria-invalid", "true");
+    } else {
+      slot.textContent = "";
+      slot.hidden = true;
+      input.removeAttribute("aria-invalid");
+    }
+  }
+
+  function validate(showAll) {
+    var firstBad = null;
+    FIELDS.forEach(function (f) {
+      var input = document.getElementById(f.id);
+      var value = input.value.trim();
+      var problem = null;
+      if (!value) problem = f.msg;
+      else if (f.id === "cf-email" && !EMAIL.test(value)) problem = f.bad;
+
+      // don't scold someone about a field they haven't reached yet
+      if (problem && (showAll || input.dataset.touched)) setError(f, problem);
+      else if (!problem) setError(f, null);
+
+      if (problem && !firstBad) firstBad = input;
+    });
+    return firstBad;
+  }
+
+  FIELDS.forEach(function (f) {
+    var input = document.getElementById(f.id);
+    input.addEventListener("blur", function () {
+      input.dataset.touched = "1";
+      validate(false);
+    });
+    input.addEventListener("input", function () {
+      if (input.dataset.touched) validate(false);
+    });
+  });
+
+  function say(text, kind) {
+    status.textContent = text;
+    status.className = "cform__status" + (kind ? " is-" + kind : "");
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (sending) return;               // one submission at a time
+
+    var firstBad = validate(true);
+    if (firstBad) {
+      say("Please fix the highlighted fields.", "bad");
+      firstBad.focus();
+      return;
+    }
+
+    var key = form.elements.access_key.value;
+    if (!key || key.indexOf("REPLACE_WITH") === 0) {
+      say("This form isn't connected yet — add your Web3Forms access key.", "bad");
+      return;
+    }
+
+    sending = true;
+    button.disabled = true;
+    button.textContent = "Sending…";
+    say("Sending your message…");
+
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(Object.fromEntries(new FormData(form)))
+    })
+      .then(function (r) { return r.json().catch(function () { return {}; }); })
+      .then(function (data) {
+        if (data && data.success) {
+          form.reset();
+          FIELDS.forEach(function (f) {
+            setError(f, null);
+            delete document.getElementById(f.id).dataset.touched;
+          });
+          say("Thanks — your message is on its way. I'll be in touch shortly.", "ok");
+        } else {
+          say((data && data.message) ||
+              "Something went wrong sending that. Please email me directly instead.", "bad");
+        }
+      })
+      .catch(function () {
+        say("Couldn't reach the server. Check your connection, or email me directly.", "bad");
+      })
+      .then(function () {
+        sending = false;
+        button.disabled = false;
+        button.textContent = "Send message";
+      });
+  });
 })();
 
 </script>

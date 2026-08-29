@@ -591,9 +591,50 @@
       <p class="eyebrow">Work with me</p>
       <h2 class="contact__title">Building digital products, brands and experience.</h2>
 
+      <form class="cform" id="cform" novalidate>
+        <!-- Web3Forms public access key. Public by design: it identifies the
+             destination inbox and grants no account access. Submissions are
+             delivered to whichever address this key was registered with. -->
+        <input type="hidden" name="access_key" value="6a434485-55fa-4f55-9dba-e4066a8c6835">
+        <input type="hidden" name="subject" value="New message from your portfolio">
+        <input type="hidden" name="from_name" value="Suvrasis Pal portfolio">
+
+        <!-- honeypot: bots fill it, people never see it -->
+        <input type="checkbox" name="botcheck" class="cform__pot" tabindex="-1" autocomplete="off">
+
+        <div class="cform__row">
+          <p class="cform__field">
+            <label for="cf-name">Full name</label>
+            <input id="cf-name" name="name" type="text" autocomplete="name"
+                   required aria-describedby="cf-name-err">
+            <span class="cform__err" id="cf-name-err" hidden></span>
+          </p>
+          <p class="cform__field">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" name="email" type="email" autocomplete="email"
+                   required aria-describedby="cf-email-err">
+            <span class="cform__err" id="cf-email-err" hidden></span>
+          </p>
+        </div>
+
+        <p class="cform__field">
+          <label for="cf-message">Details</label>
+          <textarea id="cf-message" name="message" rows="5"
+                    required aria-describedby="cf-message-err"></textarea>
+          <span class="cform__err" id="cf-message-err" hidden></span>
+        </p>
+
+        <div class="cform__foot">
+          <button class="cform__send" type="submit">Send message</button>
+          <p class="cform__status" id="cf-status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+
       <ul class="contact__list">
         <li><a href="https://www.linkedin.com/in/suvrasis/" target="_blank" rel="noopener"><span>LinkedIn</span><span>linkedin.com/in/suvrasis&nbsp;↗</span></a></li>
-        <li><a href="mailto:suvrasis@outlook.com"><span>suvrasis@outlook.com</span><span>suvrasis@outlook.com&nbsp;↗</span></a></li>
+        <!-- Add your email: uncomment this line and replace both addresses below.
+        <li><a href="mailto:you@yourdomain.com"><span>Email</span><span>you@yourdomain.com&nbsp;↗</span></a></li>
+        -->
         <li><span class="contact__static"><span>Based in</span><span>London, UK</span></span></li>
       </ul>
     </div>

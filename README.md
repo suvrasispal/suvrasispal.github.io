@@ -29,18 +29,36 @@ viewing and sharing, not for hosting. Host the folder.
 Total: about 11 MB. Everything came out of `Suvrasis_Pal.pdf` at original resolution —
 no screenshots, no re-compression of already-compressed images.
 
+## The contact form
+
+Posts to Web3Forms, so there is no backend to run. The access key is already in
+`index.html` — `6a434485-55fa-4f55-9dba-e4066a8c6835`. Messages go to whichever address
+that key was registered with.
+
+The key is public by design: it identifies the destination inbox and grants no account
+access. That is how Web3Forms is built to work, so it is safe sitting in the HTML.
+
+Behaviour: validates on blur and on submit, shows per-field errors, refuses to send until
+the fields are valid, blocks duplicate submissions while a send is in flight, and reports
+both API errors and network failures distinctly. A hidden `botcheck` honeypot filters bots.
+To change the subject line of the emails you receive, edit the hidden `subject` input.
+
+**Send yourself one test message** once the site is live. The form was verified end to end
+against an intercepted endpoint, but the real Web3Forms round trip could not be exercised
+from the build environment, so a single live send is worth doing to confirm delivery and to
+check your spam folder.
+
 ## Two things to add
 
-**1. Your email.** The deck didn't contain one, so rather than ship a fake address I left
-a commented-out row in the contact list. Find this in `index.html` and uncomment it:
+**1. Your email in the contact list.** The form handles messages, but there is still no
+visible address next to your LinkedIn. If you want one shown, uncomment this row in
+`index.html` and replace the address in *both* places — the `mailto:` and the visible text:
 
 ```html
 <!-- Add your email: uncomment this line and replace both addresses below.
 <li><a href="mailto:you@yourdomain.com"><span>Email</span><span>you@yourdomain.com&nbsp;↗</span></a></li>
 -->
 ```
-
-Replace the address in *both* places — the `mailto:` and the visible text.
 
 **2. Project years.** The deck doesn't date the projects, so I left years off rather than
 guess. Each project's meta line currently reads `CLIENT — DISCIPLINE`. To add a year,
