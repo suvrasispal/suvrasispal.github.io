@@ -191,7 +191,7 @@
     }
 
     var key = form.elements.access_key.value;
-    if (!key || key.indexOf("REPLACE_WITH") === 0) {
+    if (!key || key.indexOf("6a434485-55fa-4f55-9dba-e4066a8c6835") === 0) {
       say("This form isn't connected yet — add your Web3Forms access key.", "bad");
       return;
     }
