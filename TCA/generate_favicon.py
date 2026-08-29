@@ -64,9 +64,9 @@ def main():
     print(f"Source: {src}\nWriting to: {out}\n")
 
     # Browser tab icons
-    w(build(art, 16), "favicon-16.png")
-    w(build(art, 32), "favicon-32.png")
-    w(build(art, 48), "favicon-48.png")
+    w(build(art, 16), "assets/favicon-16.png")
+    w(build(art, 32), "assets/favicon-32.png")
+    w(build(art, 48), "assets/favicon-48.png")
 
     # iOS home screen - flattened, no alpha (iOS renders transparency as black)
     w(build(art, 180, pad=0.08).convert("RGB"), "apple-touch-icon.png")
@@ -77,14 +77,14 @@ def main():
     w(build(art, 512, pad=MASKABLE_PAD).convert("RGB"), "icon-512-maskable.png")
 
     # Multi-resolution .ico for legacy browsers and Windows shortcuts
-    ico = os.path.join(out, "favicon.ico")
+    ico = os.path.join(out, "assets/favicon.ico")
     build(art, 256).save(ico, format="ICO",
                          sizes=[(16, 16), (32, 32), (48, 48), (64, 64), (128, 128), (256, 256)])
     print(f"  {'favicon.ico':<28} multi-size   {os.path.getsize(ico):>7,} bytes")
 
     # Base64 data URI for the 32px icon, so index.html carries a working icon
     # even when opened as a standalone file with no sibling assets present.
-    b64 = base64.b64encode(open(os.path.join(out, "favicon-32.png"), "rb").read()).decode()
+    b64 = base64.b64encode(open(os.path.join(out, "assets/favicon-32.png"), "rb").read()).decode()
     with open(os.path.join(out, "favicon-32.datauri.txt"), "w") as f:
         f.write("data:image/png;base64," + b64)
     print(f"  {'favicon-32.datauri.txt':<28} {len(b64):>7,} chars")
