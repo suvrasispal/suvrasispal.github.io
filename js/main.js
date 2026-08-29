@@ -105,3 +105,128 @@
   var yr = document.getElementById("yr");
   if (yr) yr.textContent = new Date().getFullYear();
 })();
+
+/* ------------------------------------------------------------
+   Contact form — posts to Web3Forms, no backend of our own.
+   ------------------------------------------------------------ */
+
+(function () {
+  "use strict";
+
+  var form = document.getElementById("cform");
+  if (!form) return;
+
+  var status = document.getElementById("cf-status");
+  var button = form.querySelector(".cform__send");
+  var sending = false;
+
+  var FIELDS = [
+    { id: "cf-name", err: "cf-name-err", msg: "Please enter your name." },
+    { id: "cf-email", err: "cf-email-err", msg: "Please enter your email address.",
+      bad: "That doesn't look like a valid email address." },
+    { id: "cf-message", err: "cf-message-err", msg: "Please tell me a little about it." }
+  ];
+
+  // Deliberately permissive: something@something.tld. Stricter patterns reject
+  // addresses that are perfectly valid.
+  var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  function setError(f, text) {
+    var input = document.getElementById(f.id);
+    var slot = document.getElementById(f.err);
+    if (text) {
+      slot.textContent = text;
+      slot.hidden = false;
+      input.setAttribute("aria-invalid", "true");
+    } else {
+      slot.textContent = "";
+      slot.hidden = true;
+      input.removeAttribute("aria-invalid");
+    }
+  }
+
+  function validate(showAll) {
+    var firstBad = null;
+    FIELDS.forEach(function (f) {
+      var input = document.getElementById(f.id);
+      var value = input.value.trim();
+      var problem = null;
+      if (!value) problem = f.msg;
+      else if (f.id === "cf-email" && !EMAIL.test(value)) problem = f.bad;
+
+      // don't scold someone about a field they haven't reached yet
+      if (problem && (showAll || input.dataset.touched)) setError(f, problem);
+      else if (!problem) setError(f, null);
+
+      if (problem && !firstBad) firstBad = input;
+    });
+    return firstBad;
+  }
+
+  FIELDS.forEach(function (f) {
+    var input = document.getElementById(f.id);
+    input.addEventListener("blur", function () {
+      input.dataset.touched = "1";
+      validate(false);
+    });
+    input.addEventListener("input", function () {
+      if (input.dataset.touched) validate(false);
+    });
+  });
+
+  function say(text, kind) {
+    status.textContent = text;
+    status.className = "cform__status" + (kind ? " is-" + kind : "");
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (sending) return;               // one submission at a time
+
+    var firstBad = validate(true);
+    if (firstBad) {
+      say("Please fix the highlighted fields.", "bad");
+      firstBad.focus();
+      return;
+    }
+
+    var key = form.elements.access_key.value;
+    if (!key || key.indexOf("REPLACE_WITH") === 0) {
+      say("This form isn't connected yet — add your Web3Forms access key.", "bad");
+      return;
+    }
+
+    sending = true;
+    button.disabled = true;
+    button.textContent = "Sending…";
+    say("Sending your message…");
+
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(Object.fromEntries(new FormData(form)))
+    })
+      .then(function (r) { return r.json().catch(function () { return {}; }); })
+      .then(function (data) {
+        if (data && data.success) {
+          form.reset();
+          FIELDS.forEach(function (f) {
+            setError(f, null);
+            delete document.getElementById(f.id).dataset.touched;
+          });
+          say("Thanks — your message is on its way. I'll be in touch shortly.", "ok");
+        } else {
+          say((data && data.message) ||
+              "Something went wrong sending that. Please email me directly instead.", "bad");
+        }
+      })
+      .catch(function () {
+        say("Couldn't reach the server. Check your connection, or email me directly.", "bad");
+      })
+      .then(function () {
+        sending = false;
+        button.disabled = false;
+        button.textContent = "Send message";
+      });
+  });
+})();
