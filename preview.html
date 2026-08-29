@@ -830,26 +830,11 @@ body.lb-open { overflow: hidden; }
 }
 
 
-/* full-size link in the viewer bar */
-.lb__full {
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  color: #fff;
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 0.5rem 0.85rem;
-  white-space: nowrap;
-}
-
-.lb__full:hover { background: var(--mustard); color: var(--ink); border-color: var(--mustard); }
-
 @media (max-width: 34rem) {
   .lb__title { display: none; }
   .lb__bar { gap: 0.6rem; justify-content: flex-end; }
   .lb__count { margin-right: auto; }
-  .lb__full, .lb__close { padding: 0.45rem 0.6rem; font-size: 0.66rem; letter-spacing: 0.08em; }
+  .lb__close { padding: 0.45rem 0.6rem; font-size: 0.66rem; letter-spacing: 0.08em; }
 }
 
 
@@ -1715,7 +1700,6 @@ body.lb-open { overflow: hidden; }
   <div class="lb__bar">
     <p class="lb__title" id="lbTitle"></p>
     <p class="lb__count" id="lbCount"></p>
-    <a class="lb__full" id="lbFull" href="#" target="_blank" rel="noopener">Full size ↗</a>
     <button class="lb__close" id="lbClose" type="button" aria-label="Close viewer">Close ✕</button>
   </div>
   <button class="lb__nav lb__nav--prev" id="lbPrev" type="button" aria-label="Previous slide">‹</button>
@@ -1738,7 +1722,6 @@ body.lb-open { overflow: hidden; }
   var prevBtn = document.getElementById("lbPrev");
   var nextBtn = document.getElementById("lbNext");
   var closeBtn = document.getElementById("lbClose");
-  var fullLink = document.getElementById("lbFull");
 
   var slides = [];
   var index = 0;
@@ -1758,7 +1741,6 @@ body.lb-open { overflow: hidden; }
     img.src = srcFor(slides[index]);
     img.alt = titleEl.textContent + " — slide " + (index + 1) + " of " + slides.length;
     countEl.textContent = index + 1 + " / " + slides.length;
-    fullLink.href = srcFor(slides[index]);
     prevBtn.disabled = index === 0;
     nextBtn.disabled = index === slides.length - 1;
     preload(index + 1);
@@ -1812,7 +1794,7 @@ body.lb-open { overflow: hidden; }
     else if (e.key === "End") { index = slides.length - 1; render(); }
     else if (e.key === "Tab") {
       // keep focus inside the dialog
-      var f = [closeBtn, fullLink, prevBtn, nextBtn].filter(function (b) { return !b.disabled; });
+      var f = [closeBtn, prevBtn, nextBtn].filter(function (b) { return !b.disabled; });
       var i = f.indexOf(document.activeElement);
       e.preventDefault();
       f[(i + (e.shiftKey ? -1 : 1) + f.length) % f.length].focus();
