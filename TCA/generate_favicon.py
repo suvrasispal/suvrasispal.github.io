@@ -107,10 +107,10 @@ def main():
     # PWA / Android
     w(build(fig, 192), "icon-192.png")
     w(build(fig, 512), "icon-512.png")
-    w(build(fig, 512, pad=MASKABLE_PAD, radius=0), "icon-512-maskable.png")
+    w(build(fig, 512, pad=MASKABLE_PAD, radius=0), "assets/icon-512-maskable.png")
 
     # Multi-resolution .ico for legacy browsers and Windows shortcuts
-    ico_path = os.path.join(out, "favicon.ico")
+    ico_path = os.path.join(out, "assets/favicon.ico")
     build(fig, 256).save(ico_path, format="ICO",
                          sizes=[(16, 16), (32, 32), (48, 48), (64, 64), (128, 128), (256, 256)])
     print(f"  {'favicon.ico':<28} multi-size   {os.path.getsize(ico_path):>7,} bytes")
@@ -118,7 +118,7 @@ def main():
     # Base64 data URI for the 32px icon, so index.html carries a working
     # icon even when opened as a standalone file with no sibling assets.
     import base64
-    b64 = base64.b64encode(open(os.path.join(out, "favicon-32.png"), "rb").read()).decode()
+    b64 = base64.b64encode(open(os.path.join(out, "assets/favicon-32.png"), "rb").read()).decode()
     uri_path = os.path.join(out, "favicon-32.datauri.txt")
     with open(uri_path, "w") as f:
         f.write("data:image/png;base64," + b64)
