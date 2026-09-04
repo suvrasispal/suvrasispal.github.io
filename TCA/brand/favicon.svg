@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img"
+     aria-label="The Confidence Academy">
+  <title>The Confidence Academy — temporary monogram</title>
+  <!--
+    TEMPORARY UTILITY ICON — NOT THE TRADEMARK.
+    The brand book (section 03, "Known gaps") records that no icon-only
+    lockup exists: the runner and wordmark overlap in the registered
+    artwork, so a clean icon crop is not available without redrawing it.
+    This plain monogram is the sanctioned stand-in until a true icon-only
+    lockup is commissioned from the original designer.
+    White on Royal Blue #00247D = 13.5:1 contrast.
+  -->
+  <rect width="64" height="64" rx="14" fill="#00247D"/>
+  <text x="32" y="41.5" text-anchor="middle"
+        font-family="'Sora','Segoe UI',Arial,Helvetica,sans-serif"
+        font-size="19" font-weight="800" letter-spacing="0.5"
+        fill="#FFFFFF">TCA</text>
+</svg>

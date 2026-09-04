@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="The Confidence Academy - brand guidelines and design system v1.2. Logo usage, Union Jack colour palette, typography, photography direction, voice and tone, UI components and accessibility standards.">
+<meta name="description" content="The Confidence Academy - brand guidelines and design system v1.3. Logo usage, Union Jack colour palette, typography, photography direction, voice and tone, UI components and accessibility standards.">
 <meta name="color-scheme" content="light only">
-<title>The Confidence Academy — Brand Guidelines & Design System v1.2</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="theme-color" content="#4A90D9">
+<title>The Confidence Academy — Brand Guidelines & Design System v1.3</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
@@ -31,14 +33,14 @@
   img{max-width:100%;}
 
   .shell{display:grid;grid-template-columns:264px 1fr;min-height:100vh;}
-  nav.side{background:var(--ink);color:var(--white);padding:32px 26px;position:sticky;top:0;height:100vh;overflow-y:auto;}
-  nav.side .navmark{margin-bottom:26px;background:var(--white);border-radius:10px;padding:14px;}
+  nav.side{background:var(--sky);color:var(--ink);padding:30px 22px 36px;position:sticky;top:0;height:100vh;overflow-y:auto;box-shadow:inset -1px 0 0 rgba(11,28,57,0.14);}
+  nav.side .navmark{margin-bottom:0;background:var(--white);border-radius:12px 12px 0 0;padding:16px 16px 13px;box-shadow:0 2px 10px rgba(11,28,57,0.13);}
   nav.side .navmark img{width:100%;display:block;}
-  nav.side .pillarstrip{display:flex;gap:6px;margin-bottom:28px;}
-  nav.side .pillarstrip div{flex:1;height:4px;border-radius:3px;}
-  nav.side .navsection{font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:#8C9BC4;margin:20px 0 8px;}
-  nav.side a.navlink{display:block;font-size:13.5px;color:#CBD3EA;text-decoration:none;padding:6px 0;border-left:2px solid transparent;padding-left:12px;margin-left:-12px;transition:all .15s;}
-  nav.side a.navlink:hover{color:var(--white);border-left-color:var(--gold);}
+  nav.side .pillarstrip{display:flex;gap:0;margin:0 0 24px;background:var(--white);padding:0;border-radius:0 0 12px 12px;overflow:hidden;box-shadow:0 2px 10px rgba(11,28,57,0.13);}
+  nav.side .pillarstrip div{flex:1;height:7px;border-radius:0;}
+  nav.side .navsection{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.13em;color:var(--ink);margin:24px 0 8px;padding-bottom:7px;border-bottom:1px solid rgba(11,28,57,0.22);}nav.side .navsection:first-of-type{margin-top:4px;}
+  nav.side a.navlink{display:block;font-size:15px;line-height:1.35;font-weight:500;color:var(--ink);text-decoration:none;padding:9px 10px 9px 12px;border-left:2px solid transparent;margin-left:-12px;border-radius:0 6px 6px 0;border-bottom:1px solid rgba(11,28,57,0.13);transition:background-color .15s,border-color .15s,padding-left .15s;}nav.side a.navlink:last-child{border-bottom:0;}nav.side a.navlink+.navsection{margin-top:26px;}nav.side a.navlink:has(+.navsection){border-bottom:0;}
+  nav.side a.navlink:hover,nav.side a.navlink:focus-visible{background:rgba(255,255,255,0.42);border-left-color:var(--ink);padding-left:16px;}
   main{padding:0;}
   section{padding:84px 60px;max-width:1100px;border-bottom:0.5px solid var(--mist);}
   section:last-of-type{border-bottom:none;}
@@ -46,18 +48,18 @@
   h2.title{font-size:32px;font-weight:700;margin-bottom:16px;max-width:680px;}
   p.lead{font-size:16.5px;color:var(--charcoal);max-width:680px;margin-bottom:6px;}
 
-  .cover{background:var(--ink);color:var(--white);padding:0;border-bottom:none;min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;}
+  .cover{background:var(--sky);color:var(--ink);padding:0;border-bottom:none;min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;}
   .cover .bar{height:6px;display:flex;}
   .cover .bar div{flex:1;}
   .cover-content{padding:80px 60px 40px;}
-  .cover .kicker{font-size:13px;letter-spacing:0.2em;text-transform:uppercase;color:#9FB0DE;margin-bottom:30px;}
-  .cover-logo{background:var(--white);border-radius:16px;padding:28px 34px;display:inline-block;margin-bottom:34px;}
+  .cover .kicker{font-size:13px;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;color:var(--ink);margin-bottom:30px;}
+  .cover-logo{background:var(--white);border-radius:16px;padding:28px 34px;display:inline-block;margin-bottom:34px;box-shadow:0 6px 26px rgba(11,28,57,0.16);}
   .cover-logo img{height:110px;display:block;}
-  .cover p.sub{font-size:17.5px;color:#B9C2DA;max-width:600px;margin-top:6px;}
+  .cover p.sub{font-size:17.5px;color:var(--ink);max-width:600px;margin-top:6px;}
   .cover-pillars{display:flex;gap:14px;padding:0 60px;flex-wrap:wrap;}
-  .cover-pillars .p{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:30px;padding:9px 16px 9px 12px;font-size:13px;color:#E4E8F5;}
+  .cover-pillars .p{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.55);border:1px solid rgba(255,255,255,0.75);border-radius:30px;padding:9px 16px 9px 12px;font-size:13px;font-weight:500;color:var(--ink);}
   .cover-pillars .p .dot{width:9px;height:9px;border-radius:50%;}
-  .cover-footer{display:flex;justify-content:space-between;align-items:flex-end;padding:40px 60px 52px;font-size:13px;color:#7C87A8;}
+  .cover-footer{display:flex;justify-content:space-between;align-items:flex-end;padding:40px 60px 52px;font-size:13px;color:var(--ink);font-weight:500;border-top:1px solid rgba(11,28,57,0.16);margin:0 60px;padding-left:0;padding-right:0;}
 
   .grid{display:grid;gap:18px;margin-top:30px;}
   .grid.cols-2{grid-template-columns:1fr 1fr;}
@@ -258,7 +260,7 @@
 <div class="cover">
   <div class="bar"><div style="background:var(--blue);"></div><div style="background:var(--white);"></div><div style="background:var(--red);"></div></div>
   <div class="cover-content">
-    <div class="kicker">Brand guidelines &amp; design system — v1.2</div>
+    <div class="kicker">Brand guidelines &amp; design system — v1.3</div>
     <div class="cover-logo"><img src="logo-primary.svg" alt="The Confidence Academy — Get Britain Moving" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','&lt;span class=&quot;logo-fallback&quot;&gt;THE CONFIDENCE ACADEMY&lt;small&gt;GET BRITAIN MOVING&lt;/small&gt;&lt;/span&gt;');this.removeAttribute('onerror');"></div>
     <p class="sub">The logo and a palette drawn from the Union Jack — Royal Blue and Red — in service of one tagline: Get Britain Moving.</p>
   </div>
@@ -270,7 +272,7 @@
   </div>
   <div class="cover-footer">
     <span>confidenceacademy.uk</span>
-    <span>Prepared 2026 — v1.2 refresh</span>
+    <span>Prepared 2026 — v1.3 refresh</span>
   </div>
 </div>
 
@@ -846,7 +848,7 @@
   </section>
 
   <footer class="book">
-    <span>The Confidence Academy — Brand guidelines v1.2</span>
+    <span>The Confidence Academy — Brand guidelines v1.3</span>
     <span>Get Britain Moving — the source of truth for web and app</span>
   </footer>
 
