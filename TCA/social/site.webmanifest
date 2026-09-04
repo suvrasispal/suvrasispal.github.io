@@ -1,0 +1,15 @@
+{
+  "name": "The Confidence Academy — Social Post Templates",
+  "short_name": "TCA Templates",
+  "description": "Internal brand templates for Facebook, Instagram, LinkedIn, TikTok and YouTube.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#00247D",
+  "icons": [
+    { "src": "favicon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "favicon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "apple-touch-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "maskable" }
+  ]
+}
