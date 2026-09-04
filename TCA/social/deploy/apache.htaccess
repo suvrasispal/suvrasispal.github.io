@@ -1,0 +1,32 @@
+# Apache — copy to the site root as ".htaccess"
+#
+# Two things here: security headers, and the optional real access control.
+
+Options -Indexes
+DirectoryIndex index.html
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "same-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=()"
+  <FilesMatch "\.(html)$">
+    Header always set Cache-Control "no-store, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+AddType image/vnd.adobe.photoshop .psd
+
+# ---------------------------------------------------------------------------
+# REAL access control. The sign-in inside index.html is a convenience gate and
+# can be bypassed by anyone who reads the page source. If this is going on a
+# public URL, uncomment the block below so the web server refuses the request
+# before it sends any of the page.
+#
+# Create the password file first, outside the web root:
+#     htpasswd -c /etc/apache2/tca.htpasswd TCAsocial
+# ---------------------------------------------------------------------------
+# AuthType Basic
+# AuthName "The Confidence Academy — restricted"
+# AuthUserFile /etc/apache2/tca.htpasswd
+# Require valid-user

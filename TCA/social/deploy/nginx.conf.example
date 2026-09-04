@@ -1,0 +1,39 @@
+# nginx — server block for the templates. Adjust paths and server_name.
+
+server {
+    listen 443 ssl http2;
+    server_name templates.example.org;
+
+    root /var/www/tca-social-templates;
+    index index.html;
+
+    ssl_certificate     /etc/ssl/certs/your.crt;
+    ssl_certificate_key /etc/ssl/private/your.key;
+
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-Frame-Options "DENY" always;
+    add_header Referrer-Policy "same-origin" always;
+
+    location ~* \.html$ {
+        add_header Cache-Control "no-store, must-revalidate" always;
+    }
+
+    # -----------------------------------------------------------------------
+    # REAL access control. Uncomment to make nginx demand credentials before
+    # it serves anything at all. Create the file with:
+    #     htpasswd -c /etc/nginx/tca.htpasswd TCAsocial
+    # -----------------------------------------------------------------------
+    # auth_basic           "The Confidence Academy — restricted";
+    # auth_basic_user_file /etc/nginx/tca.htpasswd;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+
+# Redirect plain HTTP to HTTPS.
+server {
+    listen 80;
+    server_name templates.example.org;
+    return 301 https://$host$request_uri;
+}

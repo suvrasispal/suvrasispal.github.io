@@ -1,0 +1,20 @@
+# Netlify — copy to the site root as "_headers"
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: same-origin
+  Permissions-Policy: geolocation=(), microphone=()
+
+/*.html
+  Cache-Control: no-store, must-revalidate
+
+/assets/*
+  Cache-Control: no-store
+
+# ---------------------------------------------------------------------------
+# REAL access control on Netlify: use the site's built-in password protection
+# (Site configuration -> Access & security -> Visitor access), which challenges
+# the request at the edge before any file is served. That is the equivalent of
+# the Apache Basic-auth block and the right thing to turn on for a public URL.
+# ---------------------------------------------------------------------------
