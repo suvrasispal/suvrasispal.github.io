@@ -214,10 +214,24 @@ a{color:var(--navy);text-underline-offset:3px}
 .nav .nav-cta a[aria-current="true"]{background:var(--red-deep);border-left:0}
 .nav .nav-cta a[aria-current="true"]::after{content:""}
 
+/* Drop-down panel overlaying the page, anchored under the bar.
+   It cannot be position:fixed: .header carries a backdrop-filter, which makes
+   it the containing block for fixed descendants, so a fixed panel sizes
+   itself against the 68px bar instead of the viewport and collapses to a
+   single visible row. Absolute against the header is correct here. */
 .nav.open{
-  display:block;position:fixed;left:0;right:0;top:var(--nav-h);
-  bottom:0;background:var(--paper);padding:var(--s-5) 20px calc(var(--s-8) + env(safe-area-inset-bottom));
-  overflow-y:auto;border-top:1px solid var(--line);
+  display:block;
+  position:absolute;top:100%;left:0;right:0;
+  background:var(--paper);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  box-shadow:0 18px 44px rgba(0,27,92,.18);
+  padding:var(--s-4) 20px calc(var(--s-5) + env(safe-area-inset-bottom));
+  max-height:calc(100vh - var(--nav-h));
+  max-height:calc(100dvh - var(--nav-h));
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior:contain;
 }
 
 /* ---------- Sections ---------- */
