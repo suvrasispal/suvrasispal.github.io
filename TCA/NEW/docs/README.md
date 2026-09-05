@@ -116,6 +116,14 @@ will render white on white.
 **Swapping a section image** — change the `src`. The wash handles contrast,
 so a darker or busier photograph will not break legibility.
 
+**The mobile menu cannot be `position: fixed`.** `.header` carries a
+`backdrop-filter`, which makes it the containing block for fixed-position
+descendants — a fixed panel then sizes itself against the 68px bar rather
+than the viewport and collapses to roughly one visible row. The panel is
+`position: absolute` under the header instead, capped with
+`max-height: calc(100dvh - var(--nav-h))` and scrollable. Removing the
+backdrop-filter would also fix it, at the cost of the frosted bar.
+
 **Card label colours need extra specificity.** `.card p{color:var(--slate)}`
 is 0,2,0 and silently beats any plain `.event-kind` or `.post-cat` rule at
 0,1,0 — a colour set there computes as slate and looks like nothing happened.
