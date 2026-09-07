@@ -47,14 +47,20 @@ EDUCATION = [
 
 
 def slug(t):
-    return "".join(c if c.isalnum() else "-" for c in t.lower()).strip("-").replace("--", "-")
+    t = html.unescape(t)          # so "&amp;" doesn't become "-amp-"
+    out = "".join(c if c.isalnum() else "-" for c in t.lower())
+    while "--" in out:
+        out = out.replace("--", "-")
+    return out.strip("-")
 
 
 def project_html(p, i):
     title, client, disc, overview, points, pages, links, wide = p
     sid = slug(title)
-    hero = pages[0]
-    gallery = ",".join("s%02d" % n for n in pages)
+    # ints are PDF page numbers; strings are explicit asset ids (e.g. TCA captures)
+    ids = ["s%02d" % n if isinstance(n, int) else n for n in pages]
+    hero = ids[0]
+    gallery = ",".join(ids)
     cls = "work__item work__item--wide" if wide else "work__item"
     count = len(pages)
 
@@ -79,14 +85,14 @@ def project_html(p, i):
                   data-title="{html.escape(title, quote=True)}"
                   aria-label="View {html.escape(title, quote=True)} \u2014 {count} images">
             <span class="work__frame">
-              <img src="assets/thumb/s{hero:02d}.jpg" alt="{html.escape(title, quote=True)}"
+              <img src="assets/thumb/{hero}.jpg" alt="{html.escape(title, quote=True)}"
                    loading="lazy" decoding="async" width="1800" height="1012">
               <span class="work__count">{count} {'image' if count == 1 else 'images'}</span>
             </span>
           </button>
 
           <div class="work__body">
-            <h3 class="work__name">{title}</h3>
+            <h3 class="work__name">{html.escape(title)}</h3>
             <div class="work__text">
               <p class="work__overview">{overview}</p>
               <dl class="work__points">{pts}</dl>

@@ -40,7 +40,7 @@ ids = sorted({s for g in re.findall(r'data-gallery="([^"]+)"', html)
 gallery = {sid: slide(sid, 1200, 66) for sid in ids}
 
 # --- card thumbnails (smaller — they only ever render at card size) ---------
-for m in set(re.findall(r'src="assets/thumb/(s\d+)\.jpg"', html)):
+for m in set(re.findall(r'src="assets/thumb/([\w-]+)\.jpg"', html)):
     html = html.replace('src="assets/thumb/%s.jpg"' % m,
                         'src="%s"' % slide(m, 900, 68))
 

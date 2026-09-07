@@ -25,6 +25,46 @@ LLOYDS_3 = ("https://www.figma.com/proto/pW0xltxYTtqZCBrYiQzO0t/SuvrasiS"
 # title, client, discipline, overview, [(label, detail)], pages, links, wide
 PROJECTS = [
 
+    ("The Confidence Academy — Brand & Digital Experience",
+     "The Confidence Academy", "Brand strategy · Digital experience · Design system",
+     "A community interest company running dance-fitness and wellbeing sessions on a "
+     "refundable-deposit model — you book, you turn up, your money comes back. A strong "
+     "proposition that the organisation had no way to explain or sustain. This was a brand "
+     "and digital transformation, not a website refresh.",
+     [("Challenge",
+       "The existing site said too little: visitors couldn't tell what TCA offered, what "
+       "the deposit model actually meant, what was on, or how to get involved. Underneath "
+       "that sat a deeper gap — no brand guideline and no design system, so typography, "
+       "colour and components drifted with every new piece of communication and nothing "
+       "could scale."),
+      ("Approach",
+       "Treated the two problems as one. Rebuilt the information architecture around the "
+       "questions people actually arrive with, and defined the brand system that the "
+       "answers would be built from — so the site became the first application of the "
+       "system rather than another one-off."),
+      ("Digital experience",
+       "A mobile-first responsive rebuild with a clear content hierarchy: the health "
+       "inequality TCA exists to address, the benefits, the deposit-refund model set out "
+       "step by step, what's coming up, the team, and a waitlist as the single way in."),
+      ("Brand &amp; design system",
+       "Guidelines at v1.3, structured around four pillars — Confidence, Community, "
+       "Accessibility, Action. A Union Jack palette led by Royal Blue #00247D and Red "
+       "#CF142B; Sora for statements and Inter for reading; logo usage rules, imagery "
+       "direction, voice, iconography and an interface kit on an 8px grid with one "
+       "solid-fill action per screen."),
+      ("Governance",
+       "Accessibility written in as a pillar rather than a footnote — 44×44px minimum "
+       "touch targets, visible focus states, and scrims held at enough opacity to "
+       "guarantee 4.5:1 contrast for text over imagery."),
+      ("Outcome",
+       "A digital proposition people can understand in a single visit, and a scalable "
+       "foundation the organisation can extend across web, social, campaign and marketing "
+       "work without renegotiating the brand each time.")],
+     ["tca01"],   # one combined image: desktop landing page + mobile
+     [("View the website", "https://suvrasispal.github.io/TCA/NEW/"),
+      ("Brand guidelines &amp; design system", "https://suvrasispal.github.io/TCA/brand/")],
+     True),
+
     ("THE LINE", "NEOM", "Concept · AI product design",
      "THE LINE is NEOM's linear city in Saudi Arabia — zero-car, zero-street, powered by "
      "renewable energy. This concept asks how AI could make daily life inside it feel "
