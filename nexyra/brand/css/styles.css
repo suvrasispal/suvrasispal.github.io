@@ -225,6 +225,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--violet); outlin
 .table .num { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
 .table .stage { color: var(--violet-deep); }
 .icons { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
+.iconset { display: grid; grid-template-columns: repeat(auto-fill, minmax(44px, 1fr)); gap: 4px; margin-bottom: 20px; }
+.iconset img { width: 24px; height: 24px; padding: 9px; box-sizing: content-box; border: 1px solid var(--line); }
 
 /* ---------- Applications ---------- */
 .mock { border: 1px solid var(--line); }
