@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <title>Nexyra Consulting — monogram (N, cut by a single diagonal slice, with two detached strokes continuing the cut beyond the counter) — solid white</title>
+  <defs>
+    <linearGradient id="nexyraGradient" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="190" y2="200">
+      <stop offset="0%" stop-color="#A78BFA"/>
+      <stop offset="39%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    <mask id="nexyraCutMask">
+      <rect x="0" y="0" width="200" height="200" fill="#fff"/>
+      <g transform="translate(112 84) rotate(-32)">
+        <rect x="-140" y="-11" width="280" height="22" fill="#000"/>
+      </g>
+    </mask>
+  </defs>
+
+  <!-- primary N form: left bar, diagonal bar, right bar — sliced by the mask above -->
+  <g mask="url(#nexyraCutMask)">
+    <rect x="40" y="30" width="24" height="140" fill="#FFFFFF"/>
+    <g transform="translate(100 100) rotate(-32)">
+      <rect x="-12" y="-120" width="24" height="240" fill="#FFFFFF"/>
+    </g>
+    <rect x="136" y="30" width="24" height="140" fill="#FFFFFF"/>
+  </g>
+
+  <!-- two detached strokes continuing the cut beyond the counter -->
+  <g transform="translate(172 46) rotate(-32)">
+    <rect x="-17" y="-7" width="34" height="14" fill="#FFFFFF"/>
+  </g>
+  <g transform="translate(28 154) rotate(-32)">
+    <rect x="-17" y="-7" width="34" height="14" fill="#FFFFFF"/>
+  </g>
+</svg>
