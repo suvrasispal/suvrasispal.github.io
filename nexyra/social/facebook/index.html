@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Facebook Post Template — Nexyra Consulting</title>
+<link rel="icon" href="../assets/logos/nexyra-appicon-violet-1200.png">
+<link rel="stylesheet" href="../assets/css/brand.css">
+<style>
+  /* ---------- Facebook stage: 1200×630, full-bleed photo + bottom scrim ---------- */
+  .fb-stage{
+    position:relative; width:1200px; height:630px; overflow:hidden;
+    background:var(--nx-ink); color:var(--nx-white);
+  }
+  .fb-media-viewport{ position:absolute; inset:0; overflow:hidden; }
+  .fb-media-layer{ position:absolute; inset:0; }
+  .fb-scrim{ position:absolute; inset:0; pointer-events:none; }
+  .fb-scrim-top{ position:absolute; top:0; left:0; right:0; height:220px; background:linear-gradient(180deg, rgba(10,10,15,.55), rgba(10,10,15,0)); pointer-events:none; }
+
+  .fb-logo{ position:absolute; top:36px; left:48px; z-index:5; }
+
+  .fb-accent{ position:absolute; top:44px; right:56px; width:120px; height:34px; opacity:.55; z-index:4; pointer-events:none; }
+
+  /* .fb-content is anchored to the stage's bottom edge (bottom:48px, no
+     top), so — exactly like Instagram's ink panel — it sizes itself to
+     its own content and grows *upward* as the headline/support text
+     wraps onto more lines, instead of the font shrinking to fit a fixed
+     box. The CTA row and the badge above the headline never move
+     relative to each other or to the bottom edge; only the space above
+     them grows. flex-shrink:0 stops the browser from silently squeezing
+     any child below its natural content height, which is what used to
+     trigger the font auto-fit in the first place. */
+  .fb-content{ position:absolute; left:56px; right:56px; bottom:48px; z-index:5; display:flex; flex-direction:column; align-items:flex-start; gap:14px; }
+  .fb-badge{ border-color:rgba(255,255,255,.55); color:var(--nx-white); flex-shrink:0; }
+  .fb-headline{ font-weight:600; font-size:46px; letter-spacing:-0.03em; line-height:1.06; color:var(--nx-white); max-width:680px; min-height:1.1em; flex-shrink:0; }
+  .fb-support{ font-weight:400; font-size:18px; line-height:1.5; color:rgba(255,255,255,.86); max-width:520px; min-height:1.4em; flex-shrink:0; }
+  .fb-cta-row{ display:flex; align-items:center; gap:16px; margin-top:2px; flex-shrink:0; }
+  .fb-cta{ min-height:1em; flex-shrink:0; }
+  .fb-url{ position:absolute; right:56px; bottom:52px; z-index:5; font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.55); }
+
+  .fb-fullscreen-btn{ position:absolute; top:12px; right:12px; z-index:6; }
+</style>
+</head>
+<body>
+
+<div class="nx-editor-top">
+  <a class="nx-back" href="../index.html">&larr; Back to Dashboard</a>
+  <div class="nx-editor-title">Facebook Post Template <span>&nbsp;·&nbsp;1200 × 630 px</span></div>
+  <a class="nx-btn nx-btn-secondary" href="../psd/Nexyra_Facebook_Template.psd" download>Download PSD</a>
+</div>
+
+<div class="nx-editor-layout">
+  <div class="nx-stage-column">
+    <div class="nx-stage-wrapper" id="wrapper" style="max-width:1200px;">
+      <div class="fb-stage" id="stage">
+        <div class="fb-media-viewport nx-media-viewport" id="mediaViewport">
+          <div class="fb-media-layer" id="mediaLayer"></div>
+        </div>
+        <div class="fb-scrim nx-scrim-bottom"></div>
+        <div class="fb-scrim-top"></div>
+
+        <div class="fb-logo">
+          <div class="nx-logo nx-logo-on-dark">
+            <img class="nx-lockup" id="logoImg" style="height:52px; max-width:560px;" src="../assets/logos/nexyra-lockup-horizontal-white.png" alt="Nexyra Consulting">
+          </div>
+        </div>
+
+        <svg class="fb-accent" viewBox="0 0 200 60" fill="none">
+          <g transform="translate(150 30) rotate(-32)"><rect x="-40" y="-6" width="80" height="12" fill="url(#fbg)"/></g>
+          <defs><linearGradient id="fbg" x1="0" y1="0" x2="200" y2="60" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#A78BFA"/><stop offset="39%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#3B82F6"/>
+          </linearGradient></defs>
+        </svg>
+
+        <div class="fb-content">
+          <div class="nx-badge fb-badge">Digital Product &amp; Technology Consulting</div>
+          <div class="fb-headline" id="headline" data-max-font="46" data-min-font="30">Designing What&rsquo;s Next</div>
+          <div class="fb-support" id="support" data-max-font="18" data-min-font="14">Transforming ideas into digital products, experiences and technology solutions.</div>
+          <div class="fb-cta-row">
+            <span class="nx-cta fb-cta" id="cta" data-max-font="14" data-min-font="12">See Our Work</span>
+          </div>
+        </div>
+
+        <div class="fb-url">nexyraconsulting.co.uk</div>
+
+        <button class="nx-icon-btn fb-fullscreen-btn nx-export-ignore" id="btnFullscreen" title="Full-screen preview"></button>
+      </div>
+    </div>
+    <p class="nx-stage-hint">Drag inside the photo to reposition · scroll or use the zoom controls to crop · click any text to edit it.</p>
+  </div>
+
+  <aside class="nx-panel">
+
+    <div class="nx-panel-section">
+      <h3>Media</h3>
+      <div class="nx-dropzone" id="dropHint">Drop an image or video here, or use the buttons below</div>
+      <div class="nx-panel-row">
+        <button class="nx-btn nx-btn-primary" id="btnUploadImage"></button>
+        <button class="nx-btn nx-btn-secondary" id="btnUploadVideo"></button>
+      </div>
+      <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp,video/mp4,video/webm,video/quicktime,video/ogg" hidden>
+      <div class="nx-zoom-row">
+        <button class="nx-icon-btn" id="btnZoomOut" title="Zoom out"></button>
+        <input type="range" id="zoomSlider" min="0" max="100" value="0">
+        <button class="nx-icon-btn" id="btnZoomIn" title="Zoom in"></button>
+      </div>
+      <div class="nx-panel-row">
+        <button class="nx-btn nx-btn-ghost" id="btnReset"></button>
+        <button class="nx-btn nx-btn-ghost" id="btnPlayPause" style="display:none;"></button>
+      </div>
+    </div>
+
+    <div class="nx-panel-section">
+      <h3>Branding</h3>
+      <div class="nx-panel-row">
+        <button class="nx-btn nx-btn-secondary" id="btnChangeLogo"></button>
+        <button class="nx-btn nx-btn-ghost" id="btnResetLogo"></button>
+      </div>
+      <input type="file" id="logoFileInput" accept="image/png,image/jpeg,image/webp,image/svg+xml" hidden>
+      <p class="nx-panel-hint">Swap in your own logo for this template. Its position and size stay locked to the design.</p>
+    </div>
+
+    <div class="nx-panel-section">
+      <h3>Text</h3>
+      <div class="nx-panel-row">
+        <button class="nx-btn nx-btn-secondary" id="btnEditHeadline">Edit Headline</button>
+        <button class="nx-btn nx-btn-secondary" id="btnEditSupport">Edit Supporting Text</button>
+        <button class="nx-btn nx-btn-secondary" id="btnEditCta">Edit CTA</button>
+      </div>
+      <p class="nx-panel-hint">Logo, colours, layout and type are brand-locked — only the copy and photo change.</p>
+    </div>
+
+    <div class="nx-panel-section">
+      <h3>Export</h3>
+      <div class="nx-format-tabs">
+        <div class="nx-format-tab is-active" data-fmt="jpg">JPG</div>
+        <div class="nx-format-tab" data-fmt="png">PNG</div>
+      </div>
+      <button class="nx-btn nx-btn-primary" id="btnExportImage" style="justify-content:center;">Download Image</button>
+      <button class="nx-btn nx-btn-primary" id="btnExportVideo" style="display:none; justify-content:center;">Download MP4</button>
+      <div class="nx-progress" id="exportProgress"><div></div></div>
+    </div>
+
+  </aside>
+</div>
+
+<div class="nx-toast" id="toast"></div>
+
+<script src="../assets/icons/icons.js"></script>
+<script src="../assets/js/nexyra-editor.js"></script>
+<script>
+  document.getElementById('btnUploadImage').innerHTML = nxIcon('upload') + 'Upload Image';
+  document.getElementById('btnUploadVideo').innerHTML = nxIcon('video') + 'Upload Video';
+  document.getElementById('btnReset').innerHTML = nxIcon('reset') + 'Reset Position';
+  document.getElementById('btnPlayPause').innerHTML = nxIcon('play') + 'Play';
+  document.getElementById('btnZoomOut').innerHTML = nxIcon('zoomOut');
+  document.getElementById('btnZoomIn').innerHTML = nxIcon('zoomIn');
+  document.getElementById('btnFullscreen').innerHTML = nxIcon('expand');
+  document.getElementById('btnExportImage').innerHTML = nxIcon('download') + 'Download Image';
+  document.getElementById('btnExportVideo').innerHTML = nxIcon('film') + 'Download MP4';
+  document.getElementById('btnChangeLogo').innerHTML = nxIcon('image') + 'Change Logo';
+  document.getElementById('btnResetLogo').innerHTML = nxIcon('reset') + 'Reset Logo';
+
+  function loadScriptOnce(src){
+    return new Promise((resolve, reject) => {
+      if (document.querySelector('script[data-src="'+src+'"]')) return resolve();
+      const s = document.createElement('script');
+      s.src = src; s.dataset.src = src;
+      s.onload = resolve; s.onerror = () => reject(new Error('Failed to load ' + src));
+      document.head.appendChild(s);
+    });
+  }
+
+  const toastEl = document.getElementById('toast');
+  let toastTimer;
+  function toast(msg, isError){
+    toastEl.textContent = msg;
+    toastEl.classList.toggle('is-error', !!isError);
+    toastEl.classList.add('is-visible');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toastEl.classList.remove('is-visible'), 3200);
+  }
+
+  const editor = new NexyraEditor({
+    wrapper: document.getElementById('wrapper'),
+    stage: document.getElementById('stage'),
+    mediaViewport: document.getElementById('mediaViewport'),
+    mediaLayer: document.getElementById('mediaLayer'),
+    width: 1200, height: 630,
+    mediaRect: { x: 0, y: 0, w: 1200, h: 630 },
+    fileBase: 'nexyra-facebook-post',
+    defaultMediaUrl: 'https://images.unsplash.com/photo-1758873268705-bb756c95f26a?auto=format&fit=crop&w=1600&q=80',
+    logoImg: document.getElementById('logoImg'),
+    defaultLogoSrc: '../assets/logos/nexyra-lockup-horizontal-white.png',
+    editableEls: [
+      { el: document.getElementById('headline'), maxFont: 46, minFont: 30, noAutoFit: true, placeholder: 'Designing What’s Next' },
+      { el: document.getElementById('support'), maxFont: 18, minFont: 14, noAutoFit: true, placeholder: 'Transforming ideas into digital products, experiences and technology solutions.' },
+      { el: document.getElementById('cta'), maxFont: 14, minFont: 12, placeholder: 'See Our Work' },
+    ],
+    onStateChange(state){
+      if (state.type === 'error') toast(state.message, true);
+      if (state.type === 'media-loaded'){
+        const isVideo = state.mediaType === 'video';
+        document.getElementById('btnPlayPause').style.display = isVideo ? 'inline-flex' : 'none';
+        document.getElementById('btnExportVideo').style.display = isVideo ? 'inline-flex' : 'none';
+        document.getElementById('zoomSlider').value = 0;
+      }
+    }
+  });
+
+  window.editor = editor; // exposed for debugging / QA
+
+  /* ------------------------------------------------------------ *
+   * .fb-content is bottom-anchored (bottom:48px, no top) so it already
+   * sizes itself to its own content and grows upward as headline/
+   * support text wraps onto more lines — the same trick Instagram's ink
+   * panel uses. That's enough right up until the growing box would
+   * reach into the logo/accent sitting near the top of the 630px
+   * brand-spec canvas; past that point the only way to keep everything
+   * visible without shrinking the font is to grow the whole canvas
+   * taller. Because the media viewport uses `inset:0` and .fb-content/
+   * .fb-url are bottom-anchored, simply changing the stage's own height
+   * is enough — every one of those keeps tracking the new edges on its
+   * own, no other element needs to be touched.
+   * ------------------------------------------------------------ */
+  const FB_BRAND_STAGE_HEIGHT = 630;
+  const FB_CONTENT_BOTTOM_OFFSET = 48; // matches .fb-content's CSS `bottom`
+  const FB_MIN_TOP_MARGIN = 120; // clearance below the logo (top:36 + 52px tall) before the canvas needs to grow
+
+  function relayoutFacebookContent(){
+    const content = document.querySelector('.fb-content');
+    const requiredStageHeight = Math.ceil(FB_MIN_TOP_MARGIN + FB_CONTENT_BOTTOM_OFFSET + content.offsetHeight);
+    const newStageHeight = Math.max(FB_BRAND_STAGE_HEIGHT, requiredStageHeight);
+
+    if (newStageHeight !== editor.height) {
+      editor.height = newStageHeight;
+      editor.mediaRect.h = newStageHeight;
+      editor.refreshLayout();
+      editor.syncMediaToViewport();
+    }
+  }
+
+  ['headline', 'support', 'cta'].forEach((id) => {
+    document.getElementById(id).addEventListener('input', relayoutFacebookContent);
+  });
+  relayoutFacebookContent(); // establish correct height for the default copy on load
+
+  // CTA gets an arrow icon appended once (kept out of contenteditable text itself)
+  const ctaEl = document.getElementById('cta');
+  const ctaArrow = document.createElement('span');
+  ctaArrow.innerHTML = nxIcon('arrowRight');
+  ctaArrow.style.display = 'inline-flex';
+  ctaArrow.contentEditable = 'false';
+  ctaEl.appendChild(ctaArrow);
+
+  document.getElementById('fileInput').addEventListener('change', (e) => {
+    const f = e.target.files[0];
+    if (f) editor.loadMediaFromFile(f);
+    e.target.value = '';
+  });
+  document.getElementById('btnUploadImage').addEventListener('click', () => document.getElementById('fileInput').click());
+  document.getElementById('btnUploadVideo').addEventListener('click', () => document.getElementById('fileInput').click());
+  document.getElementById('btnZoomIn').addEventListener('click', () => editor.zoomIn());
+  document.getElementById('btnZoomOut').addEventListener('click', () => editor.zoomOut());
+  document.getElementById('zoomSlider').addEventListener('input', (e) => editor.setZoom(e.target.value / 100));
+  document.getElementById('btnReset').addEventListener('click', () => { editor.resetMedia(); document.getElementById('zoomSlider').value = 0; });
+  document.getElementById('btnPlayPause').addEventListener('click', (e) => {
+    const playing = editor.togglePlay();
+    e.currentTarget.innerHTML = playing ? nxIcon('pause') + 'Pause' : nxIcon('play') + 'Play';
+  });
+  document.getElementById('btnFullscreen').addEventListener('click', () => {
+    const el = document.getElementById('wrapper');
+    if (el.requestFullscreen) el.requestFullscreen();
+  });
+  document.getElementById('logoFileInput').addEventListener('change', (e) => {
+    const f = e.target.files[0];
+    if (f) {
+      try { editor.changeLogo(f); toast('Logo updated.'); }
+      catch (err) { toast('Could not use that file: ' + err.message, true); }
+    }
+    e.target.value = '';
+  });
+  document.getElementById('btnChangeLogo').addEventListener('click', () => document.getElementById('logoFileInput').click());
+  document.getElementById('btnResetLogo').addEventListener('click', () => { editor.resetLogo(); toast('Logo reset to Nexyra default.'); });
+  document.getElementById('btnEditHeadline').addEventListener('click', () => document.getElementById('headline').focus());
+  document.getElementById('btnEditSupport').addEventListener('click', () => document.getElementById('support').focus());
+  document.getElementById('btnEditCta').addEventListener('click', () => document.getElementById('cta').focus());
+
+  let currentFormat = 'jpg';
+  document.querySelectorAll('.nx-format-tab').forEach((tab) => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.nx-format-tab').forEach((t) => t.classList.remove('is-active'));
+      tab.classList.add('is-active');
+      currentFormat = tab.dataset.fmt;
+    });
+  });
+
+  const progressEl = document.getElementById('exportProgress');
+  function setProgress(active, ratio){
+    progressEl.classList.toggle('is-active', active);
+    progressEl.firstElementChild.style.width = (ratio * 100) + '%';
+  }
+
+  document.getElementById('btnExportImage').addEventListener('click', async (e) => {
+    const btn = e.currentTarget;
+    btn.setAttribute('disabled', 'true');
+    try {
+      await loadScriptOnce('../assets/vendor/html2canvas/html2canvas.min.js');
+      await editor.exportImage(currentFormat);
+      toast('Your ' + currentFormat.toUpperCase() + ' is downloading.');
+    } catch (err) {
+      console.error(err);
+      toast('Export failed: ' + err.message, true);
+    } finally {
+      btn.removeAttribute('disabled');
+    }
+  });
+
+  document.getElementById('btnExportVideo').addEventListener('click', async (e) => {
+    const btn = e.currentTarget;
+    btn.setAttribute('disabled', 'true');
+    setProgress(true, 0);
+    try {
+      await loadScriptOnce('../assets/vendor/html2canvas/html2canvas.min.js');
+      await loadScriptOnce('../assets/vendor/ffmpeg/ffmpeg.min.js');
+      const result = await editor.exportVideo({ onProgress: (r) => setProgress(true, r) });
+      toast(result.fallback ? 'MP4 encoder unavailable — downloaded WebM instead.' : 'Your MP4 is downloading.');
+    } catch (err) {
+      console.error(err);
+      toast('Video export failed: ' + err.message, true);
+    } finally {
+      btn.removeAttribute('disabled');
+      setProgress(false, 0);
+    }
+  });
+</script>
+</body>
+</html>
