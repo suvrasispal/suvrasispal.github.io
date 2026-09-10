@@ -1,0 +1,2483 @@
+<title>TCA Marketing Calendar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
+<style>
+/* ============================================================
+   THE CONFIDENCE ACADEMY — Events & Marketing Calendar
+   Design tokens derived from TCA brand guidelines
+   ============================================================ */
+:root{
+  /* --- Brand core (fixed identity — same in both themes) --- */
+  --royal:#00247D;
+  --royal-light:#3B5FCB;
+  --red:#CF142B;
+  --red-light:#E8495D;
+  --gold:#FFB81C;
+  --sky:#4A90D9;
+  --green:#1E9E6B;
+  --green-deep:#137A53;
+  --amber-deep:#C2760A;
+  --family-hue:#E07C1B;
+  --youth-hue:#7FB2E5;
+  --community-hue:#2E5FA3;
+
+  /* --- Light theme surface tokens --- */
+  --bg:#F4F6FB;
+  --surface:#FFFFFF;
+  --surface-2:#EAF0FB;
+  --surface-3:#DEE7F7;
+  --border:#DCE3F0;
+  --text:#0B1C39;
+  --text-secondary:#4A5568;
+  --text-faint:#7C88A3;
+  --text-on-royal:#FFFFFF;
+  --shadow:0 1px 2px rgba(11,28,57,.06), 0 8px 24px -12px rgba(11,28,57,.18);
+  --shadow-lift:0 4px 10px rgba(11,28,57,.08), 0 20px 40px -16px rgba(11,28,57,.28);
+  --focus-ring:0 0 0 3px rgba(74,144,217,.45);
+
+  /* --- Type scale --- */
+  --font-display:'Sora',system-ui,-apple-system,sans-serif;
+  --font-body:'Inter',system-ui,-apple-system,sans-serif;
+  --font-mono:'Space Mono',ui-monospace,'SF Mono',monospace;
+
+  --radius-sm:10px;
+  --radius-md:12px;
+  --radius-lg:14px;
+  --radius-pill:999px;
+}
+
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0A1330;
+    --surface:#111C41;
+    --surface-2:#16214A;
+    --surface-3:#1D2A57;
+    --border:#28345F;
+    --text:#EAF0FB;
+    --text-secondary:#AAB6D6;
+    --text-faint:#7C88A9;
+    --text-on-royal:#FFFFFF;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.5);
+    --shadow-lift:0 4px 10px rgba(0,0,0,.35), 0 24px 48px -18px rgba(0,0,0,.6);
+    --royal-light:#7C9AF0;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0A1330;
+  --surface:#111C41;
+  --surface-2:#16214A;
+  --surface-3:#1D2A57;
+  --border:#28345F;
+  --text:#EAF0FB;
+  --text-secondary:#AAB6D6;
+  --text-faint:#7C88A9;
+  --text-on-royal:#FFFFFF;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.5);
+  --shadow-lift:0 4px 10px rgba(0,0,0,.35), 0 24px 48px -18px rgba(0,0,0,.6);
+  --royal-light:#7C9AF0;
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:var(--font-display);margin:0;color:var(--text);text-wrap:balance;}
+p{margin:0;}
+button{font-family:inherit;}
+input,textarea,select{font-family:inherit;font-size:1rem;}
+::selection{background:var(--gold);color:var(--text);}
+.tabular{font-variant-numeric:tabular-nums;}
+.mono{font-family:var(--font-mono);}
+
+a{color:inherit;}
+button{cursor:pointer;}
+:focus-visible{outline:2px solid var(--royal-light);outline-offset:2px;}
+
+/* ============ LAYOUT ============ */
+.app{
+  display:grid;
+  grid-template-columns:88px 1fr;
+  min-height:100vh;
+}
+@media (max-width:860px){
+  .app{grid-template-columns:1fr;}
+}
+
+/* ---- Side nav (fixed brand rail — Royal Blue in both themes) ---- */
+.sidenav{
+  background:linear-gradient(180deg,var(--royal) 0%, #001a5c 100%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:20px 0;
+  gap:4px;
+  position:sticky;
+  top:0;
+  height:100vh;
+}
+@media (max-width:860px){ .sidenav{display:none;} }
+.side-mark{
+  width:44px;height:44px;border-radius:var(--radius-md);
+  background:var(--red);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-family:var(--font-display);font-weight:800;font-size:1.1rem;
+  margin-bottom:18px;
+  flex-shrink:0;
+}
+.side-nav-list{display:flex;flex-direction:column;gap:6px;width:100%;padding:0 10px;flex:1;}
+.nav-item{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  background:transparent;border:none;color:rgba(255,255,255,.72);
+  padding:10px 4px;border-radius:var(--radius-sm);
+  font-family:var(--font-body);font-weight:600;font-size:.66rem;
+  letter-spacing:.02em;
+  width:100%;
+  transition:background .15s ease, color .15s ease;
+}
+.nav-item svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.nav-item:hover{background:rgba(255,255,255,.1);color:#fff;}
+.nav-item.active{background:#fff;color:var(--royal);}
+.nav-item .badge-count{
+  position:absolute;
+}
+.side-foot{color:rgba(255,255,255,.55);font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;writing-mode:vertical-rl;padding:10px 0;}
+
+/* ---- Main column ---- */
+.main-col{display:flex;flex-direction:column;min-width:0;}
+
+.topbar{
+  background:var(--surface);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:16px;
+  padding:14px 24px;
+  position:sticky;top:0;z-index:20;
+  flex-wrap:wrap;
+}
+.logo-plate{
+  background:#FFFFFF;
+  border-radius:var(--radius-md);
+  padding:6px 10px;
+  display:flex;align-items:center;
+  flex-shrink:0;
+  box-shadow:0 0 0 1px var(--border);
+}
+.logo-plate img{display:block;height:34px;width:auto;}
+.topbar-title{flex:1;min-width:180px;}
+.topbar-title h1{font-size:1.15rem;font-weight:800;letter-spacing:-.01em;}
+.topbar-title p{color:var(--text-secondary);font-size:.8rem;margin-top:2px;}
+.topbar-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end;}
+.search-box{
+  display:flex;align-items:center;gap:8px;
+  background:var(--surface-2);border:1px solid var(--border);
+  border-radius:var(--radius-pill);
+  padding:0 14px;height:40px;min-width:220px;
+}
+.search-box svg{width:16px;height:16px;stroke:var(--text-faint);fill:none;stroke-width:1.6;flex-shrink:0;}
+.search-box input{background:transparent;border:none;color:var(--text);width:100%;outline:none;font-size:.85rem;}
+.search-box input::placeholder{color:var(--text-faint);}
+.icon-btn{
+  width:44px;height:44px;border-radius:var(--radius-sm);
+  background:var(--surface-2);border:1px solid var(--border);
+  display:none;align-items:center;justify-content:center;color:var(--text);
+}
+.icon-btn svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+@media (max-width:860px){ .icon-btn.mobile-only{display:flex;} }
+
+.theme-note{display:none;}
+
+/* ---- Filter bar ---- */
+.filter-bar{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  padding:12px 24px;border-bottom:1px solid var(--border);
+  background:var(--bg);
+  position:sticky; top:65px; z-index:15;
+}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:9px 14px;border-radius:var(--radius-pill);
+  border:1px solid var(--border);background:var(--surface);
+  color:var(--text-secondary);font-size:.78rem;font-weight:600;
+  white-space:nowrap;
+  transition:all .12s ease;
+  min-height:44px;
+}
+.chip:hover{border-color:var(--royal-light);}
+.chip.active{background:color-mix(in srgb, var(--cat-color,var(--royal)) 24%, var(--surface));color:var(--text);border-color:color-mix(in srgb, var(--cat-color,var(--royal)) 55%, transparent);}
+.chip .dot{width:8px;height:8px;border-radius:50%;background:var(--cat-color,var(--royal));flex-shrink:0;}
+.filter-spacer{flex:1;}
+.link-btn{
+  background:none;border:none;color:var(--royal-light);font-weight:700;font-size:.8rem;
+  padding:6px 4px;
+}
+
+/* ---- Content ---- */
+.content{padding:24px;max-width:1320px;width:100%;margin:0 auto;flex:1;}
+.view{display:none;flex-direction:column;gap:24px;animation:fadein .25s ease;}
+.view.active{display:flex;}
+@keyframes fadein{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+
+.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.section-head h2{font-size:1.25rem;font-weight:800;}
+.section-head .count-pill{
+  background:var(--surface-2);color:var(--text-secondary);font-family:var(--font-mono);
+  font-size:.72rem;padding:3px 9px;border-radius:var(--radius-pill);margin-left:8px;
+}
+.section-sub{color:var(--text-secondary);font-size:.85rem;}
+
+/* ---- Stat tiles ---- */
+.stat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;}
+@media (max-width:960px){.stat-grid{grid-template-columns:repeat(3,1fr);}}
+@media (max-width:560px){.stat-grid{grid-template-columns:repeat(2,1fr);}}
+.stat-tile{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:16px 18px;display:flex;flex-direction:column;gap:6px;
+  box-shadow:var(--shadow);
+}
+.stat-tile .stat-label{font-size:.72rem;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.05em;}
+.stat-tile .stat-value{font-family:var(--font-mono);font-size:1.9rem;font-weight:700;color:var(--text);}
+.stat-tile.accent-red .stat-value{color:var(--red);}
+.stat-tile.accent-gold .stat-value{color:var(--amber-deep);}
+.stat-tile.accent-green .stat-value{color:var(--green-deep);}
+.stat-tile.accent-royal .stat-value{color:var(--royal-light);}
+
+/* ---- Next event hero ---- */
+.hero-next{
+  border-radius:var(--radius-lg);
+  padding:26px 28px;
+  background:linear-gradient(115deg,var(--royal) 0%, var(--red) 100%);
+  color:#fff;
+  display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;
+  box-shadow:var(--shadow-lift);
+  position:relative;
+  overflow:hidden;
+}
+.hero-next::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(120% 120% at 100% 0%, rgba(255,255,255,.14), transparent 55%);
+  pointer-events:none;
+}
+.hero-eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.85;}
+.hero-name{font-family:var(--font-display);font-weight:800;font-size:1.7rem;margin-top:4px;text-wrap:balance;}
+.hero-meta{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;}
+.hero-meta-item{display:flex;flex-direction:column;gap:2px;}
+.hero-meta-item .k{font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;opacity:.8;}
+.hero-meta-item .v{font-family:var(--font-mono);font-weight:700;font-size:1rem;}
+.hero-countdown{
+  text-align:center;background:rgba(255,255,255,.16);border-radius:var(--radius-lg);
+  padding:16px 26px;backdrop-filter:blur(2px);
+  flex-shrink:0;
+}
+.hero-countdown .num{font-family:var(--font-mono);font-size:2.6rem;font-weight:700;line-height:1;}
+.hero-countdown .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;opacity:.85;margin-top:4px;}
+.hero-progress{flex-basis:100%;}
+.hero-progress-bar{height:8px;border-radius:99px;background:rgba(255,255,255,.25);overflow:hidden;margin-top:4px;}
+.hero-progress-bar > span{display:block;height:100%;background:#fff;border-radius:99px;}
+.hero-btn{
+  background:#fff;color:var(--royal);border:none;border-radius:var(--radius-pill);
+  padding:10px 18px;font-weight:700;font-size:.82rem;min-height:40px;
+  display:inline-flex;align-items:center;gap:6px;
+}
+
+/* ---- Notification banners ---- */
+.notice-list{display:flex;flex-direction:column;gap:8px;}
+.notice{
+  display:flex;align-items:center;gap:12px;
+  background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--gold);
+  border-radius:var(--radius-md);padding:12px 16px;
+  box-shadow:var(--shadow);
+}
+.notice.overdue{border-left-color:var(--red);}
+.notice .bell{width:18px;height:18px;stroke:var(--amber-deep);fill:none;stroke-width:1.7;flex-shrink:0;}
+.notice.overdue .bell{stroke:var(--red);}
+.notice p{font-size:.86rem;}
+.notice b{font-weight:700;}
+.notice button{
+  margin-left:auto;background:none;border:1px solid var(--border);border-radius:var(--radius-pill);
+  padding:6px 12px;font-size:.75rem;font-weight:700;color:var(--text-secondary);flex-shrink:0;
+}
+
+/* ---- Cards: event card (list) ---- */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;}
+.event-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:16px;display:flex;flex-direction:column;gap:10px;
+  box-shadow:var(--shadow);
+  border-left:4px solid var(--pri-color,var(--border));
+  text-align:left;width:100%;
+  transition:transform .12s ease, box-shadow .12s ease;
+}
+.event-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lift);}
+.event-card.urgent{border-left-color:var(--red);}
+.ec-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
+.ec-cat{
+  display:inline-flex;align-items:center;gap:5px;font-size:.68rem;font-weight:700;
+  padding:3px 9px;border-radius:var(--radius-pill);color:var(--text);
+  background:color-mix(in srgb, var(--cat-color) 22%, var(--surface));
+  border:1px solid color-mix(in srgb, var(--cat-color) 50%, transparent);
+  white-space:nowrap;
+}
+.ec-flag{font-size:.9rem;line-height:1;}
+.ec-name{font-family:var(--font-display);font-weight:700;font-size:1.05rem;text-wrap:balance;}
+.ec-date-row{display:flex;align-items:center;gap:8px;color:var(--text-secondary);font-size:.78rem;flex-wrap:wrap;}
+.ec-date-row .sep{opacity:.5;}
+.ec-days{font-family:var(--font-mono);font-weight:700;color:var(--text);}
+.ec-days.soon{color:var(--red);}
+.ec-prep{font-size:.75rem;color:var(--text-faint);}
+/* Assigned-person summary — deliberately muted (faint label colour, small
+   type, no background fill on the single-assignee line) so it reads as a
+   quiet fact on the card rather than competing with the event name/date. */
+.ec-assign-single{
+  display:flex;align-items:center;gap:6px;font-size:.75rem;color:var(--text-secondary);
+}
+.ec-assign-single strong{color:var(--text);font-weight:700;}
+.avatar-sm{width:16px;height:16px;font-size:.52rem;}
+.ec-assign-multi{
+  display:flex;flex-direction:column;gap:3px;padding:8px;border-radius:8px;
+  background:var(--surface-2);border:1px solid var(--border);
+}
+.ec-assign-multi-label{font-size:.62rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--text-faint);}
+.ec-assign-row{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:.72rem;color:var(--text-secondary);}
+.ec-assign-task{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.ec-assign-who{font-weight:700;color:var(--text);flex-shrink:0;white-space:nowrap;}
+.ec-assign-more{font-size:.7rem;color:var(--text-faint);font-style:italic;}
+.ec-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:8px;border-top:1px dashed var(--border);}
+.status-pill{
+  display:inline-flex;align-items:center;gap:6px;font-size:.68rem;font-weight:700;
+  padding:4px 10px;border-radius:var(--radius-pill);
+  color:var(--text);background:color-mix(in srgb, var(--status-color,var(--text-faint)) 20%, var(--surface));
+  border:1px solid color-mix(in srgb, var(--status-color,var(--text-faint)) 45%, transparent);
+}
+.status-pill .sdot{width:7px;height:7px;border-radius:50%;background:var(--status-color,var(--text-faint));flex-shrink:0;}
+.task-frac{font-family:var(--font-mono);font-size:.75rem;color:var(--text-secondary);}
+.mini-progress{height:5px;border-radius:99px;background:var(--surface-3);overflow:hidden;}
+.mini-progress > span{display:block;height:100%;background:var(--green);border-radius:99px;}
+
+/* ---- Empty state ---- */
+.empty-state{
+  padding:40px 20px;text-align:center;color:var(--text-secondary);
+  background:var(--surface);border:1px dashed var(--border);border-radius:var(--radius-lg);
+}
+.empty-state .emoji{font-size:1.8rem;display:block;margin-bottom:8px;}
+
+/* ---- Calendar ---- */
+.cal-header{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.cal-nav-btn{
+  width:44px;height:44px;border-radius:var(--radius-sm);border:1px solid var(--border);
+  background:var(--surface);display:flex;align-items:center;justify-content:center;color:var(--text);
+}
+.cal-nav-btn svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2;}
+.cal-title{font-family:var(--font-display);font-weight:800;font-size:1.2rem;min-width:190px;text-align:center;}
+.cal-mode-toggle{display:flex;background:var(--surface-2);border-radius:var(--radius-pill);padding:3px;margin-left:auto;border:1px solid var(--border);}
+.cal-mode-toggle button{
+  border:none;background:transparent;padding:7px 16px;border-radius:var(--radius-pill);
+  font-size:.78rem;font-weight:700;color:var(--text-secondary);
+}
+.cal-mode-toggle button.active{background:var(--royal);color:#fff;}
+.today-btn{
+  border:1px solid var(--border);background:var(--surface);border-radius:var(--radius-pill);
+  padding:7px 14px;min-height:44px;font-size:.78rem;font-weight:700;color:var(--text-secondary);
+}
+
+.month-grid{
+  display:grid;grid-template-columns:repeat(7,1fr);
+  border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;
+  background:var(--border);
+  gap:1px;
+}
+.dow{background:var(--surface-2);padding:8px 6px;text-align:center;font-size:.68rem;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.04em;}
+.day-cell{
+  background:var(--surface);min-height:96px;padding:6px;display:flex;flex-direction:column;gap:4px;
+  cursor:pointer;
+}
+.day-cell.out{background:var(--bg);}
+.day-cell.today{box-shadow:inset 0 0 0 2px var(--red);}
+.day-cell:hover{background:var(--surface-2);}
+.day-num{font-family:var(--font-mono);font-size:.78rem;font-weight:700;color:var(--text-secondary);}
+.day-cell.out .day-num{color:var(--text-faint);}
+.day-cell.today .day-num{color:var(--red);}
+.day-events{display:flex;flex-direction:column;gap:2px;overflow:hidden;}
+.day-pill{
+  font-size:.62rem;font-weight:700;color:var(--text);
+  background:color-mix(in srgb, var(--cat-color) 26%, var(--surface));
+  border-radius:5px;padding:2px 5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  display:flex;align-items:center;gap:3px;
+}
+.day-more{font-size:.62rem;font-weight:700;color:var(--text-faint);padding-left:2px;}
+@media (max-width:640px){
+  .day-cell{min-height:64px;}
+  .day-pill span.txt{display:none;}
+  .day-pill{width:8px;height:8px;padding:0;border-radius:50%;background:var(--cat-color);}
+}
+
+.year-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+@media (max-width:860px){.year-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:480px){.year-grid{grid-template-columns:1fr;}}
+.mini-month{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);
+  padding:12px;cursor:pointer;
+}
+.mini-month:hover{border-color:var(--royal-light);}
+.mini-month h4{font-size:.85rem;font-weight:700;margin-bottom:8px;}
+.mini-month-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;}
+.mini-day{aspect-ratio:1;border-radius:2px;background:var(--surface-3);}
+.mini-day.has-event{background:var(--sky);}
+.mini-day.has-high{background:var(--red);}
+.mini-day.out{background:transparent;}
+.mini-month-count{font-family:var(--font-mono);font-size:.7rem;color:var(--text-secondary);margin-top:6px;}
+
+/* ---- Tasks view ---- */
+.task-row{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);
+  padding:14px 16px;display:flex;flex-direction:column;gap:10px;
+}
+.task-row-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;}
+.task-row-title{display:flex;align-items:center;gap:8px;font-weight:700;font-family:var(--font-display);}
+.checklist{display:flex;flex-direction:column;gap:2px;}
+.check-item{display:flex;align-items:center;gap:10px;padding:6px 4px;border-radius:8px;}
+.check-item:hover{background:var(--surface-2);}
+.check-item input[type=checkbox]{width:19px;height:19px;accent-color:var(--green);flex-shrink:0;cursor:pointer;}
+.check-item label{font-size:.86rem;cursor:pointer;flex:1;}
+.check-item.done label{color:var(--text-faint);text-decoration:line-through;}
+
+/* ---- Buttons ---- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  border-radius:var(--radius-pill);border:none;font-weight:700;font-size:.82rem;
+  padding:10px 18px;min-height:44px;
+}
+.btn-primary{background:var(--red);color:#fff;}
+.btn-primary:hover{background:var(--red-light);}
+.btn-ghost{background:var(--surface-2);color:var(--text);border:1px solid var(--border);}
+.btn-ghost:hover{border-color:var(--royal-light);}
+.btn-sm{padding:7px 13px;min-height:34px;font-size:.75rem;}
+
+/* ---- Drawer ---- */
+.drawer-overlay{
+  position:fixed;inset:0;background:rgba(11,28,57,.45);opacity:0;pointer-events:none;
+  transition:opacity .2s ease;z-index:40;
+}
+.drawer-overlay.open{opacity:1;pointer-events:auto;}
+.drawer{
+  position:fixed;top:0;right:0;height:100%;width:min(460px,100%);
+  background:var(--surface);z-index:41;
+  transform:translateX(100%);transition:transform .25s ease;
+  display:flex;flex-direction:column;
+  box-shadow:-8px 0 40px rgba(0,0,0,.25);
+}
+.drawer.open{transform:translateX(0);}
+.drawer-head{
+  background:linear-gradient(115deg,var(--royal) 0%, var(--red) 100%);
+  color:#fff;padding:20px;flex-shrink:0;position:relative;
+}
+.drawer-close{
+  position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;
+  background:rgba(255,255,255,.18);border:none;color:#fff;display:flex;align-items:center;justify-content:center;
+}
+.drawer-close svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;}
+.drawer-head .ec-cat{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.4);color:#fff;}
+.drawer-head h2{font-size:1.3rem;margin-top:8px;padding-right:34px;text-wrap:balance;}
+.drawer-head .dh-meta{display:flex;gap:16px;margin-top:10px;flex-wrap:wrap;}
+.drawer-head .dh-meta div{font-size:.72rem;opacity:.85;}
+.drawer-head .dh-meta b{display:block;font-family:var(--font-mono);font-size:1rem;opacity:1;margin-top:2px;}
+.drawer-body{padding:20px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:22px;}
+.drawer-section label.field-label{
+  display:block;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+  color:var(--text-secondary);margin-bottom:8px;
+}
+.drawer-section p.body-text{font-size:.9rem;color:var(--text);line-height:1.6;}
+.status-grid{display:flex;flex-wrap:wrap;gap:7px;}
+.status-btn{
+  border:1.5px solid var(--border);background:var(--surface);border-radius:var(--radius-pill);
+  padding:10px 14px;min-height:44px;font-size:.75rem;font-weight:700;color:var(--text-secondary);
+  display:flex;align-items:center;gap:6px;
+}
+.status-btn .sdot{width:7px;height:7px;border-radius:50%;background:var(--st-color);flex-shrink:0;}
+.status-btn.active{background:color-mix(in srgb, var(--st-color) 22%, var(--surface));border-color:var(--st-color);color:var(--text);}
+.field-input, .field-textarea{
+  width:100%;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:10px 12px;color:var(--text);font-size:.88rem;
+}
+.field-textarea{min-height:80px;resize:vertical;}
+.progress-summary{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.progress-summary b{font-family:var(--font-mono);}
+.big-progress{height:9px;border-radius:99px;background:var(--surface-3);overflow:hidden;margin-bottom:14px;}
+.big-progress>span{display:block;height:100%;background:var(--green);border-radius:99px;transition:width .2s ease;}
+
+/* ---- Toast ---- */
+.toast{
+  position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--text);color:var(--bg);padding:10px 18px;border-radius:var(--radius-pill);
+  font-size:.82rem;font-weight:600;opacity:0;pointer-events:none;transition:all .25s ease;z-index:60;
+  box-shadow:var(--shadow-lift);
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ---- Bottom tab bar (mobile) ---- */
+.bottom-tabs{
+  display:none;position:sticky;bottom:0;background:var(--royal);
+  border-top:1px solid rgba(255,255,255,.1);
+  padding:4px 4px calc(4px + env(safe-area-inset-bottom));
+  z-index:20;
+}
+@media (max-width:860px){ .bottom-tabs{display:flex;} }
+.bottom-tabs .nav-item{font-size:.58rem;padding:6px 2px;}
+.bottom-tabs .nav-item svg{width:19px;height:19px;}
+
+/* ---- misc ---- */
+.priority-flag{display:inline-flex;align-items:center;gap:3px;font-size:.68rem;font-weight:700;}
+.legend-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px;}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:.72rem;color:var(--text-secondary);}
+.legend-item .dot{width:9px;height:9px;border-radius:50%;background:var(--cat-color);}
+.assignee-tag{
+  display:inline-flex;align-items:center;gap:6px;font-size:.72rem;color:var(--text-secondary);
+  background:var(--surface-2);padding:3px 9px 3px 3px;border-radius:var(--radius-pill);
+  border:1px solid var(--border);
+}
+.avatar{
+  width:20px;height:20px;border-radius:50%;background:var(--royal);color:#fff;
+  font-size:.6rem;font-weight:700;display:inline-flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-family:var(--font-body);
+}
+hr.divider{border:none;border-top:1px solid var(--border);margin:0;}
+
+/* ---- Task assignment (per-task rows: label, assignee, status, actions) ---- */
+.task-line{
+  display:flex;flex-direction:column;gap:8px;padding:10px 8px;border-radius:10px;
+  border:1px solid transparent;
+}
+.task-line:hover{background:var(--surface-2);}
+.task-line.mine{
+  background:color-mix(in srgb, var(--sky) 10%, var(--surface));
+  border-color:color-mix(in srgb, var(--sky) 38%, transparent);
+}
+.task-line-top{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;}
+.task-label{font-size:.86rem;font-weight:600;flex:1;min-width:160px;}
+.task-label.done{color:var(--text-faint);text-decoration:line-through;font-weight:400;}
+.task-meta-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.task-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.task-note{
+  font-size:.76rem;color:var(--text-secondary);font-style:italic;
+  background:var(--surface-2);padding:7px 11px;border-radius:8px;border:1px dashed var(--border);
+}
+.assign-form{
+  display:flex;flex-direction:column;gap:8px;background:var(--surface-2);
+  border:1px solid var(--border);border-radius:10px;padding:10px;margin-top:2px;
+}
+.assign-form .field-textarea{min-height:52px;}
+
+/* ---- Role / "viewing as" switcher ---- */
+.role-switch select{
+  height:44px;border-radius:var(--radius-pill);border:1px solid var(--border);
+  background:var(--surface-2);color:var(--text);font-size:.8rem;font-weight:600;
+  padding:0 14px;max-width:180px;
+}
+
+/* ---- Nudge banner (team-member dashboard prompt) ---- */
+.nudge-banner{
+  display:flex;align-items:center;gap:12px;
+  background:color-mix(in srgb, var(--sky) 14%, var(--surface));
+  border:1px solid color-mix(in srgb, var(--sky) 40%, transparent);
+  border-radius:var(--radius-md);padding:14px 16px;
+}
+.nudge-banner .bell{width:18px;height:18px;stroke:var(--royal-light);fill:none;stroke-width:1.7;flex-shrink:0;}
+.nudge-banner p{font-size:.86rem;flex:1;}
+.nudge-banner button{
+  background:var(--royal);color:#fff;border:none;border-radius:var(--radius-pill);
+  padding:9px 16px;font-size:.78rem;font-weight:700;flex-shrink:0;min-height:40px;
+}
+
+/* ---- Rolling-window indicator (Dashboard + Calendar) ---- */
+.period-indicator{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  background:color-mix(in srgb, var(--royal) 8%, var(--surface));
+  border:1px solid color-mix(in srgb, var(--royal) 25%, transparent);
+  border-radius:var(--radius-md);padding:11px 16px;font-size:.82rem;
+}
+
+/* ---- Add / Edit Event modal ---- */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(11,28,57,.5);opacity:0;pointer-events:none;
+  transition:opacity .2s ease;z-index:50;display:flex;align-items:center;justify-content:center;padding:20px;
+}
+.modal-overlay.open{opacity:1;pointer-events:auto;}
+.modal{
+  background:var(--surface);border-radius:var(--radius-lg);box-shadow:var(--shadow-lift);
+  width:min(600px,100%);max-height:88vh;display:flex;flex-direction:column;
+  transform:translateY(12px);transition:transform .2s ease;
+}
+.modal-overlay.open .modal{transform:translateY(0);}
+.modal-head{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:18px 20px;border-bottom:1px solid var(--border);flex-shrink:0;
+}
+.modal-head h2{font-size:1.1rem;font-weight:800;}
+.modal-body{padding:20px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:16px;}
+.modal-foot{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:16px 20px;border-top:1px solid var(--border);flex-shrink:0;flex-wrap:wrap;
+}
+.field-select{
+  width:100%;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:10px 12px;color:var(--text);font-size:.88rem;
+}
+.field-row{display:flex;gap:10px;flex-wrap:wrap;}
+.field-row>*{flex:1;min-width:120px;}
+.recurrence-choice{
+  display:flex;flex-direction:column;gap:8px;border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:10px 12px;cursor:pointer;
+}
+.recurrence-choice.active{border-color:var(--royal-light);background:color-mix(in srgb, var(--royal) 8%, var(--surface));}
+.recurrence-choice .rc-head{display:flex;align-items:center;gap:8px;font-size:.85rem;font-weight:700;}
+.recurrence-sub{display:none;gap:10px;flex-wrap:wrap;margin-top:8px;}
+.recurrence-choice.active .recurrence-sub{display:flex;}
+.task-editor-row{display:flex;gap:8px;align-items:center;}
+.task-editor-row input{flex:1;}
+.task-editor-remove{
+  width:32px;height:32px;border-radius:8px;background:var(--surface-2);border:1px solid var(--border);
+  color:var(--red);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1rem;
+}
+.locked-recurrence-note{
+  font-size:.8rem;color:var(--text-secondary);background:var(--surface-2);border:1px dashed var(--border);
+  border-radius:8px;padding:10px 12px;
+}
+</style>
+<!-- /HEAD: marker used by source/build.sh to split this fragment into a
+     proper <head>/<body> document when building the standalone package.
+     Harmless if left in place when publishing as a Claude Artifact fragment. -->
+
+<div class="app" id="app">
+  <aside class="sidenav" aria-label="Primary navigation">
+    <div class="side-mark" title="The Confidence Academy">TCA</div>
+    <nav class="side-nav-list" id="navList"></nav>
+    <div class="side-foot">GET BRITAIN MOVING</div>
+  </aside>
+
+  <div class="main-col">
+    <header class="topbar">
+      <div class="logo-plate"><img src="__LOGO_SRC__" alt="The Confidence Academy — Get Britain Moving"></div>
+      <div class="topbar-title">
+        <h1>Events &amp; Marketing Calendar</h1>
+        <p>Know what's coming, know when to prep, publish on time.</p>
+      </div>
+      <div class="topbar-tools">
+        <div class="role-switch" style="display:flex;align-items:center;gap:6px;">
+          <span class="section-sub" style="white-space:nowrap;">Viewing as</span>
+          <select id="roleSelect" aria-label="Viewing this dashboard as"></select>
+        </div>
+        <button class="btn btn-ghost btn-sm" id="exportExcelBtn" title="Download every event, status and task assignment as an Excel file">⬇️ Export to Excel</button>
+        <div class="search-box">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input id="searchInput" type="text" placeholder="Search events…" aria-label="Search events">
+        </div>
+        <button class="icon-btn mobile-only" id="mobileMenuBtn" aria-label="Open menu">
+          <svg viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="filter-bar" id="filterBar"></div>
+
+    <main class="content" id="content">
+      <section class="view" id="view-dashboard" data-view="dashboard"></section>
+      <section class="view" id="view-calendar" data-view="calendar"></section>
+      <section class="view" id="view-upcoming" data-view="upcoming"></section>
+      <section class="view" id="view-tasks" data-view="tasks"></section>
+      <section class="view" id="view-mytasks" data-view="mytasks"></section>
+      <section class="view" id="view-campaigns" data-view="campaigns"></section>
+      <section class="view" id="view-completed" data-view="completed"></section>
+    </main>
+
+    <nav class="bottom-tabs" id="bottomTabs" aria-label="Primary navigation (mobile)"></nav>
+  </div>
+
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="drawer" id="drawer" aria-label="Event details"></aside>
+
+  <div class="modal-overlay" id="templateModalOverlay">
+    <div class="modal" id="templateModal" role="dialog" aria-modal="true" aria-label="Add or edit event"></div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <datalist id="teamMemberOptions"></datalist>
+</div>
+
+<!-- SheetJS (client-side .xlsx generation for "Export to Excel") — no
+     server/account needed, works the same for every viewer. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+"use strict";
+/* =====================================================================
+   DATA
+   ===================================================================== */
+const EVENT_TEMPLATES_SEED = __EVENT_TEMPLATES_JSON__;
+
+const CATEGORIES = {
+  seasonal:     { label:"Seasonal / Cultural",  emoji:"🎉", color:"#FFB81C", text:"#3A2A00" },
+  fitness:      { label:"Fitness & Wellbeing",  emoji:"💪", color:"#4A90D9", text:"#FFFFFF" },
+  "mental-health": { label:"Mental Health",     emoji:"🧠", color:"#00247D", text:"#FFFFFF" },
+  family:       { label:"Family",               emoji:"👨‍👩‍👧", color:"#E07C1B", text:"#FFFFFF" },
+  youth:        { label:"Youth",                emoji:"👦", color:"#3B7FC4", text:"#FFFFFF" },
+  awareness:    { label:"Awareness Days",       emoji:"🌍", color:"#1C2B52", text:"#FFFFFF" },
+  tca:          { label:"TCA Campaigns",        emoji:"📣", color:"#CF142B", text:"#FFFFFF" },
+  community:    { label:"Community / Events",   emoji:"🏆", color:"#2E5FA3", text:"#FFFFFF" },
+  other:        { label:"Other",                emoji:"📅", color:"#4A5568", text:"#FFFFFF" },
+};
+
+const STATUSES = [
+  { key:"Not Started",        color:"#8A93AC" },
+  { key:"Planning",           color:"#4A90D9" },
+  { key:"In Progress",        color:"#FFB81C" },
+  { key:"Awaiting Approval",  color:"#C2760A" },
+  { key:"Ready to Publish",   color:"#00247D" },
+  { key:"Published",          color:"#1E9E6B" },
+  { key:"Completed",          color:"#137A53" },
+];
+const STATUS_COLOR = Object.fromEntries(STATUSES.map(s=>[s.key,s.color]));
+
+/* The org's fixed role list — used identically for the "Viewing as" switcher,
+   every per-task Team Member / Assign Task field, and the event-level
+   Campaign Lead field, so there is exactly one list of people/roles anywhere
+   in the app. Keep these three in sync deliberately if this ever changes. */
+const TEAM_MEMBERS = [
+  "Ray (Founder & Director)",
+  "COO",
+  "Head of Research & Fundraising",
+  "Head of Brand & Digital",
+  "Head of Events",
+  "Fundraising Lead",
+  "Digital & IT Lead",
+  "Creative Lead",
+  "Other",
+];
+/* Roles with admin-level dashboard controls (add/edit/delete events, assign
+   tasks, approve/send back/complete/reopen, Task Assignment Overview, Team
+   Task Board). Everyone else on the list above is view-only — they can see
+   every event, status, and assignment, but cannot add/edit events, assign
+   tasks, or approve work. */
+const ADMIN_ROLES = ["Ray (Founder & Director)", "Head of Brand & Digital", "Head of Events"];
+
+const ASSIGNEE_OPTIONS = ["Unassigned", ...TEAM_MEMBERS];
+const TASK_STATUSES = ["Not Started","Assigned","In Progress","Submitted","Completed"];
+const TASK_STATUS_COLOR = {
+  "Not Started": "#8A93AC",
+  "Assigned":    "#4A90D9",
+  "In Progress": "#FFB81C",
+  "Submitted":   "#C2760A",
+  "Completed":   "#137A53",
+};
+
+const PREP_DAYS = 14;
+const DAY_MS = 86400000;
+
+/* =====================================================================
+   ICONS (inline, brand stroke-icon language: 1.5-1.7px stroke, rounded)
+   ===================================================================== */
+const ICONS = {
+  dashboard:'<svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="5" rx="2"/><rect x="13" y="12" width="8" height="9" rx="2"/><rect x="3" y="14" width="8" height="7" rx="2"/></svg>',
+  calendar:'<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/></svg>',
+  upcoming:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>',
+  tasks:'<svg viewBox="0 0 24 24"><path d="M4 6h4M4 12h4M4 18h4"/><path d="M10 6h10M10 12h10M10 18h10" opacity=".4"/><path d="M4 6l1 1 1.5-1.5" stroke-width="2"/></svg>',
+  campaigns:'<svg viewBox="0 0 24 24"><path d="M3 11v2a1 1 0 001 1h2l4 4V6L6 10H4a1 1 0 00-1 1z"/><path d="M15 8a4 4 0 010 8M18 5a8 8 0 010 14" opacity=".55"/></svg>',
+  completed:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>',
+  myTasks:'<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>',
+  bell:'<svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg>',
+  chevronL:'<svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>',
+  chevronR:'<svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>',
+  close:'<svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>',
+  flame:'🔥',
+};
+
+/* =====================================================================
+   STATE
+   ===================================================================== */
+function defaultState(ev){
+  return {
+    status:"Not Started",
+    tasks: ev.tasks.map(()=>({ status:"Not Started", assignedTo:"", note:"", updatedAt:null })),
+    notes:"",
+    assignedTo:"Unassigned", // campaign lead (event-level owner)
+    updatedAt: null,
+  };
+}
+
+/* Templates describe HOW an event recurs (or doesn't); EVENTS holds the
+   concrete, dated instances generated from them for the current rolling
+   12-month window — see the "RECURRING CALENDAR ENGINE" section below. */
+let EVENT_TEMPLATES = [];      // seed templates + admin add/edit/delete, merged
+let templateOverrides = {};    // template id -> full replacement fields, or {_deleted:true}
+let EVENTS = [];               // generated concrete event instances (this window only)
+let EVENT_BY_ID = {};
+let calWindowStart = null, calWindowEnd = null; // the rolling 12-month period
+
+let eventState = {};
+let savedStateCache = {};      // event instance id -> last-known-saved task/status data
+
+let db = null;
+let dbReady = false;
+// Ids saved (to localStorage) while the shared "db" capability was still
+// connecting (or unavailable) — flushed to db the moment it becomes ready,
+// so an edit made in the first second or two after opening the page (or
+// while offline) doesn't get silently stranded in this one browser forever.
+let pendingSyncEvents = new Set();
+let pendingSyncTemplates = new Set();
+
+const filters = {
+  categories: new Set(Object.keys(CATEGORIES)),
+  search: "",
+};
+
+let currentView = "dashboard";
+let expandedTasks = new Set();
+let calMode = "month"; // "month" | "year"
+let calYear = 0, calMonth = 0; // 0-indexed month
+let openDrawerId = null;
+
+/* "Viewing as" role simulation — no real authentication, just a simple
+   switcher so admins and team members can see the dashboard each of them
+   would see. Persisted per-browser. */
+const CURRENT_USER_KEY = "tca_marketing_calendar_current_user_v1";
+let currentUser = TEAM_MEMBERS[0];
+function isAdmin(){ return ADMIN_ROLES.includes(currentUser); }
+function loadCurrentUser(){
+  try{
+    const saved = localStorage.getItem(CURRENT_USER_KEY);
+    if(saved && TEAM_MEMBERS.includes(saved)) currentUser = saved;
+  }catch(e){ /* ignore */ }
+}
+function setCurrentUser(name){
+  currentUser = name;
+  try{ localStorage.setItem(CURRENT_USER_KEY, name); }catch(e){ /* ignore */ }
+  assignFormOpen = null;
+  renderAll();
+  showToast(`Now viewing as ${name}${isAdmin()?" (Admin)":""}`);
+}
+let assignFormOpen = null; // "eventId|taskIndex" of the one open assign form, or null
+
+/* =====================================================================
+   DATE HELPERS
+   ===================================================================== */
+function startOfToday(){
+  const t = new Date();
+  t.setHours(0,0,0,0);
+  return t;
+}
+function daysBetween(a,b){ return Math.round((b-a)/DAY_MS); }
+function fmtDate(dt){
+  return dt.toLocaleDateString("en-GB",{ day:"numeric", month:"long", year:"numeric" });
+}
+function fmtDateShort(dt){
+  return dt.toLocaleDateString("en-GB",{ day:"numeric", month:"short" });
+}
+function prepDate(ev){
+  return new Date(ev._date.getTime() - PREP_DAYS*DAY_MS);
+}
+function daysUntil(ev){
+  return daysBetween(startOfToday(), ev._date);
+}
+function countdownLabel(ev){
+  const n = daysUntil(ev);
+  if(n===0) return "Today";
+  if(n===1) return "Tomorrow";
+  if(n===-1) return "Yesterday";
+  if(n>1) return n+" days remaining";
+  return Math.abs(n)+" days ago";
+}
+function addDays(d,n){ const r=new Date(d); r.setDate(r.getDate()+n); return r; }
+function addYears(d,n){ const r=new Date(d); r.setFullYear(r.getFullYear()+n); return r; }
+function isoDate(d){
+  const y=d.getFullYear(), m=String(d.getMonth()+1).padStart(2,"0"), day=String(d.getDate()).padStart(2,"0");
+  return `${y}-${m}-${day}`;
+}
+
+/* =====================================================================
+   RECURRING CALENDAR ENGINE
+   Templates describe HOW an event recurs; this expands them into concrete,
+   dated instances for whatever window is asked for. No event date is ever
+   hand-typed for a future year — it's computed fresh every time the page
+   loads, so the calendar rolls forward on its own with no annual reset.
+   ===================================================================== */
+function easterSunday(year){
+  // Anonymous Gregorian algorithm (Meeus/Jones/Butcher) for Easter Sunday.
+  const a=year%19, b=Math.floor(year/100), c=year%100, d=Math.floor(b/4), e=b%4,
+        f=Math.floor((b+8)/25), g=Math.floor((b-f+1)/3), h=(19*a+b-d-g+15)%30,
+        i=Math.floor(c/4), k=c%4, l=(32+2*e+2*i-h-k)%7, m=Math.floor((a+11*h+22*l)/451),
+        month=Math.floor((h+l-7*m+114)/31), day=((h+l-7*m+114)%31)+1;
+  return new Date(year, month-1, day);
+}
+// weekday convention: 0=Monday ... 6=Sunday (matches the seed data). nth: 1-4, or -1 for "last".
+function nthWeekdayOfMonth(year, month1to12, weekdayMon0, nth){
+  const monthIdx = month1to12-1;
+  const jsWeekday = (weekdayMon0+1) % 7; // convert to JS's Sunday=0 convention
+  if(nth === -1){
+    const last = new Date(year, monthIdx+1, 0);
+    const diff = (last.getDay() - jsWeekday + 7) % 7;
+    return new Date(year, monthIdx+1, last.getDate() - diff);
+  }
+  const first = new Date(year, monthIdx, 1);
+  const diff = (jsWeekday - first.getDay() + 7) % 7;
+  return new Date(year, monthIdx, 1 + diff + 7*(nth-1));
+}
+// Returns the Date this template falls on in `year` (or, for a one-off
+// template, its single fixed date regardless of `year`) — or null if this
+// template has no date for that year (e.g. a lunar table that doesn't
+// extend far enough into the future yet).
+function expandTemplateDate(tpl, year){
+  const r = tpl.recurrence;
+  if(!r) return null;
+  switch(r.type){
+    case "one-off": return new Date(r.date+"T00:00:00");
+    case "annual-fixed": return new Date(year, r.month-1, r.day);
+    case "annual-nthweekday": return nthWeekdayOfMonth(year, r.month, r.weekday, r.nth);
+    case "annual-nthweekday-offset": return addDays(nthWeekdayOfMonth(year, r.month, r.weekday, r.nth), r.offsetDays);
+    case "annual-easter": { const e=easterSunday(year); return addDays(e, r.offsetDays); }
+    case "annual-lunar": { const iso = r.dates && r.dates[String(year)]; return iso ? new Date(iso+"T00:00:00") : null; }
+    default: return null;
+  }
+}
+function recurrenceLabel(r){
+  if(!r) return "One-off";
+  if(r.type==="one-off") return "One-off";
+  if(r.type==="annual-lunar") return "Recurring — lunar calendar";
+  if(r.type==="annual-easter") return "Recurring — Easter-linked";
+  if(r.type==="annual-nthweekday" || r.type==="annual-nthweekday-offset"){
+    const wd=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"][r.weekday];
+    const nth = r.nth===-1 ? "last" : ["1st","2nd","3rd","4th"][r.nth-1];
+    const base = `${nth} ${wd} of ${MONTH_NAMES_SHORT[r.month-1]}`;
+    return r.type==="annual-nthweekday-offset"
+      ? `Recurring — ${r.offsetDays} days after the ${base}`
+      : `Recurring — ${base}`;
+  }
+  return "Recurring — same date every year";
+}
+const MONTH_NAMES_SHORT = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+// Merges the baked-in seed templates with any admin add/edit/delete overrides.
+function rebuildTemplates(){
+  const map = new Map();
+  EVENT_TEMPLATES_SEED.forEach(t=> map.set(t.id, {...t}));
+  Object.keys(templateOverrides).forEach(id=>{
+    const ov = templateOverrides[id];
+    if(ov && ov._deleted){ map.delete(id); return; }
+    if(ov) map.set(id, {...ov, id});
+  });
+  EVENT_TEMPLATES = Array.from(map.values());
+}
+// Expands every template into concrete instances whose date falls within
+// [genStart, genEnd]. Recurring templates get one instance per matching
+// year, id'd "<templateId>-<year>" (stable across sessions); one-off
+// templates keep their own id and appear at most once.
+function generateEventInstances(templates, genStart, genEnd){
+  const out = [];
+  const yStart = genStart.getFullYear()-1, yEnd = genEnd.getFullYear()+1;
+  templates.forEach(tpl=>{
+    if(!tpl.recurrence) return;
+    if(tpl.recurrence.type === "one-off"){
+      const d = expandTemplateDate(tpl, null);
+      if(d && d>=genStart && d<=genEnd) out.push({...tpl, date:isoDate(d), _recurring:false});
+      return;
+    }
+    for(let y=yStart; y<=yEnd; y++){
+      const d = expandTemplateDate(tpl, y);
+      if(d && d>=genStart && d<=genEnd){
+        out.push({...tpl, id:`${tpl.id}-${y}`, date:isoDate(d), _recurring:true, _templateId:tpl.id, _year:y});
+      }
+    }
+  });
+  return out;
+}
+// Recomputes EVENT_TEMPLATES, then EVENTS/EVENT_BY_ID for "today -> +12
+// months" (with a 60-day look-back so recently-passed events stay visible
+// under Action Required / Tasks / Completed, exactly as before). Cheap
+// enough to call at the top of every render, so the calendar is always
+// correct for "right now" with no caching to go stale.
+function rebuildEvents(){
+  rebuildTemplates();
+  const today = startOfToday();
+  calWindowStart = today;
+  calWindowEnd = addYears(today, 1);
+  const genStart = addDays(calWindowStart, -60);
+  const instances = generateEventInstances(EVENT_TEMPLATES, genStart, calWindowEnd);
+  EVENTS = instances.map(e=>({...e, _date:new Date(e.date+"T00:00:00")}));
+  EVENT_BY_ID = Object.fromEntries(EVENTS.map(e=>[e.id,e]));
+  EVENTS.forEach(e=>{
+    const cached = savedStateCache[e.id];
+    eventState[e.id] = cached ? normalizeTasksFromData(e, cached) : (eventState[e.id] || defaultState(e));
+  });
+}
+function tasksDone(id){ return eventState[id].tasks.filter(t=>t.status==="Completed").length; }
+function tasksTotal(id){ return EVENT_BY_ID[id].tasks.length; }
+function pctDone(id){ const t=tasksTotal(id); return t? Math.round(100*tasksDone(id)/t):0; }
+function isDoneStatus(s){ return s==="Completed" || s==="Published"; }
+function isActionRequired(ev){
+  const st = eventState[ev.id];
+  if(isDoneStatus(st.status)) return false;
+  const n = daysUntil(ev);
+  // in the 14-day prep window, today, or recently missed (within the last 30 days)
+  return n <= PREP_DAYS && n >= -30;
+}
+function isOverdue(ev){
+  const st = eventState[ev.id];
+  return daysUntil(ev) < 0 && !isDoneStatus(st.status);
+}
+
+/* =====================================================================
+   DB (persistence capability) — shared, realtime, org-internal
+   ===================================================================== */
+/* Standalone-deployment fallback: when this page is hosted outside the
+   Claude artifact runtime, window.claude / the "db" capability won't
+   exist. In that case each browser keeps its own copy of the team's
+   edits in localStorage, so the tool still works fully offline/self-hosted
+   — the only thing that changes is that edits aren't shared live between
+   different people's browsers (see README for options to add that). */
+const LS_KEY = "tca_marketing_calendar_state_v1";
+const TEMPLATE_LS_KEY = "tca_marketing_calendar_templates_v1";
+
+/* Reads one saved event record (from localStorage or the shared db) into
+   the current state shape. Handles two legacy shapes gracefully so nothing
+   already saved is lost when this feature is added:
+     - oldest:  { taskDone: [bool, bool, ...] }               (pre-assignment)
+     - current: { tasks: [{status, assignedTo, note, updatedAt}, ...] } */
+function normalizeTasksFromData(ev, data){
+  const merged = defaultState(ev);
+  if(typeof data.status==="string") merged.status = data.status;
+  if(Array.isArray(data.tasks)){
+    merged.tasks = ev.tasks.map((_,i)=>{
+      const t = data.tasks[i] || {};
+      return {
+        status: TASK_STATUSES.includes(t.status) ? t.status : "Not Started",
+        assignedTo: typeof t.assignedTo==="string" ? t.assignedTo : "",
+        note: typeof t.note==="string" ? t.note : "",
+        updatedAt: t.updatedAt || null,
+      };
+    });
+  } else if(Array.isArray(data.taskDone)){
+    merged.tasks = ev.tasks.map((_,i)=>({
+      status: data.taskDone[i] ? "Completed" : "Not Started",
+      assignedTo:"", note:"", updatedAt:null,
+    }));
+  }
+  if(typeof data.notes==="string") merged.notes = data.notes;
+  if(typeof data.assignedTo==="string") merged.assignedTo = data.assignedTo;
+  merged.updatedAt = data.updatedAt || null;
+  return merged;
+}
+
+// Loaded once at startup into savedStateCache (id -> raw saved record), then
+// applied to whichever ids rebuildEvents() actually generates for the
+// current window — this is what lets an event's history survive it rolling
+// out of view and back again next year (a fresh Halloween-2027 instance
+// still finds Halloween-2026's old saved doc absent, but if 2026's instance
+// is still in-window it stays hydrated correctly either way).
+function loadLocalState(){
+  try{
+    const raw = localStorage.getItem(LS_KEY);
+    if(raw) savedStateCache = JSON.parse(raw) || {};
+  }catch(e){ /* storage unavailable (private mode, etc.) — keep defaults */ }
+}
+function saveLocalState(){
+  try{ localStorage.setItem(LS_KEY, JSON.stringify(savedStateCache)); }catch(e){ /* ignore */ }
+}
+
+function loadLocalTemplates(){
+  try{
+    const raw = localStorage.getItem(TEMPLATE_LS_KEY);
+    if(raw) templateOverrides = JSON.parse(raw) || {};
+  }catch(e){ /* ignore */ }
+}
+function saveLocalTemplates(){
+  try{ localStorage.setItem(TEMPLATE_LS_KEY, JSON.stringify(templateOverrides)); }catch(e){ /* ignore */ }
+}
+
+/* Makes the (otherwise invisible) question "did my change actually get
+   saved, and will it show up for teammates?" answerable at a glance —
+   see the #syncStatus pill in the topbar. */
+function setSyncStatus(mode){
+  const el = document.getElementById("syncStatus");
+  if(!el) return;
+  el.classList.remove("synced","local-only","save-error");
+  if(mode === "synced"){
+    el.classList.add("synced");
+    el.textContent = "☁️ Synced — everyone sees the same data";
+    el.title = "Changes are saved to this dashboard's shared store, so every browser and every teammate who opens this same link sees the same up-to-date data.";
+  } else if(mode === "local-only"){
+    el.classList.add("local-only");
+    el.textContent = "💾 Saved in this browser only";
+    el.title = "Shared sync isn't available right now, so changes are being saved to THIS browser's storage only — they won't appear in a different browser, device, or private/incognito window. Reopening this exact page in this same browser will still show them.";
+  } else if(mode === "save-error"){
+    el.classList.add("save-error");
+    el.textContent = "⚠️ Save failed — kept locally only";
+    el.title = "The last change couldn't reach shared storage, so it's currently saved to this browser only. It will keep retrying on your next change.";
+  } else {
+    el.textContent = "⏳ Checking save status…";
+    el.title = "Checking where changes are saved…";
+  }
+}
+
+async function initDb(){
+  try{
+    db = await window.claude?.use ? await window.claude.use("db") : null;
+  }catch(e){ db = null; }
+  if(!db){ dbReady = false; setSyncStatus("local-only"); return; }
+  dbReady = true;
+  setSyncStatus("synced");
+  // Catch up anything saved locally before db finished connecting (e.g. an
+  // assignment made in the first second or two after page load) — without
+  // this, that edit would sit in this browser's storage only and never
+  // reach the shared store, even after db becomes ready.
+  if(pendingSyncEvents.size){
+    pendingSyncEvents.forEach(id=>{
+      if(eventState[id]){
+        db.collection("events").doc(id).set(eventState[id]).catch((err)=>{ console.warn("catch-up event save failed", err); });
+      }
+    });
+    pendingSyncEvents.clear();
+  }
+  if(pendingSyncTemplates.size){
+    pendingSyncTemplates.forEach(id=>{
+      if(templateOverrides[id]){
+        db.collection("templates").doc(id).set(templateOverrides[id]).catch((err)=>{ console.warn("catch-up template save failed", err); });
+      }
+    });
+    pendingSyncTemplates.clear();
+  }
+  try{
+    db.collection("events").onSnapshot((snap)=>{
+      snap.docs.forEach(doc=>{
+        const data = doc.data();
+        if(!data) return;
+        savedStateCache[doc.id] = data;
+      });
+      rebuildEvents();
+      renderAll();
+    }, (err)=>{ console.warn("db snapshot error", err); setSyncStatus("local-only"); });
+  }catch(e){ console.warn("db subscribe failed", e); setSyncStatus("local-only"); }
+  try{
+    db.collection("templates").onSnapshot((snap)=>{
+      snap.docs.forEach(doc=>{
+        const data = doc.data();
+        if(!data) return;
+        templateOverrides[doc.id] = data;
+      });
+      rebuildEvents();
+      renderAll();
+    }, (err)=>{ console.warn("template snapshot error", err); setSyncStatus("local-only"); });
+  }catch(e){ console.warn("template subscribe failed", e); }
+}
+
+function persist(id){
+  eventState[id].updatedAt = new Date().toISOString();
+  savedStateCache[id] = eventState[id];
+  saveLocalState();
+  if(db){
+    db.collection("events").doc(id).set(eventState[id])
+      .then(()=>{ if(dbReady) setSyncStatus("synced"); })
+      .catch((err)=>{ console.warn("event save failed", err); pendingSyncEvents.add(id); setSyncStatus("save-error"); showToast("Could not save to shared storage — kept in this browser only."); });
+  } else {
+    // db isn't connected yet (or unavailable) — remember to push this once
+    // it is, so the edit isn't stranded in this browser only.
+    pendingSyncEvents.add(id);
+  }
+}
+function persistTemplate(id){
+  saveLocalTemplates();
+  if(db){
+    db.collection("templates").doc(id).set(templateOverrides[id])
+      .then(()=>{ if(dbReady) setSyncStatus("synced"); })
+      .catch((err)=>{ console.warn("template save failed", err); pendingSyncTemplates.add(id); setSyncStatus("save-error"); showToast("Could not save to shared storage — kept in this browser only."); });
+  } else {
+    pendingSyncTemplates.add(id);
+  }
+}
+
+/* =====================================================================
+   MUTATIONS
+   ===================================================================== */
+function setStatus(id, status, {silent}={}){
+  eventState[id].status = status;
+  persist(id);
+  if(!silent) showToast(`Status set to "${status}"`);
+  renderAll();
+}
+// Recomputes the event's overall Project Status from its tasks' completion,
+// same auto-logic as before: all tasks done -> auto "Completed"; un-completing
+// a previously-Completed event reverts it; the first task starting moves a
+// fresh event out of "Not Started".
+function recomputeEventStatus(id){
+  const st = eventState[id];
+  const total = tasksTotal(id), done = tasksDone(id);
+  if(done===total && total>0){
+    st.status = "Completed";
+  } else if(st.status==="Completed"){
+    st.status = done===0 ? "Not Started" : "In Progress";
+  } else if(st.status==="Not Started" && done>0){
+    st.status = "In Progress";
+  }
+}
+// Admin assigns/reassigns a task to a team member (or clears it by passing
+// an empty name), with an optional short note/instruction.
+function assignTask(eventId, idx, person, note){
+  const t = eventState[eventId].tasks[idx];
+  const name = (person || "").trim();
+  t.assignedTo = name;
+  t.note = (note || "").trim();
+  t.updatedAt = new Date().toISOString();
+  if(name){
+    if(t.status==="Not Started") t.status = "Assigned";
+  } else if(t.status==="Assigned"){
+    t.status = "Not Started";
+  }
+  recomputeEventStatus(eventId);
+  persist(eventId);
+  renderAll();
+  showToast(name ? `Task assigned to ${name}` : "Task unassigned");
+}
+// Moves one task through its own workflow: Not Started/Assigned -> In
+// Progress -> Submitted -> Completed (with an admin able to send a
+// submitted task back to In Progress, or reopen/quick-complete directly).
+function setTaskStatus(eventId, idx, status, toastMsg){
+  const t = eventState[eventId].tasks[idx];
+  t.status = status;
+  t.updatedAt = new Date().toISOString();
+  recomputeEventStatus(eventId);
+  persist(eventId);
+  renderAll();
+  if(toastMsg) showToast(toastMsg);
+}
+function setNotes(id, val){
+  eventState[id].notes = val;
+  persist(id);
+}
+function setAssignee(id, val){
+  eventState[id].assignedTo = val || "Unassigned";
+  persist(id);
+  renderAll();
+}
+
+/* =====================================================================
+   EVENT MANAGEMENT (admin add / edit / delete)
+   Templates, not dated instances, are what admins create and edit — a
+   template's recurrence rule is what makes it show up correctly every
+   future year with no manual re-entry.
+   ===================================================================== */
+function slugify(name){
+  return (name||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"") || "event";
+}
+function uniqueTemplateId(base){
+  const existing = new Set(EVENT_TEMPLATES.map(t=>t.id));
+  if(!existing.has(base)) return base;
+  let n = 2;
+  while(existing.has(`${base}-${n}`)) n++;
+  return `${base}-${n}`;
+}
+// fields is the COMPLETE template object (name, category, priority,
+// description, requirements, tasks, recurrence) — the edit modal always
+// submits the full form, so this simply becomes that id's override.
+function saveTemplate(id, fields){
+  templateOverrides[id] = { ...fields, id };
+  persistTemplate(id);
+  rebuildEvents();
+  renderAll();
+}
+function deleteTemplateById(id){
+  templateOverrides[id] = { _deleted: true };
+  persistTemplate(id);
+  rebuildEvents();
+  renderAll();
+}
+
+/* =====================================================================
+   ADD / EDIT EVENT MODAL
+   A template's recurrence is edited as one of three plain-language choices
+   — "same date every year", "same weekday pattern every year" (e.g. 3rd
+   Monday), or "one-off" — which covers everything an admin would need to
+   create from scratch. A handful of seed events use more advanced rules
+   (Easter-linked, lunar-calendar) that this simple picker can't express;
+   editing one of those leaves its automatic date untouched unless the
+   admin deliberately picks a replacement rule.
+   ===================================================================== */
+let templateModalEditingId = null;
+const WEEKDAY_NAMES = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+
+function templateModalHTML(tpl){
+  const isEdit = !!tpl;
+  const t = tpl || { name:"", category:"other", priority:"medium", description:"", requirements:"",
+    tasks:[""], recurrence:{ type:"annual-fixed", month:startOfToday().getMonth()+1, day:startOfToday().getDate() } };
+  const r = t.recurrence || { type:"annual-fixed", month:1, day:1 };
+  const bucket = r.type==="annual-nthweekday" ? "nthweekday" : r.type==="one-off" ? "one-off" : r.type==="annual-fixed" ? "fixed" : "locked";
+
+  const thisMonth = startOfToday().getMonth()+1;
+  const fixedMonth = r.type==="annual-fixed" ? r.month : thisMonth;
+  const fixedDay = r.type==="annual-fixed" ? r.day : 1;
+  const nthNth = r.type==="annual-nthweekday" ? r.nth : 1;
+  const nthWeekday = r.type==="annual-nthweekday" ? r.weekday : 0;
+  const nthMonth = r.type==="annual-nthweekday" ? r.month : thisMonth;
+  const oneOffDate = r.type==="one-off" ? r.date : isoDate(startOfToday());
+
+  const monthOptions = MONTH_NAMES_SHORT.map((m,i)=>`<option value="${i+1}">${m}</option>`).join("");
+  const dayOptions = Array.from({length:31},(_,i)=>i+1).map(d=>`<option value="${d}">${d}</option>`).join("");
+  const weekdayOptions = WEEKDAY_NAMES.map((w,i)=>`<option value="${i}">${w}</option>`).join("");
+  const nthOptions = [["1","1st"],["2","2nd"],["3","3rd"],["4","4th"],["-1","Last"]].map(([v,l])=>`<option value="${v}">${l}</option>`).join("");
+  const categoryOptions = Object.entries(CATEGORIES).map(([k,c])=>`<option value="${k}">${c.emoji} ${c.label}</option>`).join("");
+  const esc = (s)=> (s||"").replace(/"/g,"&quot;");
+
+  return `
+    <div class="modal-head">
+      <h2>${isEdit ? "Edit event" : "+ Add event"}</h2>
+      <button type="button" class="drawer-close" id="tmCloseBtn" style="position:static;background:var(--surface-2);color:var(--text);">${ICONS.close}</button>
+    </div>
+    <div class="modal-body">
+      <div>
+        <label class="field-label" for="tmName">Event name</label>
+        <input class="field-input" id="tmName" value="${esc(t.name)}" placeholder="e.g. Community Fun Run">
+      </div>
+      <div class="field-row">
+        <div>
+          <label class="field-label" for="tmCategory">Category</label>
+          <select class="field-select" id="tmCategory">${categoryOptions}</select>
+        </div>
+        <div>
+          <label class="field-label" for="tmPriority">Priority</label>
+          <select class="field-select" id="tmPriority">
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label class="field-label" for="tmDescription">Description &amp; purpose</label>
+        <textarea class="field-textarea" id="tmDescription" placeholder="What is this event/campaign about?">${t.description||""}</textarea>
+      </div>
+      <div>
+        <label class="field-label" for="tmRequirements">Marketing requirements</label>
+        <textarea class="field-textarea" id="tmRequirements" placeholder="What does marketing need to deliver?">${t.requirements||""}</textarea>
+      </div>
+      <div>
+        <label class="field-label">Tasks</label>
+        <div id="tmTasksList" style="display:flex;flex-direction:column;gap:8px;">
+          ${(t.tasks && t.tasks.length ? t.tasks : [""]).map(task=>`
+            <div class="task-editor-row">
+              <input class="field-input" value="${esc(task)}" placeholder="Task description">
+              <button type="button" class="task-editor-remove" title="Remove task">✕</button>
+            </div>`).join("")}
+        </div>
+        <button type="button" class="btn btn-ghost btn-sm" id="tmAddTaskBtn" style="margin-top:8px;">+ Add task</button>
+      </div>
+      <div>
+        <label class="field-label">When does it happen?</label>
+        ${bucket==="locked" ? `<div class="locked-recurrence-note">📅 This event's date is calculated automatically (${recurrenceLabel(r)}${r.note?" — "+r.note:""}) and isn't editable here — everything else can still be changed. Pick a rule below only if you want to <b>replace</b> the automatic date with a simpler one.</div>` : ""}
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px;">
+          <div class="recurrence-choice ${bucket==='fixed'?'active':''}" data-rc="fixed">
+            <div class="rc-head"><input type="radio" name="tmRecurrence" ${bucket==='fixed'?'checked':''}> Repeats every year — same date</div>
+            <div class="recurrence-sub">
+              <select class="field-select" id="tmFixedMonth">${monthOptions}</select>
+              <select class="field-select" id="tmFixedDay">${dayOptions}</select>
+            </div>
+          </div>
+          <div class="recurrence-choice ${bucket==='nthweekday'?'active':''}" data-rc="nthweekday">
+            <div class="rc-head"><input type="radio" name="tmRecurrence" ${bucket==='nthweekday'?'checked':''}> Repeats every year — same weekday pattern (e.g. 3rd Monday)</div>
+            <div class="recurrence-sub">
+              <select class="field-select" id="tmNthNth">${nthOptions}</select>
+              <select class="field-select" id="tmNthWeekday">${weekdayOptions}</select>
+              <select class="field-select" id="tmNthMonth">${monthOptions}</select>
+            </div>
+          </div>
+          <div class="recurrence-choice ${bucket==='one-off'?'active':''}" data-rc="one-off">
+            <div class="rc-head"><input type="radio" name="tmRecurrence" ${bucket==='one-off'?'checked':''}> One-off — happens only once</div>
+            <div class="recurrence-sub">
+              <input class="field-input" type="date" id="tmOneOffDate" value="${oneOffDate}">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <div>${isEdit ? `<button type="button" class="link-btn" id="tmDeleteBtn" style="color:var(--red);">🗑️ Delete event</button>` : "<span></span>"}</div>
+      <div style="display:flex;gap:10px;">
+        <button type="button" class="link-btn" id="tmCancelBtn">Cancel</button>
+        <button type="button" class="btn btn-primary" id="tmSaveBtn">${isEdit ? "Save changes" : "Add Event"}</button>
+      </div>
+    </div>
+  `;
+}
+
+function openTemplateModal(id, presetCategory){
+  templateModalEditingId = id || null;
+  const tpl = id ? EVENT_TEMPLATES.find(x=>x.id===id) : null;
+  const modal = document.getElementById("templateModal");
+  modal.innerHTML = templateModalHTML(tpl);
+
+  const r = (tpl && tpl.recurrence) || {};
+  document.getElementById("tmCategory").value = tpl ? tpl.category : (presetCategory || "other");
+  document.getElementById("tmPriority").value = tpl ? tpl.priority : "medium";
+  if(r.type==="annual-fixed"){
+    document.getElementById("tmFixedMonth").value = r.month;
+    document.getElementById("tmFixedDay").value = r.day;
+  }
+  if(r.type==="annual-nthweekday"){
+    document.getElementById("tmNthNth").value = r.nth;
+    document.getElementById("tmNthWeekday").value = r.weekday;
+    document.getElementById("tmNthMonth").value = r.month;
+  }
+  wireTemplateModal();
+  document.getElementById("templateModalOverlay").classList.add("open");
+}
+function closeTemplateModal(){
+  document.getElementById("templateModalOverlay").classList.remove("open");
+}
+function wireTemplateModal(){
+  const modal = document.getElementById("templateModal");
+  modal.querySelectorAll("[data-rc]").forEach(card=>{
+    card.addEventListener("click", ()=>{
+      modal.querySelectorAll("[data-rc]").forEach(c=>{
+        c.classList.remove("active");
+        const radio = c.querySelector('input[type=radio]');
+        if(radio) radio.checked = false;
+      });
+      card.classList.add("active");
+      const radio = card.querySelector('input[type=radio]');
+      if(radio) radio.checked = true;
+    });
+  });
+  function wireTaskRemove(btn){
+    btn.addEventListener("click", ()=>{
+      const list = document.getElementById("tmTasksList");
+      if(list.children.length > 1) btn.closest(".task-editor-row").remove();
+      else showToast("An event needs at least one task");
+    });
+  }
+  modal.querySelectorAll(".task-editor-remove").forEach(wireTaskRemove);
+  document.getElementById("tmAddTaskBtn").addEventListener("click", ()=>{
+    const list = document.getElementById("tmTasksList");
+    const row = document.createElement("div");
+    row.className = "task-editor-row";
+    row.innerHTML = `<input class="field-input" placeholder="Task description"><button type="button" class="task-editor-remove" title="Remove task">✕</button>`;
+    list.appendChild(row);
+    wireTaskRemove(row.querySelector(".task-editor-remove"));
+    row.querySelector("input").focus();
+  });
+  document.getElementById("tmCloseBtn").addEventListener("click", closeTemplateModal);
+  document.getElementById("tmCancelBtn").addEventListener("click", closeTemplateModal);
+  document.getElementById("tmDeleteBtn")?.addEventListener("click", ()=>{
+    const tpl = EVENT_TEMPLATES.find(x=>x.id===templateModalEditingId);
+    if(confirm(`Delete "${tpl ? tpl.name : "this event"}"? This removes it — and, if it repeats, all its future occurrences — from the calendar. This can't be undone.`)){
+      deleteTemplateById(templateModalEditingId);
+      closeTemplateModal();
+    }
+  });
+  document.getElementById("tmSaveBtn").addEventListener("click", ()=>{
+    const name = document.getElementById("tmName").value.trim();
+    if(!name){ showToast("Please give the event a name"); return; }
+    const category = document.getElementById("tmCategory").value;
+    const priority = document.getElementById("tmPriority").value;
+    const description = document.getElementById("tmDescription").value.trim();
+    const requirements = document.getElementById("tmRequirements").value.trim();
+    const tasks = Array.from(modal.querySelectorAll("#tmTasksList input")).map(i=>i.value.trim()).filter(Boolean);
+    if(!tasks.length){ showToast("Add at least one task"); return; }
+
+    const activeCard = modal.querySelector("[data-rc].active");
+    const existingTpl = templateModalEditingId ? EVENT_TEMPLATES.find(x=>x.id===templateModalEditingId) : null;
+    let recurrence;
+    if(!activeCard){
+      recurrence = existingTpl ? existingTpl.recurrence : { type:"annual-fixed", month:1, day:1 };
+    } else if(activeCard.dataset.rc === "fixed"){
+      recurrence = { type:"annual-fixed", month: parseInt(document.getElementById("tmFixedMonth").value,10), day: parseInt(document.getElementById("tmFixedDay").value,10) };
+    } else if(activeCard.dataset.rc === "nthweekday"){
+      recurrence = { type:"annual-nthweekday", nth: parseInt(document.getElementById("tmNthNth").value,10), weekday: parseInt(document.getElementById("tmNthWeekday").value,10), month: parseInt(document.getElementById("tmNthMonth").value,10) };
+    } else {
+      const dateVal = document.getElementById("tmOneOffDate").value;
+      if(!dateVal){ showToast("Pick a date for this one-off event"); return; }
+      recurrence = { type:"one-off", date: dateVal };
+    }
+
+    const id = templateModalEditingId || uniqueTemplateId(slugify(name));
+    saveTemplate(id, { name, category, priority, description, requirements, tasks, recurrence });
+    closeTemplateModal();
+    showToast(templateModalEditingId ? "Event updated" : "Event added");
+  });
+}
+
+/* =====================================================================
+   TOAST
+   ===================================================================== */
+let toastTimer=null;
+function showToast(msg){
+  const el = document.getElementById("toast");
+  el.textContent = msg;
+  el.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>el.classList.remove("show"), 2400);
+}
+
+/* =====================================================================
+   NAV
+   ===================================================================== */
+const NAV_ITEMS = [
+  { key:"dashboard", label:"Dashboard", icon:ICONS.dashboard },
+  { key:"calendar",  label:"Calendar",  icon:ICONS.calendar },
+  { key:"upcoming",  label:"Upcoming",  icon:ICONS.upcoming },
+  { key:"tasks",     label:"Tasks",     icon:ICONS.tasks },
+  { key:"mytasks",   label:"My Tasks",  icon:ICONS.myTasks },
+  { key:"campaigns", label:"Campaigns", icon:ICONS.campaigns },
+  { key:"completed", label:"Completed", icon:ICONS.completed },
+];
+
+function buildNav(){
+  const html = NAV_ITEMS.map(item=>`
+    <button class="nav-item ${item.key===currentView?'active':''}" data-nav="${item.key}">
+      ${item.icon}<span>${item.label}</span>
+    </button>`).join("");
+  document.getElementById("navList").innerHTML = html;
+  document.getElementById("bottomTabs").innerHTML = html;
+  document.querySelectorAll("[data-nav]").forEach(btn=>{
+    btn.addEventListener("click", ()=>{ currentView = btn.dataset.nav; renderAll(); });
+  });
+}
+
+/* =====================================================================
+   FILTER BAR
+   ===================================================================== */
+function buildFilterBar(){
+  const bar = document.getElementById("filterBar");
+  const chips = Object.entries(CATEGORIES).map(([key,cat])=>{
+    const active = filters.categories.has(key);
+    return `<button class="chip ${active?'active':''}" style="--cat-color:${cat.color}" data-cat="${key}">
+      <span class="dot"></span>${cat.emoji} ${cat.label}
+    </button>`;
+  }).join("");
+  bar.innerHTML = chips + `<div class="filter-spacer"></div><button class="link-btn" id="clearFilters">Reset filters</button>`;
+  bar.querySelectorAll("[data-cat]").forEach(chip=>{
+    chip.addEventListener("click", ()=>{
+      const key = chip.dataset.cat;
+      if(filters.categories.has(key)) filters.categories.delete(key);
+      else filters.categories.add(key);
+      buildFilterBar();
+      renderAll();
+    });
+  });
+  document.getElementById("clearFilters").addEventListener("click", ()=>{
+    filters.categories = new Set(Object.keys(CATEGORIES));
+    filters.search = "";
+    document.getElementById("searchInput").value="";
+    buildFilterBar();
+    renderAll();
+  });
+}
+
+/* =====================================================================
+   FILTER / SORT HELPERS
+   ===================================================================== */
+function passesFilter(ev){
+  if(!filters.categories.has(ev.category)) return false;
+  if(filters.search){
+    const q = filters.search.toLowerCase();
+    if(!ev.name.toLowerCase().includes(q) && !ev.description.toLowerCase().includes(q)) return false;
+  }
+  return true;
+}
+function sortedByDate(list){ return [...list].sort((a,b)=>a._date-b._date); }
+
+/* =====================================================================
+   SMALL RENDER HELPERS
+   ===================================================================== */
+function catBadge(ev){
+  const c = CATEGORIES[ev.category];
+  return `<span class="ec-cat" style="--cat-color:${c.color}">${c.emoji} ${c.label}</span>`;
+}
+function priorityFlag(ev){
+  if(ev.priority==="high") return `<span class="priority-flag" style="color:var(--red)" title="High priority">🔥 High</span>`;
+  if(ev.priority==="medium") return `<span class="priority-flag" style="color:var(--amber-deep)" title="Medium priority">● Medium</span>`;
+  return `<span class="priority-flag" style="color:var(--text-faint)" title="Low priority">Low</span>`;
+}
+function statusPill(status){
+  return `<span class="status-pill" style="--status-color:${STATUS_COLOR[status]}"><span class="sdot"></span>${status}</span>`;
+}
+/* Cosmetic-only icon for a task label, purely so the card's multi-assignee
+   summary has a quick visual scan target — doesn't affect any stored data. */
+function taskEmoji(label){
+  const l = (label || "").toLowerCase();
+  if(/banner|graphic|design|artwork|flyer|poster|creative/.test(l)) return "🎨";
+  if(/social|instagram|facebook|tiktok/.test(l)) return "📱";
+  if(/web(site)?|landing page/.test(l)) return "🌐";
+  if(/copy|caption|content|newsletter/.test(l)) return "📣";
+  if(/video|reel/.test(l)) return "🎥";
+  if(/press|media|pr\b/.test(l)) return "📰";
+  if(/budget|finance|invoice|fundrais|donat/.test(l)) return "💰";
+  if(/venue|room|location|book/.test(l)) return "📍";
+  if(/photo/.test(l)) return "📷";
+  if(/email/.test(l)) return "✉️";
+  return "📋";
+}
+/* Who's assigned to this event's tasks right now — recomputed fresh from
+   live eventState on every call, so any assign/reassign/unassign is
+   reflected the instant the card next renders (see requirement: "Dynamic
+   Assignment"). Returns the per-task rows that have an assignee, plus the
+   distinct set of assignees among them. */
+function eventAssignmentInfo(ev){
+  const st = eventState[ev.id];
+  const rows = ev.tasks
+    .map((label, idx) => ({ label, assignedTo: st.tasks[idx] && st.tasks[idx].assignedTo }))
+    .filter(r => r.assignedTo);
+  const distinct = [...new Set(rows.map(r => r.assignedTo))];
+  return { rows, distinct };
+}
+function eventCardAssignHTML(ev){
+  const { rows, distinct } = eventAssignmentInfo(ev);
+  if(distinct.length === 0) return "";
+  if(distinct.length === 1){
+    return `<div class="ec-assign-single" title="Assigned to ${distinct[0]}">
+      <span class="avatar avatar-sm">${initials(distinct[0])}</span>
+      <span>Assigned to: <strong>${distinct[0]}</strong></span>
+    </div>`;
+  }
+  const MAX = 3;
+  const shown = rows.slice(0, MAX);
+  const more = rows.length - shown.length;
+  return `<div class="ec-assign-multi">
+    <div class="ec-assign-multi-label">Task assignments</div>
+    ${shown.map(r=>`<div class="ec-assign-row"><span class="ec-assign-task">${taskEmoji(r.label)} ${r.label}</span><span class="ec-assign-who">${r.assignedTo}</span></div>`).join("")}
+    ${more > 0 ? `<span class="ec-assign-more">+${more} more</span>` : ""}
+  </div>`;
+}
+function eventCardHTML(ev){
+  const st = eventState[ev.id];
+  const n = daysUntil(ev);
+  const urgent = isActionRequired(ev) || isOverdue(ev);
+  const priColor = ev.priority==="high" ? "var(--red)" : ev.priority==="medium" ? "var(--gold)" : "var(--border)";
+  return `
+  <button class="event-card ${urgent?'urgent':''}" style="--pri-color:${priColor}" data-open="${ev.id}">
+    <div class="ec-top">
+      ${catBadge(ev)}
+      <span class="priority-flag" style="color:var(--text-faint);" title="${recurrenceLabel(ev.recurrence)}">${ev._recurring===false?'📌':'🔁'}</span>
+      ${priorityFlag(ev)}
+    </div>
+    <div class="ec-name">${ev.name}</div>
+    <div class="ec-date-row">
+      <span>${fmtDate(ev._date)}</span>
+      <span class="sep">·</span>
+      <span class="ec-days ${n>=0 && n<=PREP_DAYS ? 'soon':''}">${countdownLabel(ev)}</span>
+    </div>
+    ${eventCardAssignHTML(ev)}
+    <div class="ec-prep">Prep starts ${fmtDateShort(prepDate(ev))}</div>
+    <div class="ec-bottom">
+      ${statusPill(st.status)}
+      <span class="task-frac">${tasksDone(ev.id)}/${tasksTotal(ev.id)} tasks</span>
+    </div>
+    <div class="mini-progress"><span style="width:${pctDone(ev.id)}%"></span></div>
+  </button>`;
+}
+function attachCardOpeners(root){
+  root.querySelectorAll("[data-open]").forEach(el=>{
+    el.addEventListener("click", (ev)=>{ ev.stopPropagation(); openDrawer(el.dataset.open); });
+  });
+}
+
+/* =====================================================================
+   TASK ASSIGNMENT — per-task row (used in Tasks view, My Tasks, and the
+   event detail drawer, so assignment/status/actions look identical
+   everywhere a task appears).
+   ===================================================================== */
+function allTasksFlat(){
+  const out = [];
+  EVENTS.forEach(ev=>{
+    eventState[ev.id].tasks.forEach((t,idx)=> out.push({ ev, idx, t }));
+  });
+  return out;
+}
+const INITIALS_STOPWORDS = new Set(["of","and","the","&","for","to"]);
+function initials(name){
+  // Strip parenthetical asides ("Ray (Founder & Director)" -> "Ray") and
+  // skip small connector words ("Head of Brand & Digital" -> "HB", not "Ho"),
+  // so long role titles still get a sensible 1-2 letter avatar badge.
+  const clean = (name || "").replace(/\([^)]*\)/g, " ").trim();
+  const parts = clean.split(/\s+/).filter(w => w && !INITIALS_STOPWORDS.has(w.toLowerCase()));
+  if(!parts.length) return "?";
+  const second = parts[1] ? parts[1][0] : parts[0][1] || "";
+  return (parts[0][0] + second).toUpperCase();
+}
+function taskLineHTML(eventId, idx){
+  const ev = EVENT_BY_ID[eventId];
+  const t = eventState[eventId].tasks[idx];
+  const label = ev.tasks[idx];
+  const key = eventId + "|" + idx;
+  const domKey = eventId + "-" + idx;
+  const mine = !isAdmin() && t.assignedTo === currentUser;
+  const done = t.status === "Completed";
+  const statusColor = TASK_STATUS_COLOR[t.status] || "#8A93AC";
+
+  let actions = "";
+  if(isAdmin()){
+    actions += `<button class="btn btn-ghost btn-sm" data-assign-toggle="${key}">${t.assignedTo ? "Reassign" : "Assign Task"}</button>`;
+    if(t.status === "Submitted"){
+      actions += `<button class="btn btn-primary btn-sm" data-task-action="approve|${key}">Approve ✓</button>`;
+      actions += `<button class="link-btn" data-task-action="sendback|${key}">Send back</button>`;
+    } else if(t.status === "Completed"){
+      actions += `<button class="link-btn" data-task-action="reopen|${key}">Reopen</button>`;
+    } else {
+      actions += `<button class="link-btn" data-task-action="complete|${key}">Mark complete</button>`;
+    }
+  } else if(mine){
+    if(t.status === "Assigned" || t.status === "Not Started"){
+      actions += `<button class="btn btn-primary btn-sm" data-task-action="start|${key}">Start task</button>`;
+    } else if(t.status === "In Progress"){
+      actions += `<button class="btn btn-primary btn-sm" data-task-action="submit|${key}">Submit for approval</button>`;
+    } else if(t.status === "Submitted"){
+      actions += `<span class="section-sub">⏳ Awaiting review</span>`;
+    } else if(t.status === "Completed"){
+      actions += `<span class="section-sub">✅ Approved</span>`;
+    }
+  } else if(!t.assignedTo){
+    actions += `<span class="section-sub">Unassigned</span>`;
+  }
+
+  const showForm = isAdmin() && assignFormOpen === key;
+  const assignForm = showForm ? `
+    <div class="assign-form">
+      <label class="field-label" for="assignInput-${domKey}">Team member</label>
+      <input class="field-input" list="teamMemberOptions" id="assignInput-${domKey}" placeholder="Select or type a name…" value="${t.assignedTo || ""}">
+      <label class="field-label" for="assignNote-${domKey}">Note / instruction (optional)</label>
+      <textarea class="field-textarea" id="assignNote-${domKey}" placeholder="Anything the assignee should know…">${t.note || ""}</textarea>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn btn-primary btn-sm" data-assign-save="${key}">Assign Task</button>
+        ${t.assignedTo ? `<button class="link-btn" data-assign-clear="${key}">Unassign</button>` : ""}
+        <button class="link-btn" data-assign-cancel="${key}">Cancel</button>
+      </div>
+    </div>` : "";
+
+  return `
+    <div class="task-line ${mine ? "mine" : ""}">
+      <div class="task-line-top">
+        <span class="task-label ${done ? "done" : ""}">${label}</span>
+        <span class="status-pill" style="--status-color:${statusColor}"><span class="sdot"></span>${t.status}</span>
+      </div>
+      <div class="task-meta-row">
+        <span class="assignee-tag"><span class="avatar">${initials(t.assignedTo)}</span>${t.assignedTo || "Unassigned"}</span>
+        <span class="section-sub tabular">Due ${fmtDateShort(ev._date)}</span>
+        <div class="task-actions">${actions}</div>
+      </div>
+      ${t.note ? `<div class="task-note">📝 ${t.note}</div>` : ""}
+      ${assignForm}
+    </div>`;
+}
+function wireTaskLineEvents(root){
+  root.querySelectorAll("[data-assign-toggle]").forEach(btn=>{
+    btn.addEventListener("click", (e)=>{
+      e.stopPropagation();
+      const key = btn.dataset.assignToggle;
+      assignFormOpen = (assignFormOpen === key) ? null : key;
+      renderAll();
+    });
+  });
+  root.querySelectorAll("[data-assign-cancel]").forEach(btn=>{
+    btn.addEventListener("click", (e)=>{ e.stopPropagation(); assignFormOpen = null; renderAll(); });
+  });
+  root.querySelectorAll("[data-assign-clear]").forEach(btn=>{
+    btn.addEventListener("click", (e)=>{
+      e.stopPropagation();
+      const [eventId, idx] = btn.dataset.assignClear.split("|");
+      assignFormOpen = null;
+      assignTask(eventId, parseInt(idx,10), "", "");
+    });
+  });
+  root.querySelectorAll("[data-assign-save]").forEach(btn=>{
+    btn.addEventListener("click", (e)=>{
+      e.stopPropagation();
+      const key = btn.dataset.assignSave;
+      const [eventId, idx] = key.split("|");
+      const domKey = eventId + "-" + idx;
+      const person = document.getElementById(`assignInput-${domKey}`)?.value || "";
+      const note = document.getElementById(`assignNote-${domKey}`)?.value || "";
+      if(!person.trim()){ showToast("Choose or type a team member's name first"); return; }
+      assignFormOpen = null;
+      assignTask(eventId, parseInt(idx,10), person, note);
+    });
+  });
+  root.querySelectorAll("[data-task-action]").forEach(btn=>{
+    btn.addEventListener("click", (e)=>{
+      e.stopPropagation();
+      const [action, eventId, idxStr] = btn.dataset.taskAction.split("|");
+      const idx = parseInt(idxStr,10);
+      if(action==="start") setTaskStatus(eventId, idx, "In Progress", "Task started — good luck!");
+      else if(action==="submit") setTaskStatus(eventId, idx, "Submitted", "Submitted for approval");
+      else if(action==="approve") setTaskStatus(eventId, idx, "Completed", "Task approved ✅");
+      else if(action==="sendback") setTaskStatus(eventId, idx, "In Progress", "Sent back for more work");
+      else if(action==="complete") setTaskStatus(eventId, idx, "Completed", "Marked complete");
+      else if(action==="reopen") setTaskStatus(eventId, idx, "In Progress", "Task reopened");
+    });
+  });
+}
+
+/* =====================================================================
+   VIEW: DASHBOARD
+   ===================================================================== */
+function renderDashboard(){
+  const el = document.getElementById("view-dashboard");
+  const today = startOfToday();
+  const upcomingAll = EVENTS.filter(e=> daysUntil(e) >= 0);
+  const actionRequired = EVENTS.filter(isActionRequired);
+  const overdue = EVENTS.filter(isOverdue);
+  const inProgress = EVENTS.filter(e=>eventState[e.id].status==="In Progress");
+  const doneCount = EVENTS.filter(e=>isDoneStatus(eventState[e.id].status)).length;
+  const thisMonth = EVENTS.filter(e=> e._date.getFullYear()===today.getFullYear() && e._date.getMonth()===today.getMonth());
+
+  const nextEvent = sortedByDate(upcomingAll)[0];
+
+  // isActionRequired already covers overdue (no lower bound on daysUntil), so overdue is a subset.
+  const noticeEvents = sortedByDate(actionRequired).slice(0,5);
+
+  const upcomingList = sortedByDate(upcomingAll.filter(passesFilter)).slice(0,9);
+
+  const allTasks = allTasksFlat();
+  const assignedTasksCount = allTasks.filter(x=>x.t.assignedTo).length;
+  const unassignedTasksCount = allTasks.length - assignedTasksCount;
+  const tasksInProgressCount = allTasks.filter(x=>x.t.status==="In Progress").length;
+  const tasksAwaitingReviewCount = allTasks.filter(x=>x.t.status==="Submitted").length;
+  const tasksCompletedCount = allTasks.filter(x=>x.t.status==="Completed").length;
+  const tasksOverdueCount = allTasks.filter(x=> x.t.status!=="Completed" && daysUntil(x.ev) < 0).length;
+  const myOpenTasks = allTasks.filter(x=> x.t.assignedTo===currentUser && x.t.status!=="Completed");
+
+  el.innerHTML = `
+    <div class="period-indicator">
+      <span>📅 <b>Upcoming 12 Months</b> — ${fmtDate(calWindowStart)} – ${fmtDate(calWindowEnd)}</span>
+      ${isAdmin() ? `<button class="btn btn-primary btn-sm" id="addEventBtn">+ Add Event</button>` : ""}
+    </div>
+
+    ${!isAdmin() ? `
+    <div class="nudge-banner">
+      ${ICONS.bell.replace('<svg','<svg class="bell"')}
+      <p>${myOpenTasks.length
+          ? `You have <b>${myOpenTasks.length}</b> open task${myOpenTasks.length===1?'':'s'} assigned to you, ${currentUser}.`
+          : `No open tasks assigned to you right now, ${currentUser}.`}</p>
+      <button data-goto="mytasks">View My Tasks</button>
+    </div>` : ""}
+
+    <div class="stat-grid">
+      <div class="stat-tile accent-royal"><div class="stat-label">Upcoming Events</div><div class="stat-value tabular">${upcomingAll.length}</div></div>
+      <div class="stat-tile accent-red"><div class="stat-label">Action Required</div><div class="stat-value tabular">${actionRequired.length}</div></div>
+      <div class="stat-tile accent-gold"><div class="stat-label">In Progress</div><div class="stat-value tabular">${inProgress.length}</div></div>
+      <div class="stat-tile accent-green"><div class="stat-label">Completed</div><div class="stat-value tabular">${doneCount}</div></div>
+      <div class="stat-tile"><div class="stat-label">This Month</div><div class="stat-value tabular">${thisMonth.length}</div></div>
+    </div>
+
+    ${nextEvent ? `
+    <div class="hero-next">
+      <div>
+        <div class="hero-eyebrow">Next Up</div>
+        <div class="hero-name">${nextEvent.name}</div>
+        <div class="hero-meta">
+          <div class="hero-meta-item"><span class="k">Date</span><span class="v">${fmtDate(nextEvent._date)}</span></div>
+          <div class="hero-meta-item"><span class="k">Status</span><span class="v">${eventState[nextEvent.id].status}</span></div>
+          <div class="hero-meta-item"><span class="k">Tasks</span><span class="v">${tasksDone(nextEvent.id)}/${tasksTotal(nextEvent.id)} (${pctDone(nextEvent.id)}%)</span></div>
+          <div class="hero-meta-item"><span class="k">Prep deadline</span><span class="v">${fmtDateShort(prepDate(nextEvent))}</span></div>
+        </div>
+        <div class="hero-progress">
+          <div class="hero-progress-bar"><span style="width:${pctDone(nextEvent.id)}%"></span></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;align-items:center;">
+        <div class="hero-countdown">
+          <div class="num tabular">${Math.max(daysUntil(nextEvent),0)}</div>
+          <div class="lbl">${daysUntil(nextEvent)===0?'Today':'days to go'}</div>
+        </div>
+        <button class="hero-btn" data-open="${nextEvent.id}">View details ${ICONS.chevronR}</button>
+      </div>
+    </div>` : `<div class="empty-state">No upcoming events in range 🎉</div>`}
+
+    ${noticeEvents.length ? `
+    <div>
+      <div class="section-head"><h2>🔔 Action Required <span class="count-pill">${actionRequired.length}</span></h2><span class="section-sub">Events entering their 14-day preparation window</span></div>
+      <div class="notice-list" style="margin-top:12px;">
+        ${noticeEvents.map(ev=>{
+          const n = daysUntil(ev);
+          const overdueFlag = n<0;
+          const msg = overdueFlag
+            ? `<b>${ev.name}</b> was ${Math.abs(n)} day${Math.abs(n)===1?'':'s'} ago and isn't marked complete — follow up needed.`
+            : n===0
+              ? `<b>${ev.name}</b> is today — final checks and publish now.`
+              : `${n} day${n===1?'':'s'} until <b>${ev.name}</b> — marketing preparation should begin.`;
+          return `<div class="notice ${overdueFlag?'overdue':''}">${ICONS.bell.replace('<svg','<svg class="bell"')}<p>${msg}</p><button data-open="${ev.id}">Open</button></div>`;
+        }).join("")}
+      </div>
+    </div>` : `<div class="empty-state"><span class="emoji">✅</span>Nothing needs urgent attention right now.</div>`}
+
+    ${isAdmin() ? `
+    <div>
+      <div class="section-head"><h2>🗂️ Task Assignment Overview</h2><span class="section-sub">Across every event and campaign — see <button class="link-btn" style="display:inline;padding:0;" data-goto="mytasks">Team Task Board</button> for who's doing what</span></div>
+      <div class="stat-grid" style="margin-top:12px;">
+        <div class="stat-tile accent-royal"><div class="stat-label">Assigned Tasks</div><div class="stat-value tabular">${assignedTasksCount}</div></div>
+        <div class="stat-tile"><div class="stat-label">Unassigned</div><div class="stat-value tabular">${unassignedTasksCount}</div></div>
+        <div class="stat-tile accent-gold"><div class="stat-label">In Progress</div><div class="stat-value tabular">${tasksInProgressCount}</div></div>
+        <div class="stat-tile accent-red"><div class="stat-label">Awaiting Review</div><div class="stat-value tabular">${tasksAwaitingReviewCount}</div></div>
+        <div class="stat-tile accent-green"><div class="stat-label">Completed</div><div class="stat-value tabular">${tasksCompletedCount}</div></div>
+        <div class="stat-tile accent-red"><div class="stat-label">Overdue</div><div class="stat-value tabular">${tasksOverdueCount}</div></div>
+      </div>
+    </div>` : ""}
+
+    <div>
+      <div class="section-head"><h2>Upcoming Events <span class="count-pill">${upcomingList.length}</span></h2><span class="section-sub">Sorted chronologically</span></div>
+      <div class="card-grid" style="margin-top:12px;">
+        ${upcomingList.length ? upcomingList.map(eventCardHTML).join("") : `<div class="empty-state">No events match the current filters.</div>`}
+      </div>
+    </div>
+  `;
+  attachCardOpeners(el);
+  el.querySelectorAll("[data-goto]").forEach(btn=>{
+    btn.addEventListener("click", ()=>{ currentView = btn.dataset.goto; renderAll(); });
+  });
+  document.getElementById("addEventBtn")?.addEventListener("click", ()=> openTemplateModal(null));
+}
+
+/* =====================================================================
+   VIEW: CALENDAR
+   ===================================================================== */
+const MONTH_NAMES = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const DOW_NAMES = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+
+function eventsOnDate(y,m,d){
+  return EVENTS.filter(e=> e._date.getFullYear()===y && e._date.getMonth()===m && e._date.getDate()===d && passesFilter(e));
+}
+function eventsInMonth(y,m){
+  return EVENTS.filter(e=> e._date.getFullYear()===y && e._date.getMonth()===m && passesFilter(e));
+}
+
+function renderCalendar(){
+  const el = document.getElementById("view-calendar");
+  const today = startOfToday();
+
+  // Keep the calendar inside the same rolling 12-month period as the rest
+  // of the dashboard — there's nothing generated beyond it to show anyway.
+  const minY = calWindowStart.getFullYear(), minM = calWindowStart.getMonth();
+  const maxY = calWindowEnd.getFullYear(), maxM = calWindowEnd.getMonth();
+  const atMin = calMode==="month" ? (calYear<minY || (calYear===minY && calMonth<=minM)) : calYear<=minY;
+  const atMax = calMode==="month" ? (calYear>maxY || (calYear===maxY && calMonth>=maxM)) : calYear>=maxY;
+
+  const header = `
+    <div class="cal-header">
+      <button class="cal-nav-btn" id="calPrev" ${atMin?'disabled style="opacity:.35;cursor:not-allowed;"':''}>${ICONS.chevronL}</button>
+      <div class="cal-title">${calMode==='month' ? MONTH_NAMES[calMonth]+" "+calYear : calYear}</div>
+      <button class="cal-nav-btn" id="calNext" ${atMax?'disabled style="opacity:.35;cursor:not-allowed;"':''}>${ICONS.chevronR}</button>
+      <button class="today-btn" id="calToday">Today</button>
+      <div class="cal-mode-toggle">
+        <button data-mode="month" class="${calMode==='month'?'active':''}">Month</button>
+        <button data-mode="year" class="${calMode==='year'?'active':''}">Year</button>
+      </div>
+      <span class="section-sub" style="white-space:nowrap;">📅 Showing ${fmtDateShort(calWindowStart)} ${calWindowStart.getFullYear()} – ${fmtDateShort(calWindowEnd)} ${calWindowEnd.getFullYear()}</span>
+    </div>`;
+
+  let body = "";
+  if(calMode==="month"){
+    const first = new Date(calYear, calMonth, 1);
+    const startOffset = (first.getDay()+6)%7; // Monday=0
+    const daysInMonth = new Date(calYear, calMonth+1, 0).getDate();
+    const prevDays = new Date(calYear, calMonth, 0).getDate();
+
+    let cells = "";
+    for(let i=0;i<startOffset;i++){
+      const dayNum = prevDays-startOffset+1+i;
+      cells += `<div class="day-cell out"><div class="day-num">${dayNum}</div></div>`;
+    }
+    for(let day=1; day<=daysInMonth; day++){
+      const isToday = today.getFullYear()===calYear && today.getMonth()===calMonth && today.getDate()===day;
+      const evs = eventsOnDate(calYear, calMonth, day);
+      const pills = evs.slice(0,3).map(ev=>{
+        const c = CATEGORIES[ev.category];
+        return `<div class="day-pill" style="--cat-color:${c.color}" data-open="${ev.id}" title="${ev.name}">${c.emoji}<span class="txt">${ev.name}</span></div>`;
+      }).join("");
+      const more = evs.length>3 ? `<div class="day-more">+${evs.length-3} more</div>` : "";
+      cells += `<div class="day-cell ${isToday?'today':''}" data-day="${day}">
+        <div class="day-num">${day}</div>
+        <div class="day-events">${pills}${more}</div>
+      </div>`;
+    }
+    const totalCells = startOffset + daysInMonth;
+    const trailing = (7 - (totalCells % 7)) % 7;
+    for(let i=1;i<=trailing;i++){
+      cells += `<div class="day-cell out"><div class="day-num">${i}</div></div>`;
+    }
+
+    body = `<div class="month-grid">
+      ${DOW_NAMES.map(d=>`<div class="dow">${d}</div>`).join("")}
+      ${cells}
+    </div>`;
+  } else {
+    body = `<div class="year-grid">
+      ${MONTH_NAMES.map((name,m)=>{
+        const evs = eventsInMonth(calYear, m);
+        const first = new Date(calYear, m, 1);
+        const startOffset = (first.getDay()+6)%7;
+        const daysInMonth = new Date(calYear, m+1, 0).getDate();
+        let dayCells = "";
+        for(let i=0;i<startOffset;i++) dayCells += `<div class="mini-day out"></div>`;
+        for(let day=1; day<=daysInMonth; day++){
+          const dEvs = eventsOnDate(calYear, m, day);
+          const hasHigh = dEvs.some(e=>e.priority==="high");
+          dayCells += `<div class="mini-day ${dEvs.length? (hasHigh?'has-high':'has-event'):''}"></div>`;
+        }
+        return `<div class="mini-month" data-jump-month="${m}">
+          <h4>${name}</h4>
+          <div class="mini-month-grid">${dayCells}</div>
+          <div class="mini-month-count">${evs.length} event${evs.length===1?'':'s'}</div>
+        </div>`;
+      }).join("")}
+    </div>`;
+  }
+
+  el.innerHTML = header + `<div class="legend-row">${Object.values(CATEGORIES).map(c=>`<span class="legend-item"><span class="dot" style="--cat-color:${c.color}"></span>${c.emoji} ${c.label}</span>`).join("")}</div>` + body;
+
+  el.querySelectorAll("[data-open]").forEach(p=>{
+    p.addEventListener("click",(ev)=>{ ev.stopPropagation(); openDrawer(p.dataset.open); });
+  });
+  el.querySelectorAll(".day-cell[data-day]").forEach(cell=>{
+    cell.addEventListener("click", ()=>{
+      const day = parseInt(cell.dataset.day,10);
+      const evs = eventsOnDate(calYear, calMonth, day);
+      // exactly one event: open it directly. Multiple: each has its own
+      // clickable pill (handled above with stopPropagation), so a click on
+      // the empty part of the cell does nothing rather than guessing which.
+      if(evs.length===1) openDrawer(evs[0].id);
+    });
+  });
+  el.querySelectorAll("[data-jump-month]").forEach(m=>{
+    m.addEventListener("click", ()=>{ calMonth = parseInt(m.dataset.jumpMonth,10); calMode="month"; renderCalendar(); });
+  });
+  document.getElementById("calPrev").addEventListener("click", ()=>{
+    if(atMin) return;
+    if(calMode==="month"){ calMonth--; if(calMonth<0){calMonth=11;calYear--;} } else { calYear--; }
+    renderCalendar();
+  });
+  document.getElementById("calNext").addEventListener("click", ()=>{
+    if(atMax) return;
+    if(calMode==="month"){ calMonth++; if(calMonth>11){calMonth=0;calYear++;} } else { calYear++; }
+    renderCalendar();
+  });
+  document.getElementById("calToday").addEventListener("click", ()=>{
+    const t = startOfToday(); calYear=t.getFullYear(); calMonth=t.getMonth(); calMode="month"; renderCalendar();
+  });
+  el.querySelectorAll("[data-mode]").forEach(b=>{
+    b.addEventListener("click", ()=>{ calMode=b.dataset.mode; renderCalendar(); });
+  });
+}
+
+/* =====================================================================
+   VIEW: UPCOMING
+   ===================================================================== */
+function renderUpcoming(){
+  const el = document.getElementById("view-upcoming");
+  const list = sortedByDate(EVENTS.filter(e=> daysUntil(e)>=0 && passesFilter(e)));
+  el.innerHTML = `
+    <div class="section-head"><h2>Upcoming Events <span class="count-pill">${list.length}</span></h2><span class="section-sub">Everything ahead, soonest first</span></div>
+    <div class="card-grid">
+      ${list.length ? list.map(eventCardHTML).join("") : `<div class="empty-state">No upcoming events match the current filters.</div>`}
+    </div>`;
+  attachCardOpeners(el);
+}
+
+/* =====================================================================
+   VIEW: TASKS
+   ===================================================================== */
+function renderTasks(){
+  const el = document.getElementById("view-tasks");
+  const list = sortedByDate(EVENTS.filter(e=> passesFilter(e) && !isDoneStatus(eventState[e.id].status) && daysUntil(e) >= -60));
+
+  // auto-expand anything needing action, first time only
+  if(expandedTasks.size===0){
+    list.filter(isActionRequired).forEach(e=>expandedTasks.add(e.id));
+  }
+
+  el.innerHTML = `
+    <div class="section-head"><h2>Open Tasks <span class="count-pill">${list.length}</span></h2><span class="section-sub">Assign each task to a team member — status &amp; progress update automatically</span></div>
+    <div style="display:flex;gap:10px;">
+      <button class="btn btn-ghost btn-sm" id="expandAllTasks">Expand all</button>
+      <button class="btn btn-ghost btn-sm" id="collapseAllTasks">Collapse all</button>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      ${list.length ? list.map(ev=>{
+        const st = eventState[ev.id];
+        const open = expandedTasks.has(ev.id);
+        const urgent = isActionRequired(ev);
+        return `<div class="task-row ${urgent?'urgent':''}" style="${urgent?'border-left:4px solid var(--red);':''}">
+          <div class="task-row-head" data-toggle="${ev.id}" style="cursor:pointer;">
+            <div class="task-row-title">${CATEGORIES[ev.category].emoji} ${ev.name} <span class="section-sub tabular">— ${fmtDateShort(ev._date)} · ${countdownLabel(ev)}</span></div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              ${statusPill(st.status)}
+              <span class="task-frac">${tasksDone(ev.id)}/${tasksTotal(ev.id)} · ${pctDone(ev.id)}%</span>
+              <button class="icon-btn" style="display:flex;width:40px;height:40px;" data-open="${ev.id}" title="Open full details">${ICONS.chevronR}</button>
+            </div>
+          </div>
+          <div class="mini-progress"><span style="width:${pctDone(ev.id)}%"></span></div>
+          ${open ? `<div style="display:flex;flex-direction:column;gap:4px;">
+            ${ev.tasks.map((t,i)=>taskLineHTML(ev.id, i)).join("")}
+          </div>` : ""}
+        </div>`;
+      }).join("") : `<div class="empty-state"><span class="emoji">🎉</span>No open tasks match the current filters.</div>`}
+    </div>`;
+  attachCardOpeners(el);
+  wireTaskLineEvents(el);
+  el.querySelectorAll("[data-toggle]").forEach(row=>{
+    row.addEventListener("click", ()=>{
+      const id = row.dataset.toggle;
+      if(expandedTasks.has(id)) expandedTasks.delete(id); else expandedTasks.add(id);
+      renderTasks();
+    });
+  });
+  document.getElementById("expandAllTasks").addEventListener("click", ()=>{ list.forEach(e=>expandedTasks.add(e.id)); renderTasks(); });
+  document.getElementById("collapseAllTasks").addEventListener("click", ()=>{ expandedTasks.clear(); renderTasks(); });
+}
+
+/* =====================================================================
+   VIEW: CAMPAIGNS (TCA's own)
+   ===================================================================== */
+function renderCampaigns(){
+  const el = document.getElementById("view-campaigns");
+  const list = sortedByDate(EVENTS.filter(e=> e.category==="tca" && passesFilter({...e, category:"tca"})));
+  el.innerHTML = `
+    <div class="section-head">
+      <h2>📣 TCA Campaigns <span class="count-pill">${list.length}</span></h2>
+      <span class="section-sub">Marketing-led moments TCA creates and owns</span>
+      ${isAdmin() ? `<button class="btn btn-primary btn-sm" id="addCampaignBtn">+ Add TCA Campaign</button>` : ""}
+    </div>
+    <div class="card-grid">
+      ${list.length ? list.map(eventCardHTML).join("") : `<div class="empty-state">No TCA campaigns match the current filters.</div>`}
+    </div>`;
+  attachCardOpeners(el);
+  document.getElementById("addCampaignBtn")?.addEventListener("click", ()=> openTemplateModal(null, "tca"));
+}
+
+/* =====================================================================
+   VIEW: COMPLETED
+   ===================================================================== */
+function renderCompleted(){
+  const el = document.getElementById("view-completed");
+  const list = EVENTS.filter(e=> isDoneStatus(eventState[e.id].status) && passesFilter(e))
+                      .sort((a,b)=>b._date-a._date);
+  el.innerHTML = `
+    <div class="section-head"><h2>✅ Completed &amp; Published <span class="count-pill">${list.length}</span></h2><span class="section-sub">Most recent first</span></div>
+    <div class="card-grid">
+      ${list.length ? list.map(eventCardHTML).join("") : `<div class="empty-state">Nothing marked complete yet — finished campaigns will land here automatically.</div>`}
+    </div>`;
+  attachCardOpeners(el);
+}
+
+/* =====================================================================
+   DRAWER (event detail)
+   ===================================================================== */
+function openDrawer(id){
+  openDrawerId = id;
+  renderDrawer();
+  document.getElementById("drawer").classList.add("open");
+  document.getElementById("drawerOverlay").classList.add("open");
+}
+function closeDrawer(){
+  document.getElementById("drawer").classList.remove("open");
+  document.getElementById("drawerOverlay").classList.remove("open");
+  openDrawerId = null;
+}
+function renderDrawer(){
+  if(!openDrawerId) return;
+  const ev = EVENT_BY_ID[openDrawerId];
+  const st = eventState[openDrawerId];
+  const drawer = document.getElementById("drawer");
+  const n = daysUntil(ev);
+
+  drawer.innerHTML = `
+    <div class="drawer-head">
+      <button class="drawer-close" id="drawerCloseBtn">${ICONS.close}</button>
+      ${catBadge(ev)}
+      <h2>${ev.name}</h2>
+      <div class="dh-meta">
+        <div>Date<b>${fmtDate(ev._date)}</b></div>
+        <div>Countdown<b>${countdownLabel(ev)}</b></div>
+        <div>Prep deadline<b>${fmtDateShort(prepDate(ev))}</b></div>
+        <div>Priority<b>${ev.priority[0].toUpperCase()+ev.priority.slice(1)}</b></div>
+        <div>Recurrence<b>${ev._recurring===false?'📌 One-off':'🔁'} ${recurrenceLabel(ev.recurrence)}</b></div>
+      </div>
+    </div>
+    <div class="drawer-body">
+      ${isAdmin() ? `
+      <div class="drawer-section" style="display:flex;gap:10px;padding-top:0;">
+        <button class="btn btn-ghost btn-sm" id="editEventBtn">✏️ Edit event</button>
+        <button class="link-btn" id="deleteEventBtn" style="color:var(--red);">🗑️ Delete event</button>
+      </div>` : ""}
+      <div class="drawer-section">
+        <label class="field-label">Description &amp; purpose</label>
+        <p class="body-text">${ev.description}</p>
+      </div>
+      <div class="drawer-section">
+        <label class="field-label">Marketing requirements</label>
+        <p class="body-text">${ev.requirements}</p>
+      </div>
+      <div class="drawer-section">
+        <label class="field-label">Project status</label>
+        <div class="status-grid">
+          ${STATUSES.map(s=>`<button class="status-btn ${st.status===s.key?'active':''}" style="--st-color:${s.color}" data-status="${s.key}"><span class="sdot"></span>${s.key}</button>`).join("")}
+        </div>
+      </div>
+      <div class="drawer-section">
+        <div class="progress-summary"><label class="field-label" style="margin:0;">Task tracker</label><b class="tabular">${tasksDone(ev.id)} / ${tasksTotal(ev.id)} — ${pctDone(ev.id)}%</b></div>
+        <div class="big-progress"><span style="width:${pctDone(ev.id)}%"></span></div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          ${ev.tasks.map((t,i)=>taskLineHTML(ev.id, i)).join("")}
+        </div>
+      </div>
+      <div class="drawer-section">
+        <label class="field-label" for="assigneeInput">Campaign lead</label>
+        <input class="field-input" list="assigneeOptions" id="assigneeInput" value="${st.assignedTo}">
+        <datalist id="assigneeOptions">${ASSIGNEE_OPTIONS.map(a=>`<option value="${a}">`).join("")}</datalist>
+      </div>
+      <div class="drawer-section">
+        <label class="field-label" for="notesInput">Notes</label>
+        <textarea class="field-textarea" id="notesInput" placeholder="Add planning notes, links, or context for the team…">${st.notes}</textarea>
+      </div>
+    </div>
+  `;
+
+  document.getElementById("drawerCloseBtn").addEventListener("click", closeDrawer);
+  drawer.querySelectorAll("[data-status]").forEach(btn=>{
+    btn.addEventListener("click", ()=> setStatus(ev.id, btn.dataset.status));
+  });
+  wireTaskLineEvents(drawer);
+  document.getElementById("assigneeInput").addEventListener("change", (e)=> setAssignee(ev.id, e.target.value));
+  document.getElementById("notesInput").addEventListener("blur", (e)=> setNotes(ev.id, e.target.value));
+  document.getElementById("editEventBtn")?.addEventListener("click", ()=> openTemplateModal(ev._templateId || ev.id));
+  document.getElementById("deleteEventBtn")?.addEventListener("click", ()=>{
+    const templateId = ev._templateId || ev.id;
+    if(confirm(`Delete "${ev.name}"? This removes it (and, if it repeats, all its future occurrences) from the calendar. This can't be undone.`)){
+      closeDrawer();
+      deleteTemplateById(templateId);
+    }
+  });
+}
+
+/* =====================================================================
+   VIEW: MY TASKS (team member's own queue, or the admin's team-wide board)
+   ===================================================================== */
+function renderMyTasks(){
+  const el = document.getElementById("view-mytasks");
+  const all = allTasksFlat();
+
+  if(!isAdmin()){
+    const mine = all.filter(x=> x.t.assignedTo===currentUser).sort((a,b)=>a.ev._date-b.ev._date);
+    el.innerHTML = `
+      <div class="section-head"><h2>🙋 My Tasks <span class="count-pill">${mine.length}</span></h2><span class="section-sub">Everything currently assigned to ${currentUser}</span></div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        ${mine.length ? mine.map(({ev,idx})=>`
+          <div class="task-row">
+            <div class="task-row-head" style="cursor:default;">
+              <div class="task-row-title">${CATEGORIES[ev.category].emoji} ${ev.name} <span class="section-sub tabular">— ${fmtDate(ev._date)} · ${countdownLabel(ev)}</span></div>
+              <div style="display:flex;align-items:center;gap:10px;">
+                ${priorityFlag(ev)}
+                <button class="icon-btn" style="display:flex;width:40px;height:40px;" data-open="${ev.id}" title="Open full event details">${ICONS.chevronR}</button>
+              </div>
+            </div>
+            ${taskLineHTML(ev.id, idx)}
+          </div>`).join("")
+        : `<div class="empty-state"><span class="emoji">🎉</span>Nothing assigned to you right now — check back after your admin assigns new tasks.</div>`}
+      </div>`;
+  } else {
+    // "Open" mirrors the Tasks view's own window (not done, not ancient) so
+    // this board doesn't dump hundreds of far-future tasks at once.
+    const openOnly = all.filter(x=> x.t.status!=="Completed" && !isDoneStatus(eventState[x.ev.id].status) && daysUntil(x.ev) >= -60);
+    const unassignedAll = openOnly.filter(x=> !x.t.assignedTo);
+    const unassignedUrgent = unassignedAll.filter(x=> isActionRequired(x.ev)).sort((a,b)=>a.ev._date-b.ev._date).slice(0,20);
+    const byPerson = {};
+    openOnly.forEach(x=>{ if(x.t.assignedTo){ (byPerson[x.t.assignedTo] = byPerson[x.t.assignedTo] || []).push(x); } });
+    const people = Object.keys(byPerson).sort();
+
+    el.innerHTML = `
+      <div class="section-head"><h2>🗂️ Team Task Board</h2><span class="section-sub">Assigned work by team member, plus the nearest-deadline unassigned tasks</span></div>
+      ${unassignedAll.length ? `
+      <div class="drawer-section" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px;margin-top:12px;">
+        <label class="field-label">⚠️ Unassigned open tasks — ${unassignedAll.length} in total</label>
+        ${unassignedUrgent.length ? `
+        <div style="display:flex;flex-direction:column;gap:4px;margin-top:8px;">
+          ${unassignedUrgent.map(({ev,idx})=>taskLineHTML(ev.id, idx)).join("")}
+        </div>` : `<p class="section-sub" style="margin-top:6px;">None are urgent yet — open the <b>Tasks</b> view to get ahead and assign them early.</p>`}
+        ${unassignedAll.length > unassignedUrgent.length ? `<p class="section-sub" style="margin-top:8px;">+ ${unassignedAll.length - unassignedUrgent.length} more not yet in their prep window — assign these from the <b>Tasks</b> view.</p>` : ""}
+      </div>` : ""}
+      ${people.length ? people.map(person=>`
+        <div style="margin-top:20px;">
+          <div class="section-head"><h2 style="font-size:1rem;">👤 ${person} <span class="count-pill">${byPerson[person].length}</span></h2></div>
+          <div style="display:flex;flex-direction:column;gap:4px;margin-top:8px;">
+            ${byPerson[person].sort((a,b)=>a.ev._date-b.ev._date).map(({ev,idx})=>taskLineHTML(ev.id, idx)).join("")}
+          </div>
+        </div>`).join("") : ""}
+      ${!people.length && !unassignedAll.length ? `<div class="empty-state" style="margin-top:12px;"><span class="emoji">🎉</span>No open tasks right now — everything's assigned and complete.</div>` : ""}
+    `;
+  }
+  attachCardOpeners(el);
+  wireTaskLineEvents(el);
+}
+
+/* =====================================================================
+   MASTER RENDER
+   ===================================================================== */
+function renderAll(){
+  rebuildEvents(); // cheap; keeps "today" and the rolling 12-month window always current
+  buildNav();
+  document.querySelectorAll(".view").forEach(v=> v.classList.toggle("active", v.dataset.view===currentView));
+  if(currentView==="dashboard") renderDashboard();
+  else if(currentView==="calendar") renderCalendar();
+  else if(currentView==="upcoming") renderUpcoming();
+  else if(currentView==="tasks") renderTasks();
+  else if(currentView==="mytasks") renderMyTasks();
+  else if(currentView==="campaigns") renderCampaigns();
+  else if(currentView==="completed") renderCompleted();
+  if(openDrawerId) renderDrawer();
+}
+
+/* =====================================================================
+   EXPORT TO EXCEL — an on-demand, point-in-time .xlsx snapshot of every
+   event and task, for sharing outside the dashboard or keeping a record.
+   This is deliberately a SNAPSHOT, not a live link: the dashboard's own
+   shared save (see the sync-status pill) is what stays live across
+   browsers/devices — this button just captures "right now" into a file.
+   ===================================================================== */
+function buildExportWorkbook(){
+  const eventRows = EVENTS.map(ev=>{
+    const st = eventState[ev.id];
+    const { distinct } = eventAssignmentInfo(ev);
+    return {
+      "Event": ev.name,
+      "Category": (CATEGORIES[ev.category] && CATEGORIES[ev.category].label) || ev.category,
+      "Priority": ev.priority.charAt(0).toUpperCase() + ev.priority.slice(1),
+      "Date": fmtDate(ev._date),
+      "Recurs": ev._recurring===false ? "One-off" : recurrenceLabel(ev.recurrence),
+      "Prep starts": fmtDate(prepDate(ev)),
+      "Project status": st.status,
+      "Tasks completed": tasksDone(ev.id),
+      "Tasks total": tasksTotal(ev.id),
+      "% complete": tasksTotal(ev.id) ? pctDone(ev.id) : 0,
+      "Assigned to": distinct.join(", ") || "Unassigned",
+      "Campaign lead": st.assignedTo || "Unassigned",
+      "Notes": st.notes || "",
+    };
+  });
+  const taskRows = [];
+  EVENTS.forEach(ev=>{
+    const st = eventState[ev.id];
+    ev.tasks.forEach((label, idx)=>{
+      const t = st.tasks[idx];
+      taskRows.push({
+        "Event": ev.name,
+        "Event date": fmtDate(ev._date),
+        "Task": label,
+        "Task status": t.status,
+        "Assigned to": t.assignedTo || "Unassigned",
+        "Note": t.note || "",
+        "Last updated": t.updatedAt ? new Date(t.updatedAt).toLocaleString("en-GB") : "",
+      });
+    });
+  });
+  const wb = XLSX.utils.book_new();
+  const wsEvents = XLSX.utils.json_to_sheet(eventRows);
+  wsEvents["!cols"] = [ {wch:28},{wch:20},{wch:9},{wch:16},{wch:22},{wch:16},{wch:16},{wch:10},{wch:9},{wch:10},{wch:26},{wch:20},{wch:34} ];
+  const wsTasks = XLSX.utils.json_to_sheet(taskRows);
+  wsTasks["!cols"] = [ {wch:28},{wch:16},{wch:32},{wch:14},{wch:26},{wch:34},{wch:18} ];
+  XLSX.utils.book_append_sheet(wb, wsEvents, "Events");
+  XLSX.utils.book_append_sheet(wb, wsTasks, "Tasks");
+  return wb;
+}
+async function exportToExcel(){
+  if(typeof XLSX === "undefined"){
+    showToast("Excel export didn't load — check your connection and try again.");
+    return;
+  }
+  const btn = document.getElementById("exportExcelBtn");
+  if(btn){ btn.disabled = true; btn.textContent = "⬇️ Preparing…"; }
+  try{
+    const wb = buildExportWorkbook();
+    const arrayBuf = XLSX.write(wb, {type:"array", bookType:"xlsx"});
+    const blob = new Blob([arrayBuf], {type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+    const filename = `TCA-Marketing-Calendar-${isoDate(startOfToday())}.xlsx`;
+
+    // Inside the Claude artifact viewer, a page can't trigger a browser
+    // download directly — it has to hand the file to the viewer via the
+    // "downloads" capability, which shows them a confirmation first.
+    let handled = false;
+    try{
+      const downloads = window.claude?.use ? await window.claude.use("downloads") : null;
+      if(downloads){
+        const res = await downloads.save({ filename, data: blob });
+        showToast(res.status === "saved" ? "Excel file saved." : "Excel file sent.");
+        handled = true;
+      }
+    }catch(err){
+      if(err && err.code === "declined"){ handled = true; } // user said no — not an error
+      else console.warn("downloads.save failed", err);
+    }
+
+    // Standalone/self-hosted package (no window.claude at all): a normal
+    // browser download works fine there, so fall back to it.
+    if(!handled){
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = filename;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url), 4000);
+      showToast("Excel file downloaded.");
+    }
+  }catch(e){
+    console.error("Excel export failed", e);
+    showToast("Couldn't generate the Excel file — please try again.");
+  }finally{
+    if(btn){ btn.disabled = false; btn.textContent = "⬇️ Export to Excel"; }
+  }
+}
+
+/* =====================================================================
+   INIT
+   ===================================================================== */
+function init(){
+  const today = startOfToday();
+  calYear = today.getFullYear();
+  calMonth = today.getMonth();
+
+  loadCurrentUser();
+  document.getElementById("teamMemberOptions").innerHTML = TEAM_MEMBERS.map(m=>`<option value="${m}">`).join("");
+  const roleSelect = document.getElementById("roleSelect");
+  roleSelect.innerHTML = TEAM_MEMBERS.map(m=>`<option value="${m}">${ADMIN_ROLES.includes(m)?"👑 ":""}${m}</option>`).join("");
+  roleSelect.value = currentUser;
+  roleSelect.addEventListener("change", (e)=> setCurrentUser(e.target.value));
+
+  loadLocalTemplates(); // instant local cache of any admin add/edit/delete; "db" (if available) then takes over
+  loadLocalState(); // instant local cache; the "db" capability (if available) then takes over as source of truth
+  buildFilterBar();
+  buildNav();
+  renderAll();
+
+  document.getElementById("searchInput").addEventListener("input", (e)=>{
+    filters.search = e.target.value.trim();
+    renderAll();
+  });
+  document.getElementById("exportExcelBtn").addEventListener("click", exportToExcel);
+  document.getElementById("drawerOverlay").addEventListener("click", closeDrawer);
+  document.getElementById("templateModalOverlay").addEventListener("click", (e)=>{
+    if(e.target.id==="templateModalOverlay") closeTemplateModal();
+  });
+  document.getElementById("mobileMenuBtn").addEventListener("click", ()=>{
+    document.querySelector(".sidenav")?.scrollIntoView();
+  });
+  document.addEventListener("keydown",(e)=>{ if(e.key==="Escape"){ closeDrawer(); closeTemplateModal(); } });
+
+  // No manual "new year" reset needed: if this tab is left open across
+  // midnight (or a laptop sleeps overnight), re-check "today" and re-render
+  // so the rolling window, prep reminders and Action Required list catch up.
+  document.addEventListener("visibilitychange", ()=>{ if(!document.hidden) renderAll(); });
+  setInterval(renderAll, 30*60*1000);
+
+  initDb();
+}
+
+if(document.readyState==="loading"){
+  document.addEventListener("DOMContentLoaded", init);
+} else {
+  init();
+}
+</script>
