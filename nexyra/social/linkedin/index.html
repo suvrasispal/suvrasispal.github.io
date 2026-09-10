@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LinkedIn Post Template — Nexyra Consulting</title>
+<link rel="icon" href="../assets/logos/nexyra-appicon-violet-1200.png">
+<link rel="stylesheet" href="../assets/css/brand.css">
+<style>
+  /* ---------- LinkedIn stage: 1200×627, professional split panel ---------- */
+  .li-stage{
+    position:relative; width:1200px; height:627px; overflow:hidden;
+    background:var(--nx-ink); color:var(--nx-white);
+  }
+  .li-left{
+    position:absolute; top:0; left:0; width:540px; height:627px;
+    background:var(--nx-ink); padding:44px 48px; z-index:5;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .li-left-top{ display:flex; flex-direction:column; gap:26px; }
+  .li-mid{ display:flex; flex-direction:column; gap:14px; }
+  .li-headline{ font-weight:600; font-size:38px; letter-spacing:-0.03em; line-height:1.1; color:var(--nx-white); min-height:1.1em; }
+  .li-support{ font-weight:400; font-size:16px; line-height:1.55; color:rgba(255,255,255,.82); min-height:1.4em; }
+  .li-cta{ margin-top:4px; min-height:1em; }
+  .li-url{ font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.5); }
+
+  .li-divider{ position:absolute; top:0; left:540px; width:4px; height:627px; background:var(--nx-gradient); z-index:6; }
+
+  .li-media-viewport{ position:absolute; top:0; left:544px; width:656px; height:627px; overflow:hidden; }
+  .li-media-layer{ position:absolute; inset:0; }
+  .li-media-tint{ position:absolute; top:0; left:544px; width:656px; height:627px; background:linear-gradient(160deg, rgba(124,58,237,.32) 0%, rgba(37,99,235,.16) 55%, rgba(10,10,15,.22) 100%); pointer-events:none; z-index:3; }
+  .li-media-edge{ position:absolute; top:0; left:544px; width:110px; height:627px; background:linear-gradient(90deg, rgba(10,10,15,.55), rgba(10,10,15,0)); pointer-events:none; z-index:3; }
+
+  .li-accent{ position:absolute; bottom:32px; right:44px; width:110px; height:32px; opacity:.6; z-index:4; pointer-events:none; }
+
+  .li-fullscreen-btn{ position:absolute; top:12px; right:12px; z-index:7; }
+</style>
+</head>
+<body>
+
+<div class="nx-editor-top">
+  <a class="nx-back" href="../index.html">&larr; Back to Dashboard</a>
+  <div class="nx-editor-title">LinkedIn Post Template <span>&nbsp;·&nbsp;1200 × 627 px</span></div>
+  <a class="nx-btn nx-btn-secondary" href="../psd/Nexyra_LinkedIn_Template.psd" download>Download PSD</a>
+</div>
+
+<div class="nx-editor-layout">
+  <div class="nx-stage-column">
+    <div class="nx-stage-wrapper" id="wrapper" style="max-width:1200px;">
+      <div class="li-stage" id="stage">
+
+        <div class="li-media-viewport nx-media-viewport" id="mediaViewport">
+          <div class="li-media-layer" id="mediaLayer"></div>
+        </div>
+        <div class="li-media-tint"></div>
+        <div class="li-media-edge"></div>
+        <svg class="li-accent" viewBox="0 0 200 60" fill="none">
+          <g transform="translate(150 30) rotate(-32)"><rect x="-40" y="-6" width="80" height="12" fill="url(#lig)"/></g>
+          <defs><linearGradient id="lig" x1="0" y1="0" x2="200" y2="60" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#A78BFA"/><stop offset="39%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#3B82F6"/>
+          </linearGradient></defs>
+        </svg>
+
+        <div class="li-divider"></div>
+
+        <div class="li-left">
+          <div class="li-left-top">
+            <div class="nx-logo nx-logo-on-dark">
+              <img class="nx-lockup" id="logoImg" style="height:48px; max-width:400px;" src="../assets/logos/nexyra-lockup-horizontal-white.png" alt="Nexyra Consulting">
+            </div>
+            <div class="nx-segments">
+              <span class="nx-segment">Strategy</span>
+              <span class="nx-segment is-active">Design</span>
+              <span class="nx-segment">Build</span>
+            </div>
+          </div>
+
+          <div class="li-mid">
+            <div class="li-headline" id="headline" data-max-font="38" data-min-font="26">Designing What&rsquo;s Next</div>
+            <div class="li-support" id="support" data-max-font="16" data-min-font="13">Transforming ideas into digital products, experiences and technology solutions.</div>
+            <div class="nx-cta li-cta" id="cta" data-max-font="14" data-min-font="12">See Our Work</div>
+          </div>
+
+          <div class="li-url">nexyraconsulting.co.uk</div>
+        </div>
+
+        <button class="nx-icon-btn li-fullscreen-btn nx-export-ignore" id="btnFullscreen" title="Full-screen preview"></button>
+      </div>
+    </div>
+    <p class="nx-stage-hint">Drag inside the photo to reposition · scroll or use the zoom controls to crop · click any text to edit it.</p>
+  </div>
+
+  <aside class="nx-panel">
+
+    <div class="nx-panel-section">
+      <h3>Media</h3>
+      <div class="nx-dropzone" id="dropHint">Drop an image or video here, or use the buttons below</div>
+      <div class="nx-panel-row">
+        <button class="nx-btn nx-btn-primary" id="btnUploadImage"></button>
+        <button class="nx-btn nx-btn-secondary" id="btnUploadVideo"></button>
+      </div>
+      <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp,video/mp4,video/webm,video/quicktime,video/ogg" hidden>
+      <div class="nx-zoom-row">
+        <button class="nx-icon-btn" id="btnZoomOut" title="Zoom out"></button>
+        <input type="range" id="zoomSlider" min="0" max="100" value="0">
+        <button class="nx-icon-btn" id="btnZoomIn" title="Zoom in"></button>
+      </div>
+      <div class="nx-panel-row">
+        <button class="nx-btn nx-btn-ghost" id="btnReset"></button>
+        <button class="nx-btn nx-btn-ghost" id="btnPlayPause" style="display:none;"></button>
+      </div>
+    </div>
+
+    <div class="nx-panel-section">
+      <h3>Branding</h3>
+      <div class="nx-panel-row">
+        <button class="nx-btn nx-btn-secondary" id="btnChangeLogo"></button>
+        <button class="nx-btn nx-btn-ghost" id="btnResetLogo"></button>
+      </div>
+      <input type="file" id="logoFileInput" accept="image/png,image/jpeg,image/webp,image/svg+xml" hidden>
+      <p class="nx-panel-hint">Swap in your own logo for this template. Its position and size stay locked to the design.</p>
+    </div>
+
+    <div class="nx-panel-section">
+      <h3>Text</h3>
+      <div class="nx-panel-row">
+        <button class="nx-btn nx-btn-secondary" id="btnEditHeadline">Edit Headline</button>
+        <button class="nx-btn nx-btn-secondary" id="btnEditSupport">Edit Supporting Text</button>
+        <button class="nx-btn nx-btn-secondary" id="btnEditCta">Edit CTA</button>
+      </div>
+      <p class="nx-panel-hint">Logo, colours, layout and type are brand-locked — only the copy and photo change.</p>
+    </div>
+
+    <div class="nx-panel-section">
+      <h3>Export</h3>
+      <div class="nx-format-tabs">
+        <div class="nx-format-tab is-active" data-fmt="jpg">JPG</div>
+        <div class="nx-format-tab" data-fmt="png">PNG</div>
+      </div>
+      <button class="nx-btn nx-btn-primary" id="btnExportImage" style="justify-content:center;">Download Image</button>
+      <button class="nx-btn nx-btn-primary" id="btnExportVideo" style="display:none; justify-content:center;">Download MP4</button>
+      <div class="nx-progress" id="exportProgress"><div></div></div>
+    </div>
+
+  </aside>
+</div>
+
+<div class="nx-toast" id="toast"></div>
+
+<script src="../assets/icons/icons.js"></script>
+<script src="../assets/js/nexyra-editor.js"></script>
+<script>
+  document.getElementById('btnUploadImage').innerHTML = nxIcon('upload') + 'Upload Image';
+  document.getElementById('btnUploadVideo').innerHTML = nxIcon('video') + 'Upload Video';
+  document.getElementById('btnReset').innerHTML = nxIcon('reset') + 'Reset Position';
+  document.getElementById('btnPlayPause').innerHTML = nxIcon('play') + 'Play';
+  document.getElementById('btnZoomOut').innerHTML = nxIcon('zoomOut');
+  document.getElementById('btnZoomIn').innerHTML = nxIcon('zoomIn');
+  document.getElementById('btnFullscreen').innerHTML = nxIcon('expand');
+  document.getElementById('btnExportImage').innerHTML = nxIcon('download') + 'Download Image';
+  document.getElementById('btnExportVideo').innerHTML = nxIcon('film') + 'Download MP4';
+  document.getElementById('btnChangeLogo').innerHTML = nxIcon('image') + 'Change Logo';
+  document.getElementById('btnResetLogo').innerHTML = nxIcon('reset') + 'Reset Logo';
+
+  function loadScriptOnce(src){
+    return new Promise((resolve, reject) => {
+      if (document.querySelector('script[data-src="'+src+'"]')) return resolve();
+      const s = document.createElement('script');
+      s.src = src; s.dataset.src = src;
+      s.onload = resolve; s.onerror = () => reject(new Error('Failed to load ' + src));
+      document.head.appendChild(s);
+    });
+  }
+
+  const toastEl = document.getElementById('toast');
+  let toastTimer;
+  function toast(msg, isError){
+    toastEl.textContent = msg;
+    toastEl.classList.toggle('is-error', !!isError);
+    toastEl.classList.add('is-visible');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toastEl.classList.remove('is-visible'), 3200);
+  }
+
+  const editor = new NexyraEditor({
+    wrapper: document.getElementById('wrapper'),
+    stage: document.getElementById('stage'),
+    mediaViewport: document.getElementById('mediaViewport'),
+    mediaLayer: document.getElementById('mediaLayer'),
+    width: 1200, height: 627,
+    mediaRect: { x: 544, y: 0, w: 656, h: 627 },
+    fileBase: 'nexyra-linkedin-post',
+    defaultMediaUrl: 'https://images.unsplash.com/photo-1758873268745-dd2cf0d677b5?auto=format&fit=crop&w=1600&q=80',
+    logoImg: document.getElementById('logoImg'),
+    defaultLogoSrc: '../assets/logos/nexyra-lockup-horizontal-white.png',
+    editableEls: [
+      { el: document.getElementById('headline'), maxFont: 38, minFont: 26, placeholder: 'Designing What’s Next' },
+      { el: document.getElementById('support'), maxFont: 16, minFont: 13, placeholder: 'Transforming ideas into digital products, experiences and technology solutions.' },
+      { el: document.getElementById('cta'), maxFont: 14, minFont: 12, placeholder: 'See Our Work' },
+    ],
+    onStateChange(state){
+      if (state.type === 'error') toast(state.message, true);
+      if (state.type === 'media-loaded'){
+        const isVideo = state.mediaType === 'video';
+        document.getElementById('btnPlayPause').style.display = isVideo ? 'inline-flex' : 'none';
+        document.getElementById('btnExportVideo').style.display = isVideo ? 'inline-flex' : 'none';
+        document.getElementById('zoomSlider').value = 0;
+      }
+    }
+  });
+  window.editor = editor;
+
+  const ctaEl = document.getElementById('cta');
+  const ctaArrow = document.createElement('span');
+  ctaArrow.innerHTML = nxIcon('arrowRight');
+  ctaArrow.style.display = 'inline-flex';
+  ctaArrow.contentEditable = 'false';
+  ctaEl.appendChild(ctaArrow);
+
+  document.getElementById('fileInput').addEventListener('change', (e) => {
+    const f = e.target.files[0];
+    if (f) editor.loadMediaFromFile(f);
+    e.target.value = '';
+  });
+  document.getElementById('btnUploadImage').addEventListener('click', () => document.getElementById('fileInput').click());
+  document.getElementById('btnUploadVideo').addEventListener('click', () => document.getElementById('fileInput').click());
+  document.getElementById('btnZoomIn').addEventListener('click', () => editor.zoomIn());
+  document.getElementById('btnZoomOut').addEventListener('click', () => editor.zoomOut());
+  document.getElementById('zoomSlider').addEventListener('input', (e) => editor.setZoom(e.target.value / 100));
+  document.getElementById('btnReset').addEventListener('click', () => { editor.resetMedia(); document.getElementById('zoomSlider').value = 0; });
+  document.getElementById('btnPlayPause').addEventListener('click', (e) => {
+    const playing = editor.togglePlay();
+    e.currentTarget.innerHTML = playing ? nxIcon('pause') + 'Pause' : nxIcon('play') + 'Play';
+  });
+  document.getElementById('btnFullscreen').addEventListener('click', () => {
+    const el = document.getElementById('wrapper');
+    if (el.requestFullscreen) el.requestFullscreen();
+  });
+  document.getElementById('logoFileInput').addEventListener('change', (e) => {
+    const f = e.target.files[0];
+    if (f) {
+      try { editor.changeLogo(f); toast('Logo updated.'); }
+      catch (err) { toast('Could not use that file: ' + err.message, true); }
+    }
+    e.target.value = '';
+  });
+  document.getElementById('btnChangeLogo').addEventListener('click', () => document.getElementById('logoFileInput').click());
+  document.getElementById('btnResetLogo').addEventListener('click', () => { editor.resetLogo(); toast('Logo reset to Nexyra default.'); });
+  document.getElementById('btnEditHeadline').addEventListener('click', () => document.getElementById('headline').focus());
+  document.getElementById('btnEditSupport').addEventListener('click', () => document.getElementById('support').focus());
+  document.getElementById('btnEditCta').addEventListener('click', () => document.getElementById('cta').focus());
+
+  let currentFormat = 'jpg';
+  document.querySelectorAll('.nx-format-tab').forEach((tab) => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.nx-format-tab').forEach((t) => t.classList.remove('is-active'));
+      tab.classList.add('is-active');
+      currentFormat = tab.dataset.fmt;
+    });
+  });
+
+  const progressEl = document.getElementById('exportProgress');
+  function setProgress(active, ratio){
+    progressEl.classList.toggle('is-active', active);
+    progressEl.firstElementChild.style.width = (ratio * 100) + '%';
+  }
+
+  document.getElementById('btnExportImage').addEventListener('click', async (e) => {
+    const btn = e.currentTarget;
+    btn.setAttribute('disabled', 'true');
+    try {
+      await loadScriptOnce('../assets/vendor/html2canvas/html2canvas.min.js');
+      await editor.exportImage(currentFormat);
+      toast('Your ' + currentFormat.toUpperCase() + ' is downloading.');
+    } catch (err) {
+      console.error(err);
+      toast('Export failed: ' + err.message, true);
+    } finally {
+      btn.removeAttribute('disabled');
+    }
+  });
+
+  document.getElementById('btnExportVideo').addEventListener('click', async (e) => {
+    const btn = e.currentTarget;
+    btn.setAttribute('disabled', 'true');
+    setProgress(true, 0);
+    try {
+      await loadScriptOnce('../assets/vendor/html2canvas/html2canvas.min.js');
+      await loadScriptOnce('../assets/vendor/ffmpeg/ffmpeg.min.js');
+      const result = await editor.exportVideo({ onProgress: (r) => setProgress(true, r) });
+      toast(result.fallback ? 'MP4 encoder unavailable — downloaded WebM instead.' : 'Your MP4 is downloading.');
+    } catch (err) {
+      console.error(err);
+      toast('Video export failed: ' + err.message, true);
+    } finally {
+      btn.removeAttribute('disabled');
+      setProgress(false, 0);
+    }
+  });
+</script>
+</body>
+</html>
