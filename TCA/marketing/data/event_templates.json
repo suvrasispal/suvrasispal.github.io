@@ -1,0 +1,1866 @@
+[
+  {
+    "id": "back-to-school",
+    "name": "Back to School",
+    "category": "youth",
+    "priority": "high",
+    "description": "New academic year — prime moment to promote youth confidence programmes and after-school activities.",
+    "requirements": "New-term campaign banner, parent-facing email, social content series, school partnership outreach.",
+    "tasks": [
+      "Event concept approved",
+      "Copywriting completed",
+      "Main event banner designed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "TikTok content prepared",
+      "Website updated",
+      "Email/social campaign prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-nthweekday",
+      "month": 9,
+      "weekday": 2,
+      "nth": 1
+    }
+  },
+  {
+    "id": "bhm",
+    "name": "Black History Month UK begins",
+    "category": "awareness",
+    "priority": "medium",
+    "description": "UK's month-long celebration of Black history, achievement and culture.",
+    "requirements": "Monthly content series celebrating diverse role models and community stories.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 10,
+      "day": 1
+    }
+  },
+  {
+    "id": "black-friday",
+    "name": "Black Friday",
+    "category": "seasonal",
+    "priority": "high",
+    "description": "Major UK retail moment. Strong opportunity for membership offers and programme sign-up discounts.",
+    "requirements": "Offer graphics, email campaign, website banner, paid social push.",
+    "tasks": [
+      "Event concept approved",
+      "Copywriting completed",
+      "Main event banner designed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "TikTok content prepared",
+      "Website updated",
+      "Email/social campaign prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-nthweekday",
+      "month": 11,
+      "weekday": 4,
+      "nth": 4
+    }
+  },
+  {
+    "id": "blue-monday",
+    "name": "Blue Monday",
+    "category": "mental-health",
+    "priority": "medium",
+    "description": "Popularly dubbed the 'most depressing day of the year' — a valuable myth-busting/mental-health-positive messaging opportunity.",
+    "requirements": "Myth-busting social post, uplifting content series, mental health resource share.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-nthweekday",
+      "month": 1,
+      "weekday": 0,
+      "nth": 3
+    }
+  },
+  {
+    "id": "bonfire-night",
+    "name": "Bonfire Night",
+    "category": "seasonal",
+    "priority": "medium",
+    "description": "Guy Fawkes Night — community bonfire/fireworks events create a natural tie-in for family and community messaging.",
+    "requirements": "Social graphics, community safety messaging, local event shout-outs.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 11,
+      "day": 5
+    }
+  },
+  {
+    "id": "boxing-day",
+    "name": "Boxing Day",
+    "category": "seasonal",
+    "priority": "low",
+    "description": "Good moment for 'New Year fitness prep starts here' soft messaging as people plan January goals.",
+    "requirements": "Light social teaser for January programmes.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 12,
+      "day": 26
+    }
+  },
+  {
+    "id": "christmas",
+    "name": "Christmas Day",
+    "category": "seasonal",
+    "priority": "high",
+    "description": "The biggest seasonal moment of the year. Warm, community-focused messaging; wind-down of term activities.",
+    "requirements": "Festive banner, video greeting, social content series, email newsletter, gift/voucher promotion.",
+    "tasks": [
+      "Event concept approved",
+      "Copywriting completed",
+      "Main event banner designed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "TikTok content prepared",
+      "Website updated",
+      "Email/social campaign prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 12,
+      "day": 25
+    }
+  },
+  {
+    "id": "cmhw",
+    "name": "Children's Mental Health Week",
+    "category": "youth",
+    "priority": "high",
+    "description": "Place2Be's flagship week supporting children and young people's mental health — key fit for TCA youth programmes.",
+    "requirements": "Themed activity plan, parent/carer resource, social content series, school partnership outreach.",
+    "tasks": [
+      "Event concept approved",
+      "Copywriting completed",
+      "Main event banner designed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "TikTok content prepared",
+      "Website updated",
+      "Email/social campaign prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 2,
+      "day": 1
+    }
+  },
+  {
+    "id": "cny",
+    "name": "Chinese New Year",
+    "category": "seasonal",
+    "priority": "low",
+    "description": "Recognises Lunar New Year for diverse local communities.",
+    "requirements": "Simple social greeting graphic.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-lunar",
+      "dates": {
+        "2026": "2026-02-17",
+        "2027": "2027-02-06",
+        "2028": "2028-01-26",
+        "2029": "2029-02-13",
+        "2030": "2030-02-03",
+        "2031": "2031-01-23",
+        "2032": "2032-02-11",
+        "2033": "2033-01-31",
+        "2034": "2034-02-19",
+        "2035": "2035-02-08"
+      },
+      "note": "Follows a fixed lunisolar rule; published years in advance and treated as reliable."
+    }
+  },
+  {
+    "id": "comic-relief",
+    "name": "Comic Relief / Red Nose Day",
+    "category": "community",
+    "priority": "medium",
+    "description": "National fundraising day — strong fit for a fun fitness challenge fundraiser.",
+    "requirements": "Fundraising challenge graphic, social content, email, in-centre collection materials.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 3,
+      "day": 19
+    }
+  },
+  {
+    "id": "cyber-monday",
+    "name": "Cyber Monday",
+    "category": "seasonal",
+    "priority": "medium",
+    "description": "Digital extension of Black Friday — good for online bookings and digital programme sign-ups.",
+    "requirements": "Email reminder, social countdown graphics.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-nthweekday",
+      "month": 11,
+      "weekday": 0,
+      "nth": -1
+    }
+  },
+  {
+    "id": "disability-history-month",
+    "name": "UK Disability History Month begins",
+    "category": "awareness",
+    "priority": "medium",
+    "description": "UK-wide month (16 Nov–16 Dec) exploring the history of disabled people's struggle for equality.",
+    "requirements": "Educational content series, accessibility programme spotlight.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 11,
+      "day": 16
+    }
+  },
+  {
+    "id": "diwali",
+    "name": "Diwali",
+    "category": "seasonal",
+    "priority": "low",
+    "description": "Festival of Lights — inclusive community celebration moment.",
+    "requirements": "Simple social greeting graphic, community shout-out.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-lunar",
+      "dates": {
+        "2026": "2026-11-08",
+        "2027": "2027-10-29",
+        "2028": "2028-10-17",
+        "2029": "2029-11-05",
+        "2030": "2030-10-26",
+        "2031": "2031-11-14",
+        "2032": "2032-11-01",
+        "2033": "2033-10-21",
+        "2034": "2034-11-09",
+        "2035": "2035-10-30"
+      },
+      "note": "Follows the Hindu lunisolar calendar; published well in advance and treated as reliable."
+    }
+  },
+  {
+    "id": "down-syndrome-day",
+    "name": "World Down Syndrome Day",
+    "category": "awareness",
+    "priority": "medium",
+    "description": "Global awareness day championing the rights and inclusion of people with Down syndrome.",
+    "requirements": "Inclusive social content, accessibility messaging.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 3,
+      "day": 21
+    }
+  },
+  {
+    "id": "early-may",
+    "name": "Early May Bank Holiday",
+    "category": "other",
+    "priority": "low",
+    "description": "Long-weekend content moment — good for outdoor/community activity promotion.",
+    "requirements": "Simple social post encouraging outdoor activity.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-nthweekday",
+      "month": 5,
+      "weekday": 0,
+      "nth": 1
+    }
+  },
+  {
+    "id": "easter",
+    "name": "Easter Sunday",
+    "category": "seasonal",
+    "priority": "high",
+    "description": "Major seasonal holiday with school break — great family activity and open-day opportunity.",
+    "requirements": "Easter activity banner, family programme promotion, social content series, email newsletter.",
+    "tasks": [
+      "Event concept approved",
+      "Copywriting completed",
+      "Main event banner designed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "TikTok content prepared",
+      "Website updated",
+      "Email/social campaign prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-easter",
+      "offsetDays": 0
+    }
+  },
+  {
+    "id": "eid-adha",
+    "name": "Eid al-Adha",
+    "category": "seasonal",
+    "priority": "low",
+    "description": "Recognises Eid al-Adha for Muslim members and the wider community (date approximate, subject to moon sighting).",
+    "requirements": "Simple, respectful social greeting graphic.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-lunar",
+      "dates": {
+        "2026": "2026-05-27",
+        "2027": "2027-05-17",
+        "2028": "2028-05-05",
+        "2029": "2029-04-24",
+        "2030": "2030-04-13",
+        "2031": "2031-04-02",
+        "2032": "2032-03-22"
+      },
+      "note": "Approximate — confirmed closer to the time by official moon sighting; may shift by a day."
+    }
+  },
+  {
+    "id": "eid-fitr",
+    "name": "Eid al-Fitr",
+    "category": "seasonal",
+    "priority": "low",
+    "description": "Recognises the end of Ramadan for Muslim members and the wider community (date subject to moon sighting).",
+    "requirements": "Simple, respectful social greeting graphic.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-lunar",
+      "dates": {
+        "2026": "2026-03-20",
+        "2027": "2027-03-10",
+        "2028": "2028-02-27",
+        "2029": "2029-02-14",
+        "2030": "2030-02-04",
+        "2031": "2031-01-24",
+        "2032": "2032-01-14"
+      },
+      "note": "Approximate — confirmed closer to the time by official moon sighting; may shift by a day."
+    }
+  },
+  {
+    "id": "elim-violence-women",
+    "name": "International Day for the Elimination of Violence against Women",
+    "category": "awareness",
+    "priority": "medium",
+    "description": "UN day marking the start of 16 Days of Activism against gender-based violence.",
+    "requirements": "Supportive, values-led social content; resource signposting.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 11,
+      "day": 25
+    }
+  },
+  {
+    "id": "fathers-day",
+    "name": "Father's Day",
+    "category": "family",
+    "priority": "high",
+    "description": "Family-focused celebration — strong angle for parent & child sessions and family membership offers.",
+    "requirements": "Family campaign graphics, email, in-centre signage, social content.",
+    "tasks": [
+      "Event concept approved",
+      "Copywriting completed",
+      "Main event banner designed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "TikTok content prepared",
+      "Website updated",
+      "Email/social campaign prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-nthweekday",
+      "month": 6,
+      "weekday": 6,
+      "nth": 3
+    }
+  },
+  {
+    "id": "gehfd",
+    "name": "Global Employee Health & Fitness Day",
+    "category": "fitness",
+    "priority": "low",
+    "description": "Encourages workplace wellbeing — good for TCA's corporate/community partnership outreach.",
+    "requirements": "Partnership outreach post, simple social graphic.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 5,
+      "day": 19
+    }
+  },
+  {
+    "id": "giving-tuesday",
+    "name": "Giving Tuesday",
+    "category": "community",
+    "priority": "medium",
+    "description": "Global day of generosity following Black Friday/Cyber Monday — strong fit for community fundraising or scholarship appeals.",
+    "requirements": "Appeal graphic, email, social posts, website donation banner.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 12,
+      "day": 1,
+      "note": "AUTO-DETECT FAILED — please verify"
+    }
+  },
+  {
+    "id": "global-running-day",
+    "name": "Global Running Day",
+    "category": "fitness",
+    "priority": "medium",
+    "description": "Worldwide celebration of running, whatever your pace — great for a community fun-run tie-in.",
+    "requirements": "Event graphic, IG/FB/TikTok content, website promotion.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 6,
+      "day": 3
+    }
+  },
+  {
+    "id": "global-wellness-day",
+    "name": "Global Wellness Day",
+    "category": "fitness",
+    "priority": "low",
+    "description": "International day dedicated to living well — good for a mindful-movement themed session.",
+    "requirements": "Social content, simple graphic.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 6,
+      "day": 12
+    }
+  },
+  {
+    "id": "grandparents-day",
+    "name": "National Grandparents Day (UK)",
+    "category": "family",
+    "priority": "low",
+    "description": "Celebrates the role of grandparents — nice multigenerational family content moment.",
+    "requirements": "Simple social greeting graphic.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-nthweekday",
+      "month": 10,
+      "weekday": 6,
+      "nth": 1
+    }
+  },
+  {
+    "id": "halloween",
+    "name": "Halloween",
+    "category": "seasonal",
+    "priority": "high",
+    "description": "Spooky-season engagement moment. High social reach; great excuse for a fun, energetic confidence-building activity or open day.",
+    "requirements": "Themed banner, IG/FB/TikTok content, website banner, email blast.",
+    "tasks": [
+      "Event concept approved",
+      "Copywriting completed",
+      "Main event banner designed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "TikTok content prepared",
+      "Website updated",
+      "Email/social campaign prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 10,
+      "day": 31
+    }
+  },
+  {
+    "id": "human-rights-day",
+    "name": "Human Rights Day",
+    "category": "awareness",
+    "priority": "low",
+    "description": "UN day marking the anniversary of the Universal Declaration of Human Rights.",
+    "requirements": "Values-led social post.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 12,
+      "day": 10
+    }
+  },
+  {
+    "id": "iday-happiness",
+    "name": "International Day of Happiness",
+    "category": "awareness",
+    "priority": "low",
+    "description": "UN day recognising happiness as a fundamental human goal.",
+    "requirements": "Uplifting social content, simple graphic.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 3,
+      "day": 20
+    }
+  },
+  {
+    "id": "idg",
+    "name": "International Day of the Girl Child",
+    "category": "youth",
+    "priority": "medium",
+    "description": "UN day championing girls' rights and empowerment — aligns with confidence-building programmes for girls.",
+    "requirements": "Empowerment-themed social content, testimonial feature.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 10,
+      "day": 11
+    }
+  },
+  {
+    "id": "idg-education",
+    "name": "International Day of Education",
+    "category": "youth",
+    "priority": "low",
+    "description": "UN day celebrating the role of education in personal and social development.",
+    "requirements": "Educational-confidence themed social post.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 1,
+      "day": 24
+    }
+  },
+  {
+    "id": "idpd",
+    "name": "International Day of Persons with Disabilities",
+    "category": "awareness",
+    "priority": "high",
+    "description": "UN day promoting the rights and wellbeing of people with disabilities — key alignment with TCA's accessibility pillar.",
+    "requirements": "Campaign banner, accessible-programme feature, social content series, website update.",
+    "tasks": [
+      "Event concept approved",
+      "Copywriting completed",
+      "Main event banner designed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "TikTok content prepared",
+      "Website updated",
+      "Email/social campaign prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 12,
+      "day": 3
+    }
+  },
+  {
+    "id": "intl-family-day",
+    "name": "International Day of Families",
+    "category": "family",
+    "priority": "low",
+    "description": "UN day recognising the importance of families — fits family-programme promotion.",
+    "requirements": "Simple social post, family programme shout-out.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 5,
+      "day": 15
+    }
+  },
+  {
+    "id": "intl-mens-day",
+    "name": "International Men's Day",
+    "category": "awareness",
+    "priority": "medium",
+    "description": "Global day focusing on men's health and wellbeing, and positive male role models.",
+    "requirements": "Supportive social content, male mental-health signposting.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 11,
+      "day": 19
+    }
+  },
+  {
+    "id": "iwd",
+    "name": "International Women's Day",
+    "category": "awareness",
+    "priority": "high",
+    "description": "Global day celebrating women's achievements and calling for equality — major campaign moment for TCA.",
+    "requirements": "Campaign banner, testimonial/story content series, social campaign, email newsletter, event tie-in.",
+    "tasks": [
+      "Event concept approved",
+      "Copywriting completed",
+      "Main event banner designed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "TikTok content prepared",
+      "Website updated",
+      "Email/social campaign prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 3,
+      "day": 8
+    }
+  },
+  {
+    "id": "iyd",
+    "name": "International Youth Day",
+    "category": "youth",
+    "priority": "high",
+    "description": "UN day celebrating young people — strong alignment with TCA's youth confidence-building mission.",
+    "requirements": "Youth story/testimonial content, social campaign, website feature.",
+    "tasks": [
+      "Event concept approved",
+      "Copywriting completed",
+      "Main event banner designed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "TikTok content prepared",
+      "Website updated",
+      "Email/social campaign prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 8,
+      "day": 12
+    }
+  },
+  {
+    "id": "macmillan",
+    "name": "Macmillan Coffee Morning",
+    "category": "community",
+    "priority": "medium",
+    "description": "UK's biggest fundraising event for Macmillan Cancer Support — easy, high-engagement community fundraiser.",
+    "requirements": "Event graphic, social promotion, sign-up sheet, thank-you post.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-nthweekday",
+      "month": 9,
+      "weekday": 4,
+      "nth": 4
+    }
+  },
+  {
+    "id": "mhaw",
+    "name": "Mental Health Awareness Week",
+    "category": "mental-health",
+    "priority": "high",
+    "description": "Mental Health Foundation's flagship week — one of the most important dates in the TCA calendar.",
+    "requirements": "Full campaign: banner, week-long content series, workshops/taster sessions, email newsletter, press outreach.",
+    "tasks": [
+      "Event concept approved",
+      "Copywriting completed",
+      "Main event banner designed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "TikTok content prepared",
+      "Website updated",
+      "Email/social campaign prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 5,
+      "day": 10
+    }
+  },
+  {
+    "id": "mothers-day",
+    "name": "Mother's Day (Mothering Sunday)",
+    "category": "family",
+    "priority": "high",
+    "description": "Family-focused celebration — strong angle for parent & child sessions and family membership offers.",
+    "requirements": "Family campaign graphics, email, in-centre signage, social content.",
+    "tasks": [
+      "Event concept approved",
+      "Copywriting completed",
+      "Main event banner designed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "TikTok content prepared",
+      "Website updated",
+      "Email/social campaign prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-easter",
+      "offsetDays": -21
+    }
+  },
+  {
+    "id": "national-careers-week",
+    "name": "National Careers Week",
+    "category": "youth",
+    "priority": "low",
+    "description": "UK-wide careers guidance week — opportunity to showcase confidence-building for future employability.",
+    "requirements": "Careers-confidence blog post, social content.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 3,
+      "day": 1
+    }
+  },
+  {
+    "id": "national-walking-month",
+    "name": "National Walking Month begins",
+    "category": "fitness",
+    "priority": "low",
+    "description": "Month-long UK campaign (Living Streets) promoting walking for health — easy low-barrier activity tie-in.",
+    "requirements": "Simple social content series, walking-group promotion.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 5,
+      "day": 1
+    }
+  },
+  {
+    "id": "nfd",
+    "name": "National Fitness Day",
+    "category": "fitness",
+    "priority": "high",
+    "description": "ukactive's flagship UK-wide celebration of physical activity — a headline moment for TCA's mission.",
+    "requirements": "Hero banner, open-session promotion, IG/FB/TikTok content, website takeover, local press outreach.",
+    "tasks": [
+      "Event concept approved",
+      "Copywriting completed",
+      "Main event banner designed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "TikTok content prepared",
+      "Website updated",
+      "Email/social campaign prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-nthweekday",
+      "month": 9,
+      "weekday": 2,
+      "nth": 3
+    }
+  },
+  {
+    "id": "nyd",
+    "name": "New Year's Day",
+    "category": "seasonal",
+    "priority": "high",
+    "description": "Peak 'New Year, New You' interest — the single biggest annual window for new member acquisition.",
+    "requirements": "Campaign launch banner, email blast, paid social, website hero update.",
+    "tasks": [
+      "Event concept approved",
+      "Copywriting completed",
+      "Main event banner designed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "TikTok content prepared",
+      "Website updated",
+      "Email/social campaign prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 1,
+      "day": 1
+    }
+  },
+  {
+    "id": "nye",
+    "name": "New Year's Eve",
+    "category": "seasonal",
+    "priority": "medium",
+    "description": "Reflective, forward-looking moment — sets up New Year resolution messaging.",
+    "requirements": "Year-in-review graphic/video, countdown social content.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 12,
+      "day": 31
+    }
+  },
+  {
+    "id": "older-persons-day",
+    "name": "International Day of Older Persons",
+    "category": "awareness",
+    "priority": "low",
+    "description": "UN day recognising the contributions of older people — good tie-in for TCA's community/senior programmes.",
+    "requirements": "Community programme spotlight, simple social graphic.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 10,
+      "day": 1
+    }
+  },
+  {
+    "id": "purple-tuesday",
+    "name": "Purple Tuesday (Accessible Community Day)",
+    "category": "awareness",
+    "priority": "medium",
+    "description": "UK-wide initiative improving accessibility and inclusion for disabled people.",
+    "requirements": "Accessibility audit checklist, inclusive social content.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-nthweekday",
+      "month": 11,
+      "weekday": 1,
+      "nth": 1
+    }
+  },
+  {
+    "id": "rak-day",
+    "name": "Random Acts of Kindness Day",
+    "category": "community",
+    "priority": "medium",
+    "description": "Global day encouraging small acts of kindness — lovely, positive community content moment.",
+    "requirements": "Kindness-challenge social post, community shout-outs.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 2,
+      "day": 17
+    }
+  },
+  {
+    "id": "self-care-day",
+    "name": "International Self-Care Day",
+    "category": "mental-health",
+    "priority": "low",
+    "description": "Global day (7/24 = 24 hours a day, 7 days a week) promoting everyday self-care.",
+    "requirements": "Simple self-care tips social post.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 7,
+      "day": 24
+    }
+  },
+  {
+    "id": "self-care-week",
+    "name": "Self-Care Week",
+    "category": "mental-health",
+    "priority": "medium",
+    "description": "UK-wide awareness week (Self Care Forum) promoting everyday self-care habits (dates provisional).",
+    "requirements": "Content series across the week, downloadable self-care tips sheet.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 11,
+      "day": 16
+    }
+  },
+  {
+    "id": "shrove-tuesday",
+    "name": "Shrove Tuesday (Pancake Day)",
+    "category": "seasonal",
+    "priority": "low",
+    "description": "Light-hearted, family-friendly content moment.",
+    "requirements": "Fun social post/reel, family activity tie-in.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-easter",
+      "offsetDays": -47
+    }
+  },
+  {
+    "id": "small-business-saturday",
+    "name": "Small Business Saturday UK",
+    "category": "community",
+    "priority": "low",
+    "description": "Celebrates UK small enterprises and community organisations — good local-partnership shout-out day.",
+    "requirements": "Social post celebrating local partners and community suppliers.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-nthweekday",
+      "month": 12,
+      "weekday": 5,
+      "nth": 1
+    }
+  },
+  {
+    "id": "sport-dev-peace",
+    "name": "International Day of Sport for Development and Peace",
+    "category": "fitness",
+    "priority": "low",
+    "description": "UN day recognising sport's power to drive social change — aligns with TCA's community mission.",
+    "requirements": "Mission-led social post, website blog feature.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 4,
+      "day": 6
+    }
+  },
+  {
+    "id": "spring-bh",
+    "name": "Spring Bank Holiday",
+    "category": "other",
+    "priority": "low",
+    "description": "Long-weekend content moment — good for outdoor/community activity promotion.",
+    "requirements": "Simple social post encouraging outdoor activity.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-nthweekday",
+      "month": 5,
+      "weekday": 0,
+      "nth": -1
+    }
+  },
+  {
+    "id": "spring-clean",
+    "name": "Great British Spring Clean",
+    "category": "community",
+    "priority": "low",
+    "description": "National community litter-picking campaign (dates provisional pending Keep Britain Tidy confirmation) — good community-pride tie-in.",
+    "requirements": "Community event promotion, volunteer sign-up graphic.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 3,
+      "day": 19
+    }
+  },
+  {
+    "id": "st-georges",
+    "name": "St George's Day",
+    "category": "other",
+    "priority": "low",
+    "description": "Light national-pride community content moment.",
+    "requirements": "Simple themed social post.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 4,
+      "day": 23
+    }
+  },
+  {
+    "id": "st-patricks",
+    "name": "St Patrick's Day",
+    "category": "other",
+    "priority": "low",
+    "description": "Light community/social engagement moment.",
+    "requirements": "Simple themed social post.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 3,
+      "day": 17
+    }
+  },
+  {
+    "id": "stress-awareness",
+    "name": "Stress Awareness Month begins",
+    "category": "mental-health",
+    "priority": "medium",
+    "description": "Month-long UK awareness campaign — strong fit for combined fitness/mental-health messaging on stress management.",
+    "requirements": "Content series across the month, downloadable resource, social campaign.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 4,
+      "day": 1
+    }
+  },
+  {
+    "id": "summer-bh",
+    "name": "Summer Bank Holiday",
+    "category": "other",
+    "priority": "low",
+    "description": "Long-weekend content moment ahead of the new school term.",
+    "requirements": "Simple social post; tease September programme launch.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-nthweekday",
+      "month": 8,
+      "weekday": 0,
+      "nth": -1
+    }
+  },
+  {
+    "id": "tca-12days",
+    "name": "12 Days of Confidence",
+    "category": "tca",
+    "priority": "high",
+    "description": "TCA's festive countdown campaign — 12 days of confidence tips, member stories and offers running to Christmas.",
+    "requirements": "12-part content calendar, daily social graphics, email countdown series.",
+    "tasks": [
+      "Event concept approved",
+      "Copywriting completed",
+      "Main event banner designed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "TikTok content prepared",
+      "Website updated",
+      "Email/social campaign prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 12,
+      "day": 13
+    }
+  },
+  {
+    "id": "tca-anniversary",
+    "name": "TCA Get Britain Moving Day",
+    "category": "tca",
+    "priority": "high",
+    "description": "TCA's own flagship celebration day, timed with National Fitness Day, spotlighting community impact and free taster sessions nationwide.",
+    "requirements": "Flagship campaign kit: banner, press release, social series, email, in-centre event materials.",
+    "tasks": [
+      "Event concept approved",
+      "Copywriting completed",
+      "Main event banner designed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "TikTok content prepared",
+      "Website updated",
+      "Email/social campaign prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 9,
+      "day": 16
+    }
+  },
+  {
+    "id": "tca-community-awards",
+    "name": "TCA Community Awards",
+    "category": "tca",
+    "priority": "high",
+    "description": "Annual celebration recognising standout members, volunteers and coaches across the TCA community.",
+    "requirements": "Awards branding, nomination campaign, ceremony content, winner social features, press release.",
+    "tasks": [
+      "Event concept approved",
+      "Copywriting completed",
+      "Main event banner designed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "TikTok content prepared",
+      "Website updated",
+      "Email/social campaign prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 11,
+      "day": 7
+    }
+  },
+  {
+    "id": "tca-movember",
+    "name": "Get Britain Moving: Movember Edition",
+    "category": "tca",
+    "priority": "medium",
+    "description": "TCA's tie-in to Movember, spotlighting men's fitness and mental health with a moustache-themed challenge.",
+    "requirements": "Challenge graphic, social content series, email, in-centre promotion.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 11,
+      "day": 1
+    }
+  },
+  {
+    "id": "tca-newyearnewconfidence",
+    "name": "New Year, New Confidence Campaign",
+    "category": "tca",
+    "priority": "high",
+    "description": "TCA's flagship January acquisition campaign, capturing New Year motivation with a confidence-first (not weight-first) message.",
+    "requirements": "Full campaign kit: hero banner, landing page copy, paid social, email series, referral offer graphics.",
+    "tasks": [
+      "Event concept approved",
+      "Copywriting completed",
+      "Main event banner designed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "TikTok content prepared",
+      "Website updated",
+      "Email/social campaign prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 1,
+      "day": 2
+    }
+  },
+  {
+    "id": "tca-spring-challenge",
+    "name": "Get Britain Moving Spring Challenge",
+    "category": "tca",
+    "priority": "high",
+    "description": "TCA's headline spring challenge campaign, built around the 'Get Britain Moving' tagline — a step/activity challenge for members and community.",
+    "requirements": "Challenge branding kit, sign-up landing page, tracker graphic, weekly social content, email series.",
+    "tasks": [
+      "Event concept approved",
+      "Copywriting completed",
+      "Main event banner designed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "TikTok content prepared",
+      "Website updated",
+      "Email/social campaign prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 4,
+      "day": 20
+    }
+  },
+  {
+    "id": "tca-summer-camp",
+    "name": "Summer Confidence Camp Launch",
+    "category": "tca",
+    "priority": "high",
+    "description": "Launch of TCA's summer holiday youth programme — a major seasonal revenue and impact driver.",
+    "requirements": "Brochure/landing page, parent email campaign, social content series, local outreach flyers.",
+    "tasks": [
+      "Event concept approved",
+      "Copywriting completed",
+      "Main event banner designed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "TikTok content prepared",
+      "Website updated",
+      "Email/social campaign prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 7,
+      "day": 5
+    }
+  },
+  {
+    "id": "tca-term-starts-sept",
+    "name": "Confidence Term Starts",
+    "category": "tca",
+    "priority": "high",
+    "description": "Launch of TCA's autumn term programme, riding the back-to-school energy for youth and family sign-ups.",
+    "requirements": "Term brochure, timetable graphics, social launch series, email to waitlist.",
+    "tasks": [
+      "Event concept approved",
+      "Copywriting completed",
+      "Main event banner designed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "TikTok content prepared",
+      "Website updated",
+      "Email/social campaign prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-nthweekday",
+      "month": 9,
+      "weekday": 0,
+      "nth": 1
+    }
+  },
+  {
+    "id": "ttd",
+    "name": "Time to Talk Day",
+    "category": "mental-health",
+    "priority": "medium",
+    "description": "UK's biggest mental health conversation day (Mind/Rethink) — encourages open conversation about mental health.",
+    "requirements": "Conversation-starter social content, staff/member story feature.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 2,
+      "day": 4
+    }
+  },
+  {
+    "id": "universal-childrens-day",
+    "name": "Universal Children's Day",
+    "category": "youth",
+    "priority": "medium",
+    "description": "UN day promoting child welfare and rights — good moment to spotlight youth programme impact.",
+    "requirements": "Impact story social post, website feature.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 11,
+      "day": 20
+    }
+  },
+  {
+    "id": "valentines",
+    "name": "Valentine's Day",
+    "category": "family",
+    "priority": "medium",
+    "description": "'Love yourself' / self-confidence angle; also a family and community connection moment.",
+    "requirements": "Self-love themed graphics, social content, email tie-in.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 2,
+      "day": 14
+    }
+  },
+  {
+    "id": "volunteers-week",
+    "name": "National Volunteers' Week",
+    "category": "community",
+    "priority": "medium",
+    "description": "UK-wide week celebrating and recognising volunteers — great opportunity to thank TCA's community volunteers/coaches.",
+    "requirements": "Thank-you social content, volunteer spotlight features, email to volunteer network.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 6,
+      "day": 1
+    }
+  },
+  {
+    "id": "wear-it-pink",
+    "name": "Wear It Pink Day",
+    "category": "community",
+    "priority": "medium",
+    "description": "Breast Cancer Now's flagship fundraising day — simple, colourful community participation moment.",
+    "requirements": "Event graphic, social promotion, in-centre photo moment.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-nthweekday",
+      "month": 10,
+      "weekday": 4,
+      "nth": 3
+    }
+  },
+  {
+    "id": "world-autism-week",
+    "name": "World Autism Acceptance Week",
+    "category": "awareness",
+    "priority": "medium",
+    "description": "National Autistic Society's flagship week promoting acceptance and understanding of autism.",
+    "requirements": "Inclusive/sensory-friendly session promotion, social content series.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 3,
+      "day": 29
+    }
+  },
+  {
+    "id": "world-bipolar-day",
+    "name": "World Bipolar Day",
+    "category": "mental-health",
+    "priority": "low",
+    "description": "Global awareness day reducing stigma around bipolar disorder.",
+    "requirements": "Educational social post, resource signposting.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 3,
+      "day": 30
+    }
+  },
+  {
+    "id": "world-braille-day",
+    "name": "World Braille Day",
+    "category": "awareness",
+    "priority": "low",
+    "description": "Raises awareness of the importance of braille as a communication tool for blind and partially sighted people.",
+    "requirements": "Accessibility-focused social post.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 1,
+      "day": 4
+    }
+  },
+  {
+    "id": "world-cancer-day",
+    "name": "World Cancer Day",
+    "category": "awareness",
+    "priority": "medium",
+    "description": "Global day uniting the world in the fight against cancer.",
+    "requirements": "Supportive social content, resource signposting.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 2,
+      "day": 4
+    }
+  },
+  {
+    "id": "world-diabetes-day",
+    "name": "World Diabetes Day",
+    "category": "awareness",
+    "priority": "low",
+    "description": "Global awareness day for diabetes prevention and care.",
+    "requirements": "Educational social post, healthy-lifestyle tie-in.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 11,
+      "day": 14
+    }
+  },
+  {
+    "id": "world-health-day",
+    "name": "World Health Day",
+    "category": "fitness",
+    "priority": "high",
+    "description": "WHO's global health awareness day — strong opportunity for a wellbeing-themed campaign and free taster sessions.",
+    "requirements": "Campaign banner, social content series, email newsletter, website feature, in-centre activity.",
+    "tasks": [
+      "Event concept approved",
+      "Copywriting completed",
+      "Main event banner designed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "TikTok content prepared",
+      "Website updated",
+      "Email/social campaign prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 4,
+      "day": 7
+    }
+  },
+  {
+    "id": "world-heart-day",
+    "name": "World Heart Day",
+    "category": "fitness",
+    "priority": "medium",
+    "description": "Global awareness day for heart health — natural fit for cardio/fitness programme messaging.",
+    "requirements": "Educational social graphics, blog/website content.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 9,
+      "day": 29
+    }
+  },
+  {
+    "id": "world-kindness-day",
+    "name": "World Kindness Day",
+    "category": "community",
+    "priority": "medium",
+    "description": "Global day promoting kindness — easy, feel-good community content moment.",
+    "requirements": "Kindness-challenge social post, community shout-outs.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 11,
+      "day": 13
+    }
+  },
+  {
+    "id": "world-mh-day",
+    "name": "World Mental Health Day",
+    "category": "mental-health",
+    "priority": "high",
+    "description": "WHO global awareness day — a headline moment for TCA's confidence & wellbeing mission.",
+    "requirements": "Campaign banner, video content, social series across all channels, email newsletter, in-centre activity.",
+    "tasks": [
+      "Event concept approved",
+      "Copywriting completed",
+      "Main event banner designed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "TikTok content prepared",
+      "Website updated",
+      "Email/social campaign prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 10,
+      "day": 10
+    }
+  },
+  {
+    "id": "world-obesity-day",
+    "name": "World Obesity Day",
+    "category": "fitness",
+    "priority": "medium",
+    "description": "Global awareness day promoting healthy, judgement-free approaches to weight and wellbeing.",
+    "requirements": "Sensitive, body-positive social content; blog feature.",
+    "tasks": [
+      "Concept approved",
+      "Copywriting completed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 3,
+      "day": 4
+    }
+  },
+  {
+    "id": "world-osteoporosis-day",
+    "name": "World Osteoporosis Day",
+    "category": "fitness",
+    "priority": "low",
+    "description": "Global awareness day for bone health — fits strength & mobility programme messaging.",
+    "requirements": "Educational social content, programme tie-in.",
+    "tasks": [
+      "Content drafted",
+      "Social media post prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 10,
+      "day": 20
+    }
+  },
+  {
+    "id": "wspd",
+    "name": "World Suicide Prevention Day",
+    "category": "mental-health",
+    "priority": "high",
+    "description": "Global day raising awareness of suicide prevention — sensitive, supportive messaging with signposting to help.",
+    "requirements": "Carefully-worded social post, resource/helpline signposting, website banner.",
+    "tasks": [
+      "Event concept approved",
+      "Copywriting completed",
+      "Main event banner designed",
+      "Social media graphics created",
+      "Instagram post prepared",
+      "Facebook post prepared",
+      "TikTok content prepared",
+      "Website updated",
+      "Email/social campaign prepared",
+      "Final approval completed",
+      "Published"
+    ],
+    "recurrence": {
+      "type": "annual-fixed",
+      "month": 9,
+      "day": 10
+    }
+  }
+]
