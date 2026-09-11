@@ -1,0 +1,743 @@
+{
+  "note": "Starting inventory for The Pint Bar, from the stock list supplied 11 Sep 2026. server.js writes this into inventory.xlsx on first run if no workbook exists. Once inventory.xlsx exists it is the source of truth and this file is ignored.",
+  "products": [
+    {
+      "id": "P001",
+      "name": "Birra Moretti",
+      "category": "Draught",
+      "unit": "Keg",
+      "stock": 0,
+      "threshold": 1,
+      "notes": ""
+    },
+    {
+      "id": "P002",
+      "name": "Foster's",
+      "category": "Draught",
+      "unit": "Keg",
+      "stock": 0,
+      "threshold": 1,
+      "notes": ""
+    },
+    {
+      "id": "P003",
+      "name": "John Smith's Extra Smooth",
+      "category": "Draught",
+      "unit": "Keg",
+      "stock": 0,
+      "threshold": 1,
+      "notes": ""
+    },
+    {
+      "id": "P004",
+      "name": "San Miguel",
+      "category": "Draught",
+      "unit": "Keg",
+      "stock": 1,
+      "threshold": 1,
+      "notes": ""
+    },
+    {
+      "id": "P005",
+      "name": "Cruzcampo",
+      "category": "Draught",
+      "unit": "Keg",
+      "stock": 1,
+      "threshold": 1,
+      "notes": ""
+    },
+    {
+      "id": "P006",
+      "name": "Heineken",
+      "category": "Draught",
+      "unit": "Keg",
+      "stock": 1,
+      "threshold": 1,
+      "notes": ""
+    },
+    {
+      "id": "P007",
+      "name": "Guinness Draught",
+      "category": "Draught",
+      "unit": "Keg",
+      "stock": 1,
+      "threshold": 1,
+      "notes": "Was: Draught Stout — 50L keg"
+    },
+    {
+      "id": "P008",
+      "name": "Carling",
+      "category": "Draught",
+      "unit": "Keg",
+      "stock": 1,
+      "threshold": 1,
+      "notes": "Was: Draught Lager — 50L keg"
+    },
+    {
+      "id": "P009",
+      "name": "Somersby Cider",
+      "category": "Draught",
+      "unit": "Keg",
+      "stock": 0,
+      "threshold": 1,
+      "notes": ""
+    },
+    {
+      "id": "P010",
+      "name": "Budweiser",
+      "category": "Draught",
+      "unit": "Keg",
+      "stock": 5,
+      "threshold": 1,
+      "notes": ""
+    },
+    {
+      "id": "P011",
+      "name": "Estrella Damm",
+      "category": "Draught",
+      "unit": "Keg",
+      "stock": 0,
+      "threshold": 1,
+      "notes": ""
+    },
+    {
+      "id": "P012",
+      "name": "Kronenbourg 1664",
+      "category": "Draught",
+      "unit": "Keg",
+      "stock": 1,
+      "threshold": 1,
+      "notes": ""
+    },
+    {
+      "id": "P013",
+      "name": "Inch's Cider",
+      "category": "Draught",
+      "unit": "Keg",
+      "stock": 2,
+      "threshold": 1,
+      "notes": ""
+    },
+    {
+      "id": "P014",
+      "name": "Strongbow",
+      "category": "Draught",
+      "unit": "Keg",
+      "stock": 0,
+      "threshold": 1,
+      "notes": "Was: Draught Cider — 50L keg"
+    },
+    {
+      "id": "P015",
+      "name": "Carib Lager",
+      "category": "Draught",
+      "unit": "Keg",
+      "stock": 0,
+      "threshold": 1,
+      "notes": ""
+    },
+    {
+      "id": "P016",
+      "name": "Carlsberg",
+      "category": "Draught",
+      "unit": "Keg",
+      "stock": 2,
+      "threshold": 1,
+      "notes": ""
+    },
+    {
+      "id": "P017",
+      "name": "Draught Pale Ale — 30L keg",
+      "category": "Draught",
+      "unit": "Keg",
+      "stock": 0,
+      "threshold": 1,
+      "notes": "Not on the supplied draught list — zeroed, confirm or delete"
+    },
+    {
+      "id": "P018",
+      "name": "Jack Daniel's Old No.7",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 15,
+      "threshold": 2,
+      "notes": ""
+    },
+    {
+      "id": "P019",
+      "name": "Jack Daniel's Tennessee Honey",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 6,
+      "threshold": 2,
+      "notes": ""
+    },
+    {
+      "id": "P020",
+      "name": "Smirnoff Red Label Vodka",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 13,
+      "threshold": 2,
+      "notes": "Was: House Vodka 70cl"
+    },
+    {
+      "id": "P021",
+      "name": "Grey Goose Vodka",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 1,
+      "threshold": 2,
+      "notes": ""
+    },
+    {
+      "id": "P022",
+      "name": "Cîroc Vodka",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 1,
+      "threshold": 2,
+      "notes": ""
+    },
+    {
+      "id": "P023",
+      "name": "Absolut Vodka",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 15,
+      "threshold": 2,
+      "notes": ""
+    },
+    {
+      "id": "P024",
+      "name": "Absolut Vanilia Vodka",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 2,
+      "threshold": 2,
+      "notes": ""
+    },
+    {
+      "id": "P025",
+      "name": "Baileys Irish Cream",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 7,
+      "threshold": 2,
+      "notes": ""
+    },
+    {
+      "id": "P026",
+      "name": "Hennessy Cognac",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 11,
+      "threshold": 2,
+      "notes": "Was: Brandy 70cl · expression (VS, VSOP…) not stated"
+    },
+    {
+      "id": "P027",
+      "name": "Rémy Martin Cognac",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 1,
+      "threshold": 2,
+      "notes": "Expression (VS, VSOP…) not stated"
+    },
+    {
+      "id": "P028",
+      "name": "Sambuca Apple",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 1,
+      "threshold": 2,
+      "notes": "FLAGGED — brand not stated on the list, confirm producer"
+    },
+    {
+      "id": "P029",
+      "name": "Sambuca Black",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 112,
+      "threshold": 2,
+      "notes": "FLAGGED — brand not stated, and quantity 112 looks unusually high; please confirm"
+    },
+    {
+      "id": "P030",
+      "name": "Sambuca White",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 1,
+      "threshold": 2,
+      "notes": "FLAGGED — brand not stated on the list, confirm producer"
+    },
+    {
+      "id": "P031",
+      "name": "Wray & Nephew White Overproof Rum",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 7,
+      "threshold": 2,
+      "notes": "Was: White Rum 70cl"
+    },
+    {
+      "id": "P032",
+      "name": "Johnnie Walker Black Label",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 2,
+      "threshold": 2,
+      "notes": ""
+    },
+    {
+      "id": "P033",
+      "name": "Johnnie Walker Double Black",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 0,
+      "threshold": 2,
+      "notes": "STOCK QUANTITY MISSING — no figure supplied, needs a count"
+    },
+    {
+      "id": "P034",
+      "name": "Johnnie Walker Gold Label Reserve",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 1,
+      "threshold": 2,
+      "notes": ""
+    },
+    {
+      "id": "P035",
+      "name": "Captain Morgan Spiced Gold",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 5,
+      "threshold": 2,
+      "notes": "Was: Golden Rum 70cl"
+    },
+    {
+      "id": "P036",
+      "name": "Bell's Original Blended Scotch Whisky",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 1,
+      "threshold": 2,
+      "notes": "Was: Blended Whisky 70cl"
+    },
+    {
+      "id": "P037",
+      "name": "Jameson Irish Whiskey",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 1,
+      "threshold": 2,
+      "notes": "Was: Irish Whiskey 70cl"
+    },
+    {
+      "id": "P038",
+      "name": "Fireball Cinnamon Whisky",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 1,
+      "threshold": 2,
+      "notes": ""
+    },
+    {
+      "id": "P039",
+      "name": "Disaronno Originale",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 111,
+      "threshold": 2,
+      "notes": "FLAGGED — quantity 111 looks unusually high, please confirm"
+    },
+    {
+      "id": "P040",
+      "name": "Southern Comfort",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 2,
+      "threshold": 2,
+      "notes": ""
+    },
+    {
+      "id": "P041",
+      "name": "Tequila Blanco",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 1,
+      "threshold": 2,
+      "notes": "FLAGGED — brand not stated on the list"
+    },
+    {
+      "id": "P042",
+      "name": "Tequila Oro (Gold)",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 1,
+      "threshold": 2,
+      "notes": "FLAGGED — brand not stated on the list"
+    },
+    {
+      "id": "P043",
+      "name": "The Kraken Black Spiced Rum",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 3,
+      "threshold": 2,
+      "notes": ""
+    },
+    {
+      "id": "P044",
+      "name": "Dark Rum",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 1,
+      "threshold": 2,
+      "notes": "FLAGGED — brand not stated on the list"
+    },
+    {
+      "id": "P045",
+      "name": "Gordon's London Dry Gin",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 1,
+      "threshold": 2,
+      "notes": "Was: London Dry Gin 70cl"
+    },
+    {
+      "id": "P046",
+      "name": "Tia Maria",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 11,
+      "threshold": 2,
+      "notes": "Was: Coffee Liqueur 70cl"
+    },
+    {
+      "id": "P047",
+      "name": "Cointreau",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 1,
+      "threshold": 2,
+      "notes": ""
+    },
+    {
+      "id": "P048",
+      "name": "Jägermeister",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 6,
+      "threshold": 2,
+      "notes": ""
+    },
+    {
+      "id": "P049",
+      "name": "Sourz Apple",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 4,
+      "threshold": 2,
+      "notes": ""
+    },
+    {
+      "id": "P050",
+      "name": "Sourz Cherry",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 2,
+      "threshold": 2,
+      "notes": ""
+    },
+    {
+      "id": "P051",
+      "name": "House Gin 70cl",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 0,
+      "threshold": 2,
+      "notes": "Not on the supplied list — zeroed"
+    },
+    {
+      "id": "P052",
+      "name": "Single Malt Whisky 70cl",
+      "category": "Spirits",
+      "unit": "Bottle",
+      "stock": 0,
+      "threshold": 2,
+      "notes": "Not on the supplied list — zeroed"
+    },
+    {
+      "id": "P053",
+      "name": "Malbec — Red Wine",
+      "category": "Wine",
+      "unit": "Bottle",
+      "stock": 1,
+      "threshold": 2,
+      "notes": "Was: House Red 75cl · producer not stated"
+    },
+    {
+      "id": "P054",
+      "name": "Shiraz — Red Wine",
+      "category": "Wine",
+      "unit": "Bottle",
+      "stock": 2,
+      "threshold": 2,
+      "notes": "Producer not stated"
+    },
+    {
+      "id": "P055",
+      "name": "Rosé Wine",
+      "category": "Wine",
+      "unit": "Bottle",
+      "stock": 1111,
+      "threshold": 2,
+      "notes": "FLAGGED — quantity 1111 looks unusually high, please confirm. Was: House Rosé 75cl"
+    },
+    {
+      "id": "P056",
+      "name": "Croft Port",
+      "category": "Wine",
+      "unit": "Bottle",
+      "stock": 1,
+      "threshold": 2,
+      "notes": "Specific Croft bottling not stated"
+    },
+    {
+      "id": "P057",
+      "name": "Taylor's Vintage Port",
+      "category": "Wine",
+      "unit": "Bottle",
+      "stock": 1,
+      "threshold": 2,
+      "notes": ""
+    },
+    {
+      "id": "P058",
+      "name": "House White 75cl",
+      "category": "Wine",
+      "unit": "Bottle",
+      "stock": 0,
+      "threshold": 2,
+      "notes": "Not on the supplied list — zeroed"
+    },
+    {
+      "id": "P059",
+      "name": "Prosecco 75cl",
+      "category": "Wine",
+      "unit": "Bottle",
+      "stock": 0,
+      "threshold": 2,
+      "notes": "Not on the supplied list — zeroed"
+    },
+    {
+      "id": "P060",
+      "name": "Champagne 75cl",
+      "category": "Wine",
+      "unit": "Bottle",
+      "stock": 0,
+      "threshold": 2,
+      "notes": "Not on the supplied list — zeroed"
+    },
+    {
+      "id": "P061",
+      "name": "Bottled Lager 330ml",
+      "category": "Beer",
+      "unit": "Bottle",
+      "stock": 0,
+      "threshold": 12,
+      "notes": "Not on the supplied list — zeroed"
+    },
+    {
+      "id": "P062",
+      "name": "Bottled Pale Ale 330ml",
+      "category": "Beer",
+      "unit": "Bottle",
+      "stock": 0,
+      "threshold": 12,
+      "notes": "Not on the supplied list — zeroed"
+    },
+    {
+      "id": "P063",
+      "name": "Bottled Brown Ale 500ml",
+      "category": "Beer",
+      "unit": "Bottle",
+      "stock": 0,
+      "threshold": 12,
+      "notes": "Not on the supplied list — zeroed"
+    },
+    {
+      "id": "P064",
+      "name": "Alcohol-Free Lager 330ml",
+      "category": "Beer",
+      "unit": "Bottle",
+      "stock": 0,
+      "threshold": 12,
+      "notes": "Not on the supplied list — zeroed"
+    },
+    {
+      "id": "P065",
+      "name": "Canned Lager 440ml",
+      "category": "Lager",
+      "unit": "Can",
+      "stock": 0,
+      "threshold": 12,
+      "notes": "Not on the supplied list — zeroed"
+    },
+    {
+      "id": "P066",
+      "name": "Canned Session IPA 440ml",
+      "category": "Lager",
+      "unit": "Can",
+      "stock": 0,
+      "threshold": 12,
+      "notes": "Not on the supplied list — zeroed"
+    },
+    {
+      "id": "P067",
+      "name": "Bottled Apple Cider 500ml",
+      "category": "Cider",
+      "unit": "Bottle",
+      "stock": 0,
+      "threshold": 12,
+      "notes": "Not on the supplied list — zeroed"
+    },
+    {
+      "id": "P068",
+      "name": "Bottled Berry Cider 500ml",
+      "category": "Cider",
+      "unit": "Bottle",
+      "stock": 0,
+      "threshold": 12,
+      "notes": "Not on the supplied list — zeroed"
+    },
+    {
+      "id": "P069",
+      "name": "Crodino (Pink)",
+      "category": "Soft Drinks",
+      "unit": "Bottle",
+      "stock": 1,
+      "threshold": 2,
+      "notes": "FLAGGED — \"Crodino (Pink)\" could not be confirmed as an official variant; Crodino is sold as Biondo and Rosso. Confirm which."
+    },
+    {
+      "id": "P070",
+      "name": "Cola 330ml",
+      "category": "Soft Drinks",
+      "unit": "Can",
+      "stock": 0,
+      "threshold": 24,
+      "notes": "Not on the supplied list — zeroed"
+    },
+    {
+      "id": "P071",
+      "name": "Diet Cola 330ml",
+      "category": "Soft Drinks",
+      "unit": "Can",
+      "stock": 0,
+      "threshold": 24,
+      "notes": "Not on the supplied list — zeroed"
+    },
+    {
+      "id": "P072",
+      "name": "Lemonade 330ml",
+      "category": "Soft Drinks",
+      "unit": "Can",
+      "stock": 0,
+      "threshold": 24,
+      "notes": "Not on the supplied list — zeroed"
+    },
+    {
+      "id": "P073",
+      "name": "Orange Juice 1L",
+      "category": "Soft Drinks",
+      "unit": "Bottle",
+      "stock": 0,
+      "threshold": 6,
+      "notes": "Not on the supplied list — zeroed"
+    },
+    {
+      "id": "P074",
+      "name": "Still Water 500ml",
+      "category": "Soft Drinks",
+      "unit": "Bottle",
+      "stock": 0,
+      "threshold": 18,
+      "notes": "Not on the supplied list — zeroed"
+    },
+    {
+      "id": "P075",
+      "name": "Sparkling Water 500ml",
+      "category": "Soft Drinks",
+      "unit": "Bottle",
+      "stock": 0,
+      "threshold": 18,
+      "notes": "Not on the supplied list — zeroed"
+    },
+    {
+      "id": "P076",
+      "name": "Schweppes",
+      "category": "Mixers",
+      "unit": "Bottle",
+      "stock": 1,
+      "threshold": 2,
+      "notes": "FLAGGED — variant not stated (tonic, slimline, lemonade, ginger ale). Confirm which."
+    },
+    {
+      "id": "P077",
+      "name": "Tonic Water 200ml",
+      "category": "Mixers",
+      "unit": "Bottle",
+      "stock": 0,
+      "threshold": 24,
+      "notes": "Not on the supplied list — zeroed"
+    },
+    {
+      "id": "P078",
+      "name": "Slimline Tonic 200ml",
+      "category": "Mixers",
+      "unit": "Bottle",
+      "stock": 0,
+      "threshold": 24,
+      "notes": "Not on the supplied list — zeroed"
+    },
+    {
+      "id": "P079",
+      "name": "Ginger Ale 200ml",
+      "category": "Mixers",
+      "unit": "Bottle",
+      "stock": 0,
+      "threshold": 18,
+      "notes": "Not on the supplied list — zeroed"
+    },
+    {
+      "id": "P080",
+      "name": "Soda Water 200ml",
+      "category": "Mixers",
+      "unit": "Bottle",
+      "stock": 0,
+      "threshold": 18,
+      "notes": "Not on the supplied list — zeroed"
+    },
+    {
+      "id": "P081",
+      "name": "Ice — 5kg bag",
+      "category": "Other",
+      "unit": "Box",
+      "stock": 0,
+      "threshold": 6,
+      "notes": "Not on the supplied list — zeroed"
+    },
+    {
+      "id": "P082",
+      "name": "Lime wedges — tub",
+      "category": "Other",
+      "unit": "Unit",
+      "stock": 0,
+      "threshold": 4,
+      "notes": "Not on the supplied list — zeroed"
+    }
+  ]
+}
