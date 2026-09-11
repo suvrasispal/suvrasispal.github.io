@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;600;700&family=Barlow+Condensed:wght@400;500;600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:#F3ECDD;color:#12332A;font-family:'Jost','Century Gothic',sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:#8A6A2E;text-decoration:none}
+  a:hover{color:#12332A}
+  input,select,textarea,button{font-family:inherit}
+  ::selection{background:#D89A2E;color:#12332A}
+  :focus-visible{outline:2px solid #C8811E;outline-offset:2px}
+  @keyframes pbfade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:#F3ECDD;color:#12332A">
+
+  <header style="position:sticky;top:0;z-index:40;background:#12332A;color:#F3ECDD;border-bottom:3px solid #D89A2E">
+    <div style="max-width:1440px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:space-between">
+      <div style="display:flex;align-items:center;gap:14px">
+        <img src="assets/lockup-horizontal-reversed.svg" alt="The Pint Bar — Oyo Entertainment" style="display:block;height:62px;width:auto;flex:none" />
+        <div style="width:1px;height:34px;background:rgba(243,236,221,.28)"></div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.34em;text-transform:uppercase;color:#C9BFA8">Stock Control</div>
+      </div>
+
+      <nav style="display:flex;gap:2px;flex-wrap:wrap">
+        <button type="button" onClick="{{ goDashboard }}" style="position:relative;background:transparent;border:0;color:#F3ECDD;font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.22em;text-transform:uppercase;padding:12px 14px;min-height:44px;cursor:pointer" style-hover="color:#D89A2E">
+          Dashboard
+          <sc-if value="{{ isDashboard }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;left:14px;right:14px;bottom:4px;height:3px;background:#D89A2E"></span></sc-if>
+        </button>
+        <button type="button" onClick="{{ goInventory }}" style="position:relative;background:transparent;border:0;color:#F3ECDD;font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.22em;text-transform:uppercase;padding:12px 14px;min-height:44px;cursor:pointer" style-hover="color:#D89A2E">
+          Inventory
+          <sc-if value="{{ isInventory }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;left:14px;right:14px;bottom:4px;height:3px;background:#D89A2E"></span></sc-if>
+        </button>
+        <button type="button" onClick="{{ goHistory }}" style="position:relative;background:transparent;border:0;color:#F3ECDD;font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.22em;text-transform:uppercase;padding:12px 14px;min-height:44px;cursor:pointer" style-hover="color:#D89A2E">
+          History
+          <sc-if value="{{ isHistory }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;left:14px;right:14px;bottom:4px;height:3px;background:#D89A2E"></span></sc-if>
+        </button>
+        <button type="button" onClick="{{ goSettings }}" style="position:relative;background:transparent;border:0;color:#F3ECDD;font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.22em;text-transform:uppercase;padding:12px 14px;min-height:44px;cursor:pointer" style-hover="color:#D89A2E">
+          Settings
+          <sc-if value="{{ isSettings }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;left:14px;right:14px;bottom:4px;height:3px;background:#D89A2E"></span></sc-if>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main style="max-width:1440px;margin:0 auto;padding:28px 20px 96px">
+
+    <sc-if value="{{ showDemoBanner }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;border:1px solid #D89A2E;background:#FAF3E2;padding:14px 16px;margin-bottom:24px">
+        <div style="font-size:14px;line-height:1.55;max-width:78ch;color:#3D5A4C">
+          <strong style="color:#12332A">Sample data.</strong> These products and quantities are demo placeholders — the drinks-list image did not arrive, so nothing here is taken from your real range. Edit, delete or import your own <em>.xlsx</em> from Settings to replace them.
+        </div>
+        <button type="button" onClick="{{ dismissDemo }}" style="background:transparent;border:1px solid rgba(18,51,42,.3);color:#12332A;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.18em;text-transform:uppercase;padding:9px 12px;min-height:40px;cursor:pointer" style-hover="border-color:#C8811E;color:#8A5A0C">Dismiss</button>
+      </div>
+    </sc-if>
+
+    <!-- ─────────────── DASHBOARD ─────────────── -->
+    <sc-if value="{{ isDashboard }}" hint-placeholder-val="{{ true }}">
+      <div>
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;border-bottom:2px solid #12332A;padding-bottom:14px;margin-bottom:24px">
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#8A6A2E;margin-bottom:6px">Today · {{ todayLabel }}</div>
+            <h1 style="font-family:'Bodoni Moda',Didot,serif;font-weight:600;font-size:40px;line-height:1;letter-spacing:.01em;margin:0;text-transform:uppercase">Stock at a glance</h1>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button type="button" onClick="{{ openNewProduct }}" style="background:#12332A;color:#F3ECDD;border:1px solid #12332A;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.2em;text-transform:uppercase;padding:12px 18px;min-height:46px;cursor:pointer" style-hover="background:#1C4C3E">+ Add product</button>
+            <button type="button" onClick="{{ goInventory }}" style="background:#D89A2E;color:#12332A;border:1px solid #D89A2E;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.2em;text-transform:uppercase;padding:12px 18px;min-height:46px;cursor:pointer;font-weight:600" style-hover="background:#C8811E">Record sales</button>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:14px;margin-bottom:32px">
+          <div style="background:#FCF8EF;border:1px solid rgba(18,51,42,.16);padding:18px 18px 16px">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#4A5F55;margin-bottom:10px">Total products</div>
+            <div style="font-family:'Bodoni Moda',Didot,serif;font-weight:600;font-size:42px;line-height:1">{{ statProducts }}</div>
+          </div>
+          <div style="background:#FCF8EF;border:1px solid rgba(18,51,42,.16);padding:18px 18px 16px">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#4A5F55;margin-bottom:10px">Units in stock</div>
+            <div style="font-family:'Bodoni Moda',Didot,serif;font-weight:600;font-size:42px;line-height:1">{{ statUnits }}</div>
+          </div>
+          <div style="background:#FAF3E2;border:1px solid #D89A2E;border-left:5px solid #C8811E;padding:18px 18px 16px">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#8A5A0C;margin-bottom:10px">Low stock</div>
+            <div style="font-family:'Bodoni Moda',Didot,serif;font-weight:600;font-size:42px;line-height:1;color:#8A5A0C">{{ statLow }}</div>
+          </div>
+          <div style="background:#12332A;color:#F3ECDD;border:1px solid #12332A;padding:18px 18px 16px">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#C9BFA8;margin-bottom:10px">Out of stock</div>
+            <div style="font-family:'Bodoni Moda',Didot,serif;font-weight:600;font-size:42px;line-height:1">{{ statOut }}</div>
+          </div>
+          <div style="background:#FCF8EF;border:1px solid rgba(18,51,42,.16);padding:18px 18px 16px">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#4A5F55;margin-bottom:10px">Sold today</div>
+            <div style="font-family:'Bodoni Moda',Didot,serif;font-weight:600;font-size:42px;line-height:1">{{ statSold }}</div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:28px">
+          <section>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-bottom:2px solid #12332A;padding-bottom:10px;margin-bottom:2px">
+              <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.3em;text-transform:uppercase;margin:0;font-weight:600">Needs attention</h2>
+              <button type="button" onClick="{{ goLowStock }}" style="background:transparent;border:0;color:#8A6A2E;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;padding:6px 0" style-hover="color:#12332A">See all →</button>
+            </div>
+            <sc-if value="{{ hasAttention }}" hint-placeholder-val="{{ true }}">
+              <div>
+                <sc-for list="{{ attention }}" as="a" hint-placeholder-count="4">
+                  <div style="display:flex;align-items:center;gap:14px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(18,51,42,.14)">
+                    <div style="min-width:0">
+                      <div style="font-size:16px;font-weight:500;line-height:1.25">{{ a.name }}</div>
+                      <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#4A5F55;margin-top:3px">{{ a.category }} · {{ a.stockLabel }}</div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:8px;flex:none">
+                      <sc-if value="{{ a.isOut }}" hint-placeholder-val="{{ false }}">
+                        <span style="background:#12332A;color:#F3ECDD;font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;padding:6px 9px">Out of stock</span>
+                      </sc-if>
+                      <sc-if value="{{ a.isLow }}" hint-placeholder-val="{{ true }}">
+                        <span style="background:#F6E4C4;color:#7A4E0C;border:1px solid #D89A2E;font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;padding:5px 9px">Low stock</span>
+                      </sc-if>
+                      <button type="button" onClick="{{ a.onAddStock }}" style="background:transparent;border:1px solid rgba(18,51,42,.3);color:#12332A;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;padding:9px 11px;min-height:42px;cursor:pointer" style-hover="border-color:#C8811E;color:#8A5A0C">+ Stock</button>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+            <sc-if value="{{ noAttention }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:26px 0;color:#4A5F55;font-size:15px">Every line is above its threshold. Good cellar.</div>
+            </sc-if>
+          </section>
+
+          <section>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-bottom:2px solid #12332A;padding-bottom:10px;margin-bottom:2px">
+              <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.3em;text-transform:uppercase;margin:0;font-weight:600">Recent activity</h2>
+              <button type="button" onClick="{{ goHistory }}" style="background:transparent;border:0;color:#8A6A2E;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;padding:6px 0" style-hover="color:#12332A">Full history →</button>
+            </div>
+            <sc-if value="{{ hasRecent }}" hint-placeholder-val="{{ true }}">
+              <div>
+                <sc-for list="{{ recent }}" as="t" hint-placeholder-count="5">
+                  <div style="display:flex;align-items:center;gap:14px;justify-content:space-between;padding:13px 0;border-bottom:1px solid rgba(18,51,42,.14)">
+                    <div style="min-width:0">
+                      <div style="font-size:15px;font-weight:500;line-height:1.25">{{ t.product }}</div>
+                      <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#4A5F55;margin-top:3px">{{ t.when }} · {{ t.type }}</div>
+                    </div>
+                    <div style="text-align:right;flex:none">
+                      <div style="font-family:'Jost',sans-serif;font-weight:600;font-size:16px;font-variant-numeric:tabular-nums">{{ t.deltaLabel }}</div>
+                      <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.1em;color:#4A5F55;margin-top:2px">{{ t.move }}</div>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+            <sc-if value="{{ noRecent }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:26px 0;color:#4A5F55;font-size:15px">No stock movements recorded yet.</div>
+            </sc-if>
+          </section>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ─────────────── INVENTORY ─────────────── -->
+    <sc-if value="{{ isInventory }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;border-bottom:2px solid #12332A;padding-bottom:14px;margin-bottom:20px">
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#8A6A2E;margin-bottom:6px">{{ resultLabel }}</div>
+            <h1 style="font-family:'Bodoni Moda',Didot,serif;font-weight:600;font-size:40px;line-height:1;margin:0;text-transform:uppercase">Inventory</h1>
+          </div>
+          <button type="button" onClick="{{ openNewProduct }}" style="background:#12332A;color:#F3ECDD;border:1px solid #12332A;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.2em;text-transform:uppercase;padding:12px 18px;min-height:46px;cursor:pointer" style-hover="background:#1C4C3E">+ Add product</button>
+        </div>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px">
+          <input type="search" placeholder="Search drink, brand or category…" value="{{ search }}" onChange="{{ onSearch }}" style="flex:1 1 260px;min-width:0;background:#FCF8EF;border:1px solid rgba(18,51,42,.28);color:#12332A;font-size:16px;padding:13px 14px;min-height:48px;border-radius:0" />
+          <div style="display:flex;gap:0;border:1px solid rgba(18,51,42,.28);background:#FCF8EF">
+            <sc-for list="{{ statusTabs }}" as="s" hint-placeholder-count="4">
+              <div>
+                <sc-if value="{{ s.active }}" hint-placeholder-val="{{ false }}">
+                  <button type="button" onClick="{{ s.onClick }}" style="background:#12332A;color:#F3ECDD;border:0;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.18em;text-transform:uppercase;padding:12px 14px;min-height:46px;cursor:pointer">{{ s.label }}</button>
+                </sc-if>
+                <sc-if value="{{ s.inactive }}" hint-placeholder-val="{{ true }}">
+                  <button type="button" onClick="{{ s.onClick }}" style="background:transparent;color:#12332A;border:0;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.18em;text-transform:uppercase;padding:12px 14px;min-height:46px;cursor:pointer" style-hover="color:#8A5A0C">{{ s.label }}</button>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px">
+          <sc-for list="{{ catChips }}" as="c" hint-placeholder-count="7">
+            <div>
+              <sc-if value="{{ c.active }}" hint-placeholder-val="{{ false }}">
+                <button type="button" onClick="{{ c.onClick }}" style="background:#D89A2E;color:#12332A;border:1px solid #D89A2E;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.18em;text-transform:uppercase;padding:9px 13px;min-height:40px;cursor:pointer;font-weight:600">{{ c.label }}</button>
+              </sc-if>
+              <sc-if value="{{ c.inactive }}" hint-placeholder-val="{{ true }}">
+                <button type="button" onClick="{{ c.onClick }}" style="background:transparent;color:#3D5A4C;border:1px solid rgba(18,51,42,.24);font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.18em;text-transform:uppercase;padding:9px 13px;min-height:40px;cursor:pointer" style-hover="border-color:#C8811E;color:#8A5A0C">{{ c.label }}</button>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+
+        <!-- wide: table -->
+        <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+          <div style="border:1px solid rgba(18,51,42,.2);background:#FCF8EF">
+            <div style="display:grid;grid-template-columns:minmax(200px,2.4fr) minmax(110px,1fr) 150px 96px 150px minmax(190px,1fr);gap:12px;align-items:center;padding:12px 16px;background:#12332A;color:#F3ECDD;font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.24em;text-transform:uppercase">
+              <div>Product</div><div>Category</div><div>Stock</div><div>Threshold</div><div>Status</div><div style="text-align:right">Actions</div>
+            </div>
+            <sc-for list="{{ rows }}" as="r" hint-placeholder-count="8">
+              <div style="display:grid;grid-template-columns:minmax(200px,2.4fr) minmax(110px,1fr) 150px 96px 150px minmax(190px,1fr);gap:12px;align-items:center;padding:12px 16px;border-bottom:1px solid rgba(18,51,42,.13)">
+                <div style="min-width:0">
+                  <div style="font-size:16px;font-weight:500;line-height:1.3">{{ r.name }}</div>
+                  <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#4A5F55;margin-top:2px">{{ r.id }} · {{ r.unit }} · sold {{ r.sold }}</div>
+                  <sc-if value="{{ r.hasFlag }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:inline-block;margin-top:6px;background:#F6E4C4;border-left:3px solid #C8811E;color:#7A4E0C;font-size:13px;line-height:1.45;padding:5px 8px">⚑ {{ r.flag }}</div>
+                  </sc-if>
+                </div>
+                <div style="font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:#3D5A4C">{{ r.category }}</div>
+                <div style="display:flex;align-items:center;gap:2px;border:1px solid rgba(18,51,42,.26);width:fit-content;background:#F3ECDD">
+                  <button type="button" onClick="{{ r.onMinus }}" aria-label="Decrease by one" style="background:transparent;border:0;color:#12332A;font-size:20px;line-height:1;width:40px;height:42px;cursor:pointer" style-hover="background:rgba(18,51,42,.09)">−</button>
+                  <div style="min-width:44px;text-align:center;font-size:19px;font-weight:600;font-variant-numeric:tabular-nums">{{ r.stock }}</div>
+                  <button type="button" onClick="{{ r.onPlus }}" aria-label="Increase by one" style="background:transparent;border:0;color:#12332A;font-size:20px;line-height:1;width:40px;height:42px;cursor:pointer" style-hover="background:rgba(18,51,42,.09)">+</button>
+                </div>
+                <div style="font-size:16px;font-variant-numeric:tabular-nums;color:#3D5A4C">{{ r.threshold }}</div>
+                <div>
+                  <sc-if value="{{ r.isOut }}" hint-placeholder-val="{{ false }}"><span style="display:inline-block;background:#12332A;color:#F3ECDD;font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;padding:6px 9px">Out of stock</span></sc-if>
+                  <sc-if value="{{ r.isLow }}" hint-placeholder-val="{{ false }}"><span style="display:inline-block;background:#F6E4C4;color:#7A4E0C;border:1px solid #D89A2E;font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;padding:5px 9px">Low stock</span></sc-if>
+                  <sc-if value="{{ r.isIn }}" hint-placeholder-val="{{ true }}"><span style="display:inline-block;background:rgba(18,51,42,.07);color:#12332A;border:1px solid rgba(18,51,42,.22);font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;padding:5px 9px">In stock</span></sc-if>
+                </div>
+                <div style="display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap">
+                  <button type="button" onClick="{{ r.onSale }}" style="background:#D89A2E;color:#12332A;border:1px solid #D89A2E;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;padding:9px 12px;min-height:42px;cursor:pointer;font-weight:600" style-hover="background:#C8811E">Sale</button>
+                  <button type="button" onClick="{{ r.onManage }}" style="background:transparent;border:1px solid rgba(18,51,42,.3);color:#12332A;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;padding:9px 12px;min-height:42px;cursor:pointer" style-hover="border-color:#12332A;background:rgba(18,51,42,.06)">Manage</button>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <!-- narrow: cards -->
+        <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid;gap:12px">
+            <sc-for list="{{ rows }}" as="r" hint-placeholder-count="6">
+              <div style="border:1px solid rgba(18,51,42,.2);background:#FCF8EF;padding:14px">
+                <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start">
+                  <div style="min-width:0">
+                    <div style="font-size:17px;font-weight:500;line-height:1.25">{{ r.name }}</div>
+                    <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#4A5F55;margin-top:3px">{{ r.category }} · {{ r.unit }} · thr {{ r.threshold }}</div>
+                    <sc-if value="{{ r.hasFlag }}" hint-placeholder-val="{{ false }}">
+                      <div style="margin-top:6px;background:#F6E4C4;border-left:3px solid #C8811E;color:#7A4E0C;font-size:13px;line-height:1.45;padding:5px 8px">⚑ {{ r.flag }}</div>
+                    </sc-if>
+                  </div>
+                  <div style="flex:none">
+                    <sc-if value="{{ r.isOut }}" hint-placeholder-val="{{ false }}"><span style="display:inline-block;background:#12332A;color:#F3ECDD;font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:6px 8px">Out</span></sc-if>
+                    <sc-if value="{{ r.isLow }}" hint-placeholder-val="{{ false }}"><span style="display:inline-block;background:#F6E4C4;color:#7A4E0C;border:1px solid #D89A2E;font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:5px 8px">Low</span></sc-if>
+                    <sc-if value="{{ r.isIn }}" hint-placeholder-val="{{ true }}"><span style="display:inline-block;background:rgba(18,51,42,.07);color:#12332A;border:1px solid rgba(18,51,42,.22);font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:5px 8px">In stock</span></sc-if>
+                  </div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;margin-top:14px;flex-wrap:wrap">
+                  <div style="display:flex;align-items:center;gap:2px;border:1px solid rgba(18,51,42,.26);background:#F3ECDD">
+                    <button type="button" onClick="{{ r.onMinus }}" aria-label="Decrease by one" style="background:transparent;border:0;color:#12332A;font-size:22px;line-height:1;width:48px;height:48px;cursor:pointer">−</button>
+                    <div style="min-width:46px;text-align:center;font-size:20px;font-weight:600;font-variant-numeric:tabular-nums">{{ r.stock }}</div>
+                    <button type="button" onClick="{{ r.onPlus }}" aria-label="Increase by one" style="background:transparent;border:0;color:#12332A;font-size:22px;line-height:1;width:48px;height:48px;cursor:pointer">+</button>
+                  </div>
+                  <button type="button" onClick="{{ r.onSale }}" style="flex:1 1 96px;background:#D89A2E;color:#12332A;border:1px solid #D89A2E;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.18em;text-transform:uppercase;padding:10px 12px;min-height:48px;cursor:pointer;font-weight:600">Sale</button>
+                  <button type="button" onClick="{{ r.onManage }}" style="flex:1 1 96px;background:transparent;border:1px solid rgba(18,51,42,.3);color:#12332A;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.18em;text-transform:uppercase;padding:10px 12px;min-height:48px;cursor:pointer">Manage</button>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ noRows }}" hint-placeholder-val="{{ false }}">
+          <div style="border:1px dashed rgba(18,51,42,.3);padding:44px 20px;text-align:center;color:#4A5F55;font-size:16px">Nothing matches that search or filter.</div>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <!-- ─────────────── HISTORY ─────────────── -->
+    <sc-if value="{{ isHistory }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;border-bottom:2px solid #12332A;padding-bottom:14px;margin-bottom:20px">
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#8A6A2E;margin-bottom:6px">{{ histCountLabel }}</div>
+            <h1 style="font-family:'Bodoni Moda',Didot,serif;font-weight:600;font-size:40px;line-height:1;margin:0;text-transform:uppercase">Stock history</h1>
+          </div>
+          <button type="button" onClick="{{ exportXlsx }}" style="background:transparent;border:1px solid rgba(18,51,42,.3);color:#12332A;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.2em;text-transform:uppercase;padding:12px 18px;min-height:46px;cursor:pointer" style-hover="border-color:#12332A;background:rgba(18,51,42,.06)">Export .xlsx</button>
+        </div>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:20px">
+          <input type="search" placeholder="Search product…" value="{{ histSearch }}" onChange="{{ onHistSearch }}" style="flex:1 1 240px;min-width:0;background:#FCF8EF;border:1px solid rgba(18,51,42,.28);color:#12332A;font-size:16px;padding:13px 14px;min-height:48px" />
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <sc-for list="{{ histTabs }}" as="h" hint-placeholder-count="5">
+              <div>
+                <sc-if value="{{ h.active }}" hint-placeholder-val="{{ false }}">
+                  <button type="button" onClick="{{ h.onClick }}" style="background:#12332A;color:#F3ECDD;border:1px solid #12332A;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.18em;text-transform:uppercase;padding:10px 13px;min-height:44px;cursor:pointer">{{ h.label }}</button>
+                </sc-if>
+                <sc-if value="{{ h.inactive }}" hint-placeholder-val="{{ true }}">
+                  <button type="button" onClick="{{ h.onClick }}" style="background:transparent;color:#3D5A4C;border:1px solid rgba(18,51,42,.24);font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.18em;text-transform:uppercase;padding:10px 13px;min-height:44px;cursor:pointer" style-hover="border-color:#C8811E;color:#8A5A0C">{{ h.label }}</button>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <sc-if value="{{ hasHist }}" hint-placeholder-val="{{ true }}">
+          <div style="border:1px solid rgba(18,51,42,.2);background:#FCF8EF">
+            <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+              <div style="display:grid;grid-template-columns:170px minmax(180px,2fr) 140px 90px 130px minmax(140px,1fr);gap:12px;padding:12px 16px;background:#12332A;color:#F3ECDD;font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.24em;text-transform:uppercase">
+                <div>Date / time</div><div>Product</div><div>Action</div><div>Qty</div><div>Movement</div><div>Reason</div>
+              </div>
+            </sc-if>
+            <sc-for list="{{ histRows }}" as="t" hint-placeholder-count="10">
+              <div>
+                <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+                  <div style="display:grid;grid-template-columns:170px minmax(180px,2fr) 140px 90px 130px minmax(140px,1fr);gap:12px;align-items:center;padding:12px 16px;border-bottom:1px solid rgba(18,51,42,.13);font-size:15px">
+                    <div style="font-family:'Barlow Condensed',sans-serif;letter-spacing:.08em;color:#3D5A4C;font-size:14px">{{ t.when }}</div>
+                    <div style="font-weight:500">{{ t.product }}</div>
+                    <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#3D5A4C">{{ t.type }}</div>
+                    <div style="font-weight:600;font-variant-numeric:tabular-nums">{{ t.deltaLabel }}</div>
+                    <div style="font-variant-numeric:tabular-nums;color:#3D5A4C">{{ t.move }}</div>
+                    <div style="color:#4A5F55;font-size:14px">{{ t.reason }}</div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+                  <div style="padding:13px 14px;border-bottom:1px solid rgba(18,51,42,.13)">
+                    <div style="display:flex;justify-content:space-between;gap:12px">
+                      <div style="font-size:16px;font-weight:500">{{ t.product }}</div>
+                      <div style="font-weight:600;font-variant-numeric:tabular-nums">{{ t.deltaLabel }}</div>
+                    </div>
+                    <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#4A5F55;margin-top:4px">{{ t.when }} · {{ t.type }} · {{ t.move }}</div>
+                    <div style="color:#4A5F55;font-size:14px;margin-top:2px">{{ t.reason }}</div>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ noHist }}" hint-placeholder-val="{{ false }}">
+          <div style="border:1px dashed rgba(18,51,42,.3);padding:44px 20px;text-align:center;color:#4A5F55;font-size:16px">No movements recorded for this filter yet.</div>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <!-- ─────────────── SETTINGS ─────────────── -->
+    <sc-if value="{{ isSettings }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <div style="border-bottom:2px solid #12332A;padding-bottom:14px;margin-bottom:24px">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#8A6A2E;margin-bottom:6px">Data &amp; defaults</div>
+          <h1 style="font-family:'Bodoni Moda',Didot,serif;font-weight:600;font-size:40px;line-height:1;margin:0;text-transform:uppercase">Settings</h1>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:24px">
+          <section style="border:1px solid rgba(18,51,42,.2);background:#FCF8EF;padding:20px">
+            <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.3em;text-transform:uppercase;margin:0 0 4px;font-weight:600">Excel file</h2>
+            <p style="font-size:15px;line-height:1.6;color:#3D5A4C;margin:0 0 6px;max-width:60ch">{{ excelStatus }}</p>
+            <p style="font-size:14px;line-height:1.6;color:#4A5F55;margin:0 0 16px;max-width:62ch">{{ excelNote }}</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <sc-if value="{{ fsaSupported }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex;gap:8px;flex-wrap:wrap">
+                  <button type="button" onClick="{{ openWorkbook }}" style="background:#12332A;color:#F3ECDD;border:1px solid #12332A;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.18em;text-transform:uppercase;padding:12px 16px;min-height:46px;cursor:pointer" style-hover="background:#1C4C3E">Open local .xlsx</button>
+                  <button type="button" onClick="{{ linkWorkbook }}" style="background:#D89A2E;color:#12332A;border:1px solid #D89A2E;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.18em;text-transform:uppercase;padding:12px 16px;min-height:46px;cursor:pointer;font-weight:600" style-hover="background:#C8811E">Create &amp; link file</button>
+                </div>
+              </sc-if>
+              <button type="button" onClick="{{ pickImport }}" style="background:transparent;border:1px solid rgba(18,51,42,.3);color:#12332A;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.18em;text-transform:uppercase;padding:12px 16px;min-height:46px;cursor:pointer" style-hover="border-color:#12332A;background:rgba(18,51,42,.06)">Import .xlsx</button>
+              <button type="button" onClick="{{ exportXlsx }}" style="background:transparent;border:1px solid rgba(18,51,42,.3);color:#12332A;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.18em;text-transform:uppercase;padding:12px 16px;min-height:46px;cursor:pointer" style-hover="border-color:#12332A;background:rgba(18,51,42,.06)">Export .xlsx</button>
+              <input type="file" accept=".xlsx,.xls" ref="{{ fileRef }}" onChange="{{ onImportFile }}" style="display:none" />
+            </div>
+            <div style="margin-top:18px;border-top:1px solid rgba(18,51,42,.14);padding-top:14px">
+              <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:#4A5F55;margin-bottom:8px">Workbook structure</div>
+              <div style="font-size:14px;line-height:1.7;color:#3D5A4C">
+                <div><strong style="color:#12332A">Inventory</strong> — ID · Product · Category · Unit · Current Stock · Low Stock Threshold · Notes</div>
+                <div><strong style="color:#12332A">Transactions</strong> — Date · Time · Product ID · Product · Transaction Type · Quantity · Previous Stock · New Stock · Reason · Staff</div>
+              </div>
+            </div>
+          </section>
+
+          <section style="border:1px solid rgba(18,51,42,.2);background:#FCF8EF;padding:20px">
+            <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.3em;text-transform:uppercase;margin:0 0 16px;font-weight:600">Defaults</h2>
+            <label style="display:block;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#4A5F55;margin-bottom:6px">Default low-stock threshold</label>
+            <input type="number" min="0" ref="{{ thrRef }}" defaultValue="{{ defThreshold }}" style="width:100%;background:#F3ECDD;border:1px solid rgba(18,51,42,.28);color:#12332A;font-size:16px;padding:12px 13px;min-height:48px;margin-bottom:16px" />
+            <label style="display:block;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#4A5F55;margin-bottom:6px">Staff name on the audit trail</label>
+            <input type="text" ref="{{ staffRef }}" defaultValue="{{ staffName }}" style="width:100%;background:#F3ECDD;border:1px solid rgba(18,51,42,.28);color:#12332A;font-size:16px;padding:12px 13px;min-height:48px;margin-bottom:16px" />
+            <button type="button" onClick="{{ saveSettings }}" style="background:#12332A;color:#F3ECDD;border:1px solid #12332A;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.2em;text-transform:uppercase;padding:12px 18px;min-height:46px;cursor:pointer" style-hover="background:#1C4C3E">Save defaults</button>
+          </section>
+
+          <section style="border:1px solid #D89A2E;background:#FAF3E2;padding:20px">
+            <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.3em;text-transform:uppercase;margin:0 0 10px;font-weight:600;color:#8A5A0C">Running this at the bar</h2>
+            <p style="font-size:14px;line-height:1.7;color:#3D5A4C;margin:0 0 12px;max-width:62ch">A browser cannot silently write to a folder on its own. Two honest options, both real:</p>
+            <p style="font-size:14px;line-height:1.7;color:#3D5A4C;margin:0 0 12px;max-width:62ch"><strong style="color:#12332A">1 · Linked file (no install).</strong> In Chrome or Edge on desktop, use <em>Create &amp; link file</em> or <em>Open local .xlsx</em> above. The browser asks permission once, then every stock movement writes straight into that workbook on disk. Re-grant on each new session.</p>
+            <p style="font-size:14px;line-height:1.7;color:#3D5A4C;margin:0 0 12px;max-width:62ch"><strong style="color:#12332A">2 · Local service (fully automatic).</strong> Point the data layer at a small Node or Python process on the bar's computer that owns the file — <em>GET /inventory</em> to read, <em>POST /transaction</em> to append and rewrite. The interface already reads and writes through one data layer, so swapping local storage for that endpoint — or for a database later — is a single module change.</p>
+            <p style="font-size:14px;line-height:1.7;color:#4A5F55;margin:0;max-width:62ch">Until either is connected, data persists in this browser and exports on demand.</p>
+          </section>
+
+          <section style="border:1px solid rgba(18,51,42,.2);background:#FCF8EF;padding:20px">
+            <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.3em;text-transform:uppercase;margin:0 0 10px;font-weight:600">Demo data</h2>
+            <p style="font-size:14px;line-height:1.7;color:#3D5A4C;margin:0 0 16px;max-width:60ch">Reset returns the prototype to the placeholder product list and clears all recorded movements. Export first if you want a copy.</p>
+            <button type="button" onClick="{{ confirmReset }}" style="background:transparent;border:1px solid #12332A;color:#12332A;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.2em;text-transform:uppercase;padding:12px 18px;min-height:46px;cursor:pointer" style-hover="background:#12332A;color:#F3ECDD">Reset demo data</button>
+          </section>
+        </div>
+      </div>
+    </sc-if>
+  </main>
+
+  <!-- ─────────────── MODAL ─────────────── -->
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;z-index:80;background:rgba(11,31,25,.62);display:flex;align-items:flex-end;justify-content:center;padding:0" onClick="{{ closeModal }}">
+      <div onClick="{{ stop }}" style="background:#F3ECDD;border-top:4px solid #D89A2E;width:min(560px,100%);max-height:92vh;overflow:auto;animation:pbfade .16s ease-out;margin:auto">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:20px 22px 14px;border-bottom:2px solid #12332A">
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#8A6A2E;margin-bottom:4px">{{ modalKicker }}</div>
+            <h2 style="font-family:'Bodoni Moda',Didot,serif;font-weight:600;font-size:26px;line-height:1.1;margin:0;text-transform:uppercase">{{ modalTitle }}</h2>
+          </div>
+          <button type="button" onClick="{{ closeModal }}" aria-label="Close" style="background:transparent;border:1px solid rgba(18,51,42,.3);color:#12332A;font-size:18px;width:42px;height:42px;flex:none;cursor:pointer" style-hover="border-color:#12332A;background:rgba(18,51,42,.08)">✕</button>
+        </div>
+
+        <div style="padding:20px 22px 24px">
+          <sc-if value="{{ showError }}" hint-placeholder-val="{{ false }}">
+            <div style="border:1px solid #12332A;background:#12332A;color:#F3ECDD;padding:12px 14px;margin-bottom:16px;font-size:15px;line-height:1.5">{{ error }}</div>
+          </sc-if>
+
+          <!-- manage -->
+          <sc-if value="{{ mManage }}" hint-placeholder-val="{{ false }}">
+            <div>
+              <div style="display:flex;justify-content:space-between;gap:16px;border:1px solid rgba(18,51,42,.2);background:#FCF8EF;padding:14px 16px;margin-bottom:18px">
+                <div>
+                  <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#4A5F55">Current stock</div>
+                  <div style="font-family:'Bodoni Moda',Didot,serif;font-weight:600;font-size:36px;line-height:1.1">{{ mStock }}</div>
+                </div>
+                <div style="text-align:right">
+                  <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#4A5F55">Threshold</div>
+                  <div style="font-family:'Bodoni Moda',Didot,serif;font-weight:600;font-size:36px;line-height:1.1">{{ mThreshold }}</div>
+                </div>
+              </div>
+              <div style="display:grid;gap:8px">
+                <button type="button" onClick="{{ toAddStock }}" style="background:#12332A;color:#F3ECDD;border:1px solid #12332A;font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.2em;text-transform:uppercase;padding:14px 16px;min-height:52px;cursor:pointer;text-align:left" style-hover="background:#1C4C3E">Add stock — delivery received</button>
+                <button type="button" onClick="{{ toSale }}" style="background:#D89A2E;color:#12332A;border:1px solid #D89A2E;font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.2em;text-transform:uppercase;padding:14px 16px;min-height:52px;cursor:pointer;text-align:left;font-weight:600" style-hover="background:#C8811E">Record sale</button>
+                <button type="button" onClick="{{ toAdjust }}" style="background:transparent;border:1px solid rgba(18,51,42,.3);color:#12332A;font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.2em;text-transform:uppercase;padding:14px 16px;min-height:52px;cursor:pointer;text-align:left" style-hover="border-color:#12332A;background:rgba(18,51,42,.06)">Adjust stock — spillage, damage, correction</button>
+                <button type="button" onClick="{{ toEdit }}" style="background:transparent;border:1px solid rgba(18,51,42,.3);color:#12332A;font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.2em;text-transform:uppercase;padding:14px 16px;min-height:52px;cursor:pointer;text-align:left" style-hover="border-color:#12332A;background:rgba(18,51,42,.06)">Edit product details</button>
+                <button type="button" onClick="{{ toDelete }}" style="background:transparent;border:1px solid rgba(18,51,42,.3);color:#7A2E22;font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.2em;text-transform:uppercase;padding:14px 16px;min-height:52px;cursor:pointer;text-align:left" style-hover="border-color:#7A2E22;background:rgba(122,46,34,.07)">Delete product</button>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- quantity forms: add stock / sale / adjust -->
+          <sc-if value="{{ mQty }}" hint-placeholder-val="{{ false }}">
+            <div>
+              <div style="display:flex;justify-content:space-between;gap:16px;border:1px solid rgba(18,51,42,.2);background:#FCF8EF;padding:14px 16px;margin-bottom:18px">
+                <div>
+                  <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#4A5F55">Current stock</div>
+                  <div style="font-family:'Bodoni Moda',Didot,serif;font-weight:600;font-size:36px;line-height:1.1">{{ mStock }}</div>
+                </div>
+                <div style="text-align:right">
+                  <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#4A5F55">New stock</div>
+                  <div style="font-family:'Bodoni Moda',Didot,serif;font-weight:600;font-size:36px;line-height:1.1;color:#8A5A0C">{{ preview }}</div>
+                </div>
+              </div>
+
+              <label style="display:block;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#4A5F55;margin-bottom:6px">{{ qtyLabel }}</label>
+              <input type="number" inputMode="numeric" ref="{{ qtyRef }}" defaultValue="{{ qtyDefault }}" onChange="{{ onQtyChange }}" style="width:100%;background:#FCF8EF;border:1px solid rgba(18,51,42,.28);color:#12332A;font-size:22px;font-weight:600;padding:14px;min-height:56px;margin-bottom:12px" />
+
+              <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px">
+                <sc-for list="{{ qtyChips }}" as="q" hint-placeholder-count="5">
+                  <button type="button" onClick="{{ q.onClick }}" style="background:transparent;border:1px solid rgba(18,51,42,.26);color:#12332A;font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.1em;padding:10px 15px;min-height:46px;cursor:pointer" style-hover="border-color:#C8811E;color:#8A5A0C">{{ q.label }}</button>
+                </sc-for>
+              </div>
+
+              <sc-if value="{{ mAdjust }}" hint-placeholder-val="{{ false }}">
+                <div style="margin-bottom:18px">
+                  <label style="display:block;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#4A5F55;margin-bottom:6px">Reason</label>
+                  <select ref="{{ reasonRef }}" style="width:100%;background:#FCF8EF;border:1px solid rgba(18,51,42,.28);color:#12332A;font-size:16px;padding:13px;min-height:50px">
+                    <option>Spillage</option>
+                    <option>Stock damaged</option>
+                    <option>Complimentary drinks</option>
+                    <option>Stock count correction</option>
+                    <option>Incorrect previous entry</option>
+                    <option>Other</option>
+                  </select>
+                  <p style="font-size:14px;color:#4A5F55;margin:8px 0 0;line-height:1.5">Enter a negative number to remove units, positive to add them back.</p>
+                </div>
+              </sc-if>
+
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <button type="button" onClick="{{ commitQty }}" style="flex:1 1 180px;background:#12332A;color:#F3ECDD;border:1px solid #12332A;font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.22em;text-transform:uppercase;padding:14px 18px;min-height:54px;cursor:pointer" style-hover="background:#1C4C3E">{{ commitLabel }}</button>
+                <button type="button" onClick="{{ closeModal }}" style="flex:0 1 120px;background:transparent;border:1px solid rgba(18,51,42,.3);color:#12332A;font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.2em;text-transform:uppercase;padding:14px 18px;min-height:54px;cursor:pointer" style-hover="border-color:#12332A;background:rgba(18,51,42,.06)">Cancel</button>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- product form -->
+          <sc-if value="{{ mForm }}" hint-placeholder-val="{{ false }}">
+            <div>
+              <label style="display:block;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#4A5F55;margin-bottom:6px">Product name</label>
+              <input type="text" ref="{{ nameRef }}" defaultValue="{{ fName }}" placeholder="e.g. Draught Lager — 50L keg" style="width:100%;background:#FCF8EF;border:1px solid rgba(18,51,42,.28);color:#12332A;font-size:17px;padding:13px;min-height:52px;margin-bottom:14px" />
+
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:14px;margin-bottom:14px">
+                <div>
+                  <label style="display:block;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#4A5F55;margin-bottom:6px">Category</label>
+                  <select ref="{{ catRef }}" defaultValue="{{ fCategory }}" style="width:100%;background:#FCF8EF;border:1px solid rgba(18,51,42,.28);color:#12332A;font-size:16px;padding:13px;min-height:50px">
+                    <sc-for list="{{ categoryOptions }}" as="c" hint-placeholder-count="8">
+                      <option value="{{ c }}">{{ c }}</option>
+                    </sc-for>
+                  </select>
+                </div>
+                <div>
+                  <label style="display:block;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#4A5F55;margin-bottom:6px">Unit type</label>
+                  <select ref="{{ unitRef }}" defaultValue="{{ fUnit }}" style="width:100%;background:#FCF8EF;border:1px solid rgba(18,51,42,.28);color:#12332A;font-size:16px;padding:13px;min-height:50px">
+                    <sc-for list="{{ unitOptions }}" as="u" hint-placeholder-count="7">
+                      <option value="{{ u }}">{{ u }}</option>
+                    </sc-for>
+                  </select>
+                </div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:14px;margin-bottom:14px">
+                <div>
+                  <label style="display:block;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#4A5F55;margin-bottom:6px">Opening / current stock</label>
+                  <input type="number" min="0" ref="{{ stockRef }}" defaultValue="{{ fStock }}" style="width:100%;background:#FCF8EF;border:1px solid rgba(18,51,42,.28);color:#12332A;font-size:17px;padding:13px;min-height:50px" />
+                </div>
+                <div>
+                  <label style="display:block;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#4A5F55;margin-bottom:6px">Low-stock threshold</label>
+                  <input type="number" min="0" ref="{{ threshRef }}" defaultValue="{{ fThreshold }}" style="width:100%;background:#FCF8EF;border:1px solid rgba(18,51,42,.28);color:#12332A;font-size:17px;padding:13px;min-height:50px" />
+                </div>
+              </div>
+
+              <label style="display:block;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#4A5F55;margin-bottom:6px">Notes — optional</label>
+              <input type="text" ref="{{ notesRef }}" defaultValue="{{ fNotes }}" placeholder="Supplier, case size, shelf…" style="width:100%;background:#FCF8EF;border:1px solid rgba(18,51,42,.28);color:#12332A;font-size:16px;padding:13px;min-height:50px;margin-bottom:20px" />
+
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <button type="button" onClick="{{ commitProduct }}" style="flex:1 1 180px;background:#12332A;color:#F3ECDD;border:1px solid #12332A;font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.22em;text-transform:uppercase;padding:14px 18px;min-height:54px;cursor:pointer" style-hover="background:#1C4C3E">{{ commitLabel }}</button>
+                <button type="button" onClick="{{ closeModal }}" style="flex:0 1 120px;background:transparent;border:1px solid rgba(18,51,42,.3);color:#12332A;font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.2em;text-transform:uppercase;padding:14px 18px;min-height:54px;cursor:pointer" style-hover="border-color:#12332A;background:rgba(18,51,42,.06)">Cancel</button>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- confirm -->
+          <sc-if value="{{ mConfirm }}" hint-placeholder-val="{{ false }}">
+            <div>
+              <p style="font-size:17px;line-height:1.6;margin:0 0 22px;color:#12332A;max-width:52ch">{{ confirmBody }}</p>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <button type="button" onClick="{{ commitConfirm }}" style="flex:1 1 180px;background:#7A2E22;color:#F3ECDD;border:1px solid #7A2E22;font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.22em;text-transform:uppercase;padding:14px 18px;min-height:54px;cursor:pointer" style-hover="background:#5E2219">{{ commitLabel }}</button>
+                <button type="button" onClick="{{ closeModal }}" style="flex:0 1 120px;background:transparent;border:1px solid rgba(18,51,42,.3);color:#12332A;font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.2em;text-transform:uppercase;padding:14px 18px;min-height:54px;cursor:pointer" style-hover="border-color:#12332A;background:rgba(18,51,42,.06)">Cancel</button>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;left:50%;transform:translateX(-50%);bottom:24px;z-index:90;background:#12332A;color:#F3ECDD;border-left:4px solid #D89A2E;padding:14px 20px;font-size:15px;letter-spacing:.02em;animation:pbfade .18s ease-out;max-width:92vw">{{ toast }}</div>
+  </sc-if>
+
+  <template id="__bundler_thumbnail">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+      <rect width="100" height="100" fill="#12332A"></rect>
+      <g transform="translate(30 26) scale(0.48)">
+        <path d="M68.6 47 C83.5 49.5 83.5 69.5 65.6 71.8" fill="none" stroke="#F3ECDD" stroke-width="5.4" stroke-linecap="round"></path>
+        <path d="M30.6 43.5 L33.8 84.4 H62.2 L65.4 43.5 Z" fill="#C8811E"></path>
+        <path d="M27 33.5 C27 26.6 34.2 24.6 38.6 28.4 C41.2 20.8 55.4 20.8 58 28.4 C62.4 24.6 69.6 26.6 69.6 33.5 L64.2 84.4 H32.4 Z" fill="none" stroke="#F3ECDD" stroke-width="5.4" stroke-linejoin="round"></path>
+        <path d="M30.6 43.5 H65.4" fill="none" stroke="#F3ECDD" stroke-width="5.4" stroke-linecap="round"></path>
+      </g>
+      <text x="50" y="82" text-anchor="middle" fill="#D89A2E" font-family="Georgia,serif" font-size="11" letter-spacing="1.5">PINT BAR</text>
+    </svg>
+  </template>
+
+  <footer style="border-top:2px solid #12332A;background:#F3ECDD">
+    <div style="max-width:1440px;margin:0 auto;padding:18px 20px 30px;display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:#4A5F55">
+      <img src="assets/lockup-horizontal.svg" alt="The Pint Bar — Oyo Entertainment" style="display:block;height:52px;width:auto" />
+      <div>{{ storageLabel }}</div>
+    </div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  KEY = 'pintbar.inventory.v2';
+  CATS = ['Draught', 'Beer', 'Lager', 'Cider', 'Spirits', 'Wine', 'Soft Drinks', 'Mixers', 'Other'];
+  UNITS = ['Bottle', 'Can', 'Keg', 'Pint', 'Glass', 'Box', 'Case', 'Unit'];
+  refs = {
+    file: React.createRef(), qty: React.createRef(), reason: React.createRef(),
+    name: React.createRef(), cat: React.createRef(), unit: React.createRef(),
+    stock: React.createRef(), thresh: React.createRef(), notes: React.createRef(),
+    thr: React.createRef(), staff: React.createRef()
+  };
+  state = this.boot();
+
+  // ── data layer ────────────────────────────────────────────────
+  defaults() { return { defaultThreshold: 6, staff: 'Bar staff' }; }
+
+  seed() {
+    const d = [
+      // Draught — kegs. Names verified to common UK trade names.
+      ['Birra Moretti', 'Draught', 'Keg', 0, 1, ''],
+      ["Foster's", 'Draught', 'Keg', 0, 1, ''],
+      ["John Smith's Extra Smooth", 'Draught', 'Keg', 0, 1, ''],
+      ['San Miguel', 'Draught', 'Keg', 1, 1, ''],
+      ['Cruzcampo', 'Draught', 'Keg', 1, 1, ''],
+      ['Heineken', 'Draught', 'Keg', 1, 1, ''],
+      ['Guinness Draught', 'Draught', 'Keg', 1, 1, 'Was: Draught Stout — 50L keg'],
+      ['Carling', 'Draught', 'Keg', 1, 1, 'Was: Draught Lager — 50L keg'],
+      ['Somersby Cider', 'Draught', 'Keg', 0, 1, ''],
+      ['Budweiser', 'Draught', 'Keg', 5, 1, ''],
+      ['Estrella Damm', 'Draught', 'Keg', 0, 1, ''],
+      ['Kronenbourg 1664', 'Draught', 'Keg', 1, 1, ''],
+      ["Inch's Cider", 'Draught', 'Keg', 2, 1, ''],
+      ['Strongbow', 'Draught', 'Keg', 0, 1, 'Was: Draught Cider — 50L keg'],
+      ['Carib Lager', 'Draught', 'Keg', 0, 1, ''],
+      ['Carlsberg', 'Draught', 'Keg', 2, 1, ''],
+      ['Draught Pale Ale — 30L keg', 'Draught', 'Keg', 0, 1, 'Not on the supplied draught list — zeroed, confirm or delete'],
+
+      // Spirits & liqueurs
+      ["Jack Daniel's Old No.7", 'Spirits', 'Bottle', 15, 2, ''],
+      ["Jack Daniel's Tennessee Honey", 'Spirits', 'Bottle', 6, 2, ''],
+      ['Smirnoff Red Label Vodka', 'Spirits', 'Bottle', 13, 2, 'Was: House Vodka 70cl'],
+      ['Grey Goose Vodka', 'Spirits', 'Bottle', 1, 2, ''],
+      ['Cîroc Vodka', 'Spirits', 'Bottle', 1, 2, ''],
+      ['Absolut Vodka', 'Spirits', 'Bottle', 15, 2, ''],
+      ['Absolut Vanilia Vodka', 'Spirits', 'Bottle', 2, 2, ''],
+      ['Baileys Irish Cream', 'Spirits', 'Bottle', 7, 2, ''],
+      ['Hennessy Cognac', 'Spirits', 'Bottle', 11, 2, 'Was: Brandy 70cl · expression (VS, VSOP…) not stated'],
+      ['Rémy Martin Cognac', 'Spirits', 'Bottle', 1, 2, 'Expression (VS, VSOP…) not stated'],
+      ['Sambuca Apple', 'Spirits', 'Bottle', 1, 2, 'FLAGGED — brand not stated on the list, confirm producer'],
+      ['Sambuca Black', 'Spirits', 'Bottle', 112, 2, 'FLAGGED — brand not stated, and quantity 112 looks unusually high; please confirm'],
+      ['Sambuca White', 'Spirits', 'Bottle', 1, 2, 'FLAGGED — brand not stated on the list, confirm producer'],
+      ['Wray & Nephew White Overproof Rum', 'Spirits', 'Bottle', 7, 2, 'Was: White Rum 70cl'],
+      ['Johnnie Walker Black Label', 'Spirits', 'Bottle', 2, 2, ''],
+      ['Johnnie Walker Double Black', 'Spirits', 'Bottle', 0, 2, 'STOCK QUANTITY MISSING — no figure supplied, needs a count'],
+      ['Johnnie Walker Gold Label Reserve', 'Spirits', 'Bottle', 1, 2, ''],
+      ['Captain Morgan Spiced Gold', 'Spirits', 'Bottle', 5, 2, 'Was: Golden Rum 70cl'],
+      ["Bell's Original Blended Scotch Whisky", 'Spirits', 'Bottle', 1, 2, 'Was: Blended Whisky 70cl'],
+      ['Jameson Irish Whiskey', 'Spirits', 'Bottle', 1, 2, 'Was: Irish Whiskey 70cl'],
+      ['Fireball Cinnamon Whisky', 'Spirits', 'Bottle', 1, 2, ''],
+      ['Disaronno Originale', 'Spirits', 'Bottle', 111, 2, 'FLAGGED — quantity 111 looks unusually high, please confirm'],
+      ['Southern Comfort', 'Spirits', 'Bottle', 2, 2, ''],
+      ['Tequila Blanco', 'Spirits', 'Bottle', 1, 2, 'FLAGGED — brand not stated on the list'],
+      ['Tequila Oro (Gold)', 'Spirits', 'Bottle', 1, 2, 'FLAGGED — brand not stated on the list'],
+      ['The Kraken Black Spiced Rum', 'Spirits', 'Bottle', 3, 2, ''],
+      ['Dark Rum', 'Spirits', 'Bottle', 1, 2, 'FLAGGED — brand not stated on the list'],
+      ["Gordon's London Dry Gin", 'Spirits', 'Bottle', 1, 2, 'Was: London Dry Gin 70cl'],
+      ['Tia Maria', 'Spirits', 'Bottle', 11, 2, 'Was: Coffee Liqueur 70cl'],
+      ['Cointreau', 'Spirits', 'Bottle', 1, 2, ''],
+      ['Jägermeister', 'Spirits', 'Bottle', 6, 2, ''],
+      ['Sourz Apple', 'Spirits', 'Bottle', 4, 2, ''],
+      ['Sourz Cherry', 'Spirits', 'Bottle', 2, 2, ''],
+      ['House Gin 70cl', 'Spirits', 'Bottle', 0, 2, 'Not on the supplied list — zeroed'],
+      ['Single Malt Whisky 70cl', 'Spirits', 'Bottle', 0, 2, 'Not on the supplied list — zeroed'],
+
+      // Wine & fortified
+      ['Malbec — Red Wine', 'Wine', 'Bottle', 1, 2, 'Was: House Red 75cl · producer not stated'],
+      ['Shiraz — Red Wine', 'Wine', 'Bottle', 2, 2, 'Producer not stated'],
+      ['Rosé Wine', 'Wine', 'Bottle', 1111, 2, 'FLAGGED — quantity 1111 looks unusually high, please confirm. Was: House Rosé 75cl'],
+      ['Croft Port', 'Wine', 'Bottle', 1, 2, 'Specific Croft bottling not stated'],
+      ["Taylor's Vintage Port", 'Wine', 'Bottle', 1, 2, ''],
+      ['House White 75cl', 'Wine', 'Bottle', 0, 2, 'Not on the supplied list — zeroed'],
+      ['Prosecco 75cl', 'Wine', 'Bottle', 0, 2, 'Not on the supplied list — zeroed'],
+      ['Champagne 75cl', 'Wine', 'Bottle', 0, 2, 'Not on the supplied list — zeroed'],
+
+      // Bottled & canned beer, cider — all zeroed, none on the supplied list
+      ['Bottled Lager 330ml', 'Beer', 'Bottle', 0, 12, 'Not on the supplied list — zeroed'],
+      ['Bottled Pale Ale 330ml', 'Beer', 'Bottle', 0, 12, 'Not on the supplied list — zeroed'],
+      ['Bottled Brown Ale 500ml', 'Beer', 'Bottle', 0, 12, 'Not on the supplied list — zeroed'],
+      ['Alcohol-Free Lager 330ml', 'Beer', 'Bottle', 0, 12, 'Not on the supplied list — zeroed'],
+      ['Canned Lager 440ml', 'Lager', 'Can', 0, 12, 'Not on the supplied list — zeroed'],
+      ['Canned Session IPA 440ml', 'Lager', 'Can', 0, 12, 'Not on the supplied list — zeroed'],
+      ['Bottled Apple Cider 500ml', 'Cider', 'Bottle', 0, 12, 'Not on the supplied list — zeroed'],
+      ['Bottled Berry Cider 500ml', 'Cider', 'Bottle', 0, 12, 'Not on the supplied list — zeroed'],
+
+      // Soft drinks & mixers
+      ['Crodino (Pink)', 'Soft Drinks', 'Bottle', 1, 2, 'FLAGGED — "Crodino (Pink)" could not be confirmed as an official variant; Crodino is sold as Biondo and Rosso. Confirm which.'],
+      ['Cola 330ml', 'Soft Drinks', 'Can', 0, 24, 'Not on the supplied list — zeroed'],
+      ['Diet Cola 330ml', 'Soft Drinks', 'Can', 0, 24, 'Not on the supplied list — zeroed'],
+      ['Lemonade 330ml', 'Soft Drinks', 'Can', 0, 24, 'Not on the supplied list — zeroed'],
+      ['Orange Juice 1L', 'Soft Drinks', 'Bottle', 0, 6, 'Not on the supplied list — zeroed'],
+      ['Still Water 500ml', 'Soft Drinks', 'Bottle', 0, 18, 'Not on the supplied list — zeroed'],
+      ['Sparkling Water 500ml', 'Soft Drinks', 'Bottle', 0, 18, 'Not on the supplied list — zeroed'],
+      ['Schweppes', 'Mixers', 'Bottle', 1, 2, 'FLAGGED — variant not stated (tonic, slimline, lemonade, ginger ale). Confirm which.'],
+      ['Tonic Water 200ml', 'Mixers', 'Bottle', 0, 24, 'Not on the supplied list — zeroed'],
+      ['Slimline Tonic 200ml', 'Mixers', 'Bottle', 0, 24, 'Not on the supplied list — zeroed'],
+      ['Ginger Ale 200ml', 'Mixers', 'Bottle', 0, 18, 'Not on the supplied list — zeroed'],
+      ['Soda Water 200ml', 'Mixers', 'Bottle', 0, 18, 'Not on the supplied list — zeroed'],
+
+      // Other
+      ['Ice — 5kg bag', 'Other', 'Box', 0, 6, 'Not on the supplied list — zeroed'],
+      ['Lime wedges — tub', 'Other', 'Unit', 0, 4, 'Not on the supplied list — zeroed']
+    ];
+    return d.map((r, i) => ({
+      id: 'P' + String(i + 1).padStart(3, '0'),
+      name: r[0], category: r[1], unit: r[2], stock: r[3], threshold: r[4], notes: r[5] || ''
+    }));
+  }
+
+  boot() {
+    let saved = null;
+    try { saved = JSON.parse(localStorage.getItem('pintbar.inventory.v2') || 'null'); } catch (e) { saved = null; }
+    const base = saved && Array.isArray(saved.products) && saved.products.length
+      ? saved
+      : { products: this.seed(), txns: [], settings: this.defaults(), demo: false };
+    return {
+      products: base.products,
+      txns: base.txns || [],
+      settings: Object.assign(this.defaults(), base.settings || {}),
+      demo: base.demo !== false,
+      view: 'dashboard',
+      search: '', cat: 'All', status: 'All',
+      histSearch: '', histType: 'All',
+      modal: null, target: null, error: '', preview: null, qtyVal: 0,
+      toast: '', narrow: false, linked: ''
+    };
+  }
+
+  persist(next) {
+    const s = Object.assign({}, this.state, next || {});
+    try {
+      localStorage.setItem(this.KEY, JSON.stringify({
+        products: s.products, txns: s.txns, settings: s.settings, demo: s.demo
+      }));
+    } catch (e) { /* quota */ }
+    if (this.handle) this.writeHandle(s.products, s.txns);
+    if (this.api) this.pushApi(s);
+  }
+
+  // Optional local service: if /api/inventory answers, it owns the Excel file.
+  async detectApi() {
+    try {
+      const r = await fetch('api/inventory', { headers: { Accept: 'application/json' } });
+      if (!r.ok) return;
+      const d = await r.json();
+      if (!d || !Array.isArray(d.products)) return;
+      this.api = true;
+      this.setState({
+        products: d.products.length ? d.products : this.state.products,
+        txns: Array.isArray(d.txns) ? d.txns : this.state.txns,
+        demo: false, linked: d.file || 'inventory.xlsx'
+      });
+    } catch (e) { /* no service running — browser storage it is */ }
+  }
+
+  async pushApi(s) {
+    try {
+      await fetch('api/inventory', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ products: s.products, txns: s.txns })
+      });
+    } catch (e) { this.setState({ toast: 'Local service unreachable — changes held in this browser.' }); }
+  }
+
+  commit(next, toast) {
+    this.setState(Object.assign({ toast: toast || '' }, next), () => {
+      this.persist();
+      if (toast) {
+        clearTimeout(this.tt);
+        this.tt = setTimeout(() => this.setState({ toast: '' }), 2600);
+      }
+    });
+  }
+
+  componentDidMount() {
+    this.onResize = () => {
+      const n = window.innerWidth < 1060;
+      if (n !== this.state.narrow) this.setState({ narrow: n });
+    };
+    this.onResize();
+    window.addEventListener('resize', this.onResize);
+    this.detectApi();
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onResize); clearTimeout(this.tt); }
+
+  // ── stock movements ───────────────────────────────────────────
+  stamp() {
+    const d = new Date();
+    const date = d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    const time = d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+    return { iso: d.toISOString(), date: date, time: time };
+  }
+
+  move(id, type, delta, reason) {
+    const p = this.state.products.find(x => x.id === id);
+    if (!p) return;
+    const prev = p.stock;
+    const next = prev + delta;
+    if (next < 0) {
+      const msg = 'Blocked — that would take ' + p.name + ' below zero. Only ' + prev + ' in stock.';
+      this.setState({ error: msg, toast: msg });
+      clearTimeout(this.tt);
+      this.tt = setTimeout(() => this.setState({ toast: '' }), 3600);
+      return;
+    }
+    const s = this.stamp();
+    const txn = {
+      iso: s.iso, date: s.date, time: s.time, productId: p.id, product: p.name,
+      type: type, qty: delta, prev: prev, next: next,
+      reason: reason || '', staff: this.state.settings.staff
+    };
+    const products = this.state.products.map(x => x.id === id ? Object.assign({}, x, { stock: next }) : x);
+    this.commit({ products: products, txns: [txn].concat(this.state.txns), modal: null, target: null, error: '', demo: this.state.demo },
+      p.name + ' · ' + prev + ' → ' + next);
+  }
+
+  // ── excel ─────────────────────────────────────────────────────
+  buildWorkbook(products, txns) {
+    const X = window.XLSX;
+    const wb = X.utils.book_new();
+    const inv = products.map(p => ({
+      ID: p.id, Product: p.name, Category: p.category, Unit: p.unit,
+      'Current Stock': p.stock, 'Low Stock Threshold': p.threshold, Notes: p.notes || ''
+    }));
+    const tx = txns.slice().reverse().map(t => ({
+      Date: t.date, Time: t.time, 'Product ID': t.productId, Product: t.product,
+      'Transaction Type': t.type, Quantity: t.qty, 'Previous Stock': t.prev,
+      'New Stock': t.next, Reason: t.reason || '', Staff: t.staff || ''
+    }));
+    X.utils.book_append_sheet(wb, X.utils.json_to_sheet(inv), 'Inventory');
+    X.utils.book_append_sheet(wb, X.utils.json_to_sheet(tx.length ? tx : [{
+      Date: '', Time: '', 'Product ID': '', Product: '', 'Transaction Type': '',
+      Quantity: '', 'Previous Stock': '', 'New Stock': '', Reason: '', Staff: ''
+    }]), 'Transactions');
+    return wb;
+  }
+
+  exportXlsx = () => {
+    if (!window.XLSX) { this.setState({ toast: 'Spreadsheet library still loading — try again in a moment.' }); return; }
+    const wb = this.buildWorkbook(this.state.products, this.state.txns);
+    window.XLSX.writeFile(wb, 'the-pint-bar-inventory.xlsx');
+    this.commit({ demo: false }, 'Workbook exported.');
+  };
+
+  async writeHandle(products, txns) {
+    try {
+      const wb = this.buildWorkbook(products, txns);
+      const out = window.XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+      const w = await this.handle.createWritable();
+      await w.write(new Blob([out], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }));
+      await w.close();
+    } catch (e) { this.setState({ toast: 'Could not write to the linked file — re-link it in Settings.' }); }
+  }
+
+  linkWorkbook = async () => {
+    try {
+      const h = await window.showSaveFilePicker({
+        suggestedName: 'the-pint-bar-inventory.xlsx',
+        types: [{ description: 'Excel workbook', accept: { 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx'] } }]
+      });
+      this.handle = h;
+      await this.writeHandle(this.state.products, this.state.txns);
+      this.commit({ linked: h.name, demo: false }, 'Linked to ' + h.name + ' — every change now writes to it.');
+    } catch (e) { /* cancelled */ }
+  };
+
+  openWorkbook = async () => {
+    try {
+      const [h] = await window.showOpenFilePicker({
+        types: [{ description: 'Excel workbook', accept: { 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx', '.xls'] } }]
+      });
+      const f = await h.getFile();
+      const ok = await this.ingest(f);
+      if (ok) { this.handle = h; this.setState({ linked: h.name }); }
+    } catch (e) { /* cancelled */ }
+  };
+
+  pickImport = () => { if (this.refs.file.current) this.refs.file.current.click(); };
+
+  onImportFile = (e) => {
+    const f = e.target.files && e.target.files[0];
+    if (f) this.ingest(f);
+    e.target.value = '';
+  };
+
+  async ingest(file) {
+    if (!window.XLSX) { this.setState({ toast: 'Spreadsheet library still loading.' }); return false; }
+    try {
+      const buf = await file.arrayBuffer();
+      const wb = window.XLSX.read(buf, { type: 'array' });
+      const invSheet = wb.Sheets['Inventory'] || wb.Sheets[wb.SheetNames[0]];
+      const rows = window.XLSX.utils.sheet_to_json(invSheet);
+      const products = rows.filter(r => r.Product || r.product).map((r, i) => ({
+        id: String(r.ID || r.id || 'P' + String(i + 1).padStart(3, '0')),
+        name: String(r.Product || r.product),
+        category: String(r.Category || r.category || 'Other'),
+        unit: String(r.Unit || r.unit || 'Unit'),
+        stock: Number(r['Current Stock'] != null ? r['Current Stock'] : 0) || 0,
+        threshold: Number(r['Low Stock Threshold'] != null ? r['Low Stock Threshold'] : this.state.settings.defaultThreshold) || 0,
+        notes: String(r.Notes || '')
+      }));
+      if (!products.length) { this.setState({ toast: 'No inventory rows found in that workbook.' }); return false; }
+      let txns = this.state.txns;
+      const txSheet = wb.Sheets['Transactions'];
+      if (txSheet) {
+        txns = window.XLSX.utils.sheet_to_json(txSheet).filter(r => r.Product).map(r => ({
+          iso: '', date: String(r.Date || ''), time: String(r.Time || ''),
+          productId: String(r['Product ID'] || ''), product: String(r.Product || ''),
+          type: String(r['Transaction Type'] || 'Adjustment'), qty: Number(r.Quantity) || 0,
+          prev: Number(r['Previous Stock']) || 0, next: Number(r['New Stock']) || 0,
+          reason: String(r.Reason || ''), staff: String(r.Staff || '')
+        })).reverse();
+      }
+      this.commit({ products: products, txns: txns, demo: false }, products.length + ' products loaded from ' + file.name);
+      return true;
+    } catch (e) {
+      this.setState({ toast: 'Could not read that file — is it a .xlsx workbook?' });
+      return false;
+    }
+  }
+
+  // ── ui handlers ───────────────────────────────────────────────
+  go = (v) => () => this.setState({ view: v, error: '' });
+  open = (modal, target, extra) => this.setState(Object.assign({ modal: modal, target: target, error: '', preview: null, qtyVal: 0 }, extra || {}));
+  closeModal = () => this.setState({ modal: null, target: null, error: '', preview: null });
+  stop = (e) => e.stopPropagation();
+
+  qtyNow() {
+    const el = this.refs.qty.current;
+    const n = el ? Number(el.value) : 0;
+    return isNaN(n) ? 0 : n;
+  }
+  signedDelta() {
+    const q = this.qtyNow();
+    if (this.state.modal === 'sale') return -Math.abs(q);
+    if (this.state.modal === 'addstock') return Math.abs(q);
+    return q;
+  }
+  refreshPreview = () => {
+    const p = this.product();
+    if (!p) return;
+    this.setState({ preview: p.stock + this.signedDelta(), error: '' });
+  };
+  setQty = (n) => () => { if (this.refs.qty.current) this.refs.qty.current.value = String(n); this.refreshPreview(); };
+
+  product() { return this.state.products.find(p => p.id === this.state.target) || null; }
+
+  commitQty = () => {
+    const p = this.product();
+    if (!p) return;
+    const d = this.signedDelta();
+    if (!d) { this.setState({ error: 'Enter a quantity first.' }); return; }
+    const m = this.state.modal;
+    const type = m === 'sale' ? 'Sale' : (m === 'addstock' ? 'Stock Added' : 'Adjustment');
+    const reason = m === 'adjust' && this.refs.reason.current ? this.refs.reason.current.value : '';
+    this.move(p.id, type, d, reason);
+  };
+
+  commitProduct = () => {
+    const r = this.refs;
+    const name = (r.name.current.value || '').trim();
+    if (!name) { this.setState({ error: 'Give the product a name.' }); return; }
+    const stock = Math.max(0, Number(r.stock.current.value) || 0);
+    const threshold = Math.max(0, Number(r.thresh.current.value) || 0);
+    const fields = {
+      name: name, category: r.cat.current.value, unit: r.unit.current.value,
+      stock: stock, threshold: threshold, notes: (r.notes.current.value || '').trim()
+    };
+    if (this.state.modal === 'edit') {
+      const p = this.product();
+      const products = this.state.products.map(x => x.id === p.id ? Object.assign({}, x, fields) : x);
+      let txns = this.state.txns;
+      if (stock !== p.stock) {
+        const s = this.stamp();
+        txns = [{ iso: s.iso, date: s.date, time: s.time, productId: p.id, product: name, type: 'Adjustment', qty: stock - p.stock, prev: p.stock, next: stock, reason: 'Edited product record', staff: this.state.settings.staff }].concat(txns);
+      }
+      this.commit({ products: products, txns: txns, modal: null, target: null, error: '' }, name + ' updated.');
+    } else {
+      const n = this.state.products.reduce((m, p) => Math.max(m, Number(String(p.id).replace(/\D/g, '')) || 0), 0) + 1;
+      const id = 'P' + String(n).padStart(3, '0');
+      const s = this.stamp();
+      const txn = { iso: s.iso, date: s.date, time: s.time, productId: id, product: name, type: 'Product Added', qty: stock, prev: 0, next: stock, reason: 'Opening stock', staff: this.state.settings.staff };
+      this.commit({
+        products: this.state.products.concat([Object.assign({ id: id }, fields)]),
+        txns: [txn].concat(this.state.txns), modal: null, target: null, error: '', demo: false
+      }, name + ' added.');
+    }
+  };
+
+  commitConfirm = () => {
+    if (this.state.modal === 'delete') {
+      const p = this.product();
+      if (!p) return;
+      const s = this.stamp();
+      const txn = { iso: s.iso, date: s.date, time: s.time, productId: p.id, product: p.name, type: 'Product Deleted', qty: -p.stock, prev: p.stock, next: 0, reason: 'Removed from inventory', staff: this.state.settings.staff };
+      this.commit({
+        products: this.state.products.filter(x => x.id !== p.id),
+        txns: [txn].concat(this.state.txns), modal: null, target: null
+      }, p.name + ' deleted.');
+    } else {
+      this.commit({ products: this.seed(), txns: [], demo: false, modal: null, target: null }, 'Inventory restored to the supplied stock list.');
+    }
+  };
+
+  saveSettings = () => {
+    const t = Math.max(0, Number(this.refs.thr.current.value) || 0);
+    const staff = (this.refs.staff.current.value || '').trim() || 'Bar staff';
+    this.commit({ settings: { defaultThreshold: t, staff: staff } }, 'Defaults saved.');
+  };
+
+  status(p) { return p.stock <= 0 ? 'out' : (p.stock <= p.threshold ? 'low' : 'in'); }
+
+  visible() {
+    const q = this.state.search.trim().toLowerCase();
+    return this.state.products.filter(p => {
+      if (this.state.cat !== 'All' && p.category !== this.state.cat) return false;
+      const st = this.status(p);
+      if (this.state.status === 'Low' && st !== 'low') return false;
+      if (this.state.status === 'Out' && st !== 'out') return false;
+      if (this.state.status === 'In' && st !== 'in') return false;
+      if (q && (p.name + ' ' + p.category + ' ' + p.unit + ' ' + p.notes).toLowerCase().indexOf(q) === -1) return false;
+      return true;
+    });
+  }
+
+  fmtTxn(t) {
+    const sign = t.qty > 0 ? '+' : '';
+    return {
+      when: t.date + ' · ' + t.time,
+      product: t.product, type: t.type,
+      deltaLabel: sign + t.qty,
+      move: t.prev + ' → ' + t.next,
+      reason: t.reason || '—'
+    };
+  }
+
+  renderVals() {
+    const s = this.state;
+    const view = s.view;
+    const p = this.product();
+    const rows = this.visible().map(x => {
+      const st = this.status(x);
+      const sold = s.txns.filter(t => t.productId === x.id && t.type === 'Sale').reduce((a, t) => a - t.qty, 0);
+      const flagged = /^(FLAGGED|STOCK QUANTITY MISSING)/.test(x.notes || '') || /please confirm/i.test(x.notes || '');
+      return {
+        id: x.id, name: x.name, category: x.category, unit: x.unit,
+        flag: x.notes || '', hasFlag: flagged,
+        stock: x.stock, threshold: x.threshold, sold: sold,
+        isIn: st === 'in', isLow: st === 'low', isOut: st === 'out',
+        onMinus: () => this.move(x.id, 'Adjustment', -1, 'Quick adjust'),
+        onPlus: () => this.move(x.id, 'Adjustment', 1, 'Quick adjust'),
+        onSale: () => this.open('sale', x.id),
+        onManage: () => this.open('manage', x.id)
+      };
+    });
+
+    const attention = this.state.products.filter(x => this.status(x) !== 'in')
+      .sort((a, b) => a.stock - b.stock).slice(0, 6).map(x => ({
+        name: x.name, category: x.category,
+        stockLabel: x.stock + ' of ' + x.threshold + ' ' + x.unit.toLowerCase(),
+        isLow: this.status(x) === 'low', isOut: this.status(x) === 'out',
+        onAddStock: () => this.open('addstock', x.id)
+      }));
+
+    const today = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    const soldToday = s.txns.filter(t => t.type === 'Sale' && t.date === today).reduce((a, t) => a - t.qty, 0);
+
+    const cats = ['All'].concat(this.CATS.filter(c => s.products.some(p2 => p2.category === c)))
+      .concat(Array.from(new Set(s.products.map(p2 => p2.category))).filter(c => this.CATS.indexOf(c) === -1));
+    const catChips = cats.map(c => ({
+      label: c, active: s.cat === c, inactive: s.cat !== c,
+      onClick: () => this.setState({ cat: c })
+    }));
+    const statusTabs = [['All', 'All'], ['In', 'In stock'], ['Low', 'Low'], ['Out', 'Out']].map(t => ({
+      label: t[1], active: s.status === t[0], inactive: s.status !== t[0],
+      onClick: () => this.setState({ status: t[0] })
+    }));
+
+    const hq = s.histSearch.trim().toLowerCase();
+    const hist = s.txns.filter(t => {
+      if (s.histType !== 'All' && t.type !== s.histType) return false;
+      if (hq && (t.product + ' ' + t.reason).toLowerCase().indexOf(hq) === -1) return false;
+      return true;
+    });
+    const histTabs = ['All', 'Sale', 'Stock Added', 'Adjustment'].map(t => ({
+      label: t === 'All' ? 'All' : t, active: s.histType === t, inactive: s.histType !== t,
+      onClick: () => this.setState({ histType: t })
+    }));
+
+    const modal = s.modal;
+    const isQty = modal === 'sale' || modal === 'addstock' || modal === 'adjust';
+    const titles = {
+      manage: 'Manage', sale: 'Record sale', addstock: 'Add stock', adjust: 'Adjust stock',
+      edit: 'Edit product', add: 'New product', delete: 'Delete product', reset: 'Reset demo data'
+    };
+    const chipSets = { sale: [1, 2, 3, 4, 6], addstock: [6, 12, 24, 48, 1], adjust: [-1, -2, -6, 1, 6] };
+    const chips = (chipSets[modal] || []).map(n => ({
+      label: (n > 0 && modal !== 'sale' ? '+' : '') + n, onClick: this.setQty(n)
+    }));
+    const commitLabels = {
+      sale: 'Record sale', addstock: 'Add to stock', adjust: 'Apply adjustment',
+      edit: 'Save changes', add: 'Add product', delete: 'Delete permanently', reset: 'Reset everything'
+    };
+
+    const fsa = typeof window !== 'undefined' && !!window.showSaveFilePicker;
+
+    return {
+      isDashboard: view === 'dashboard', isInventory: view === 'inventory',
+      isHistory: view === 'history', isSettings: view === 'settings',
+      goDashboard: this.go('dashboard'), goInventory: this.go('inventory'),
+      goHistory: this.go('history'), goSettings: this.go('settings'),
+      goLowStock: () => this.setState({ view: 'inventory', status: 'Low', cat: 'All' }),
+
+      showDemoBanner: s.demo, dismissDemo: () => this.commit({ demo: false }),
+      todayLabel: today,
+      statProducts: s.products.length,
+      statUnits: s.products.reduce((a, x) => a + x.stock, 0),
+      statLow: s.products.filter(x => this.status(x) === 'low').length,
+      statOut: s.products.filter(x => this.status(x) === 'out' && !/^STOCK QUANTITY MISSING/.test(x.notes || '')).length,
+      statSold: soldToday,
+
+      attention: attention, hasAttention: attention.length > 0, noAttention: attention.length === 0,
+      recent: s.txns.slice(0, 6).map(t => this.fmtTxn(t)),
+      hasRecent: s.txns.length > 0, noRecent: s.txns.length === 0,
+
+      rows: rows, noRows: rows.length === 0,
+      resultLabel: rows.length + ' of ' + s.products.length + ' lines shown',
+      search: s.search, onSearch: (e) => this.setState({ search: e.target.value }),
+      catChips: catChips, statusTabs: statusTabs,
+      wide: !s.narrow, narrow: s.narrow,
+      openNewProduct: () => this.open('add', null),
+
+      histRows: hist.map(t => this.fmtTxn(t)), hasHist: hist.length > 0, noHist: hist.length === 0,
+      histCountLabel: hist.length + ' movements',
+      histSearch: s.histSearch, onHistSearch: (e) => this.setState({ histSearch: e.target.value }),
+      histTabs: histTabs,
+
+      modalOpen: !!modal, closeModal: this.closeModal, stop: this.stop,
+      modalTitle: titles[modal] || '', modalKicker: p ? p.id + ' · ' + p.category : 'The Pint Bar',
+      mManage: modal === 'manage', mQty: isQty, mAdjust: modal === 'adjust',
+      mForm: modal === 'add' || modal === 'edit', mConfirm: modal === 'delete' || modal === 'reset',
+      mStock: p ? p.stock : 0, mThreshold: p ? p.threshold : 0,
+      preview: s.preview == null ? (p ? p.stock : 0) : s.preview,
+      qtyLabel: modal === 'sale' ? 'Units sold' : (modal === 'addstock' ? 'Units received' : 'Adjustment (+ or −)'),
+      qtyDefault: '', qtyRef: this.refs.qty, reasonRef: this.refs.reason,
+      onQtyChange: this.refreshPreview, qtyChips: chips,
+      commitQty: this.commitQty, commitLabel: commitLabels[modal] || 'Save',
+      toAddStock: () => this.open('addstock', s.target), toSale: () => this.open('sale', s.target),
+      toAdjust: () => this.open('adjust', s.target), toEdit: () => this.open('edit', s.target),
+      toDelete: () => this.open('delete', s.target),
+
+      nameRef: this.refs.name, catRef: this.refs.cat, unitRef: this.refs.unit,
+      stockRef: this.refs.stock, threshRef: this.refs.thresh, notesRef: this.refs.notes,
+      fName: p && modal === 'edit' ? p.name : '',
+      fCategory: p && modal === 'edit' ? p.category : 'Beer',
+      fUnit: p && modal === 'edit' ? p.unit : 'Bottle',
+      fStock: p && modal === 'edit' ? p.stock : 0,
+      fThreshold: p && modal === 'edit' ? p.threshold : s.settings.defaultThreshold,
+      fNotes: p && modal === 'edit' ? p.notes : '',
+      categoryOptions: this.CATS, unitOptions: this.UNITS,
+      commitProduct: this.commitProduct,
+
+      confirmBody: modal === 'delete'
+        ? (p ? 'Delete ' + p.name + ' permanently? Its ' + p.stock + ' units and its place in the inventory will be removed. The movement history stays.' : '')
+        : 'This replaces every product and clears all recorded movements, returning the prototype to its sample list.',
+      commitConfirm: this.commitConfirm,
+
+      error: s.error, showError: !!s.error,
+      toast: s.toast, hasToast: !!s.toast,
+
+      fsaSupported: fsa,
+      excelStatus: s.linked
+        ? 'Linked to ' + s.linked + ' — every movement writes into that workbook.'
+        : 'No workbook linked. Changes are held in this browser and exported on demand.',
+      excelNote: fsa
+        ? 'Your browser supports writing directly to a chosen file.'
+        : 'This browser cannot write to a local file directly — use Import and Export, or run the local service described below.',
+      linkWorkbook: this.linkWorkbook, openWorkbook: this.openWorkbook,
+      pickImport: this.pickImport, onImportFile: this.onImportFile,
+      exportXlsx: this.exportXlsx, fileRef: this.refs.file,
+
+      thrRef: this.refs.thr, staffRef: this.refs.staff,
+      defThreshold: s.settings.defaultThreshold, staffName: s.settings.staff,
+      saveSettings: this.saveSettings,
+      confirmReset: () => this.open('reset', null),
+      storageLabel: s.linked ? 'Excel · ' + s.linked : 'Local browser storage · export to .xlsx'
+    };
+  }
+}
+</script>
+</body>
+</html>
