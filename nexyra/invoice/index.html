@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Invoice Generator — Nexyra Consulting Ltd.</title>
+<meta name="description" content="Create, preview and export branded A4 invoices for Nexyra Consulting Ltd.">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/icons/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#9333EA">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="omelette-owns-print" content="true">
+<link rel="stylesheet" href="_ds/modernist-e5baa163-67bf-4f00-88b8-5494dde303ec/styles.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<script src="_ds/modernist-e5baa163-67bf-4f00-88b8-5494dde303ec/_ds_bundle.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  body { margin: 0; background: var(--color-bg); color: var(--color-text); }
+  a { color: var(--color-accent-700); text-decoration: none; }
+  a:hover { color: var(--color-accent); text-decoration: underline; }
+  input[type="date"] { font-family: var(--font-body); }
+  [data-measure="1"] { position: absolute !important; left: -100000px !important; top: 0 !important; visibility: hidden !important; transform: none !important; }
+  [data-measure="1"] [data-a4] { height: auto !important; overflow: visible !important; }
+  @page { size: A4; margin: 0; }
+  @media print {
+    [data-noprint] { display: none !important; }
+    html, body { background: #fff !important; }
+    [data-paper-scale] { transform: none !important; width: auto !important; height: auto !important; }
+    [data-a4] { box-shadow: none !important; margin: 0 !important; outline: none !important; break-after: page; }
+    [data-a4]:last-child { break-after: auto; }
+  }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; font-family: var(--font-body); display: flex; flex-direction: column;">
+
+  <div data-noprint="1" style="display: flex; align-items: center; gap: 24px; padding: 14px 24px; border-bottom: 2px solid var(--color-divider); background: var(--color-bg); position: sticky; top: 0; z-index: 20; flex-wrap: wrap;">
+    <svg viewBox="0 0 400 104" width="215" height="56" role="img" aria-label="Nexyra Consulting" style="display: block;">
+      <defs>
+        <clipPath id="navTop"><polygon points="-40,120 160,22 160,-70 -40,-70"></polygon></clipPath>
+        <clipPath id="navBot"><polygon points="-40,130 160,32 160,230 -40,230"></polygon></clipPath>
+      </defs>
+      <g transform="translate(34,20) scale(0.457)">
+        <g clip-path="url(#navTop)"><path fill="#000000" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g>
+        <g clip-path="url(#navBot)"><path fill="#000000" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g>
+        <line stroke="#9333EA" fill="none" stroke-width="4" stroke-linecap="round" x1="-30" y1="115" x2="-2" y2="101"></line>
+        <line stroke="#9333EA" fill="none" stroke-width="4" stroke-linecap="round" x1="122" y1="41" x2="150" y2="27"></line>
+      </g>
+      <text x="138" y="57.1" font-family="'Hanken Grotesk','Neue Haas Grotesk Display','Helvetica Neue',Arial,sans-serif" font-size="51" font-weight="500" letter-spacing="5.33" fill="#000000">NEXYRA</text>
+      <text x="140.7" y="84" font-family="'Hanken Grotesk','Neue Haas Grotesk Display','Helvetica Neue',Arial,sans-serif" font-size="16.1" font-weight="400" letter-spacing="9.67" fill="#2563EB">CONSULTING</text>
+    </svg>
+    <div style="width: 2px; align-self: stretch; background: var(--color-divider);"></div>
+    <div style="font-family: var(--font-heading); font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;">Invoice Generator</div>
+    <div style="margin-left: auto; display: flex; gap: 2px;">
+      <button class="btn btn-ghost" onClick="{{ goForm }}" style="font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: {{ tabFormColor }};">Editor</button>
+      <button class="btn btn-ghost" onClick="{{ goSaved }}" style="font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: {{ tabSavedColor }}; white-space: nowrap;">Saved ({{ savedCount }})</button>
+    </div>
+  </div>
+
+  <sc-if value="{{ isForm }}" hint-placeholder-val="{{ true }}">
+  <div style="flex: 1; padding: 32px 24px 120px; max-width: 1180px; width: 100%; margin: 0 auto; box-sizing: border-box;">
+
+    <div style="display: flex; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 6px;">
+      <h1 style="margin: 0; font-size: 40px; line-height: 1; letter-spacing: -0.02em;">New invoice</h1>
+      <div style="font-size: 12.5px; color: color-mix(in srgb, var(--color-text) 55%, transparent); padding-bottom: 4px;">Enter details → Generate → Preview → Download / Save</div>
+    </div>
+    <div class="hr" style="margin: 18px 0 0;"></div>
+
+    <div style="display: grid; grid-template-columns: 148px minmax(0, 1fr); gap: 28px; padding: 26px 0; border-bottom: 2px solid var(--color-divider);">
+      <div>
+        <div style="font-family: var(--font-heading); font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;">01 — Invoice</div>
+        <div style="font-size: 11.5px; margin-top: 6px; color: color-mix(in srgb, var(--color-text) 50%, transparent);">Reference, dates and terms.</div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px 18px;">
+        <div class="field"><label>Invoice number</label><input class="input" value="{{ f.number }}" onChange="{{ onNumber }}" placeholder="NEX-2026-001"></div>
+        <div class="field"><label>Invoice date</label><input class="input" type="date" value="{{ f.issueDate }}" onChange="{{ onIssueDate }}"></div>
+        <div class="field"><label>Payment terms</label>
+          <select class="input" value="{{ f.terms }}" onChange="{{ onTerms }}">
+            <option value="receipt">Due on receipt</option>
+            <option value="net7">Net 7 — due in 7 days</option>
+            <option value="net14">Net 14 — due in 14 days</option>
+            <option value="net30">Net 30 — due in 30 days</option>
+            <option value="custom">Custom — set due date manually</option>
+          </select>
+        </div>
+        <div class="field"><label>Due date</label><input class="input" type="date" value="{{ f.dueDate }}" onChange="{{ onDueDate }}"></div>
+        <div class="field"><label>Currency</label>
+          <select class="input" value="{{ f.currency }}" onChange="{{ onCurrency }}">
+            <option value="GBP">GBP £ — Pound Sterling</option>
+            <option value="EUR">EUR € — Euro</option>
+            <option value="USD">USD $ — US Dollar</option>
+            <option value="AED">AED د.إ — UAE Dirham</option>
+            <option value="CHF">CHF — Swiss Franc</option>
+            <option value="INR">INR ₹ — Indian Rupee</option>
+          </select>
+        </div>
+        <div class="field"><label>Purchase order / reference</label><input class="input" value="{{ f.po }}" onChange="{{ onPo }}" placeholder="Optional"></div>
+        <div class="field"><label>Status stamp</label>
+          <select class="input" value="{{ f.status }}" onChange="{{ onStatus }}">
+            <option value="none">No stamp</option>
+            <option value="draft">Draft</option>
+            <option value="sent">Sent</option>
+            <option value="paid">Paid</option>
+            <option value="overdue">Overdue</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 148px minmax(0, 1fr); gap: 28px; padding: 26px 0; border-bottom: 2px solid var(--color-divider);">
+      <div>
+        <div style="font-family: var(--font-heading); font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;">02 — Client</div>
+        <div style="font-size: 11.5px; margin-top: 6px; color: color-mix(in srgb, var(--color-text) 50%, transparent);">Who the invoice is billed to.</div>
+      </div>
+      <div>
+        <div style="display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid var(--color-divider);">
+          <div class="field" style="min-width: 240px; flex: 1;"><label>Saved client profiles</label>
+            <select class="input" value="{{ selectedProfile }}" onChange="{{ onLoadProfile }}">
+              <option value="">Select a client…</option>
+              <sc-for list="{{ profiles }}" as="p" hint-placeholder-count="2"><option value="{{ p.id }}">{{ p.name }}</option></sc-for>
+            </select>
+          </div>
+          <button class="btn btn-secondary" onClick="{{ saveProfile }}" style="font-size: 12.5px;">Save this client</button>
+          <button class="btn btn-secondary" onClick="{{ deleteProfile }}" disabled="{{ noProfileSelected }}" style="font-size: 12.5px;">Remove</button>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px 18px;">
+          <div class="field"><label>Client / company name</label><input class="input" value="{{ f.clientName }}" onChange="{{ onClientName }}" placeholder="Acme Holdings Ltd."></div>
+          <div class="field"><label>Contact person</label><input class="input" value="{{ f.clientContact }}" onChange="{{ onClientContact }}" placeholder="Jane Whitfield"></div>
+          <div class="field"><label>Email</label><input class="input" type="email" value="{{ f.clientEmail }}" onChange="{{ onClientEmail }}" placeholder="accounts@acme.co.uk"></div>
+          <div class="field"><label>Phone</label><input class="input" value="{{ f.clientPhone }}" onChange="{{ onClientPhone }}" placeholder="+44 20 7000 0000"></div>
+          <div class="field"><label>VAT / tax number</label><input class="input" value="{{ f.clientVat }}" onChange="{{ onClientVat }}" placeholder="Optional"></div>
+          <div class="field" style="grid-column: 1 / -1;"><label>Billing address</label><textarea class="input" value="{{ f.clientAddress }}" onChange="{{ onClientAddress }}" placeholder="Street&#10;City&#10;Postcode&#10;Country" style="min-height: 84px;"></textarea></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 148px minmax(0, 1fr); gap: 28px; padding: 26px 0; border-bottom: 2px solid var(--color-divider);">
+      <div>
+        <div style="font-family: var(--font-heading); font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;">03 — Services</div>
+        <div style="font-size: 11.5px; margin-top: 6px; color: color-mix(in srgb, var(--color-text) 50%, transparent);">{{ itemCountLabel }}</div>
+      </div>
+      <div>
+        <div style="display: grid; grid-template-columns: {{ itemGridCols }}; gap: 0 12px; align-items: center; padding-bottom: 8px; border-bottom: 2px solid var(--color-divider); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 60%, transparent);">
+          <div>Description</div>
+          <div style="text-align: right;">Qty</div>
+          <div style="text-align: right;">Unit price</div>
+          <sc-if value="{{ showLineTax }}" hint-placeholder-val="{{ false }}"><div style="text-align: right;">Tax %</div></sc-if>
+          <div style="text-align: right;">Line total</div>
+          <div></div>
+        </div>
+        <sc-for list="{{ items }}" as="it" hint-placeholder-count="2">
+          <div style="display: grid; grid-template-columns: {{ itemGridCols }}; gap: 0 12px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--color-divider);">
+            <input class="input" value="{{ it.description }}" onChange="{{ it.onDescription }}" placeholder="Strategy workshop — two days">
+            <input class="input" type="number" step="0.01" min="0" value="{{ it.quantity }}" onChange="{{ it.onQuantity }}" style="text-align: right;">
+            <input class="input" type="number" step="0.01" min="0" value="{{ it.unitPrice }}" onChange="{{ it.onUnitPrice }}" style="text-align: right;">
+            <sc-if value="{{ showLineTax }}" hint-placeholder-val="{{ false }}">
+              <input class="input" type="number" step="0.1" min="0" value="{{ it.taxRate }}" onChange="{{ it.onTaxRate }}" style="text-align: right;">
+            </sc-if>
+            <div style="text-align: right; font-family: var(--font-heading); font-variant-numeric: tabular-nums; font-size: 14px;">{{ it.lineTotalFmt }}</div>
+            <div style="display: flex; gap: 2px;">
+              <button class="btn btn-ghost btn-icon" onClick="{{ it.onDuplicate }}" title="Duplicate line" aria-label="Duplicate line" style="font-size: 16px; line-height: 1;">⧉</button>
+              <button class="btn btn-ghost btn-icon" onClick="{{ it.onRemove }}" title="Remove line" aria-label="Remove line" style="font-size: 18px; line-height: 1;">×</button>
+            </div>
+          </div>
+        </sc-for>
+        <button class="btn btn-secondary" onClick="{{ addItem }}" style="margin-top: 14px; font-size: 13px; letter-spacing: 0.04em;">+ Add item</button>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 148px minmax(0, 1fr); gap: 28px; padding: 26px 0; border-bottom: 2px solid var(--color-divider);">
+      <div>
+        <div style="font-family: var(--font-heading); font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;">04 — Adjustments</div>
+        <div style="font-size: 11.5px; margin-top: 6px; color: color-mix(in srgb, var(--color-text) 50%, transparent);">Tax, discount and other charges.</div>
+      </div>
+      <div style="display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 32px; align-items: start;">
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <div>
+            <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 70%, transparent); margin-bottom: 8px;">Tax</div>
+            <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
+              <label class="radio"><input type="checkbox" checked="{{ f.taxEnabled }}" onChange="{{ onTaxEnabled }}"><span class="dot"></span><span>Apply tax</span></label>
+              <div class="seg">
+                <label class="seg-opt"><input type="radio" name="taxmode" value="invoice" checked="{{ taxModeInvoice }}" onChange="{{ onTaxModeInvoice }}" disabled="{{ taxDisabled }}"><span>One rate</span></label>
+                <label class="seg-opt"><input type="radio" name="taxmode" value="line" checked="{{ taxModeLine }}" onChange="{{ onTaxModeLine }}" disabled="{{ taxDisabled }}"><span>Per line</span></label>
+              </div>
+              <sc-if value="{{ showInvoiceTaxRate }}" hint-placeholder-val="{{ false }}">
+                <div class="field" style="width: 120px;"><label>Rate %</label><input class="input" type="number" step="0.1" min="0" value="{{ f.taxRate }}" onChange="{{ onTaxRate }}" style="text-align: right;"></div>
+              </sc-if>
+              <div class="field" style="width: 150px;"><label>Tax label</label><input class="input" value="{{ f.taxLabel }}" onChange="{{ onTaxLabel }}" placeholder="VAT" disabled="{{ taxDisabled }}"></div>
+            </div>
+            <div style="font-size: 11px; margin-top: 8px; color: color-mix(in srgb, var(--color-text) 55%, transparent); max-width: 52ch;">Nexyra is not VAT registered, so tax is off by default and the column is hidden on the invoice. Turn it on when registration comes through.</div>
+          </div>
+          <div>
+            <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 70%, transparent); margin-bottom: 8px;">Invoice discount</div>
+            <div style="display: flex; gap: 14px; align-items: flex-end; flex-wrap: wrap;">
+              <div class="seg">
+                <label class="seg-opt"><input type="radio" name="discmode" value="pct" checked="{{ discPct }}" onChange="{{ onDiscModePct }}"><span>Percent</span></label>
+                <label class="seg-opt"><input type="radio" name="discmode" value="amt" checked="{{ discAmt }}" onChange="{{ onDiscModeAmt }}"><span>Fixed amount</span></label>
+              </div>
+              <div class="field" style="width: 150px;"><label>{{ discountFieldLabel }}</label><input class="input" type="number" step="0.01" min="0" value="{{ f.discountValue }}" onChange="{{ onDiscountValue }}" style="text-align: right;"></div>
+              <div class="field" style="width: 180px;"><label>Discount description</label><input class="input" value="{{ f.discountLabel }}" onChange="{{ onDiscountLabel }}" placeholder="Retainer discount"></div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 70%, transparent); margin-bottom: 8px;">Other charges</div>
+            <sc-for list="{{ charges }}" as="ch" hint-placeholder-count="1">
+              <div style="display: grid; grid-template-columns: minmax(0, 1fr) 130px 36px; gap: 10px; align-items: center; margin-bottom: 8px;">
+                <input class="input" value="{{ ch.label }}" onChange="{{ ch.onLabel }}" placeholder="Travel & expenses">
+                <input class="input" type="number" step="0.01" value="{{ ch.amount }}" onChange="{{ ch.onAmount }}" style="text-align: right;">
+                <button class="btn btn-ghost btn-icon" onClick="{{ ch.onRemove }}" aria-label="Remove charge" style="font-size: 18px; line-height: 1;">×</button>
+              </div>
+            </sc-for>
+            <button class="btn btn-secondary" onClick="{{ addCharge }}" style="font-size: 13px;">+ Add charge</button>
+          </div>
+        </div>
+
+        <div style="border: 2px solid var(--color-text); padding: 18px; background: var(--color-surface);">
+          <div style="font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent-700); margin-bottom: 14px;">Live totals</div>
+          <sc-for list="{{ totalRows }}" as="r" hint-placeholder-count="3">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 13px; padding: 5px 0;">
+              <span style="color: color-mix(in srgb, var(--color-text) 70%, transparent); line-height: 1.35;">{{ r.label }}</span>
+              <span style="font-variant-numeric: tabular-nums; white-space: nowrap; flex: none;">{{ r.value }}</span>
+            </div>
+          </sc-for>
+          <div style="height: 2px; background: var(--color-text); margin: 12px 0;"></div>
+          <div style="display: flex; justify-content: space-between; gap: 12px; align-items: baseline;">
+            <span style="font-family: var(--font-heading); font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;">Amount due</span>
+            <span style="font-family: var(--font-heading); font-size: 24px; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -0.01em;">{{ grandTotalFmt }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 148px minmax(0, 1fr); gap: 28px; padding: 26px 0;">
+      <div>
+        <div style="font-family: var(--font-heading); font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;">05 — Notes</div>
+        <div style="font-size: 11.5px; margin-top: 6px; color: color-mix(in srgb, var(--color-text) 50%, transparent);">Shown above the payment block.</div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px;">
+        <div class="field"><label>Notes to the client</label><textarea class="input" value="{{ f.notes }}" onChange="{{ onNotes }}" placeholder="Thank you for your business. Please quote the invoice number with your payment." style="min-height: 96px;"></textarea></div>
+        <div style="display: flex; flex-direction: column; gap: 12px; padding-top: 22px;">
+          <div class="field"><label>Online payment link (QR target)</label><input class="input" value="{{ f.payLink }}" onChange="{{ onPayLink }}" placeholder="https://pay.tide.co/pay/…"></div>
+          <div style="font-size: 11px; color: color-mix(in srgb, var(--color-text) 55%, transparent);">{{ qrModeNote }}</div>
+          <label class="radio"><input type="checkbox" checked="{{ f.lateInterest }}" onChange="{{ onLateInterest }}"><span class="dot"></span><span>Include late-payment interest statement</span></label>
+          <div style="font-size: 11px; color: color-mix(in srgb, var(--color-text) 55%, transparent); padding-left: 26px;">Cites the Late Payment of Commercial Debts (Interest) Act 1998 — statutory interest at 8% above the Bank of England base rate, plus recovery costs.</div>
+        </div>
+      </div>
+    </div>
+
+    <div data-noprint="1" style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 25; display: flex; align-items: center; gap: 14px; padding: 14px 24px; background: var(--color-bg); border-top: 2px solid var(--color-divider); flex-wrap: wrap;">
+      <div style="font-size: 12px; color: color-mix(in srgb, var(--color-text) 60%, transparent);">{{ footerSummary }}</div>
+      <div style="margin-left: auto; display: flex; gap: 10px; flex-wrap: wrap;">
+        <button class="btn btn-secondary" onClick="{{ resetInvoice }}" style="font-size: 13px;">New blank invoice</button>
+        <button class="btn btn-primary" onClick="{{ generate }}" style="font-size: 13px; letter-spacing: 0.06em; padding-inline: 22px;">Generate invoice</button>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isSaved }}" hint-placeholder-val="{{ false }}">
+  <div style="flex: 1; padding: 32px 24px 80px; max-width: 1180px; width: 100%; margin: 0 auto; box-sizing: border-box;">
+    <h1 style="margin: 0; font-size: 40px; line-height: 1; letter-spacing: -0.02em;">Saved invoices</h1>
+    <div class="hr" style="margin: 18px 0 26px;"></div>
+    <sc-if value="{{ hasSaved }}" hint-placeholder-val="{{ true }}">
+      <table class="table">
+        <thead><tr><th>Invoice</th><th>Client</th><th>Issued</th><th>Due</th><th>Status</th><th style="text-align: right;">Amount</th><th></th></tr></thead>
+        <tbody>
+          <sc-for list="{{ savedRows }}" as="s" hint-placeholder-count="3">
+            <tr>
+              <td style="font-family: var(--font-heading); font-weight: 600;">{{ s.number }}</td>
+              <td>{{ s.client }}</td>
+              <td>{{ s.issued }}</td>
+              <td>{{ s.due }}</td>
+              <td><span class="tag tag-neutral">{{ s.status }}</span></td>
+              <td style="text-align: right; font-variant-numeric: tabular-nums;">{{ s.amount }}</td>
+              <td>
+                <div style="display: flex; gap: 4px; justify-content: flex-end;">
+                  <button class="btn btn-ghost" onClick="{{ s.onOpen }}" style="font-size: 12px;">Open</button>
+                  <button class="btn btn-ghost" onClick="{{ s.onDuplicate }}" style="font-size: 12px;">Duplicate</button>
+                  <button class="btn btn-ghost" onClick="{{ s.onDelete }}" style="font-size: 12px;">Delete</button>
+                </div>
+              </td>
+            </tr>
+          </sc-for>
+        </tbody>
+      </table>
+    </sc-if>
+    <sc-if value="{{ noSaved }}" hint-placeholder-val="{{ false }}">
+      <div style="padding: 48px 0; border-top: 2px solid var(--color-divider); border-bottom: 2px solid var(--color-divider); font-size: 14px; color: color-mix(in srgb, var(--color-text) 55%, transparent);">No invoices saved yet. Generate one, then press Save invoice.</div>
+    </sc-if>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isPreview }}" hint-placeholder-val="{{ false }}">
+  <div style="flex: 1;">
+    <div data-noprint="1" style="display: flex; align-items: center; gap: 12px; padding: 12px 24px; border-bottom: 2px solid var(--color-divider); background: var(--color-bg); flex-wrap: wrap;">
+      <button class="btn btn-secondary" onClick="{{ goForm }}" style="font-size: 13px;">← Back to edit</button>
+      <div style="font-size: 12px; color: color-mix(in srgb, var(--color-text) 60%, transparent);">{{ previewMeta }}</div>
+      <div style="margin-left: auto; display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+        <span style="font-size: 12px; color: color-mix(in srgb, var(--color-text) 55%, transparent);">{{ saveMessage }}</span>
+        <button class="btn btn-secondary" onClick="{{ saveInvoice }}" style="font-size: 13px;">Save invoice</button>
+        <button class="btn btn-secondary" onClick="{{ saveToFolder }}" style="font-size: 13px;">Save to folder…</button>
+        <button class="btn btn-primary" onClick="{{ downloadPdf }}" style="font-size: 13px; letter-spacing: 0.06em; padding-inline: 20px;">Download PDF</button>
+      </div>
+    </div>
+
+    <div style="padding: 28px 24px 60px; display: flex; justify-content: center; overflow: hidden;">
+      <div style="width: 100%; height: {{ scaledHeight }}; display: flex; justify-content: center;">
+      <div data-paper-scale="1" data-measure="{{ measureFlag }}" style="transform: scale({{ paperScale }}); transform-origin: top center; width: 210mm; flex: none;">
+        <sc-for list="{{ pages }}" as="pg" hint-placeholder-count="1">
+          <div data-a4="1" style="width: 210mm; height: 297mm; overflow: hidden; box-sizing: border-box; padding: 15mm 16mm 12mm; background: #ffffff; color: #201e1d; margin: 0 auto 24px; box-shadow: 0 1px 3px color-mix(in srgb, #201e1d 18%, transparent); display: flex; flex-direction: column;">
+
+            <sc-if value="{{ pg.isFirst }}" hint-placeholder-val="{{ true }}">
+              <div data-m="head">
+              <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 24px;">
+                <svg viewBox="0 0 400 104" width="203" height="53" role="img" aria-label="Nexyra Consulting" style="display: block;">
+                  <defs>
+                    <clipPath id="docTop"><polygon points="-40,120 160,22 160,-70 -40,-70"></polygon></clipPath>
+                    <clipPath id="docBot"><polygon points="-40,130 160,32 160,230 -40,230"></polygon></clipPath>
+                  </defs>
+                  <g transform="translate(34,20) scale(0.457)">
+                    <g clip-path="url(#docTop)"><path fill="#000000" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g>
+                    <g clip-path="url(#docBot)"><path fill="#000000" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g>
+                    <line stroke="#9333EA" fill="none" stroke-width="4" stroke-linecap="round" x1="-30" y1="115" x2="-2" y2="101"></line>
+                    <line stroke="#9333EA" fill="none" stroke-width="4" stroke-linecap="round" x1="122" y1="41" x2="150" y2="27"></line>
+                  </g>
+                  <text x="138" y="57.1" font-family="'Hanken Grotesk','Neue Haas Grotesk Display','Helvetica Neue',Arial,sans-serif" font-size="51" font-weight="500" letter-spacing="5.33" fill="#000000">NEXYRA</text>
+                  <text x="140.7" y="84" font-family="'Hanken Grotesk','Neue Haas Grotesk Display','Helvetica Neue',Arial,sans-serif" font-size="16.1" font-weight="400" letter-spacing="9.67" fill="#2563EB">CONSULTING</text>
+                </svg>
+                <div style="text-align: right;">
+                  <div style="font-family: var(--font-heading); font-size: 34px; font-weight: 600; letter-spacing: 0.16em; line-height: 1; text-transform: uppercase;">Invoice</div>
+                  <div style="font-size: 12.5px; font-variant-numeric: tabular-nums; letter-spacing: 0.06em; margin-top: 7px;">{{ f.number }}</div>
+                  <sc-if value="{{ showStamp }}" hint-placeholder-val="{{ false }}">
+                    <div style="display: inline-block; margin-top: 9px; padding: 4px 12px; border: 2px solid {{ stampColor }}; color: {{ stampColor }}; font-family: var(--font-heading); font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;">{{ stampLabel }}</div>
+                  </sc-if>
+                </div>
+              </div>
+
+              <div style="height: 2px; background: #201e1d; margin: 14px 0 0;"></div>
+
+              <div style="display: grid; grid-template-columns: 1.05fr 0.95fr 1fr; gap: 0; border-bottom: 2px solid #201e1d;">
+                <div style="padding: 14px 16px 16px 0;">
+                  <div style="font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: {{ accent }}; margin-bottom: 8px;">Billed to</div>
+                  <div style="font-family: var(--font-heading); font-size: 14px; font-weight: 600; line-height: 1.3;">{{ f.clientName }}</div>
+                  <sc-for list="{{ clientLines }}" as="l" hint-placeholder-count="4"><div style="font-size: 11.5px; line-height: 1.55;">{{ l }}</div></sc-for>
+                </div>
+                <div style="padding: 14px 16px 16px; border-left: 1px solid color-mix(in srgb, #201e1d 25%, transparent);">
+                  <div style="font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: {{ accent }}; margin-bottom: 8px;">From</div>
+                  <div style="font-family: var(--font-heading); font-size: 14px; font-weight: 600; line-height: 1.3;">Nexyra Consulting Ltd.</div>
+                  <div style="font-size: 11.5px; line-height: 1.55;">12 Boveney Close</div>
+                  <div style="font-size: 11.5px; line-height: 1.55;">Slough</div>
+                  <div style="font-size: 11.5px; line-height: 1.55;">Berkshire SL1 9BJ</div>
+                  <div style="font-size: 11.5px; line-height: 1.55;">United Kingdom</div>
+                  <div style="font-size: 11.5px; line-height: 1.55; margin-top: 5px;">Company Reg. No. 17399742</div>
+                </div>
+                <div style="padding: 14px 0 16px 16px; border-left: 1px solid color-mix(in srgb, #201e1d 25%, transparent);">
+                  <div style="font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: {{ accent }}; margin-bottom: 8px;">Details</div>
+                  <sc-for list="{{ metaRows }}" as="m" hint-placeholder-count="4">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 11.5px; line-height: 1.7;">
+                      <span style="color: color-mix(in srgb, #201e1d 60%, transparent); white-space: nowrap;">{{ m.label }}</span>
+                      <span style="font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap;">{{ m.value }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ pg.isContinuation }}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 20px; padding-bottom: 10px; border-bottom: 2px solid #201e1d;">
+                <div style="font-family: var(--font-heading); font-size: 14px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;">Nexyra Consulting Ltd.</div>
+                <div style="font-size: 11px; letter-spacing: 0.06em;">Invoice {{ f.number }} — continued</div>
+              </div>
+            </sc-if>
+
+            <div style="margin-top: 0;">
+              <div data-m="thead" style="display: grid; grid-template-columns: {{ docGridCols }}; gap: 0 10px; padding: 10px 0 7px; border-bottom: 1px solid color-mix(in srgb, #201e1d 35%, transparent); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: color-mix(in srgb, #201e1d 62%, transparent);">
+                <div>#</div>
+                <div>Description</div>
+                <div style="text-align: right;">Qty</div>
+                <div style="text-align: right;">Unit price</div>
+                <sc-if value="{{ showDocTax }}" hint-placeholder-val="{{ false }}"><div style="text-align: right;">{{ taxColLabel }}</div></sc-if>
+                <div style="text-align: right;">Amount</div>
+              </div>
+              <sc-for list="{{ pg.rows }}" as="r" hint-placeholder-count="3">
+                <div data-m="row" style="display: grid; grid-template-columns: {{ docGridCols }}; gap: 0 10px; padding: 8px 0; border-bottom: 1px solid color-mix(in srgb, #201e1d 14%, transparent); font-size: 12px; align-items: baseline;">
+                  <div style="font-variant-numeric: tabular-nums; color: color-mix(in srgb, #201e1d 50%, transparent);">{{ r.n }}</div>
+                  <div style="line-height: 1.45; text-wrap: pretty;">{{ r.description }}</div>
+                  <div style="text-align: right; font-variant-numeric: tabular-nums;">{{ r.qty }}</div>
+                  <div style="text-align: right; font-variant-numeric: tabular-nums;">{{ r.unitPrice }}</div>
+                  <sc-if value="{{ showDocTax }}" hint-placeholder-val="{{ false }}"><div style="text-align: right; font-variant-numeric: tabular-nums;">{{ r.tax }}</div></sc-if>
+                  <div style="text-align: right; font-variant-numeric: tabular-nums; font-family: var(--font-heading); font-weight: 500;">{{ r.amount }}</div>
+                </div>
+              </sc-for>
+            </div>
+
+            <sc-if value="{{ pg.isLast }}" hint-placeholder-val="{{ true }}">
+              <div data-m="tail">
+              <div style="display: grid; grid-template-columns: 1fr 82mm; gap: 0 18px; margin-top: 14px;">
+                <div></div>
+                <div>
+                  <sc-for list="{{ totalRows }}" as="r" hint-placeholder-count="2">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 12px; padding: 6px 0; border-bottom: 1px solid color-mix(in srgb, #201e1d 14%, transparent);">
+                      <span style="color: color-mix(in srgb, #201e1d 65%, transparent); line-height: 1.35; text-wrap: pretty;">{{ r.label }}</span>
+                      <span style="font-variant-numeric: tabular-nums; white-space: nowrap; flex: none;">{{ r.value }}</span>
+                    </div>
+                  </sc-for>
+                  <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-top: 8px; padding: 10px 12px; background: {{ accent }}; color: #ffffff;">
+                    <span style="font-family: var(--font-heading); font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;">Amount due</span>
+                    <span style="font-family: var(--font-heading); font-size: 19px; font-weight: 600; font-variant-numeric: tabular-nums;">{{ grandTotalFmt }}</span>
+                  </div>
+                  <div style="font-size: 10px; margin-top: 5px; text-align: right; color: color-mix(in srgb, #201e1d 60%, transparent);">Payable by {{ dueDateFmt }}</div>
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 34mm; gap: 18px; margin-top: 16px; padding-top: 14px; border-top: 2px solid #201e1d; align-items: start;">
+                <div>
+                  <sc-if value="{{ hasNotes }}" hint-placeholder-val="{{ false }}">
+                    <div style="font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: {{ accent }}; margin-bottom: 6px;">Notes</div>
+                    <div style="font-size: 11px; line-height: 1.55; white-space: pre-wrap; text-wrap: pretty; margin-bottom: 12px; max-width: 78ch;">{{ f.notes }}</div>
+                  </sc-if>
+                  <div style="font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: {{ accent }}; margin-bottom: 7px;">Payment details</div>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px;">
+                    <div>
+                      <div style="font-family: var(--font-heading); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding-bottom: 4px; border-bottom: 1px solid color-mix(in srgb, #201e1d 30%, transparent);">Payment from the UK</div>
+                      <div style="font-size: 10.5px; line-height: 1.6; margin-top: 5px;">Account number <span style="font-variant-numeric: tabular-nums;">33219546</span></div>
+                      <div style="font-size: 10.5px; line-height: 1.6;">Sort code <span style="font-variant-numeric: tabular-nums;">04-06-05</span></div>
+                      <div style="font-size: 10.5px; line-height: 1.6; margin-top: 4px; color: color-mix(in srgb, #201e1d 78%, transparent);">4th Floor, The Featherstone Building, 66 City Road, London EC1Y 2AL</div>
+                    </div>
+                    <div>
+                      <div style="font-family: var(--font-heading); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding-bottom: 4px; border-bottom: 1px solid color-mix(in srgb, #201e1d 30%, transparent);">Payment from outside the UK — SWIFT</div>
+                      <div style="font-size: 10.5px; line-height: 1.6; margin-top: 5px;">IBAN <span style="font-variant-numeric: tabular-nums;">GB81 TCCL 0414 3424 6282 81</span></div>
+                      <div style="font-size: 10.5px; line-height: 1.6;">SWIFT / BIC TCCLGB3L · Intermediary BARCGB22</div>
+                      <div style="font-size: 10.5px; line-height: 1.6; margin-top: 4px; color: color-mix(in srgb, #201e1d 78%, transparent);">The Currency Cloud Limited, 1 Sheldon Square, London W2 6TT, England</div>
+                    </div>
+                  </div>
+                  <div style="font-size: 10.5px; line-height: 1.6; margin-top: 8px;">Please quote <strong>{{ paymentReference }}</strong> as the payment reference.</div>
+                </div>
+                <sc-if value="{{ qrVisible }}" hint-placeholder-val="{{ false }}">
+                  <div>
+                    <div style="font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: {{ accent }}; margin-bottom: 6px;">{{ qrTitle }}</div>
+                    <div style="border: 1px solid color-mix(in srgb, #201e1d 30%, transparent); padding: 5px; background: #ffffff;">
+                      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" ref="{{ qrRef }}" alt="Invoice payment QR code" style="display: block; width: 100%; height: auto;">
+                    </div>
+                    <div style="font-size: 10px; line-height: 1.4; margin-top: 5px; font-variant-numeric: tabular-nums;"><strong>{{ grandTotalFmt }}</strong><br>Ref. {{ paymentReference }}</div>
+                    <div style="font-size: 9.5px; line-height: 1.4; margin-top: 5px; color: color-mix(in srgb, #201e1d 78%, transparent); text-wrap: pretty;">{{ qrCaption }}</div>
+                  </div>
+                </sc-if>
+              </div>
+
+              <sc-if value="{{ f.lateInterest }}" hint-placeholder-val="{{ false }}">
+                <div style="font-size: 9.5px; line-height: 1.5; margin-top: 10px; padding-top: 8px; border-top: 1px solid color-mix(in srgb, #201e1d 20%, transparent); color: color-mix(in srgb, #201e1d 68%, transparent); max-width: 100%;">Overdue accounts are subject to statutory interest and reasonable recovery costs under the Late Payment of Commercial Debts (Interest) Act 1998, currently 8% above the Bank of England base rate, accruing daily from the day after the due date.</div>
+              </sc-if>
+              </div>
+            </sc-if>
+
+            <div style="flex: 1;"></div>
+
+            <div data-m="foot" style="display: flex; align-items: center; gap: 12px; margin-top: 14px; padding-top: 10px; border-top: 2px solid #201e1d;">
+              <svg viewBox="0 0 200 160" width="26" height="21" role="img" aria-label="Nexyra monogram" style="display: block; flex: none;">
+                <defs>
+                  <clipPath id="mgTop"><polygon points="-40,120 160,22 160,-70 -40,-70"></polygon></clipPath>
+                  <clipPath id="mgBot"><polygon points="-40,130 160,32 160,230 -40,230"></polygon></clipPath>
+                </defs>
+                <g transform="translate(40,10)">
+                  <g clip-path="url(#mgTop)"><path fill="#000000" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g>
+                  <g clip-path="url(#mgBot)"><path fill="#000000" d="M0 140 L0 0 L26 0 L94 96 L94 0 L120 0 L120 140 L94 140 L26 44 L26 140 Z"></path></g>
+                  <line stroke="#9333EA" fill="none" stroke-width="4" stroke-linecap="round" x1="-30" y1="115" x2="-2" y2="101"></line>
+                  <line stroke="#9333EA" fill="none" stroke-width="4" stroke-linecap="round" x1="122" y1="41" x2="150" y2="27"></line>
+                </g>
+              </svg>
+              <div style="font-size: 9.5px; line-height: 1.45; color: color-mix(in srgb, #201e1d 70%, transparent);">
+                <div><strong style="color: #201e1d;">Nexyra Consulting Ltd.</strong> · Company Registration No. 17399742 · Registered in England and Wales</div>
+                <div>This is a computer-generated invoice and does not require a signature.</div>
+              </div>
+              <div style="margin-left: auto; font-size: 9.5px; font-variant-numeric: tabular-nums; letter-spacing: 0.08em; color: color-mix(in srgb, #201e1d 70%, transparent); flex: none;">{{ pg.pageLabel }}</div>
+            </div>
+
+          </div>
+        </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#ec3013&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#ec3013&quot;,&quot;#201e1d&quot;,&quot;#2563EB&quot;],&quot;section&quot;:&quot;Invoice document&quot;},&quot;showQr&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Invoice document&quot;}}">
+const CUR = {
+  GBP: { symbol: '£', label: 'GBP £ — Pound Sterling' },
+  EUR: { symbol: '€', label: 'EUR € — Euro' },
+  USD: { symbol: '$', label: 'USD $ — US Dollar' },
+  AED: { symbol: 'د.إ', label: 'AED د.إ — UAE Dirham' },
+  CHF: { symbol: 'CHF', label: 'CHF — Swiss Franc' },
+  INR: { symbol: '₹', label: 'INR ₹ — Indian Rupee' }
+};
+const TERMS = [
+  { value: 'receipt', label: 'Due on receipt', days: 0 },
+  { value: 'net7', label: 'Net 7 — due in 7 days', days: 7 },
+  { value: 'net14', label: 'Net 14 — due in 14 days', days: 14 },
+  { value: 'net30', label: 'Net 30 — due in 30 days', days: 30 },
+  { value: 'custom', label: 'Custom — set due date manually', days: null }
+];
+const STATUSES = [
+  { value: 'none', label: 'No stamp' },
+  { value: 'draft', label: 'Draft' },
+  { value: 'sent', label: 'Sent' },
+  { value: 'paid', label: 'Paid' },
+  { value: 'overdue', label: 'Overdue' }
+];
+const LS_INV = 'nexyra.invoices.v1';
+const LS_PROF = 'nexyra.clients.v1';
+const LS_DRAFT = 'nexyra.draft.v3';
+const BLANK_PNG = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+
+const iso = (d) => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+const addDays = (isoDate, n) => { const d = new Date(isoDate + 'T00:00:00'); d.setDate(d.getDate() + n); return iso(d); };
+const uid = () => Math.random().toString(36).slice(2, 9);
+const cents = (v) => Math.round((Number(v) || 0) * 100);
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    const today = iso(new Date());
+    let draft = null;
+    try { draft = JSON.parse(localStorage.getItem(LS_DRAFT) || 'null'); } catch (e) { draft = null; }
+    let profiles = [];
+    try { profiles = JSON.parse(localStorage.getItem(LS_PROF) || '[]'); } catch (e) { profiles = []; }
+    let saved = [];
+    try { saved = JSON.parse(localStorage.getItem(LS_INV) || '[]'); } catch (e) { saved = []; }
+    this.state = {
+      view: 'form',
+      f: draft && draft.number ? draft : this.blank(today),
+      profiles, saved,
+      selectedProfile: '',
+      saveMessage: '',
+      qrDataUrl: BLANK_PNG,
+      qrPayload: '',
+      paperScale: 1,
+      naturalHeight: 0,
+      layout: null
+    };
+    this._handlers = {};
+    this._qrTries = 0;
+    this.qrRef = React.createRef();
+  }
+
+  blank(today) {
+    const t = today || iso(new Date());
+    const n = (this.state && this.state.saved ? this.state.saved.length : 0) + 1;
+    return {
+      number: 'NEX-' + new Date(t).getFullYear() + '-' + String(n).padStart(3, '0'),
+      issueDate: t,
+      terms: 'net7',
+      dueDate: addDays(t, 7),
+      currency: 'GBP',
+      po: '',
+      status: 'none',
+      clientName: '',
+      clientContact: '',
+      clientEmail: '',
+      clientPhone: '',
+      clientVat: '',
+      clientAddress: '',
+      items: [{ id: uid(), description: '', quantity: 1, unitPrice: 0, taxRate: 0 }],
+      taxEnabled: false,
+      taxMode: 'invoice',
+      taxRate: 20,
+      taxLabel: 'VAT',
+      discountMode: 'pct',
+      discountValue: 0,
+      discountLabel: '',
+      charges: [],
+      payLink: 'https://pay.tide.co/pay/93e040a1-e411-449f-b1e6-8d0a55ba1e3d',
+      notes: 'Thank you for your business. Please quote the invoice number with your payment.',
+      lateInterest: true
+    };
+  }
+
+  componentDidMount() {
+    this._onResize = () => { this.setState({ layout: null }); this.measure(); };
+    window.addEventListener('resize', this._onResize);
+    this.measure();
+    this.measureLayout();
+    this.syncQr();
+    this.paintQr();
+  }
+  componentDidUpdate() { this.measureLayout(); this.measure(); this.syncQr(); this.paintQr(); this.persistDraft(); }
+
+  paintQr() {
+    const el = this.qrRef.current;
+    const url = this.state.qrDataUrl;
+    if (el && url && url !== BLANK_PNG && el.getAttribute('src') !== url) el.setAttribute('src', url);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._onResize); }
+
+  measure() {
+    if (this.state.view !== 'preview') return;
+    const el = document.querySelector('[data-paper-scale]');
+    if (!el || el.getAttribute('data-measure') === '1') return;
+    const avail = (el.parentElement ? el.parentElement.clientWidth : window.innerWidth) - 4;
+    const s = Math.min(1, Math.max(0.25, avail / 793.7));
+    const nat = el.scrollHeight;
+    if (Math.abs(s - this.state.paperScale) > 0.005 || Math.abs(nat - this.state.naturalHeight) > 2) {
+      this.setState({ paperScale: s, naturalHeight: nat });
+    }
+  }
+
+  persistDraft() {
+    try { localStorage.setItem(LS_DRAFT, JSON.stringify(this.state.f)); } catch (e) {}
+  }
+
+  set(key, value) {
+    this.setState((st) => {
+      const f = Object.assign({}, st.f, { [key]: value });
+      if (key === 'terms') {
+        const t = TERMS.find((x) => x.value === value);
+        if (t && t.days !== null) f.dueDate = addDays(f.issueDate, t.days);
+      }
+      if (key === 'issueDate') {
+        const t = TERMS.find((x) => x.value === f.terms);
+        if (t && t.days !== null) f.dueDate = addDays(value, t.days);
+      }
+      if (key === 'dueDate') f.terms = 'custom';
+      return { f, saveMessage: '' };
+    });
+  }
+
+  bind(key, kind) {
+    const k = key + '|' + (kind || 'text');
+    if (!this._handlers[k]) {
+      this._handlers[k] = (e) => {
+        const t = e.target;
+        this.set(key, kind === 'bool' ? t.checked : t.value);
+      };
+    }
+    return this._handlers[k];
+  }
+
+  bindItem(id, field) {
+    const k = 'it:' + id + ':' + field;
+    if (!this._handlers[k]) {
+      this._handlers[k] = (e) => {
+        const v = e.target.value;
+        this.setState((st) => ({
+          f: Object.assign({}, st.f, {
+            items: st.f.items.map((it) => (it.id === id ? Object.assign({}, it, { [field]: v }) : it))
+          }),
+          saveMessage: ''
+        }));
+      };
+    }
+    return this._handlers[k];
+  }
+
+  bindCharge(id, field) {
+    const k = 'ch:' + id + ':' + field;
+    if (!this._handlers[k]) {
+      this._handlers[k] = (e) => {
+        const v = e.target.value;
+        this.setState((st) => ({
+          f: Object.assign({}, st.f, {
+            charges: st.f.charges.map((c) => (c.id === id ? Object.assign({}, c, { [field]: v }) : c))
+          })
+        }));
+      };
+    }
+    return this._handlers[k];
+  }
+
+  memo(key, fn) {
+    if (!this._handlers[key]) this._handlers[key] = fn;
+    return this._handlers[key];
+  }
+
+  /* ---------- money ---------- */
+  compute(f) {
+    const cur = f.currency || 'GBP';
+    const fmt = (c) => {
+      try {
+        return new Intl.NumberFormat('en-GB', { style: 'currency', currency: cur, currencyDisplay: 'narrowSymbol' }).format(c / 100);
+      } catch (e) {
+        return (CUR[cur] ? CUR[cur].symbol : '') + (c / 100).toFixed(2);
+      }
+    };
+    const lines = (f.items || []).map((it) => {
+      const q = Number(it.quantity) || 0;
+      const up = cents(it.unitPrice);
+      return { it, lineCents: Math.round(q * up) };
+    });
+    const subtotal = lines.reduce((s, l) => s + l.lineCents, 0);
+    let discount = 0;
+    if (f.discountMode === 'pct') discount = Math.round(subtotal * (Number(f.discountValue) || 0) / 100);
+    else discount = Math.min(cents(f.discountValue), subtotal);
+    discount = Math.max(0, Math.min(discount, subtotal));
+    const net = subtotal - discount;
+
+    let tax = 0;
+    if (f.taxEnabled) {
+      if (f.taxMode === 'line' && subtotal > 0) {
+        // apportion the invoice-level discount pro rata, then tax each discounted line
+        let allocated = 0;
+        lines.forEach((l, i) => {
+          const share = i === lines.length - 1 ? discount - allocated : Math.round(discount * l.lineCents / subtotal);
+          allocated += share;
+          const base = l.lineCents - share;
+          l.taxCents = Math.round(base * (Number(l.it.taxRate) || 0) / 100);
+          tax += l.taxCents;
+        });
+      } else {
+        tax = Math.round(net * (Number(f.taxRate) || 0) / 100);
+      }
+    }
+    const chargeCents = (f.charges || []).reduce((s, c) => s + cents(c.amount), 0);
+    const total = net + tax + chargeCents;
+    return { cur, fmt, lines, subtotal, discount, net, tax, chargeCents, total };
+  }
+
+  /* ---------- QR ---------- */
+  qrPayload(f, c) {
+    const amount = (c.total / 100).toFixed(2);
+    const ref = (f.po ? f.po + ' / ' : '') + f.number;
+    const link = (f.payLink || '').trim();
+    // Tide Payment Links are GBP-only and capped at £3,000 for a standalone link;
+    // outside that window the code falls back to the payment-details format.
+    const linkUsable = /^https?:\/\//i.test(link) && f.currency === 'GBP' && c.total >= 500 && c.total <= 300000;
+    if (linkUsable) {
+      return {
+        text: link,
+        title: 'Scan to pay',
+        caption: 'Opens the secure Nexyra payment page — card, Apple Pay, Google Pay or Pay by Bank. Enter the amount shown and quote the reference; the amount is not pre-filled.'
+      };
+    }
+    if (f.currency === 'EUR') {
+      // EPC069-12 SEPA Credit Transfer QR — recognised by SEPA banking apps
+      return {
+        text: ['BCD', '002', '1', 'SCT', 'TCCLGB3L', 'Nexyra Consulting Ltd.',
+          'GB81TCCL04143424628281', 'EUR' + amount, '', '', ('Invoice ' + ref).slice(0, 140), ''].join('\n'),
+        title: 'Scan to pay — SEPA',
+        caption: 'Pre-fills a SEPA credit transfer in your banking app (EPC QR, EPC069-12). Check the details before confirming.'
+      };
+    }
+    const plain = (c.total / 100).toFixed(2);
+    return {
+      text: [
+        'NEXYRA CONSULTING LTD - INVOICE PAYMENT',
+        'Invoice: ' + f.number,
+        'Amount due: ' + f.currency + ' ' + plain,
+        'Due: ' + this.dateFmt(f.dueDate),
+        'Reference: ' + ref,
+        'UK: Acct 33219546, Sort 04-06-05',
+        'Intl: IBAN GB81TCCL04143424628281, BIC TCCLGB3L',
+        'Intermediary BIC: BARCGB22',
+        'Payee: Nexyra Consulting Ltd, Co Reg 17399742',
+        'Payment details only - does not initiate a transfer.'
+      ].join('\n'),
+      title: 'Payment details',
+      caption: 'Scan to display the payment details for this invoice: payee, amount, currency, reference and bank details. No UK bank-transfer QR standard exists, so this code shows information rather than initiating a payment.'
+    };
+  }
+
+  syncQr() {
+    if (this.props.showQr === false) return;
+    const f = this.state.f;
+    const c = this.compute(f);
+    const p = this.qrPayload(f, c);
+    if (p.text === this.state.qrPayload && this.state.qrDataUrl !== BLANK_PNG) return;
+    const Q = window.QRCode;
+    if (!Q) {
+      if (this._qrTries++ < 60) setTimeout(() => this.syncQr(), 250);
+      return;
+    }
+    try {
+      const host = document.createElement('div');
+      host.style.cssText = 'position:absolute;left:-9999px;top:0;';
+      document.body.appendChild(host);
+      new Q(host, {
+        text: p.text, width: 680, height: 680,
+        colorDark: '#201e1d', colorLight: '#ffffff',
+        correctLevel: Q.CorrectLevel.M
+      });
+      let tries = 0;
+      const grab = () => {
+        const cv = host.querySelector('canvas');
+        const url = cv && cv.width ? cv.toDataURL('image/png') : null;
+        if (url) {
+          host.remove();
+          this.setState({ qrPayload: p.text, qrDataUrl: url });
+        } else if (tries++ < 30) {
+          setTimeout(grab, 80);
+        } else {
+          host.remove();
+        }
+      };
+      grab();
+    } catch (e) {
+      if (!this._qrFallback) { this._qrFallback = true; this.setState({ qrPayload: p.text, qrDataUrl: BLANK_PNG }); }
+    }
+  }
+
+  dateFmt(d) {
+    if (!d) return '—';
+    try { return new Date(d + 'T00:00:00').toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }); }
+    catch (e) { return d; }
+  }
+
+  /* ---------- pagination, measured from the rendered rows ---------- */
+  layoutSig() {
+    const f = this.state.f;
+    return JSON.stringify([
+      (f.items || []).map((i) => [i.description, i.quantity, i.unitPrice, i.taxRate]),
+      f.taxEnabled, f.taxMode, f.taxRate, f.taxLabel, f.currency, f.notes, f.lateInterest,
+      f.discountMode, f.discountValue, f.discountLabel, f.charges, f.clientName, f.number, f.payLink,
+      this.props.showQr !== false
+    ]);
+  }
+
+  measureLayout() {
+    const st = this.state;
+    if (st.view !== 'preview') return;
+    const sig = this.layoutSig();
+    if (st.layout && st.layout.sig === sig) return;
+    const wrap = document.querySelector('[data-measure="1"]');
+    const page = wrap && wrap.querySelector('[data-a4]');
+    if (!page) return;
+    const h = (sel, extra) => {
+      const el = page.querySelector(sel);
+      return el ? el.getBoundingClientRect().height + (extra || 0) : 0;
+    };
+    const headH = h('[data-m="head"]');
+    const theadH = h('[data-m="thead"]');
+    const tailH = h('[data-m="tail"]');
+    const footH = h('[data-m="foot"]', 14);
+    const rows = Array.prototype.map.call(page.querySelectorAll('[data-m="row"]'), (r) => r.getBoundingClientRect().height);
+    if (!headH || !footH) return;
+    const CONT_H = 32;            // continuation banner: type + 10px pad + 2px rule
+    const BUDGET = 1123 - 57 - 46 - 2;  // A4 at 96dpi less 15mm/12mm padding, 2px safety
+    const n = rows.length;
+    const sum = (a, b) => rows.slice(a, b).reduce((t, v) => t + v, 0);
+    const chunks = [];
+    let i = 0, first = true, tailPlaced = false;
+    let guard = 0;
+    while (i < n && guard++ < 200) {
+      const base = BUDGET - footH - theadH - (first ? headH : CONT_H);
+      if (sum(i, n) + tailH <= base) { chunks.push([i, n]); i = n; tailPlaced = true; break; }
+      let acc = 0; const start = i;
+      while (i < n && acc + rows[i] <= base) { acc += rows[i]; i++; }
+      if (i === start) i++;
+      if (i >= n) {
+        // this is the final page — give back rows until the totals block fits
+        while (i > start + 1 && acc + tailH > base) { i--; acc -= rows[i]; }
+        if (acc + tailH <= base) tailPlaced = true;
+      }
+      chunks.push([start, i]);
+      first = false;
+    }
+    if (!chunks.length) { chunks.push([0, 0]); tailPlaced = true; }
+    if (!tailPlaced) chunks.push([n, n]);
+    this.setState({ layout: { sig, chunks } });
+  }
+
+  /* ---------- actions ---------- */
+  addItem = () => this.setState((st) => ({
+    f: Object.assign({}, st.f, { items: st.f.items.concat([{ id: uid(), description: '', quantity: 1, unitPrice: 0, taxRate: st.f.taxRate }]) })
+  }));
+  addCharge = () => this.setState((st) => ({
+    f: Object.assign({}, st.f, { charges: (st.f.charges || []).concat([{ id: uid(), label: '', amount: 0 }]) })
+  }));
+  generate = () => { this.setState({ view: 'preview', saveMessage: '' }); window.scrollTo(0, 0); };
+  goForm = () => this.setState({ view: 'form' });
+  goSaved = () => this.setState({ view: 'saved' });
+  resetInvoice = () => this.setState((st) => ({ f: this.blank(), selectedProfile: '', view: 'form' }));
+  downloadPdf = () => { window.print(); };
+
+  saveInvoice = () => {
+    const f = this.state.f;
+    const c = this.compute(f);
+    const rec = {
+      id: f.number + '|' + f.issueDate,
+      number: f.number, client: f.clientName || 'Unnamed client',
+      issueDate: f.issueDate, dueDate: f.dueDate, status: f.status,
+      currency: f.currency, totalCents: c.total, data: JSON.parse(JSON.stringify(f)),
+      savedAt: new Date().toISOString()
+    };
+    this.setState((st) => {
+      const saved = st.saved.filter((s) => s.id !== rec.id).concat([rec]).sort((a, b) => (a.number < b.number ? 1 : -1));
+      try { localStorage.setItem(LS_INV, JSON.stringify(saved)); } catch (e) {}
+      return { saved, saveMessage: 'Saved to this device' };
+    });
+  };
+
+  saveToFolder = async () => {
+    const f = this.state.f;
+    const c = this.compute(f);
+    const html = this.standaloneHtml();
+    const base = f.number.replace(/[^\w.-]+/g, '_');
+    try {
+      if (window.showDirectoryPicker) {
+        const dir = await window.showDirectoryPicker({ mode: 'readwrite', id: 'nexyra-invoices' });
+        const write = async (name, text, type) => {
+          const fh = await dir.getFileHandle(name, { create: true });
+          const w = await fh.createWritable();
+          await w.write(new Blob([text], { type }));
+          await w.close();
+        };
+        await write(base + '.html', html, 'text/html');
+        await write(base + '.json', JSON.stringify({ invoice: f, totals: { currency: f.currency, totalCents: c.total } }, null, 2), 'application/json');
+        this.saveInvoice();
+        this.setState({ saveMessage: 'Written to your folder — open the HTML and print to PDF' });
+        return;
+      }
+    } catch (e) {
+      if (e && e.name === 'AbortError') return;
+    }
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([html], { type: 'text/html' }));
+    a.download = base + '.html';
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+    this.saveInvoice();
+    this.setState({ saveMessage: 'Downloaded — your browser does not allow folder access' });
+  };
+
+  standaloneHtml() {
+    const node = document.querySelector('[data-paper-scale]');
+    const body = node ? node.innerHTML.replace(/transform:\s*scale\([^)]*\)/g, '') : '';
+    const css = Array.from(document.querySelectorAll('link[rel="stylesheet"]')).map((l) => '<link rel="stylesheet" href="' + l.href + '">').join('');
+    return '<!doctype html><html><head><meta charset="utf-8"><title>' + this.state.f.number +
+      ' — Nexyra Consulting Ltd.</title>' + css +
+      '<style>@page{size:A4;margin:0}body{margin:0;background:#fff;font-family:var(--font-body,system-ui)}[data-a4]{box-shadow:none!important;margin:0 auto!important;break-after:page}[data-a4]:last-child{break-after:auto}</style>' +
+      '</head><body>' + body + '</body></html>';
+  }
+
+  openSaved(rec, duplicate) {
+    const f = JSON.parse(JSON.stringify(rec.data));
+    if (duplicate) {
+      const m = f.number.match(/^(.*?)(\d+)$/);
+      f.number = m ? m[1] + String(Number(m[2]) + 1).padStart(m[2].length, '0') : f.number + '-COPY';
+      f.issueDate = iso(new Date());
+      const t = TERMS.find((x) => x.value === f.terms);
+      if (t && t.days !== null) f.dueDate = addDays(f.issueDate, t.days);
+      f.status = 'none';
+      f.items = f.items.map((it) => Object.assign({}, it, { id: uid() }));
+    }
+    this.setState({ f, view: 'form', saveMessage: '' });
+    window.scrollTo(0, 0);
+  }
+
+  deleteSaved(id) {
+    this.setState((st) => {
+      const saved = st.saved.filter((s) => s.id !== id);
+      try { localStorage.setItem(LS_INV, JSON.stringify(saved)); } catch (e) {}
+      return { saved };
+    });
+  }
+
+  saveProfile = () => {
+    const f = this.state.f;
+    if (!f.clientName) { this.setState({ saveMessage: 'Add a client name first' }); return; }
+    const p = {
+      id: f.clientName.toLowerCase().replace(/\s+/g, '-'),
+      name: f.clientName, contact: f.clientContact, email: f.clientEmail,
+      phone: f.clientPhone, vat: f.clientVat, address: f.clientAddress
+    };
+    this.setState((st) => {
+      const profiles = st.profiles.filter((x) => x.id !== p.id).concat([p]).sort((a, b) => a.name.localeCompare(b.name));
+      try { localStorage.setItem(LS_PROF, JSON.stringify(profiles)); } catch (e) {}
+      return { profiles, selectedProfile: p.id };
+    });
+  };
+
+  deleteProfile = () => {
+    const id = this.state.selectedProfile;
+    if (!id) return;
+    this.setState((st) => {
+      const profiles = st.profiles.filter((x) => x.id !== id);
+      try { localStorage.setItem(LS_PROF, JSON.stringify(profiles)); } catch (e) {}
+      return { profiles, selectedProfile: '' };
+    });
+  };
+
+  onLoadProfile = (e) => {
+    const id = e.target.value;
+    const p = this.state.profiles.find((x) => x.id === id);
+    this.setState((st) => ({
+      selectedProfile: id,
+      f: p ? Object.assign({}, st.f, {
+        clientName: p.name, clientContact: p.contact || '', clientEmail: p.email || '',
+        clientPhone: p.phone || '', clientVat: p.vat || '', clientAddress: p.address || ''
+      }) : st.f
+    }));
+  };
+
+  renderVals() {
+    const st = this.state;
+    const f = st.f;
+    const accent = this.props.accent || 'var(--color-accent)';
+    const c = this.compute(f);
+    const showLineTax = !!f.taxEnabled && f.taxMode === 'line';
+    const showDocTax = !!f.taxEnabled;
+
+    const items = (f.items || []).map((it) => ({
+      description: it.description, quantity: it.quantity, unitPrice: it.unitPrice, taxRate: it.taxRate,
+      lineTotalFmt: c.fmt(Math.round((Number(it.quantity) || 0) * cents(it.unitPrice))),
+      onDescription: this.bindItem(it.id, 'description'),
+      onQuantity: this.bindItem(it.id, 'quantity'),
+      onUnitPrice: this.bindItem(it.id, 'unitPrice'),
+      onTaxRate: this.bindItem(it.id, 'taxRate'),
+      onRemove: this.memo('rm:' + it.id, () => this.setState((s) => ({
+        f: Object.assign({}, s.f, { items: s.f.items.length > 1 ? s.f.items.filter((x) => x.id !== it.id) : s.f.items })
+      }))),
+      onDuplicate: this.memo('dup:' + it.id, () => this.setState((s) => {
+        const arr = s.f.items.slice();
+        const i = arr.findIndex((x) => x.id === it.id);
+        arr.splice(i + 1, 0, Object.assign({}, arr[i], { id: uid() }));
+        return { f: Object.assign({}, s.f, { items: arr }) };
+      }))
+    }));
+
+    const charges = (f.charges || []).map((ch) => ({
+      label: ch.label, amount: ch.amount,
+      onLabel: this.bindCharge(ch.id, 'label'),
+      onAmount: this.bindCharge(ch.id, 'amount'),
+      onRemove: this.memo('rmch:' + ch.id, () => this.setState((s) => ({
+        f: Object.assign({}, s.f, { charges: s.f.charges.filter((x) => x.id !== ch.id) })
+      })))
+    }));
+
+    const totalRows = [{ label: 'Subtotal', value: c.fmt(c.subtotal) }];
+    if (c.discount > 0) totalRows.push({ label: (f.discountLabel || 'Discount') + (f.discountMode === 'pct' ? ' (' + (Number(f.discountValue) || 0) + '%)' : ''), value: '− ' + c.fmt(c.discount) });
+    if (f.taxEnabled) totalRows.push({ label: (f.taxLabel || 'Tax') + (f.taxMode === 'invoice' ? ' (' + (Number(f.taxRate) || 0) + '%)' : ''), value: c.fmt(c.tax) });
+    (f.charges || []).forEach((ch) => { if (cents(ch.amount)) totalRows.push({ label: ch.label || 'Other charge', value: c.fmt(cents(ch.amount)) }); });
+
+    const clientLines = [];
+    if (f.clientContact) clientLines.push('Attn: ' + f.clientContact);
+    (f.clientAddress || '').split('\n').forEach((l) => { if (l.trim()) clientLines.push(l.trim()); });
+    if (f.clientEmail) clientLines.push(f.clientEmail);
+    if (f.clientPhone) clientLines.push(f.clientPhone);
+    if (f.clientVat) clientLines.push('VAT / Tax No. ' + f.clientVat);
+
+    const termLabel = (TERMS.find((t) => t.value === f.terms) || {}).label || '—';
+    const metaRows = [
+      { label: 'Invoice no.', value: f.number },
+      { label: 'Issued', value: this.dateFmt(f.issueDate) },
+      { label: 'Due', value: this.dateFmt(f.dueDate) },
+      { label: 'Terms', value: termLabel.split(' — ')[0] },
+      { label: 'Currency', value: f.currency }
+    ];
+    if (f.po) metaRows.push({ label: 'PO / ref.', value: f.po });
+
+    const docRows = (f.items || []).filter((it) => (it.description || '').trim() || Math.round((Number(it.quantity) || 0) * cents(it.unitPrice))).map((it, i) => {
+      const line = Math.round((Number(it.quantity) || 0) * cents(it.unitPrice));
+      return {
+        n: String(i + 1).padStart(2, '0'),
+        description: it.description || '—',
+        qty: String(it.quantity === '' || it.quantity === undefined ? 0 : it.quantity),
+        unitPrice: c.fmt(cents(it.unitPrice)),
+        tax: f.taxMode === 'line' ? (Number(it.taxRate) || 0) + '%' : (Number(f.taxRate) || 0) + '%',
+        amount: c.fmt(line)
+      };
+    });
+
+    const status = STATUSES.find((s) => s.value === f.status);
+    const qr = this.qrPayload(f, c);
+    const measuring = !(st.layout && st.layout.sig === this.layoutSig());
+
+    return {
+      f, accent, items, charges, totalRows, clientLines, metaRows,
+      pages: measuring
+        ? [{ rows: docRows, isFirst: true, isContinuation: false, isLast: true, pageLabel: 'Page 1 of 1' }]
+        : st.layout.chunks.map((ch, i, all) => ({
+            rows: docRows.slice(ch[0], ch[1]),
+            isFirst: i === 0,
+            isContinuation: i > 0,
+            isLast: i === all.length - 1,
+            pageLabel: 'Page ' + (i + 1) + ' of ' + all.length
+          })),
+      measureFlag: measuring ? '1' : '0',
+      docGridCols: showDocTax ? '7mm 1fr 14mm 26mm 14mm 28mm' : '7mm 1fr 16mm 30mm 32mm',
+      itemGridCols: showLineTax ? 'minmax(0,1fr) 74px 96px 74px 104px 72px' : 'minmax(0,1fr) 80px 110px 116px 72px',
+      showLineTax, showDocTax,
+      taxColLabel: (f.taxLabel || 'Tax') + ' %',
+      showInvoiceTaxRate: !!f.taxEnabled && f.taxMode === 'invoice',
+      taxDisabled: !f.taxEnabled,
+      taxModeInvoice: f.taxMode === 'invoice',
+      taxModeLine: f.taxMode === 'line',
+      discPct: f.discountMode === 'pct',
+      discAmt: f.discountMode === 'amt',
+      discountFieldLabel: f.discountMode === 'pct' ? 'Discount %' : 'Discount amount',
+      grandTotalFmt: c.fmt(c.total),
+      dueDateFmt: this.dateFmt(f.dueDate),
+      paymentReference: (f.po ? f.po + ' / ' : '') + f.number,
+      hasNotes: !!(f.notes && f.notes.trim()),
+      showStamp: f.status !== 'none',
+      stampLabel: status ? status.label : '',
+      stampColor: f.status === 'paid' ? '#1f6b3a' : f.status === 'overdue' ? (this.props.accent || '#ec3013') : '#201e1d',
+      qrVisible: this.props.showQr !== false && st.qrDataUrl !== BLANK_PNG,
+      qrDataUrl: st.qrDataUrl,
+      qrCaption: qr.caption,
+      qrTitle: qr.title,
+      qrRef: this.qrRef,
+      qrModeNote: qr.title === 'Scan to pay'
+        ? 'The invoice QR opens this link. Tide sets the amount in its own app, so the invoice prints the amount and reference beside the code for the payer to enter.'
+        : (f.currency === 'GBP'
+            ? 'Outside the £5–£3,000 Tide link range (or no link set) — the QR falls back to the payment-details format.'
+            : 'Tide links are GBP-only, so ' + f.currency + ' invoices use ' + (f.currency === 'EUR' ? 'a SEPA EPC transfer code.' : 'the payment-details format.')),
+      paperScale: st.paperScale,
+      scaledHeight: st.naturalHeight ? Math.ceil(st.naturalHeight * st.paperScale) + 'px' : 'auto',
+      isForm: st.view === 'form', isPreview: st.view === 'preview', isSaved: st.view === 'saved',
+      hasSaved: st.saved.length > 0, noSaved: st.saved.length === 0, savedCount: st.saved.length,
+      tabFormColor: st.view === 'form' ? 'var(--color-accent)' : 'var(--color-text)',
+      tabSavedColor: st.view === 'saved' ? 'var(--color-accent)' : 'var(--color-text)',
+      termOptions: TERMS.map((t) => ({ value: t.value, label: t.label })),
+      currencyOptions: Object.keys(CUR).map((k) => ({ value: k, label: CUR[k].label })),
+      statusOptions: STATUSES,
+      profiles: st.profiles, selectedProfile: st.selectedProfile, noProfileSelected: !st.selectedProfile,
+      itemCountLabel: (f.items || []).length + ((f.items || []).length === 1 ? ' line item' : ' line items'),
+      footerSummary: (f.clientName || 'No client yet') + ' · ' + (f.items || []).length + ' items · ' + c.fmt(c.total),
+      previewMeta: f.number + ' · ' + (f.clientName || 'No client') + ' · ' + c.fmt(c.total) + ' due ' + this.dateFmt(f.dueDate),
+      saveMessage: st.saveMessage,
+      savedRows: st.saved.map((rec) => ({
+        number: rec.number, client: rec.client, issued: this.dateFmt(rec.issueDate), due: this.dateFmt(rec.dueDate),
+        status: (STATUSES.find((s) => s.value === rec.status) || { label: '—' }).label,
+        amount: (() => { try { return new Intl.NumberFormat('en-GB', { style: 'currency', currency: rec.currency, currencyDisplay: 'narrowSymbol' }).format(rec.totalCents / 100); } catch (e) { return (rec.totalCents / 100).toFixed(2); } })(),
+        onOpen: this.memo('open:' + rec.id, () => this.openSaved(rec, false)),
+        onDuplicate: this.memo('dupinv:' + rec.id, () => this.openSaved(rec, true)),
+        onDelete: this.memo('del:' + rec.id, () => this.deleteSaved(rec.id))
+      })),
+      goForm: this.goForm, goSaved: this.goSaved, generate: this.generate, resetInvoice: this.resetInvoice,
+      addItem: this.addItem, addCharge: this.addCharge, downloadPdf: this.downloadPdf,
+      saveInvoice: this.saveInvoice, saveToFolder: this.saveToFolder,
+      saveProfile: this.saveProfile, deleteProfile: this.deleteProfile, onLoadProfile: this.onLoadProfile,
+      onNumber: this.bind('number'), onIssueDate: this.bind('issueDate'), onDueDate: this.bind('dueDate'),
+      onTerms: this.bind('terms'), onCurrency: this.bind('currency'), onPo: this.bind('po'), onStatus: this.bind('status'),
+      onClientName: this.bind('clientName'), onClientContact: this.bind('clientContact'),
+      onClientEmail: this.bind('clientEmail'), onClientPhone: this.bind('clientPhone'),
+      onClientVat: this.bind('clientVat'), onClientAddress: this.bind('clientAddress'),
+      onTaxEnabled: this.bind('taxEnabled', 'bool'), onTaxRate: this.bind('taxRate'), onTaxLabel: this.bind('taxLabel'),
+      onTaxModeInvoice: this.memo('tmi', () => this.set('taxMode', 'invoice')),
+      onTaxModeLine: this.memo('tml', () => this.set('taxMode', 'line')),
+      onDiscModePct: this.memo('dmp', () => this.set('discountMode', 'pct')),
+      onDiscModeAmt: this.memo('dma', () => this.set('discountMode', 'amt')),
+      onDiscountValue: this.bind('discountValue'), onDiscountLabel: this.bind('discountLabel'),
+      onNotes: this.bind('notes'), onLateInterest: this.bind('lateInterest', 'bool'),
+      onPayLink: this.bind('payLink')
+    };
+  }
+}
+</script>
+</body>
+</html>
