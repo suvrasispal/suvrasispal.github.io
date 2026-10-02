@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0E8FD6">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="ÉlanPro Admin">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<script>if('serviceWorker' in navigator){addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}</script>
+<script src="../lib/support.js"></script>
+</head>
+<body>
+
+<x-dc>
+<helmet>
+<title>ÉlanPro Admin</title>
+<link rel="stylesheet" href="../lib/styles.css">
+<script src="../lib/ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&amp;family=Italiana&amp;family=Jost:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFFAFC;color:#6B1238;font-family:Jost,sans-serif}
+a{color:#E6307A}a:hover{color:#6B1238}
+button{font-family:Jost,sans-serif}
+input,select,textarea{font-family:Jost,sans-serif}
+*::-webkit-scrollbar{width:0;height:0}
+@keyframes epFrame{from{stroke-dashoffset:360}to{stroke-dashoffset:0}}
+@keyframes epFade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes epGrow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes epTrack{from{opacity:0;letter-spacing:.55em}to{opacity:1;letter-spacing:.2em}}
+@keyframes epRule{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes epOut{from{opacity:1}to{opacity:0;visibility:hidden}}
+</style>
+</helmet>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="mB" viewBox="0 0 100 100"><rect x="5" y="5" width="90" height="90" fill="none" stroke="currentColor" stroke-width="1.4"></rect><text x="33" y="70" text-anchor="middle" font-family="Italiana" font-size="46" fill="currentColor">E</text><line x1="50" y1="30" x2="50" y2="74" stroke="currentColor" stroke-width="0.8"></line><text x="67" y="70" text-anchor="middle" font-family="Italiana" font-size="46" fill="currentColor">P</text><line x1="30" y1="28" x2="38" y2="21" stroke="currentColor" stroke-width="1.8"></line></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></symbol>
+    <symbol id="i-scissors" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M20 4 8.12 15.88M14.47 14.48 20 20M8.12 8.12 12 12"></path></g></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="3" width="18" height="18"></rect><path d="M12 8v8M8 12h8"></path></g></symbol>
+    <symbol id="i-add" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="4" width="18" height="17"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></g></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="8" r="4"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></g></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></g></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></g></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></g></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 16v-4M12 8h.01"></path></g></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></g></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect></g></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="9" cy="7" r="4"></circle><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"></path></g></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"></path><circle cx="7.5" cy="7.5" r="1"></circle></g></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></symbol>
+    <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="11" width="16" height="10"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></g></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M6 6l1 15h10l1-15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></symbol>
+  </defs>
+</svg>
+
+<div data-screen-label="Admin app" style="width:100%;height:100vh;height:100dvh;background:#FFFFFF;overflow:hidden;position:relative;display:flex;flex-direction:{{ aDir }};color:#0B4A70">
+
+    <sc-if value="{{ aLocked }}" hint-placeholder-val="{{ true }}">
+      <div style="flex:1;display:flex;align-items:center;justify-content:flex-start;padding:0 {{ loginPad }};background:#E6F5FF">
+        <div style="width:100%;max-width:380px;display:flex;flex-direction:column;gap:18px">
+          <svg width="56" height="56" style="color:#0A7CC0"><use href="#mB"></use></svg>
+          <div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:Italiana;font-size:26px;letter-spacing:.2em">ÉLANPRO</span><span style="font-size:11px;letter-spacing:.24em;color:#3E7394">SALON MANAGEMENT</span></div>
+          <h1 style="margin:0;font-family:'Bodoni Moda';font-weight:400;font-size:30px">Staff sign-in</h1>
+          <label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;color:#3E7394">Admin PIN</span><input type="password" value="{{ pin }}" onChange="{{ onPin }}" onKeyDown="{{ onPinKey }}" placeholder="••••" style="height:50px;border:1px solid #BFE2F7;background:#FFFFFF;padding:0 14px;font-size:20px;letter-spacing:.3em;color:#0B4A70;outline:none" style-focus="border-color:#0A7CC0"></input></label>
+          <sc-if value="{{ hasLoginErr }}"><span style="font-size:13px;color:#9A3412">Incorrect PIN. Try again.</span></sc-if>
+          <button onClick="{{ doLogin }}" style="height:52px;background:#0A7CC0;color:#FFFFFF;border:none;display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:16px;cursor:pointer" style-hover="background:#086AA5">Sign in<svg width="20" height="20"><use href="#i-arrow"></use></svg></button>
+          <span style="font-size:12px;color:#3E7394">Demo PIN: 2468. Customers never see this area.</span>
+          <sc-if value="{{ showInstall }}"><div style="padding:14px 14px 14px 16px;background:#FFFFFF;display:flex;gap:10px;align-items:flex-start"><div style="flex:1;display:flex;flex-direction:column;gap:6px"><span style="font-size:15px;font-weight:500;color:#0B4A70">Install on your phone</span><span style="font-size:13px;line-height:1.45;color:#0B4A70">{{ installText }}</span><sc-if value="{{ canPrompt }}"><button onClick="{{ doInstall }}" style="align-self:flex-start;height:40px;padding:0 14px;background:#0A7CC0;color:#FFFFFF;border:none;font-size:14px;cursor:pointer">Install app</button></sc-if></div><button onClick="{{ dismissInstall }}" aria-label="Dismiss" style="width:36px;height:36px;flex-shrink:0;border:none;background:transparent;color:#0B4A70;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="18" height="18"><use href="#i-x"></use></svg></button></div></sc-if>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ aAuthed }}">
+      <div style="width:{{ sideW }};background:#E6F5FF;display:flex;flex-direction:{{ sideDir }};align-items:{{ sideAlign }};padding:{{ sidePad }};gap:4px;flex-shrink:0;overflow-x:auto">
+        <div style="display:flex;gap:10px;align-items:center;padding:{{ logoPad }};flex-shrink:0"><svg width="30" height="30" style="color:#0A7CC0"><use href="#mB"></use></svg><div style="display:flex;flex-direction:column"><span style="font-family:Italiana;font-size:15px;letter-spacing:.18em">ÉLANPRO</span><span style="font-size:10px;letter-spacing:.2em;color:#3E7394">ADMIN</span></div></div>
+        <sc-for list="{{ aNav }}" as="n" hint-placeholder-count="6"><button onClick="{{ n.onClick }}" style="height:44px;display:flex;align-items:center;gap:12px;padding:0 10px;font-size:15px;border:none;text-align:left;white-space:nowrap;flex-shrink:0;background:{{ n.bg }};color:{{ n.c }};cursor:pointer"><svg width="20" height="20"><use href="{{ n.i }}"></use></svg>{{ n.l }}</button></sc-for>
+        <div style="flex:1"></div>
+        <button onClick="{{ signOut }}" style="height:40px;white-space:nowrap;flex-shrink:0;border:1px solid #BFE2F7;background:transparent;color:#0A7CC0;text-align:left;padding:0 10px;font-size:13px;cursor:pointer">Sign out</button>
+      </div>
+      <div style="flex:1;overflow:auto;min-width:0;min-height:0"><div style="min-width:{{ mainMinW }};padding:{{ mainPad }};display:flex;flex-direction:column;gap:20px;box-sizing:border-box">
+
+        <sc-if value="{{ aIsDash }}">
+          <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px"><div style="display:flex;flex-direction:column;gap:4px;flex:1;min-width:0"><span style="font-size:13px;color:#3E7394;white-space:nowrap">{{ todayLong }} · {{ dashHoursT }}</span><h1 style="margin:0;font-family:'Bodoni Moda';font-weight:400;font-size:30px">Today at the salon</h1></div><div style="display:flex;gap:8px;flex-shrink:0"><button onClick="{{ openBlock }}" style="height:44px;padding:0 14px;border:1px solid #7FC0E8;background:transparent;color:#0B4A70;font-size:14px;white-space:nowrap;cursor:pointer">Block time</button><button onClick="{{ openManual }}" style="height:44px;padding:0 16px;background:#0A7CC0;color:#FFFFFF;border:none;font-size:14px;white-space:nowrap;display:flex;gap:8px;align-items:center;cursor:pointer">Add booking<svg width="16" height="16"><use href="#i-add"></use></svg></button></div></div>
+          <div style="display:grid;grid-template-columns:repeat(5,1fr);border-top:2px solid #BFE2F7;border-bottom:1px solid #DDEEF9">
+            <sc-for list="{{ stats }}" as="s" hint-placeholder-count="5"><div style="padding:14px 14px 14px 0;display:flex;flex-direction:column;gap:4px;border-right:1px solid #DDEEF9;margin-right:14px"><span style="font-size:12px;color:#3E7394">{{ s.l }}</span><span style="font-family:'Bodoni Moda';font-size:32px;line-height:1.1">{{ s.v }}</span><span style="font-size:12px">{{ s.sub }}</span></div></sc-for>
+          </div>
+          <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:28px">
+            <div style="display:flex;flex-direction:column">
+              <div style="display:flex;justify-content:space-between;padding-bottom:8px"><span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3E7394">Today's appointments</span><span onClick="{{ goCal }}" style="font-size:13px;cursor:pointer">Open calendar</span></div>
+              <sc-for list="{{ todayRows }}" as="a"><div style="display:grid;grid-template-columns:54px 1fr auto auto;gap:12px;align-items:center;padding:10px 0;border-top:1px solid #DDEEF9;font-size:14px"><span style="font-weight:500">{{ a.timeT }}</span><div onClick="{{ a.onOpen }}" style="display:flex;flex-direction:column;cursor:pointer"><span>{{ a.name }}</span><span style="font-size:12px;color:#3E7394">{{ a.svc }}</span></div><span style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;padding:4px 8px;border:1px solid {{ a.sbd }};background:{{ a.sbg }};color:{{ a.sfg }}">{{ a.status }}</span><sc-if value="{{ a.hasAct }}"><button onClick="{{ a.onAct }}" style="height:32px;padding:0 10px;border:1px solid #7FC0E8;background:transparent;color:#0B4A70;font-size:12px;white-space:nowrap;cursor:pointer" style-hover="background:#E6F5FF">{{ a.actT }}</button></sc-if></div></sc-for>
+              <sc-if value="{{ todayEmpty }}"><div style="padding:24px 0;border-top:1px solid #DDEEF9;font-size:14px;color:#3E7394">No appointments today.</div></sc-if>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3E7394">Live on customer app</span>
+              <sc-for list="{{ dashAnns }}" as="a"><div style="background:{{ a.bg }};border-top:2px solid {{ a.rule }};padding:12px 14px;display:flex;flex-direction:column;gap:3px"><span style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#3E7394">{{ a.tag }}</span><span style="font-size:14px">{{ a.title }}</span></div></sc-for>
+              <sc-if value="{{ dashNoAnns }}"><span style="font-size:13px;color:#3E7394">Nothing live right now.</span></sc-if>
+              <button onClick="{{ goOffers }}" style="height:40px;border:1px solid #7FC0E8;background:transparent;color:#0B4A70;text-align:left;padding:0 12px;font-size:13px;cursor:pointer">Manage offers &amp; announcements</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ aIsCal }}">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+            <div style="display:flex;gap:6px;align-items:center"><button onClick="{{ calPrev }}" style="width:40px;height:40px;border:1px solid #BFE2F7;background:transparent;color:#0B4A70;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="18" height="18"><use href="#i-left"></use></svg></button><button onClick="{{ calNext }}" style="width:40px;height:40px;border:1px solid #BFE2F7;background:transparent;color:#0B4A70;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="18" height="18"><use href="#i-right"></use></svg></button><h1 style="margin:0 0 0 8px;font-family:'Bodoni Moda';font-weight:400;font-size:26px">{{ calLabel }}</h1><button onClick="{{ calToday }}" style="height:32px;margin-left:8px;border:none;background:#E6F5FF;color:#0B4A70;padding:0 10px;font-size:13px;cursor:pointer">Today</button></div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <div style="display:flex;border:1px solid #BFE2F7"><sc-for list="{{ views }}" as="v"><button onClick="{{ v.onClick }}" style="padding:9px 14px;font-size:14px;border:none;background:{{ v.bg }};color:{{ v.fg }};cursor:pointer">{{ v.l }}</button></sc-for></div>
+              <button onClick="{{ openBlock }}" style="height:40px;padding:0 12px;border:1px solid #7FC0E8;background:transparent;color:#0B4A70;font-size:13px;white-space:nowrap;cursor:pointer">Block time</button>
+              <button onClick="{{ openManual }}" style="height:40px;padding:0 14px;background:#0A7CC0;color:#FFFFFF;border:none;font-size:13px;white-space:nowrap;display:flex;gap:6px;align-items:center;cursor:pointer">Add booking<svg width="14" height="14"><use href="#i-add"></use></svg></button>
+            </div>
+          </div>
+
+          <sc-if value="{{ isDay }}">
+            <div style="font-size:13px;color:#3E7394">{{ dayHoursT }}</div>
+            <sc-if value="{{ dayClosed }}"><div style="padding:40px;background:repeating-linear-gradient(135deg,#E6F5FF 0 8px,#FFFFFF 8px 16px);font-size:15px">Salon closed on this day.</div></sc-if>
+            <sc-if value="{{ dayOpen }}">
+              <div style="display:flex;border-top:2px solid #BFE2F7">
+                <div style="width:56px;flex-shrink:0;position:relative;height:{{ dayH }}"><sc-for list="{{ dayHourLabels }}" as="h"><span style="position:absolute;top:{{ h.top }};font-size:11px;color:#3E7394;transform:translateY(-1px)">{{ h.l }}</span></sc-for></div>
+                <div style="flex:1;position:relative;height:{{ dayH }};background:repeating-linear-gradient(180deg,#E3F1FB 0 1px,transparent 1px 32px);border-left:1px solid #DDEEF9">
+                  <sc-for list="{{ dayBlocks }}" as="o"><div onClick="{{ o.onDel }}" title="Click to remove block" style="position:absolute;left:0;right:0;top:{{ o.top }};height:{{ o.h }};background:repeating-linear-gradient(135deg,#DDEEF9 0 6px,#F0F8FE 6px 12px);padding:6px 10px;font-size:12px;box-sizing:border-box;cursor:pointer">Blocked · {{ o.reason }} · click to remove</div></sc-for>
+                  <sc-for list="{{ dayEvents }}" as="e"><div onClick="{{ e.onClick }}" style="position:absolute;left:{{ e.left }};width:{{ e.w }};top:{{ e.top }};height:{{ e.h }};background:{{ e.bg }};border-left:3px solid {{ e.bd }};padding:5px 10px;box-sizing:border-box;overflow:hidden;display:flex;gap:8px;font-size:12px;cursor:pointer;flex-wrap:wrap;align-content:flex-start"><span style="font-weight:600">{{ e.timeT }}</span><span style="font-weight:500">{{ e.name }}</span><span>{{ e.svc }}</span></div></sc-for>
+                </div>
+              </div>
+            </sc-if>
+          </sc-if>
+
+          <sc-if value="{{ isWeek }}">
+            <div style="display:flex;border-top:2px solid #BFE2F7">
+              <div style="width:44px;flex-shrink:0;display:flex;flex-direction:column;padding-top:34px"><sc-for list="{{ weekHours }}" as="h"><span style="height:30px;font-size:10px;color:#3E7394">{{ h }}</span></sc-for></div>
+              <sc-for list="{{ weekCols }}" as="c">
+                <div style="flex:1;min-width:0;display:flex;flex-direction:column;border-left:1px solid #DDEEF9">
+                  <button onClick="{{ c.onClick }}" style="height:34px;border:none;text-align:left;padding:0 8px;font-size:13px;font-weight:{{ c.fw }};background:{{ c.hbg }};color:#0B4A70;cursor:pointer">{{ c.label }}</button>
+                  <div style="position:relative;height:420px;background:repeating-linear-gradient(180deg,#E3F1FB 0 1px,transparent 1px 30px)">
+                    <sc-for list="{{ c.off }}" as="o"><div style="position:absolute;left:0;right:0;top:{{ o.top }};height:{{ o.h }};background:repeating-linear-gradient(135deg,#E6F5FF 0 6px,#FFFFFF 6px 12px)"></div></sc-for>
+                    <sc-for list="{{ c.ev }}" as="e"><div onClick="{{ e.onClick }}" style="position:absolute;left:{{ e.left }};width:{{ e.w }};top:{{ e.top }};height:{{ e.h }};background:{{ e.bg }};border-left:3px solid {{ e.bd }};padding:2px 4px;box-sizing:border-box;overflow:hidden;font-size:10px;line-height:1.2;cursor:pointer;white-space:nowrap">{{ e.name }}</div></sc-for>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <span style="font-size:12px;color:#3E7394">Click a day header to open it · hatched = closed · colours: Ladies pink, Gents blue, Kids yellow, Hair green, Treatments violet</span>
+          </sc-if>
+
+          <sc-if value="{{ isList }}">
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <div style="height:42px;border:1px solid #BFE2F7;background:#FFFFFF;display:flex;align-items:center;gap:8px;padding:0 12px;flex:1;min-width:220px"><svg width="16" height="16"><use href="#i-search"></use></svg><input value="{{ bq }}" onChange="{{ onBq }}" placeholder="Search customer or service" style="border:none;outline:none;background:transparent;font-size:14px;color:#0B4A70;flex:1;min-width:0"></input></div>
+              <select value="{{ bsvc }}" onChange="{{ onBsvc }}" style="height:42px;border:1px solid #BFE2F7;background:#FFFFFF;padding:0 10px;font-size:14px;color:#0B4A70"><sc-for list="{{ svcFilterOpts }}" as="o"><option value="{{ o.v }}">{{ o.l }}</option></sc-for></select>
+              <div style="display:flex;border:1px solid #BFE2F7"><sc-for list="{{ scopes }}" as="v"><button onClick="{{ v.onClick }}" style="padding:0 12px;height:40px;font-size:13px;border:none;background:{{ v.bg }};color:{{ v.fg }};cursor:pointer">{{ v.l }}</button></sc-for></div>
+            </div>
+            <div style="display:flex;flex-direction:column;border-top:2px solid #BFE2F7">
+              <sc-for list="{{ listRows }}" as="a"><div onClick="{{ a.onClick }}" style="display:grid;grid-template-columns:110px 56px 1fr 1fr 70px auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid #DDEEF9;font-size:14px;cursor:pointer" style-hover="background:#F0F8FE"><span>{{ a.dateT }}</span><span style="font-weight:500">{{ a.timeT }}</span><span>{{ a.name }}</span><span style="color:#3E7394">{{ a.svc }}</span><span>{{ a.totalT }}</span><span style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;padding:4px 8px;border:1px solid {{ a.sbd }};background:{{ a.sbg }};color:{{ a.sfg }}">{{ a.status }}</span></div></sc-for>
+              <sc-if value="{{ listEmpty }}"><div style="padding:24px 0;font-size:14px;color:#3E7394">No bookings match.</div></sc-if>
+            </div>
+          </sc-if>
+        </sc-if>
+
+        <sc-if value="{{ aIsSvc }}">
+          <div style="display:flex;justify-content:space-between;align-items:center"><h1 style="margin:0;font-family:'Bodoni Moda';font-weight:400;font-size:30px">Services &amp; styles</h1><button onClick="{{ newSvc }}" style="height:44px;padding:0 16px;background:#0A7CC0;color:#FFFFFF;border:none;font-size:14px;display:flex;gap:8px;align-items:center;cursor:pointer">Add service<svg width="16" height="16"><use href="#i-add"></use></svg></button></div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap"><sc-for list="{{ aCats }}" as="c"><button onClick="{{ c.onClick }}" style="padding:8px 12px;font-size:13px;border:1px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }};cursor:pointer">{{ c.l }}</button></sc-for></div>
+          <div style="display:flex;flex-direction:column;border-top:2px solid #BFE2F7">
+            <div style="display:grid;grid-template-columns:1.4fr 100px 80px 80px 1.2fr 50px 40px;gap:12px;padding:8px 0;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#3E7394;border-bottom:1px solid #DDEEF9"><span>Service</span><span>Category</span><span>Duration</span><span>Price</span><span>Styles</span><span>Live</span><span></span></div>
+            <sc-for list="{{ aSvcRows }}" as="s"><div style="display:grid;grid-template-columns:1.4fr 100px 80px 80px 1.2fr 50px 40px;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid #DDEEF9;font-size:14px;opacity:{{ s.op }}"><span style="font-weight:500">{{ s.name }}</span><span>{{ s.cat }}</span><span>{{ s.durT }}</span><span>£{{ s.price }}</span><span style="font-size:12px;color:#3E7394;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ s.stylesT }}</span><span onClick="{{ s.onToggle }}" style="width:40px;height:22px;background:{{ s.tg }};display:flex;padding:3px;box-sizing:border-box;justify-content:{{ s.tj }};cursor:pointer"><span style="width:16px;height:16px;background:#FFFFFF"></span></span><button onClick="{{ s.onEdit }}" style="width:36px;height:36px;border:none;background:transparent;color:#0B4A70;display:flex;align-items:center;justify-content:center;cursor:pointer" style-hover="background:#E6F5FF"><svg width="16" height="16"><use href="#i-pencil"></use></svg></button></div></sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ aIsCust }}">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><h1 style="margin:0;font-family:'Bodoni Moda';font-weight:400;font-size:30px">Customers</h1><div style="height:42px;border:1px solid #BFE2F7;background:#FFFFFF;display:flex;align-items:center;gap:8px;padding:0 12px;width:280px"><svg width="16" height="16"><use href="#i-search"></use></svg><input value="{{ cq }}" onChange="{{ onCq }}" placeholder="Search name or phone" style="border:none;outline:none;background:transparent;font-size:14px;color:#0B4A70;flex:1;min-width:0"></input></div></div>
+          <div style="display:flex;flex-direction:column;border-top:2px solid #BFE2F7">
+            <div style="display:grid;grid-template-columns:1.3fr 1.2fr 80px 80px 110px 80px;gap:12px;padding:8px 0;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#3E7394;border-bottom:1px solid #DDEEF9"><span>Name</span><span>Contact</span><span>Visits</span><span>Booked</span><span>Last visit</span><span>Spend</span></div>
+            <sc-for list="{{ custRows }}" as="c">
+              <div style="display:flex;flex-direction:column;border-bottom:1px solid #DDEEF9">
+                <div onClick="{{ c.onClick }}" style="display:grid;grid-template-columns:1.3fr 1.2fr 80px 80px 110px 80px;gap:12px;align-items:center;padding:12px 0;font-size:14px;cursor:pointer" style-hover="background:#F0F8FE"><span style="font-weight:500">{{ c.name }}</span><span style="font-size:13px;color:#3E7394">{{ c.contact }}</span><span>{{ c.visits }}</span><span>{{ c.count }}</span><span>{{ c.lastT }}</span><span>{{ c.spendT }}</span></div>
+                <sc-if value="{{ c.open }}"><div style="padding:0 0 12px 16px;display:flex;flex-direction:column;gap:4px"><sc-for list="{{ c.list }}" as="b"><div onClick="{{ b.onClick }}" style="display:flex;gap:16px;font-size:13px;cursor:pointer"><span style="width:110px">{{ b.dateT }}</span><span style="flex:1">{{ b.svc }}</span><span style="text-transform:capitalize;color:#3E7394">{{ b.status }}</span></div></sc-for></div></sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ aIsOff }}">
+          <div style="display:flex;justify-content:space-between;align-items:center"><div style="display:flex;flex-direction:column;gap:4px"><h1 style="margin:0;font-family:'Bodoni Moda';font-weight:400;font-size:30px">Offers &amp; announcements</h1><span style="font-size:13px;color:#3E7394">Live items appear instantly in the customer app, in the places you choose.</span></div><button onClick="{{ newAnn }}" style="height:44px;padding:0 16px;background:#0A7CC0;color:#FFFFFF;border:none;font-size:14px;display:flex;gap:8px;align-items:center;white-space:nowrap;cursor:pointer">New message<svg width="16" height="16"><use href="#i-add"></use></svg></button></div>
+          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px">
+            <sc-for list="{{ annRows }}" as="a">
+              <div style="background:#FFFFFF;border:1px solid #DDEEF9;border-top:2px solid {{ a.rule }};padding:16px;display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#3E7394">{{ a.tag }}</span><span style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px;white-space:nowrap;background:{{ a.sbg }};color:{{ a.sfg }}">{{ a.statusT }}</span></div>
+                <span style="font-family:'Bodoni Moda';font-size:19px">{{ a.title }}</span>
+                <span style="font-size:14px;line-height:1.45">{{ a.text }}</span>
+                <span style="font-size:12px;color:#3E7394">{{ a.meta }}</span>
+                <div style="display:flex;gap:10px;align-items:center;border-top:1px solid #DDEEF9;padding-top:10px;margin-top:2px"><span onClick="{{ a.onToggle }}" style="width:40px;height:22px;background:{{ a.tg }};display:flex;padding:3px;box-sizing:border-box;justify-content:{{ a.tj }};cursor:pointer"><span style="width:16px;height:16px;background:#FFFFFF"></span></span><span style="font-size:13px;flex:1">{{ a.onT }}</span><button onClick="{{ a.onEdit }}" style="height:32px;padding:0 10px;border:1px solid #BFE2F7;background:transparent;color:#0B4A70;font-size:13px;cursor:pointer">Edit</button><button onClick="{{ a.onDel }}" style="width:32px;height:32px;border:1px solid #BFE2F7;background:transparent;color:#9A3412;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="14" height="14"><use href="#i-trash"></use></svg></button></div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ aIsSet }}">
+          <h1 style="margin:0;font-family:'Bodoni Moda';font-weight:400;font-size:30px">Opening hours &amp; availability</h1>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+            <div style="display:flex;flex-direction:column;border-top:2px solid #BFE2F7">
+              <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3E7394;padding:12px 0 6px">Weekly hours</span>
+              <sc-for list="{{ hoursRows }}" as="h"><div style="display:grid;grid-template-columns:90px 50px 1fr 1fr;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid #DDEEF9;font-size:14px"><span style="font-weight:500">{{ h.d }}</span><span onClick="{{ h.onToggle }}" style="width:40px;height:22px;background:{{ h.tg }};display:flex;padding:3px;box-sizing:border-box;justify-content:{{ h.tj }};cursor:pointer"><span style="width:16px;height:16px;background:#FFFFFF"></span></span><sc-if value="{{ h.isOpen }}"><select value="{{ h.open }}" onChange="{{ h.onOpen }}" style="height:36px;border:1px solid #BFE2F7;background:#FFFFFF;font-size:14px;color:#0B4A70"><sc-for list="{{ timeOpts }}" as="o"><option value="{{ o }}">{{ o }}</option></sc-for></select><select value="{{ h.close }}" onChange="{{ h.onClose }}" style="height:36px;border:1px solid #BFE2F7;background:#FFFFFF;font-size:14px;color:#0B4A70"><sc-for list="{{ timeOpts }}" as="o"><option value="{{ o }}">{{ o }}</option></sc-for></select></sc-if><sc-if value="{{ h.closed }}"><span style="color:#3E7394;grid-column:span 2">Closed</span></sc-if></div></sc-for>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px;border-top:2px solid #BFE2F7">
+              <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3E7394;padding-top:12px">Special dates · holidays, late openings, events</span>
+              <sc-for list="{{ spRows }}" as="s"><div style="display:flex;gap:10px;align-items:center;padding:10px 12px;background:#FFFFFF;border:1px solid #DDEEF9;font-size:14px"><div style="flex:1;display:flex;flex-direction:column;gap:2px"><span style="font-weight:500">{{ s.dateT }} · {{ s.t }}</span><span style="font-size:12px;color:#3E7394">{{ s.note }}</span></div><button onClick="{{ s.onDel }}" style="width:32px;height:32px;border:1px solid #BFE2F7;background:transparent;color:#9A3412;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="14" height="14"><use href="#i-trash"></use></svg></button></div></sc-for>
+              <div style="background:#E6F5FF;padding:14px;display:flex;flex-direction:column;gap:10px">
+                <span style="font-size:13px;font-weight:500">Add special date</span>
+                <div style="display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center"><input type="date" value="{{ sp.date }}" onChange="{{ spF.date }}" style="height:38px;border:1px solid #BFE2F7;background:#FFFFFF;padding:0 8px;font-size:14px;color:#0B4A70"></input><label onClick="{{ spToggle }}" style="display:flex;gap:8px;align-items:center;font-size:13px;cursor:pointer"><span style="width:40px;height:22px;background:{{ spTg }};display:flex;padding:3px;box-sizing:border-box;justify-content:{{ spTj }}"><span style="width:16px;height:16px;background:#FFFFFF"></span></span>Closed all day</label></div>
+                <sc-if value="{{ spOpen }}"><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><select value="{{ sp.open }}" onChange="{{ spF.open }}" style="height:38px;border:1px solid #BFE2F7;background:#FFFFFF;font-size:14px;color:#0B4A70"><sc-for list="{{ timeOpts }}" as="o"><option value="{{ o }}">Opens {{ o }}</option></sc-for></select><select value="{{ sp.close }}" onChange="{{ spF.close }}" style="height:38px;border:1px solid #BFE2F7;background:#FFFFFF;font-size:14px;color:#0B4A70"><sc-for list="{{ timeOpts }}" as="o"><option value="{{ o }}">Closes {{ o }}</option></sc-for></select></div></sc-if>
+                <input value="{{ sp.note }}" onChange="{{ spF.note }}" placeholder="Note shown to customers, e.g. Late-night event" style="height:38px;border:1px solid #BFE2F7;background:#FFFFFF;padding:0 10px;font-size:14px;color:#0B4A70;outline:none"></input>
+                <button onClick="{{ addSp }}" style="height:42px;background:#0A7CC0;color:#FFFFFF;border:none;text-align:left;padding:0 14px;font-size:14px;cursor:pointer">Add special date</button>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+      </div></div>
+    </sc-if>
+
+    <sc-if value="{{ modalOn }}">
+      <div style="position:absolute;inset:0;background:rgba(11,74,112,.25);display:flex;align-items:center;justify-content:center;z-index:10">
+        <div style="width:500px;max-width:calc(100vw - 24px);overflow-y:auto;background:#FFFFFF;border-top:2px solid #FFB400;padding:24px;display:flex;flex-direction:column;gap:14px;box-sizing:border-box">
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'Bodoni Moda';font-size:24px">{{ modalTitle }}</span><button onClick="{{ closeModal }}" style="width:40px;height:40px;border:none;background:transparent;color:#0B4A70;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="20" height="20"><use href="#i-x"></use></svg></button></div>
+
+          <sc-if value="{{ bkOn }}">
+            <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:15px">{{ bk.whenT }}</span><span style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;border:1px solid {{ bk.sbd }};background:{{ bk.sbg }};color:{{ bk.sfg }}">{{ bk.status }}</span></div>
+            <div style="display:flex;flex-direction:column;gap:2px;font-size:14px;border-top:1px solid #DDEEF9;padding-top:10px"><span style="font-weight:500">{{ bk.name }}</span><span style="color:#3E7394">{{ bk.contact }}</span></div>
+            <div style="display:flex;flex-direction:column;border-top:1px solid #DDEEF9"><sc-for list="{{ bkItems }}" as="it"><div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #DDEEF9;font-size:14px"><span>{{ it.name }}<span style="color:#3E7394">{{ it.styleT }}</span></span><span>{{ it.priceT }}</span></div></sc-for><div style="display:flex;justify-content:space-between;padding:10px 0;font-weight:500"><span>Total · {{ bk.durT }}</span><span>{{ bk.totalT }}</span></div></div>
+            <sc-if value="{{ bk.hasNote }}"><div style="font-size:13px;background:#E6F5FF;padding:10px">Note: {{ bk.note }}</div></sc-if>
+            <sc-if value="{{ resOn }}">
+              <div style="display:flex;flex-direction:column;gap:8px;background:#F0F8FE;padding:12px">
+                <span style="font-size:13px;font-weight:500">Reschedule to</span>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><input type="date" value="{{ res.date }}" onChange="{{ onResDate }}" style="height:38px;border:1px solid #BFE2F7;background:#FFFFFF;padding:0 8px;font-size:14px;color:#0B4A70"></input><select value="{{ res.time }}" onChange="{{ onResTime }}" style="height:38px;border:1px solid #BFE2F7;background:#FFFFFF;font-size:14px;color:#0B4A70"><sc-for list="{{ resOpts }}" as="o"><option value="{{ o.v }}">{{ o.l }}</option></sc-for></select></div>
+                <button onClick="{{ resSave }}" style="height:40px;background:#0A7CC0;color:#FFFFFF;border:none;text-align:left;padding:0 12px;font-size:14px;cursor:pointer">Save new time</button>
+              </div>
+            </sc-if>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <sc-if value="{{ bk.canConfirm }}"><button onClick="{{ bkConfirm }}" style="height:42px;padding:0 14px;background:#0A7CC0;color:#FFFFFF;border:none;font-size:14px;cursor:pointer">Confirm</button></sc-if>
+              <sc-if value="{{ bk.canComplete }}"><button onClick="{{ bkComplete }}" style="height:42px;padding:0 14px;background:#0A7CC0;color:#FFFFFF;border:none;font-size:14px;cursor:pointer">Mark completed</button></sc-if>
+              <sc-if value="{{ bk.canChange }}"><button onClick="{{ startRes }}" style="height:42px;padding:0 14px;border:1px solid #7FC0E8;background:transparent;color:#0B4A70;font-size:14px;cursor:pointer">Reschedule</button><button onClick="{{ bkCancel }}" style="height:42px;padding:0 14px;border:1px solid #F0A0BF;background:transparent;color:#9A3412;font-size:14px;cursor:pointer">Cancel booking</button></sc-if>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ manOn }}">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+              <label style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:#3E7394">Customer name<input value="{{ man.name }}" onChange="{{ manF.name }}" style="height:40px;border:1px solid #BFE2F7;background:#FFFFFF;padding:0 10px;font-size:14px;color:#0B4A70;outline:none"></input></label>
+              <label style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:#3E7394">Phone<input value="{{ man.phone }}" onChange="{{ manF.phone }}" style="height:40px;border:1px solid #BFE2F7;background:#FFFFFF;padding:0 10px;font-size:14px;color:#0B4A70;outline:none"></input></label>
+            </div>
+            <label style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:#3E7394">Service<select value="{{ man.svc }}" onChange="{{ manF.svc }}" style="height:40px;border:1px solid #BFE2F7;background:#FFFFFF;font-size:14px;color:#0B4A70"><sc-for list="{{ svcOpts }}" as="o"><option value="{{ o.v }}">{{ o.l }}</option></sc-for></select></label>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+              <label style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:#3E7394">Date<input type="date" value="{{ man.date }}" onChange="{{ manF.date }}" style="height:40px;border:1px solid #BFE2F7;background:#FFFFFF;padding:0 8px;font-size:14px;color:#0B4A70"></input></label>
+              <label style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:#3E7394">Time<select value="{{ man.time }}" onChange="{{ manF.time }}" style="height:40px;border:1px solid #BFE2F7;background:#FFFFFF;font-size:14px;color:#0B4A70"><sc-for list="{{ manTimeOpts }}" as="o"><option value="{{ o.v }}">{{ o.l }}</option></sc-for></select></label>
+            </div>
+            <sc-if value="{{ hasManErr }}"><span style="font-size:13px;color:#9A3412">{{ manErr }}</span></sc-if>
+            <button onClick="{{ manSave }}" style="height:46px;background:#0A7CC0;color:#FFFFFF;border:none;text-align:left;padding:0 14px;font-size:15px;cursor:pointer">Create booking</button>
+          </sc-if>
+
+          <sc-if value="{{ blkOn }}">
+            <label style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:#3E7394">Date<input type="date" value="{{ blk.date }}" onChange="{{ blkF.date }}" style="height:40px;border:1px solid #BFE2F7;background:#FFFFFF;padding:0 8px;font-size:14px;color:#0B4A70"></input></label>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+              <label style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:#3E7394">From<select value="{{ blk.start }}" onChange="{{ blkF.start }}" style="height:40px;border:1px solid #BFE2F7;background:#FFFFFF;font-size:14px;color:#0B4A70"><sc-for list="{{ timeOpts }}" as="o"><option value="{{ o }}">{{ o }}</option></sc-for></select></label>
+              <label style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:#3E7394">Until<select value="{{ blk.end }}" onChange="{{ blkF.end }}" style="height:40px;border:1px solid #BFE2F7;background:#FFFFFF;font-size:14px;color:#0B4A70"><sc-for list="{{ timeOpts }}" as="o"><option value="{{ o }}">{{ o }}</option></sc-for></select></label>
+            </div>
+            <label style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:#3E7394">Reason<input value="{{ blk.reason }}" onChange="{{ blkF.reason }}" style="height:40px;border:1px solid #BFE2F7;background:#FFFFFF;padding:0 10px;font-size:14px;color:#0B4A70;outline:none"></input></label>
+            <span style="font-size:12px;color:#3E7394">Customers can't book any slot overlapping this time.</span>
+            <button onClick="{{ blkSave }}" style="height:46px;background:#0A7CC0;color:#FFFFFF;border:none;text-align:left;padding:0 14px;font-size:15px;cursor:pointer">Block time</button>
+          </sc-if>
+
+          <sc-if value="{{ svOn }}">
+            <label style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:#3E7394">Name<input value="{{ sv.name }}" onChange="{{ svF.name }}" style="height:40px;border:1px solid #BFE2F7;background:#FFFFFF;padding:0 10px;font-size:14px;color:#0B4A70;outline:none"></input></label>
+            <div style="display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:10px">
+              <label style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:#3E7394">Category<select value="{{ sv.cat }}" onChange="{{ svF.cat }}" style="height:40px;border:1px solid #BFE2F7;background:#FFFFFF;font-size:14px;color:#0B4A70"><sc-for list="{{ catOpts }}" as="o"><option value="{{ o }}">{{ o }}</option></sc-for></select></label>
+              <label style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:#3E7394">Price (£)<input type="number" value="{{ sv.price }}" onChange="{{ svF.price }}" style="height:40px;border:1px solid #BFE2F7;background:#FFFFFF;padding:0 10px;font-size:14px;color:#0B4A70;outline:none"></input></label>
+              <label style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:#3E7394">Duration (min)<input type="number" step="5" value="{{ sv.dur }}" onChange="{{ svF.dur }}" style="height:40px;border:1px solid #BFE2F7;background:#FFFFFF;padding:0 10px;font-size:14px;color:#0B4A70;outline:none"></input></label>
+            </div>
+            <label style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:#3E7394">Description<textarea value="{{ sv.desc }}" onChange="{{ svF.desc }}" rows="3" style="border:1px solid #BFE2F7;background:#FFFFFF;padding:8px 10px;font-size:14px;color:#0B4A70;outline:none;resize:none"></textarea></label>
+            <label style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:#3E7394">Hairstyles (comma separated)<input value="{{ sv.styles }}" onChange="{{ svF.styles }}" placeholder="e.g. Long layers, Bob, Pixie" style="height:40px;border:1px solid #BFE2F7;background:#FFFFFF;padding:0 10px;font-size:14px;color:#0B4A70;outline:none"></input></label>
+            <div onClick="{{ svToggle }}" style="display:flex;gap:10px;align-items:center;font-size:14px;cursor:pointer"><span style="width:40px;height:22px;background:{{ svTg }};display:flex;padding:3px;box-sizing:border-box;justify-content:{{ svTj }}"><span style="width:16px;height:16px;background:#FFFFFF"></span></span>Visible to customers</div>
+            <sc-if value="{{ hasSvErr }}"><span style="font-size:13px;color:#9A3412">Add a name, price and duration.</span></sc-if>
+            <div style="display:flex;gap:8px"><sc-if value="{{ svCanDel }}"><button onClick="{{ svDel }}" style="height:46px;padding:0 14px;border:1px solid #F0A0BF;background:transparent;color:#9A3412;font-size:14px;cursor:pointer">Delete</button></sc-if><button onClick="{{ svSave }}" style="flex:1;height:46px;background:#0A7CC0;color:#FFFFFF;border:none;text-align:left;padding:0 14px;font-size:15px;cursor:pointer">Save · customers see it immediately</button></div>
+          </sc-if>
+
+          <sc-if value="{{ anOn }}">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+              <label style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:#3E7394">Type<select value="{{ an.type }}" onChange="{{ anF.type }}" style="height:40px;border:1px solid #BFE2F7;background:#FFFFFF;font-size:14px;color:#0B4A70"><sc-for list="{{ typeOpts }}" as="o"><option value="{{ o.v }}">{{ o.l }}</option></sc-for></select></label>
+              <div onClick="{{ anImp }}" style="display:flex;gap:10px;align-items:center;font-size:14px;cursor:pointer;padding-top:18px"><span style="width:40px;height:22px;background:{{ anImpTg }};display:flex;padding:3px;box-sizing:border-box;justify-content:{{ anImpTj }}"><span style="width:16px;height:16px;background:#FFFFFF"></span></span>Important (banner)</div>
+            </div>
+            <label style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:#3E7394">Title<input value="{{ an.title }}" onChange="{{ anF.title }}" style="height:40px;border:1px solid #BFE2F7;background:#FFFFFF;padding:0 10px;font-size:14px;color:#0B4A70;outline:none"></input></label>
+            <label style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:#3E7394">Message<textarea value="{{ an.text }}" onChange="{{ anF.text }}" rows="3" style="border:1px solid #BFE2F7;background:#FFFFFF;padding:8px 10px;font-size:14px;color:#0B4A70;outline:none;resize:none"></textarea></label>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+              <label style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:#3E7394">Starts<input type="date" value="{{ an.start }}" onChange="{{ anF.start }}" style="height:40px;border:1px solid #BFE2F7;background:#FFFFFF;padding:0 8px;font-size:14px;color:#0B4A70"></input></label>
+              <label style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:#3E7394">Expires<input type="date" value="{{ an.end }}" onChange="{{ anF.end }}" style="height:40px;border:1px solid #BFE2F7;background:#FFFFFF;padding:0 8px;font-size:14px;color:#0B4A70"></input></label>
+            </div>
+            <sc-if value="{{ anIsOffer }}">
+              <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:10px">
+                <label style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:#3E7394">Discount %<input type="number" value="{{ an.pct }}" onChange="{{ anF.pct }}" style="height:40px;border:1px solid #BFE2F7;background:#FFFFFF;padding:0 10px;font-size:14px;color:#0B4A70;outline:none"></input></label>
+                <label style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:#3E7394">Applies to<select value="{{ an.target }}" onChange="{{ anF.target }}" style="height:40px;border:1px solid #BFE2F7;background:#FFFFFF;font-size:14px;color:#0B4A70"><sc-for list="{{ targetOpts }}" as="o"><option value="{{ o.v }}">{{ o.l }}</option></sc-for></select></label>
+              </div>
+            </sc-if>
+            <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;color:#3E7394">Show in</span><div style="display:flex;gap:8px;flex-wrap:wrap"><sc-for list="{{ anPlaces }}" as="p"><button onClick="{{ p.onClick }}" style="padding:8px 12px;font-size:13px;border:1px solid {{ p.bd }};background:{{ p.bg }};color:{{ p.fg }};cursor:pointer">{{ p.l }}</button></sc-for></div></div>
+            <sc-if value="{{ hasAnErr }}"><span style="font-size:13px;color:#9A3412">Add a title and valid dates.</span></sc-if>
+            <div style="display:flex;gap:8px"><sc-if value="{{ anCanDel }}"><button onClick="{{ anDel }}" style="height:46px;padding:0 14px;border:1px solid #F0A0BF;background:transparent;color:#9A3412;font-size:14px;cursor:pointer">Delete</button></sc-if><button onClick="{{ anSave }}" style="flex:1;height:46px;background:#0A7CC0;color:#FFFFFF;border:none;text-align:left;padding:0 14px;font-size:15px;cursor:pointer">Publish</button></div>
+          </sc-if>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ hasAtoast }}"><div style="position:absolute;right:24px;bottom:24px;background:#0A7CC0;color:#FFFFFF;padding:12px 16px;font-size:14px;display:flex;gap:10px;align-items:center;z-index:12"><svg width="16" height="16"><use href="#i-check"></use></svg>{{ atoast }}</div></sc-if>
+  </div>
+</x-dc></x-dc>
+<script type="text/x-dc" data-dc-script>
+const LS = 'elanpro-app-v1';
+const pad = n => String(n).padStart(2, '0');
+const DN = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const DL = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const MN = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const ML = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const dk = d => d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+const addD = n => { const d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() + n); return d; };
+const kd = n => dk(addD(n));
+const pk = k => { const a = k.split('-'); return new Date(+a[0], +a[1] - 1, +a[2], 12); };
+const shift = (k, n) => { const d = pk(k); d.setDate(d.getDate() + n); return dk(d); };
+const fD = k => { const d = pk(k); return DN[d.getDay()] + ' ' + d.getDate() + ' ' + MN[d.getMonth()]; };
+const fDL = k => { const d = pk(k); return DL[d.getDay()] + ' ' + d.getDate() + ' ' + ML[d.getMonth()]; };
+const t2m = t => { const a = t.split(':'); return +a[0] * 60 + +a[1]; };
+const m2t = m => pad(Math.floor(m / 60)) + ':' + pad(m % 60);
+const fDur = m => m < 60 ? m + ' min' : Math.floor(m / 60) + 'h' + (m % 60 ? ' ' + pad(m % 60) + 'm' : '');
+const money = n => '£' + (Math.round(n * 100) % 100 ? (+n).toFixed(2) : Math.round(n));
+const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const CATS = ['Hair','Treatments','Ladies','Gents','Kids'];
+const TYPES = { offer: 'Special offer', notice: 'Important notice', closure: 'Temporary closure', occasion: 'Special occasion', holiday: 'Holiday hours' };
+const PLACES = [['home','Home banner'],['offers','Offers'],['notif','Notifications'],['booking','Booking screen']];
+const IMG = { 'haircut':'1634449571010-02389ed0f9b0','wash-cut':'1717160675489-7779f2c91999','blow-dry':'1580618672591-eb180b1a973f','hair-styling':'1562322140-8baeececf3df','hair-colouring':'1560264641-1b5191cc63e2','highlights':'1560869713-bf165a9cfac1','balayage':'1522337360788-8b13dee7a37e','root-touch-up':'1560264641-1b5191cc63e2','keratin-treatment':'1734111719430-fe4a3973f8af','hair-straightening':'1734111719430-fe4a3973f8af','hair-curling':'1629397685944-7073f5589754','hair-extensions':'1602549179763-ce6c9df961b7','bridal-occasion-styling':'1614020863825-28a0bb7e3c3c','head-massage':'1717160675489-7779f2c91999','oil-massage':'1712641970787-e178ca70c6c4','scalp-treatment':'1712641970787-e178ca70c6c4','hair-spa':'1717160675489-7779f2c91999','ladies-haircut':'1700760934268-8aa0ef52ce0a','layer-cut':'1634449571010-02389ed0f9b0','bob-cut':'1700760934268-8aa0ef52ce0a','ladies-blow-dry-style':'1580618672591-eb180b1a973f','men-s-haircut':'1647140655214-e4a2d914971f','skin-fade':'1599351431202-1e0f0137899a','taper-fade':'1657105052497-f996284ffff8','beard-trim':'1630827020718-3433092696e7','beard-shaping':'1630827020718-3433092696e7','hair-beard-package':'1635273051937-a0ddef9573b6','men-s-colouring':'1605497788044-5a32c7078486' };
+const CIMG = { Hair: '1560869713-7d0a29430803', Treatments: '1717160675489-7779f2c91999', Ladies: '1634449571010-02389ed0f9b0', Gents: '1593702275687-f8b402bf1fb5', Kids: '1521590832167-7bcbfaa6381f' };
+const imgBg = s => s ? "url('https://images.unsplash.com/photo-" + (IMG[s.id] || CIMG[s.cat] || CIMG.Hair) + "?auto=format&fit=crop&w=700&q=70')" : "url('https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?auto=format&fit=crop&w=700&q=70')";
+const isLive = a => a.active && a.start <= kd(0) && a.end >= kd(0);
+const SS = { confirmed: ['#FFEAF2','#6B1238','#FFEAF2'], pending: ['transparent','#6B1238','#F5C6D8'], completed: ['transparent','#8F4B68','#FBE3EC'], cancelled: ['#FFF4D1','#9A3412','#FFF4D1'] };
+const ASS = { confirmed: ['#E6F5FF','#0B4A70','#E6F5FF'], pending: ['transparent','#0B4A70','#7FC0E8'], completed: ['transparent','#3E7394','#DDEEF9'], cancelled: ['#FFF4D1','#9A3412','#FFF4D1'] };
+const CATC = { Ladies: ['#FFEAF2','#E6307A'], Gents: ['#E6F5FF','#0E8FD6'], Kids: ['#FFF4D1','#FFB400'], Hair: ['#E8F8EF','#16A34A'], Treatments: ['#F1EAFF','#7C3AED'] };
+
+function seed() {
+  const S = (name, cat, dur, price, desc, styles, popular) => ({ id: slug(name), name, cat, dur, price, desc, active: true, styles: styles || [], popular: !!popular });
+  const services = [
+    S('Haircut','Hair',45,35,'Consultation, wash, precision cut and finish.',['Trim','Restyle'],true),
+    S('Wash & Cut','Hair',50,40,'Relaxing wash followed by a tailored cut.'),
+    S('Blow Dry','Hair',30,28,'Smooth, voluminous or sleek blow-dry finish.'),
+    S('Hair Styling','Hair',40,35,'Styling for any look, from polished to textured.'),
+    S('Hair Colouring','Hair',90,75,'Full-head permanent or semi-permanent colour.',['Single process','Gloss','Grey blending']),
+    S('Highlights','Hair',120,95,'Foil highlights for brightness and dimension.',['Half head','Full head','Face-framing']),
+    S('Balayage','Hair',150,120,'Hand-painted, soft sun-lifted colour with toner and gloss.',['Sun-kissed','Face-framing','Lived-in'],true),
+    S('Root Touch-up','Hair',60,55,'Colour refresh for regrowth up to 2cm.'),
+    S('Keratin Treatment','Hair',120,150,'Smoothing treatment that tames frizz for up to 3 months.'),
+    S('Hair Straightening','Hair',90,70,'Sleek, straight finish with heat protection.'),
+    S('Hair Curling','Hair',45,38,'Defined curls or soft waves.',['Beach waves','Glam curls','Tight curls']),
+    S('Hair Extensions','Hair',180,220,'Consultation-led, colour-matched extensions.'),
+    S('Bridal / Occasion Styling','Hair',120,150,'Trial-ready styling for weddings and events.',['Classic updo','Soft waves','Braided']),
+    S('Head Massage','Treatments',20,20,'Pressure-point scalp massage to release tension.',[],true),
+    S('Oil Massage','Treatments',30,25,'Warm nourishing oil worked through scalp and lengths.'),
+    S('Scalp Treatment','Treatments',40,35,'Exfoliating and balancing scalp therapy.'),
+    S('Deep Conditioning','Treatments',30,30,'Intensive mask for softness and shine.'),
+    S('Hair Repair Treatment','Treatments',45,45,'Bond-building repair for damaged hair.'),
+    S('Hydration Treatment','Treatments',40,38,'Moisture boost for dry or coloured hair.'),
+    S('Anti-dandruff Treatment','Treatments',40,35,'Clarifying treatment for a calm, flake-free scalp.'),
+    S('Hair Spa','Treatments',45,40,'Deep cleanse, mask, steam and massage.',[],true),
+    S('Ladies Haircut','Ladies',45,45,'Tailored cut with wash and blow dry.',['Long layers','Bob','Pixie','Trim only'],true),
+    S('Layer Cut','Ladies',60,50,'Movement-rich layers shaped to your face.'),
+    S('Bob Cut','Ladies',45,45,'Classic, blunt or textured bob.'),
+    S('Ladies Blow Dry & Style','Ladies',40,32,'Wash, blow dry and finish.'),
+    S("Men's Haircut",'Gents',30,25,'Clipper and scissor cut with finish.',['Classic','Textured crop','Scissor cut']),
+    S('Skin Fade','Gents',45,30,'Clean fade blended to your length on top.',[],true),
+    S('Taper Fade','Gents',40,28,'Subtle taper at the neckline and sides.'),
+    S('Beard Trim','Gents',15,12,'Tidy trim and line-up.'),
+    S('Beard Shaping','Gents',20,15,'Sculpted shape with hot towel.'),
+    S('Hair & Beard Package','Gents',50,38,'Haircut plus beard shaping.'),
+    S("Men's Colouring",'Gents',45,40,'Natural-looking colour or grey blending.'),
+    S('Kids Haircut','Kids',30,18,'Under 12s, patient and fun.'),
+    S('Boys Haircut','Kids',30,16,'Neat, easy-to-manage cuts.'),
+    S('Girls Haircut','Kids',30,20,'Trims, fringes and fresh shapes.'),
+    S('Kids Wash & Cut','Kids',40,24,'Gentle wash and cut.'),
+    S('Kids Styling','Kids',20,15,'Plaits, buns or party styling.')
+  ];
+  const hours = {};
+  [0,1,2,3,4,5,6].forEach(d => hours[d] = { closed: d === 0, open: d === 0 ? '10:00' : '09:00', close: d === 4 ? '20:00' : d === 0 ? '16:00' : '18:00' });
+  const openDay = n => { const d = addD(n); if (d.getDay() === 0) d.setDate(d.getDate() + (n < 0 ? -1 : 1)); return dk(d); };
+  let n = 0;
+  const find = id => services.find(s => s.id === id);
+  const B = (off, t, cust, ids, status, style) => {
+    const items = ids.map(id => { const s = find(id); return { id, name: s.name, price: s.price, dur: s.dur, style: style || '' }; });
+    return { id: 'b' + (++n), cust, items, date: openDay(off), start: t2m(t), dur: items.reduce((a, i) => a + i.dur, 0), total: items.reduce((a, i) => a + i.price, 0), status, note: '' };
+  };
+  const C = (name, phone) => ({ name, phone, email: '' });
+  const bookings = [
+    B(3,'14:30','me',['ladies-haircut','blow-dry'],'confirmed','Long layers'),
+    B(-20,'11:00','me',['hair-spa'],'completed'),
+    B(-45,'10:00','me',['root-touch-up'],'completed'),
+    B(0,'09:00',C('Aisha Laurent','07700 900101'),['ladies-haircut'],'completed'),
+    B(0,'10:00',C('Raj Patel','07700 900102'),['skin-fade'],'completed'),
+    B(0,'11:00',C('Mia Novak','07700 900103'),['hair-spa'],'confirmed'),
+    B(0,'14:30',C('Leo Brandt','07700 900104'),['kids-haircut'],'confirmed'),
+    B(0,'15:00',C('Omar Grant','07700 900105'),['hair-beard-package'],'pending'),
+    B(0,'16:30',C('Sofia Rossi','07700 900106'),['blow-dry'],'confirmed'),
+    B(1,'11:30',C('Kofi Diallo','07700 900107'),['men-s-haircut'],'confirmed'),
+    B(1,'13:00',C('Priya Shah','07700 900108'),['balayage'],'confirmed','Sun-kissed'),
+    B(2,'10:00',C('Tom Mills','07700 900109'),['taper-fade'],'confirmed'),
+    B(2,'12:00',C('Hana Park','07700 900110'),['highlights'],'pending','Face-framing'),
+    B(4,'09:30',C('Ben Clarke','07700 900111'),['men-s-haircut','beard-trim'],'confirmed'),
+    B(-1,'10:00',C('Ella Moreau','07700 900112'),['wash-cut'],'completed'),
+    B(-1,'12:00',C('Sam Ortiz','07700 900113'),['kids-haircut'],'cancelled')
+  ];
+  const specials = [
+    { id: 'sp1', date: kd(1), closed: false, open: '11:00', close: '18:00', note: 'Opening late — team training' },
+    { id: 'sp2', date: kd(8), closed: true, open: '09:00', close: '18:00', note: 'Closed for maintenance' },
+    { id: 'sp3', date: openDay(10), closed: false, open: '09:00', close: '22:00', note: 'Late-night occasion styling event' }
+  ];
+  const anns = [
+    { id: 'a1', type: 'offer', title: '20% off Hair Spa', text: 'Treat yourself this week — 20% off every Hair Spa treatment.', start: kd(0), end: kd(6), important: false, active: true, place: ['home','offers','notif'], pct: 20, target: 'hair-spa' },
+    { id: 'a2', type: 'closure', title: 'Closed for maintenance', text: 'ÉlanPro will be closed on ' + fDL(kd(8)) + ' for maintenance.', start: kd(0), end: kd(8), important: true, active: true, place: ['home','notif','booking'], pct: 0, target: '' },
+    { id: 'a3', type: 'offer', title: 'First visit? 15% off', text: 'New to ÉlanPro? Mention this offer for 15% off any haircut on your first visit.', start: kd(-30), end: kd(60), important: false, active: true, place: ['offers'], pct: 0, target: '' },
+    { id: 'a4', type: 'holiday', title: 'Holiday opening hours', text: 'Christmas Eve: open 09:00 – 14:00. Closed Christmas Day and Boxing Day.', start: kd(20), end: kd(40), important: false, active: true, place: ['home','notif'], pct: 0, target: '' }
+  ];
+  const blocks = [{ id: 'bl1', date: kd(0), start: '13:00', end: '13:30', reason: 'Staff lunch' }];
+  const notifs = [
+    { id: 'n1', kind: 'Booking confirmed', title: "You're booked", text: 'Ladies Haircut + Blow Dry on ' + fD(bookings[0].date) + ' at 14:30.', when: '2 days ago', read: false },
+    { id: 'n2', kind: 'Reminder', title: 'Time for a Hair Spa?', text: "It's been a few weeks since your last treatment.", when: 'Last week', read: true }
+  ];
+  return { v: 1, services, hours, specials, anns, blocks, bookings, notifs, me: { name: 'Amara Kade', email: 'amara@mail.com', phone: '+44 7700 900214', favs: ['hair-spa','ladies-haircut'], prefs: { reminders: true, offers: true, announcements: true, email: false } } };
+}
+const hoursFor = (D, k) => { const sp = D.specials.find(s => s.date === k); if (sp) return { closed: sp.closed, open: sp.open, close: sp.close, note: sp.note, special: true }; const w = D.hours[pk(k).getDay()]; return { closed: w.closed, open: w.open, close: w.close }; };
+const hText = h => h.closed ? 'Closed' : h.open + ' – ' + h.close;
+const slotsFor = (D, k, dur, ign) => {
+  if (!k) return [];
+  const h = hoursFor(D, k); if (h.closed) return [];
+  const o = t2m(h.open), c = t2m(h.close), now = new Date(), nm = now.getHours() * 60 + now.getMinutes(), isT = k === kd(0), out = [];
+  for (let m = o; m + dur <= c; m += 30) {
+    let ok = k >= kd(0) && !(isT && m < nm + 15);
+    const cnt = D.bookings.filter(b => b.date === k && b.status !== 'cancelled' && b.id !== ign && b.start < m + dur && m < b.start + b.dur).length;
+    if (cnt >= 2) ok = false;
+    if (D.blocks.some(x => x.date === k && t2m(x.start) < m + dur && m < t2m(x.end))) ok = false;
+    out.push({ m, t: m2t(m), ok });
+  }
+  return out;
+};
+const priceOf = (D, s) => { let pct = 0; D.anns.forEach(a => { if (a.type === 'offer' && isLive(a) && +a.pct > 0 && (a.target === s.id || a.target === s.cat)) pct = Math.max(pct, +a.pct); }); return { p: Math.round(s.price * (100 - pct)) / 100, pct }; };
+const initC = () => ({ tab: 'home', flow: null, detail: null, dStyle: null, notif: false, cxId: null, confId: null, confRes: false, openBk: null, seg: 'up', cat: 'All', q: '' });
+const initA = () => ({ authed: false, pin: '', err: false, tab: 'dash', calDate: kd(0), view: 'day', scope: 'upcoming', bq: '', bsvc: '', cq: '', openCust: null, svcCat: 'All', modal: null, sp: { date: kd(7), closed: false, open: '09:00', close: '18:00', note: '' } });
+
+class Component extends DCLogic {
+  state = (() => { let d = null; try { d = JSON.parse(localStorage.getItem(LS)); } catch (e) {} return { data: d && d.v === 1 ? d : seed(), splash: true, toast: null, atoast: null, c: initC(), a: initA() }; })();
+  componentDidMount() { this._bip = e => { e.preventDefault(); this._deferred = e; this.setState({ canPrompt: true }); }; window.addEventListener('beforeinstallprompt', this._bip); window.addEventListener('appinstalled', () => this.setState({ canPrompt: false, installed: true })); this._rs = () => this.setState({ narrow: window.innerWidth < 860 }); this._rs(); window.addEventListener('resize', this._rs); this._sp = setTimeout(() => this.setState({ splash: false }), 4200); this._tk = setInterval(() => this.forceUpdate(), 30000); }
+  componentWillUnmount() { clearTimeout(this._sp); clearInterval(this._tk); }
+  save() { try { localStorage.setItem(LS, JSON.stringify(this.state.data)); } catch (e) {} }
+  upd(fn, msg, side) { this.setState(s => { const d = JSON.parse(JSON.stringify(s.data)); fn(d); return { data: d }; }, () => { this.save(); if (msg) this.flash(msg, side || 'c'); }); }
+  flash(msg, side) { const k = side === 'a' ? 'atoast' : 'toast'; this.setState({ [k]: msg }); clearTimeout(this['_' + k]); this['_' + k] = setTimeout(() => this.setState({ [k]: null }), 2600); }
+  setC(p) { this.setState(s => ({ c: { ...s.c, ...p } })); }
+  setA(p) { this.setState(s => ({ a: { ...s.a, ...p } })); }
+  setM(p) { this.setState(s => ({ a: { ...s.a, modal: { ...s.a.modal, ...p } } })); }
+  setMD(k, v, extra) { this.setState(s => ({ a: { ...s.a, modal: { ...s.a.modal, err: false, d: { ...s.a.modal.d, [k]: v, ...(extra || {}) } } } })); }
+
+  confirmFlow(F, selS, dur, pr) {
+    const D = this.state.data;
+    if (!slotsFor(D, F.date, dur, F.resId).some(x => x.t === F.time && x.ok)) { this.flash('That time was just taken — please pick another'); this.setC({ flow: { ...F, step: 'when', time: null } }); return; }
+    const id = F.resId || 'b' + Date.now(), st = t2m(F.time), when = fD(F.date) + ' at ' + F.time;
+    this.upd(d => {
+      if (F.resId) {
+        const b = d.bookings.find(x => x.id === F.resId); b.date = F.date; b.start = st; b.status = 'confirmed';
+        d.notifs.unshift({ id: 'n' + Date.now(), kind: 'Rescheduled', title: 'Appointment moved', text: b.items.map(i => i.name).join(' + ') + ' is now ' + when + '.', when: 'Just now', read: false });
+      } else {
+        const items = selS.map(s => ({ id: s.id, name: s.name, price: pr(s).p, dur: s.dur, style: F.styles[s.id] || '' }));
+        d.bookings.push({ id, cust: 'me', items, date: F.date, start: st, dur, total: items.reduce((a, i) => a + i.price, 0), status: 'confirmed', note: F.note });
+        d.notifs.unshift({ id: 'n' + Date.now(), kind: 'Booking confirmed', title: "You're booked", text: items.map(i => i.name).join(' + ') + ' on ' + when + '.', when: 'Just now', read: false });
+      }
+    });
+    this.setC({ flow: null, confId: id, confRes: !!F.resId, tab: 'appts', seg: 'up' });
+  }
+
+  renderVals() {
+    const D = this.state.data, C = this.state.c, A = this.state.a, v = {};
+    const today = kd(0), now = new Date(), nm = now.getHours() * 60 + now.getMinutes();
+    const byId = id => D.services.find(s => s.id === id);
+    const cust = b => b.cust === 'me' ? { name: D.me.name, phone: D.me.phone, email: D.me.email } : b.cust;
+    const pr = s => { const x = priceOf(D, s); return { priceT: money(x.p), wasT: x.pct ? money(s.price) : '', p: x.p }; };
+    const openDet = id => () => this.setC({ detail: id, dStyle: null });
+    const row = s => ({ bg: imgBg(s), id: s.id, name: s.name, cat: s.cat, desc: s.desc, durT: fDur(s.dur), ...pr(s), open: openDet(s.id) });
+    const newFlow = (sel, step, resId) => ({ step: step || 'services', sel, styles: {}, date: null, time: null, resId: resId || null, note: '', cat: 'All' });
+    const goTab = t => () => { const p = { tab: t, detail: null, notif: false }; if (t === 'book' && !C.flow) p.flow = newFlow([]); this.setC(p); };
+    const chip = (l, on, fn) => ({ l, bg: on ? '#E6307A' : 'transparent', fg: on ? '#FFFFFF' : '#6B1238', bd: on ? '#E6307A' : '#F5C6D8', onClick: fn });
+    const achip = (l, on, fn) => ({ l, bg: on ? '#0A7CC0' : 'transparent', fg: on ? '#FFFFFF' : '#0B4A70', bd: on ? '#0A7CC0' : '#BFE2F7', onClick: fn });
+    const sortB = (a, b) => a.date < b.date ? -1 : a.date > b.date ? 1 : a.start - b.start;
+    const svcOf = b => b.items.map(i => i.name).join(' + ');
+    const act = D.services.filter(s => s.active);
+    const live = D.anns.filter(isLive);
+
+    v.clock = pad(now.getHours()) + ':' + pad(now.getMinutes());
+    v.splashOn = this.state.splash; v.splashEl = v.splashOn ? this.buildSplash() : null; v.skipSplash = () => this.setState({ splash: false });
+    v.toast = this.state.toast; v.hasToast = !!this.state.toast; v.atoast = this.state.atoast; v.hasAtoast = !!this.state.atoast;
+    v.resetDemo = () => { try { localStorage.removeItem(LS); } catch (e) {} this.setState({ data: seed(), c: initC(), a: { ...initA(), authed: A.authed } }, () => this.save()); this.flash('Demo data reset'); };
+
+    ['home','services','book','appts','profile'].forEach(t => v['is' + { home: 'Home', services: 'Services', book: 'Book', appts: 'Appts', profile: 'Profile' }[t]] = C.tab === t);
+    v.cNav = [['home','Home','#i-home'],['services','Services','#i-scissors'],['book','Book','#i-plus'],['appts','Bookings','#i-cal'],['profile','Profile','#i-user']].map(([k, l, i]) => ({ l, i, c: C.tab === k ? '#6B1238' : '#B86A8C', b: C.tab === k ? '#6B1238' : 'transparent', onClick: goTab(k) }));
+
+    // Home
+    v.todayLong = fDL(today);
+    const hr = now.getHours(); v.greet = hr < 12 ? 'Good morning' : hr < 18 ? 'Good afternoon' : 'Good evening';
+    v.firstName = (D.me.name || 'there').split(' ')[0];
+    const th = hoursFor(D, today), tm = hoursFor(D, kd(1)), banners = [];
+    if (th.closed) banners.push({ tag: 'Today', title: "We're closed today", text: th.note || 'Book ahead for your next visit.' });
+    else if (th.special) banners.push({ tag: 'Today', title: 'Special hours today: ' + hText(th), text: th.note || '' });
+    if (tm.special) banners.push({ tag: 'Tomorrow', title: tm.closed ? 'Closed tomorrow' : 'Tomorrow we open ' + hText(tm), text: tm.note || '' });
+    live.filter(a => a.important && a.place.includes('home')).forEach(a => banners.push({ tag: TYPES[a.type], title: a.title, text: a.text }));
+    v.banners = banners;
+    const mine = D.bookings.filter(b => b.cust === 'me');
+    const isUp = b => (b.status === 'confirmed' || b.status === 'pending') && (b.date > today || (b.date === today && b.start + b.dur > nm));
+    const upL = mine.filter(isUp).sort(sortB), pastL = mine.filter(b => !isUp(b)).sort((a, b) => -sortB(a, b));
+    const nx = upL[0]; v.hasNext = !!nx;
+    v.next = nx ? { day: DN[pk(nx.date).getDay()].toUpperCase(), num: pk(nx.date).getDate(), mon: MN[pk(nx.date).getMonth()], names: nx.items.map(i => i.name).join(' · '), timeT: m2t(nx.start), durT: fDur(nx.dur), totalT: money(nx.total), status: nx.status } : {};
+    const offs = live.filter(a => a.type === 'offer' && (a.place.includes('offers') || a.place.includes('home')));
+    v.hasOffers = offs.length > 0;
+    v.homeOffers = offs.map(a => ({ bg: imgBg(byId(a.target) || (CATS.includes(a.target) ? { id: '', cat: a.target } : null)), title: a.title, text: a.text, until: 'Until ' + fD(a.end), onClick: () => { const s = byId(a.target); if (s) this.setC({ detail: s.id, dStyle: null }); else if (CATS.includes(a.target)) this.setC({ tab: 'services', cat: a.target }); else goTab('services')(); } }));
+    v.goBook = () => this.setC({ tab: 'book', flow: C.flow || newFlow([]), detail: null });
+    v.goAppts = () => this.setC({ tab: 'appts', seg: 'up' });
+    v.goServices = goTab('services');
+    v.popular = act.filter(s => s.popular).map(row);
+    v.featured = act.filter(s => s.styles.length).slice(0, 4).map(s => ({ bg: imgBg(s), name: s.name, sub: s.styles.slice(0, 3).join(' · '), open: openDet(s.id) }));
+    v.todayHoursT = th.closed ? 'Closed today' : 'Open today ' + hText(th);
+    v.week = [1,2,3,4,5,6,0].map(d => ({ d: DL[d], t: hText(D.hours[d]) }));
+
+    // Notifications
+    const prefOk = a => a.type === 'offer' ? D.me.prefs.offers : D.me.prefs.announcements;
+    v.notifList = D.notifs.map(n => ({ kind: n.kind, when: n.when, title: n.title, text: n.text, dot: n.read ? 'transparent' : '#FFB400' }))
+      .concat(live.filter(a => a.place.includes('notif') && prefOk(a)).map(a => ({ kind: TYPES[a.type], when: 'Until ' + fD(a.end), title: a.title, text: a.text, dot: 'transparent' })));
+    v.unread = D.notifs.filter(n => !n.read).length; v.hasUnread = v.unread > 0; v.notifOn = C.notif; v.notifEmpty = !v.notifList.length;
+    v.openNotif = () => this.setC({ notif: true });
+    v.closeNotif = () => { this.setC({ notif: false }); this.upd(d => d.notifs.forEach(n => n.read = true)); };
+
+    // Services
+    v.q = C.q; v.onQ = e => this.setC({ q: e.target.value });
+    v.cats = ['All', ...CATS].map(c => chip(c, C.cat === c, () => this.setC({ cat: c })));
+    const ql = C.q.trim().toLowerCase();
+    v.svcList = act.filter(s => (C.cat === 'All' || s.cat === C.cat) && (!ql || (s.name + ' ' + s.desc + ' ' + s.cat).toLowerCase().includes(ql))).map(row);
+    v.svcEmpty = !v.svcList.length;
+
+    // Detail
+    const ds = C.detail && byId(C.detail);
+    v.detOn = !!ds; v.det = ds ? row(ds) : {};
+    const isFav = ds && D.me.favs.includes(ds.id);
+    v.detFavC = isFav ? '#F0A0BF' : '#6B1238';
+    v.toggleFav = () => ds && this.upd(d => { const i = d.me.favs.indexOf(ds.id); if (i >= 0) d.me.favs.splice(i, 1); else d.me.favs.push(ds.id); }, isFav ? 'Removed from favourites' : 'Saved to favourites');
+    v.detHasStyles = !!(ds && ds.styles.length);
+    v.detStyles = ds ? ds.styles.map(o => chip(o, C.dStyle === o, () => this.setC({ dStyle: C.dStyle === o ? null : o }))) : [];
+    v.detClose = () => this.setC({ detail: null });
+    v.detBook = () => { const f = newFlow([ds.id], 'when'); if (C.dStyle) f.styles = { [ds.id]: C.dStyle }; this.setC({ detail: null, tab: 'book', flow: f }); };
+    v.detAdd = () => { const f = C.flow && !C.flow.resId ? { ...C.flow } : newFlow([]); if (!f.sel.includes(ds.id)) f.sel = [...f.sel, ds.id]; if (C.dStyle) f.styles = { ...f.styles, [ds.id]: C.dStyle }; f.step = 'services'; this.setC({ detail: null, tab: 'book', flow: f }); this.flash(ds.name + ' added'); };
+
+    // Booking flow
+    const F = C.flow || newFlow([]);
+    const setF = p => this.setC({ flow: { ...F, ...p } });
+    const selS = F.sel.map(byId).filter(Boolean);
+    const fDurM = selS.reduce((a, s) => a + s.dur, 0), fTot = selS.reduce((a, s) => a + pr(s).p, 0);
+    const hasSt = selS.some(s => s.styles.length);
+    const si = ['services','style','when','review'].indexOf(F.step);
+    v.stepper = ['Services','Style','Date & time','Confirm'].map((l, i) => ({ l, bg: i <= si ? '#E6307A' : '#F5C6D8', fg: i <= si ? '#6B1238' : '#B86A8C' }));
+    v.fHeader = F.resId ? 'Reschedule appointment' : 'New booking';
+    v.fTitle = { services: 'What would you like?', style: 'Choose your style', when: 'When suits you?', review: 'Review & confirm' }[F.step];
+    v.fIsServices = F.step === 'services'; v.fIsStyle = F.step === 'style'; v.fIsWhen = F.step === 'when'; v.fIsReview = F.step === 'review';
+    v.fBack = () => {
+      if (F.step === 'services' || (F.resId && F.step === 'when')) { this.setC({ flow: null, tab: F.resId ? 'appts' : 'home' }); return; }
+      setF({ step: F.step === 'review' ? 'when' : F.step === 'when' ? (hasSt ? 'style' : 'services') : 'services' });
+    };
+    v.fCats = ['All', ...CATS].map(c => chip(c, F.cat === c, () => setF({ cat: c })));
+    v.fGroups = CATS.filter(c => F.cat === 'All' || F.cat === c).map(c => ({ cat: c, items: act.filter(s => s.cat === c).map(s => { const on = F.sel.includes(s.id); return { ...row(s), on, bx: on ? '#E6307A' : 'transparent', bxb: on ? '#E6307A' : '#B86A8C', toggle: () => setF({ sel: on ? F.sel.filter(x => x !== s.id) : [...F.sel, s.id], time: null }) }; }) }));
+    v.fStyleGroups = selS.filter(s => s.styles.length).map(s => ({ name: s.name, opts: ['No preference', ...s.styles].map(o => chip(o, (F.styles[s.id] || 'No preference') === o, () => setF({ styles: { ...F.styles, [s.id]: o === 'No preference' ? '' : o } }))) }));
+    const days = [];
+    for (let i = 0; i < 21; i++) {
+      const k = kd(i), h = hoursFor(D, k), sel = F.date === k, cl = h.closed, d = pk(k);
+      days.push({ d: DN[d.getDay()], n: d.getDate(), mon: MN[d.getMonth()], bg: sel ? '#E6307A' : cl ? 'transparent' : '#FFFFFF', fg: sel ? '#FFFFFF' : cl ? '#E8B4C8' : '#6B1238', bd: sel ? '#E6307A' : cl ? '#FBE3EC' : '#F5C6D8', deco: cl ? 'line-through' : 'none', onClick: () => { if (!cl) setF({ date: k, time: null }); } });
+    }
+    v.fDates = days; v.fHasDate = !!F.date; v.fNoDate = !F.date;
+    if (F.date) { const h = hoursFor(D, F.date); v.fDateNote = fDL(F.date) + ' · open ' + hText(h) + (h.note ? ' · ' + h.note : ''); } else v.fDateNote = '';
+    const sl = F.date ? slotsFor(D, F.date, Math.max(fDurM, 15), F.resId) : [];
+    v.fSlots = sl.map(x => { const sel = F.time === x.t; return { t: x.t, bg: sel ? '#E6307A' : x.ok ? '#FFFFFF' : 'transparent', fg: sel ? '#FFFFFF' : x.ok ? '#6B1238' : '#E8B4C8', bd: sel ? '#E6307A' : x.ok ? '#F5C6D8' : '#FBE3EC', deco: x.ok ? 'none' : 'line-through', cur: x.ok ? 'pointer' : 'not-allowed', onClick: () => { if (x.ok) setF({ time: x.t }); } }; });
+    v.fNoSlots = !!F.date && !sl.some(x => x.ok);
+    v.fNoSlotsT = 'This day is fully booked or too short for ' + fDur(fDurM) + '. Please try another day.';
+    v.fNotices = live.filter(a => a.place.includes('booking')).map(a => ({ text: a.title + ' — ' + a.text }));
+    v.fItems = selS.map(s => ({ name: s.name, durT: fDur(s.dur), styleT: F.styles[s.id] ? ' · ' + F.styles[s.id] : '', priceT: pr(s).priceT }));
+    v.fWhenT = F.date && F.time ? fDL(F.date) + ', ' + F.time + ' – ' + m2t(t2m(F.time) + fDurM) : '';
+    v.fDurT = fDur(fDurM); v.fTotalT = money(fTot);
+    v.fNote = F.note; v.onFNote = e => setF({ note: e.target.value });
+    v.fSummary = selS.length ? selS.length + ' service' + (selS.length > 1 ? 's' : '') + ' · ' + fDur(fDurM) : 'No services selected';
+    const can = F.step === 'services' ? selS.length > 0 : F.step === 'when' ? !!(F.date && F.time) : selS.length > 0;
+    v.fNextT = { services: 'Continue', style: 'Continue', when: F.time ? 'Continue · ' + fD(F.date) + ', ' + F.time : 'Choose a time', review: F.resId ? 'Confirm new time' : 'Confirm booking' }[F.step];
+    v.fNextBg = can ? '#E6307A' : '#E8B4C8'; v.fNextCur = can ? 'pointer' : 'not-allowed';
+    v.fNext = () => {
+      if (!can) return;
+      if (F.step === 'services') setF({ step: hasSt ? 'style' : 'when' });
+      else if (F.step === 'style') setF({ step: 'when' });
+      else if (F.step === 'when') setF({ step: 'review' });
+      else this.confirmFlow(F, selS, fDurM, pr);
+    };
+
+    // Confirmation
+    const cb = C.confId && D.bookings.find(b => b.id === C.confId);
+    v.confOn = !!cb;
+    v.conf = cb ? { title: C.confRes ? 'Time updated.' : "You're booked.", email: D.me.email, whenT: fDL(cb.date) + ' · ' + m2t(cb.start) + ' – ' + m2t(cb.start + cb.dur), totalT: money(cb.total) } : {};
+    v.confItems = cb ? cb.items.map(i => ({ name: i.name, priceT: money(i.price) })) : [];
+    v.confView = () => this.setC({ confId: null, tab: 'appts', seg: 'up', openBk: C.confId });
+    v.confDone = () => this.setC({ confId: null, tab: 'home' });
+
+    // Appointments
+    const seg = C.seg, list = seg === 'up' ? upL : pastL;
+    v.upCount = upL.length;
+    v.segUpBg = seg === 'up' ? '#E6307A' : 'transparent'; v.segUpFg = seg === 'up' ? '#FFFFFF' : '#6B1238';
+    v.segPastBg = seg === 'past' ? '#E6307A' : 'transparent'; v.segPastFg = seg === 'past' ? '#FFFFFF' : '#6B1238';
+    v.segUp = () => this.setC({ seg: 'up' }); v.segPast = () => this.setC({ seg: 'past' });
+    v.apptList = list.map(b => {
+      const ss = SS[b.status], up = isUp(b);
+      return { dateT: fD(b.date), timeT: m2t(b.start), status: b.status, sbg: ss[0], sfg: ss[1], sbd: ss[2], names: b.items.map(i => i.name).join(' · '), durT: fDur(b.dur), totalT: money(b.total),
+        open: C.openBk === b.id, toggle: () => this.setC({ openBk: C.openBk === b.id ? null : b.id }),
+        items: b.items.map(i => ({ name: i.name, styleT: i.style ? ' · ' + i.style : '', priceT: money(i.price) })),
+        ref: 'Ref ' + b.id.toUpperCase() + (b.note ? ' · Note: ' + b.note : ''),
+        canChange: up, canAgain: !up,
+        onRes: () => this.setC({ tab: 'book', flow: newFlow(b.items.map(i => i.id).filter(byId), 'when', b.id) }),
+        onCancel: () => this.setC({ cxId: b.id }),
+        onAgain: () => { const ids = b.items.map(i => i.id).filter(id => byId(id) && byId(id).active); this.setC({ tab: 'book', flow: newFlow(ids, ids.length ? 'when' : 'services') }); } };
+    });
+    v.apptEmpty = !list.length; v.apptEmptyT = seg === 'up' ? 'No upcoming appointments' : 'No past appointments';
+    const cxb = C.cxId && D.bookings.find(b => b.id === C.cxId);
+    v.cxOn = !!cxb;
+    if (cxb) { const dt = pk(cxb.date); dt.setHours(0, cxb.start, 0, 0); const late = (dt - now) / 36e5 < 24;
+      v.cx = { names: cxb.items.map(i => i.name).join(' + '), when: fD(cxb.date) + ' at ' + m2t(cxb.start), bg: late ? '#FFF4D1' : '#FFEAF2', rule: late ? 'This is within 24 hours of your appointment, so a 50% late-cancellation fee may apply.' : "Free cancellation — you're more than 24 hours ahead." };
+    } else v.cx = {};
+    v.cxKeep = () => this.setC({ cxId: null });
+    v.cxDo = () => { const id = C.cxId; this.upd(d => { const b = d.bookings.find(x => x.id === id); b.status = 'cancelled'; d.notifs.unshift({ id: 'n' + Date.now(), kind: 'Cancellation', title: 'Booking cancelled', text: b.items.map(i => i.name).join(' + ') + ' on ' + fD(b.date) + ' has been cancelled.', when: 'Just now', read: false }); }, 'Booking cancelled'); this.setC({ cxId: null }); };
+
+    // Profile
+    v.me = D.me;
+    v.initials = D.me.name.split(' ').map(x => x[0] || '').join('').slice(0, 2).toUpperCase();
+    const visits = mine.filter(b => b.status === 'completed').length;
+    v.visitsT = visits + ' visit' + (visits === 1 ? '' : 's') + ' · ÉlanPro member';
+    ['name','email','phone'].forEach(k => v['on' + k[0].toUpperCase() + k.slice(1)] = e => { const x = e.target.value; this.upd(d => { d.me[k] = x; }); });
+    v.historyT = mine.length + ' bookings'; v.goPast = () => this.setC({ tab: 'appts', seg: 'past' });
+    v.favList = D.me.favs.map(byId).filter(Boolean).map(s => ({ name: s.name, open: openDet(s.id) })); v.noFavs = !v.favList.length;
+    v.prefs = [['reminders','Booking reminders'],['offers','Offers & promotions'],['announcements','Salon announcements'],['email','Email receipts']].map(([k, l]) => { const on = D.me.prefs[k]; return { l, bg: on ? '#E6307A' : '#F5C6D8', j: on ? 'flex-end' : 'flex-start', onClick: () => this.upd(d => { d.me.prefs[k] = !on; }) }; });
+
+    // ---------- ADMIN ----------
+    v.aAuthed = A.authed; v.aLocked = !A.authed; v.pin = A.pin; v.hasLoginErr = A.err;
+    v.onPin = e => this.setA({ pin: e.target.value, err: false });
+    const login = () => { if (A.pin === '2468') this.setA({ authed: true, pin: '', err: false }); else this.setA({ err: true }); };
+    v.doLogin = login; v.onPinKey = e => { if (e.key === 'Enter') login(); };
+    v.signOut = () => this.setA({ authed: false, modal: null });
+    v.aNav = [['dash','Dashboard','#i-grid'],['cal','Calendar','#i-cal'],['svc','Services','#i-scissors'],['cust','Customers','#i-users'],['off','Offers','#i-tag'],['set','Settings','#i-sliders']].map(([k, l, i]) => ({ l, i, bg: A.tab === k ? '#FFFFFF' : 'transparent', c: A.tab === k ? '#0B4A70' : '#3E7394', onClick: () => this.setA({ tab: k }) }));
+    v.aIsDash = A.tab === 'dash'; v.aIsCal = A.tab === 'cal'; v.aIsSvc = A.tab === 'svc'; v.aIsCust = A.tab === 'cust'; v.aIsOff = A.tab === 'off'; v.aIsSet = A.tab === 'set';
+    const nameOf = b => cust(b).name;
+    const astat = b => { const s = ASS[b.status]; return { status: b.status, sbg: s[0], sfg: s[1], sbd: s[2] }; };
+    const openBk = id => () => this.setA({ modal: { kind: 'bk', id, res: null } });
+    const setStatus = (id, st, msg) => this.upd(d => {
+      const b = d.bookings.find(x => x.id === id); b.status = st;
+      if (b.cust === 'me' && st === 'cancelled') d.notifs.unshift({ id: 'n' + Date.now(), kind: 'Cancellation', title: 'Booking cancelled by salon', text: svcOf(b) + ' on ' + fD(b.date) + ' was cancelled. Please rebook at a time that suits you.', when: 'Just now', read: false });
+      if (b.cust === 'me' && st === 'confirmed') d.notifs.unshift({ id: 'n' + Date.now(), kind: 'Booking confirmed', title: 'Salon confirmed your booking', text: svcOf(b) + ' on ' + fD(b.date) + ' at ' + m2t(b.start) + '.', when: 'Just now', read: false });
+    }, msg, 'a');
+    const lanes = bs => { const ends = []; const r = bs.map(b => { let l = ends.findIndex(e => e <= b.start); if (l < 0) { l = ends.length; ends.push(0); } ends[l] = b.start + b.dur; return { b, l }; }); return { r, n: Math.max(1, ends.length) }; };
+    const catC = b => { const s = b.items[0] && byId(b.items[0].id); return CATC[s ? s.cat : 'Hair'] || CATC.Hair; };
+
+    // Dashboard
+    const tb = D.bookings.filter(b => b.date === today).sort(sortB), tAct = tb.filter(b => b.status !== 'cancelled');
+    const free = slotsFor(D, today, 30).filter(x => x.ok).length;
+    const wk = D.bookings.filter(b => b.status !== 'cancelled' && b.date > today && b.date <= kd(7)).length;
+    v.stats = [
+      { l: "Today's appointments", v: String(tAct.length), sub: tb.filter(b => b.status === 'completed').length + ' completed' },
+      { l: 'Available slots', v: String(free), sub: '30-min slots left today' },
+      { l: 'Cancelled', v: String(tb.filter(b => b.status === 'cancelled').length), sub: 'today' },
+      { l: 'Revenue today', v: money(tAct.reduce((a, b) => a + b.total, 0)), sub: 'booked + completed' },
+      { l: 'Next 7 days', v: String(wk), sub: 'upcoming bookings' }
+    ];
+    v.dashHoursT = th.closed ? 'Closed today' : 'Open ' + hText(th);
+    v.todayRows = tb.map(b => ({ timeT: m2t(b.start), name: nameOf(b), svc: svcOf(b), ...astat(b), onOpen: openBk(b.id), hasAct: b.status === 'pending' || b.status === 'confirmed', actT: b.status === 'pending' ? 'Confirm' : 'Complete', onAct: () => setStatus(b.id, b.status === 'pending' ? 'confirmed' : 'completed', b.status === 'pending' ? 'Booking confirmed' : 'Marked completed') }));
+    v.todayEmpty = !tb.length;
+    v.dashAnns = live.map(a => ({ tag: TYPES[a.type] + (a.important ? ' · Important' : ''), title: a.title, bg: a.type === 'offer' ? '#FFF4D1' : '#E6F5FF', rule: a.important ? '#FFB400' : '#DDEEF9' }));
+    v.dashNoAnns = !live.length;
+    v.goCal = () => this.setA({ tab: 'cal', view: 'day', calDate: today });
+    v.goOffers = () => this.setA({ tab: 'off' });
+    v.openManual = () => this.setA({ modal: { kind: 'man', d: { name: '', phone: '', svc: act[0] ? act[0].id : '', date: A.tab === 'cal' ? A.calDate : today, time: '' }, err: '' } });
+    v.openBlock = () => this.setA({ modal: { kind: 'blk', d: { date: A.tab === 'cal' ? A.calDate : today, start: '12:00', end: '13:00', reason: 'Staff break' } } });
+
+    // Calendar
+    const cd = A.calDate, monday = k => shift(k, -((pk(k).getDay() + 6) % 7)), stepN = A.view === 'week' ? 7 : 1;
+    v.calPrev = () => this.setA({ calDate: shift(cd, -stepN) }); v.calNext = () => this.setA({ calDate: shift(cd, stepN) }); v.calToday = () => this.setA({ calDate: today });
+    const mon = monday(cd);
+    v.calLabel = A.view === 'week' ? fD(mon) + ' – ' + fD(shift(mon, 6)) : A.view === 'list' ? 'All bookings' : fDL(cd);
+    v.views = [['day','Day'],['week','Week'],['list','List']].map(([k, l]) => ({ l, bg: A.view === k ? '#0A7CC0' : 'transparent', fg: A.view === k ? '#FFFFFF' : '#0B4A70', onClick: () => this.setA({ view: k }) }));
+    v.isDay = A.view === 'day'; v.isWeek = A.view === 'week'; v.isList = A.view === 'list';
+    const dh = hoursFor(D, cd);
+    v.dayHoursT = (dh.special ? 'Special hours: ' : 'Opening hours: ') + hText(dh) + (dh.note ? ' · ' + dh.note : '');
+    v.dayClosed = dh.closed; v.dayOpen = !dh.closed;
+    if (!dh.closed) {
+      const o = t2m(dh.open), c = t2m(dh.close), PX = 64 / 60;
+      v.dayH = (c - o) * PX + 'px';
+      v.dayHourLabels = []; for (let h = Math.ceil(o / 60); h <= Math.floor(c / 60); h++) v.dayHourLabels.push({ top: (h * 60 - o) * PX + 'px', l: pad(h) + ':00' });
+      const L = lanes(D.bookings.filter(b => b.date === cd && b.status !== 'cancelled').sort(sortB));
+      v.dayEvents = L.r.map(({ b, l }) => { const cc = catC(b); return { top: (b.start - o) * PX + 'px', h: Math.max(b.dur * PX - 3, 22) + 'px', left: (l * 100 / L.n) + '%', w: 'calc(' + (100 / L.n) + '% - 4px)', bg: cc[0], bd: cc[1], timeT: m2t(b.start), name: nameOf(b) + (b.status === 'completed' ? ' (done)' : b.status === 'pending' ? ' (pending)' : ''), svc: svcOf(b), onClick: openBk(b.id) }; });
+      v.dayBlocks = D.blocks.filter(x => x.date === cd).map(x => ({ top: (t2m(x.start) - o) * PX + 'px', h: (t2m(x.end) - t2m(x.start)) * PX + 'px', reason: x.reason, onDel: () => this.upd(d => { d.blocks = d.blocks.filter(y => y.id !== x.id); }, 'Block removed', 'a') }));
+    } else { v.dayH = '0px'; v.dayHourLabels = []; v.dayEvents = []; v.dayBlocks = []; }
+    const WS = 480, WE = 1320, WPX = 0.5;
+    v.weekHours = []; for (let h = 8; h < 22; h++) v.weekHours.push(pad(h) + ':00');
+    v.weekCols = [0,1,2,3,4,5,6].map(i => {
+      const k = shift(mon, i), h = hoursFor(D, k), d = pk(k);
+      const off = h.closed ? [{ top: '0px', h: '420px' }] : [{ top: '0px', h: Math.max(0, (t2m(h.open) - WS) * WPX) + 'px' }, { top: (t2m(h.close) - WS) * WPX + 'px', h: Math.max(0, (WE - t2m(h.close)) * WPX) + 'px' }];
+      const L = lanes(D.bookings.filter(b => b.date === k && b.status !== 'cancelled').sort(sortB));
+      return { label: DN[d.getDay()] + ' ' + d.getDate(), fw: k === today ? 600 : 400, hbg: k === cd ? '#E6F5FF' : 'transparent', off, onClick: () => this.setA({ view: 'day', calDate: k }),
+        ev: L.r.map(({ b, l }) => { const cc = catC(b); return { top: (b.start - WS) * WPX + 'px', h: Math.max(b.dur * WPX - 2, 12) + 'px', left: (l * 100 / L.n) + '%', w: (100 / L.n) + '%', bg: cc[0], bd: cc[1], name: m2t(b.start) + ' ' + nameOf(b), onClick: openBk(b.id) }; }) };
+    });
+    v.bq = A.bq; v.onBq = e => this.setA({ bq: e.target.value }); v.bsvc = A.bsvc; v.onBsvc = e => this.setA({ bsvc: e.target.value });
+    v.svcFilterOpts = [{ v: '', l: 'All services' }].concat(D.services.map(s => ({ v: s.id, l: s.name })));
+    v.scopes = [['upcoming','Upcoming'],['day','Selected day'],['all','All']].map(([k, l]) => ({ l, bg: A.scope === k ? '#0A7CC0' : 'transparent', fg: A.scope === k ? '#FFFFFF' : '#0B4A70', onClick: () => this.setA({ scope: k }) }));
+    const bql = A.bq.trim().toLowerCase();
+    v.listRows = D.bookings.filter(b => {
+      if (A.scope === 'upcoming' && b.date < today) return false;
+      if (A.scope === 'day' && b.date !== cd) return false;
+      if (A.bsvc && !b.items.some(i => i.id === A.bsvc)) return false;
+      if (bql && !(nameOf(b) + ' ' + svcOf(b) + ' ' + (cust(b).phone || '')).toLowerCase().includes(bql)) return false;
+      return true;
+    }).sort(sortB).map(b => ({ dateT: fD(b.date), timeT: m2t(b.start), name: nameOf(b), svc: svcOf(b), totalT: money(b.total), ...astat(b), onClick: openBk(b.id) }));
+    v.listEmpty = !v.listRows.length;
+
+    // Services admin
+    v.aCats = ['All', ...CATS].map(c => achip(c, A.svcCat === c, () => this.setA({ svcCat: c })));
+    v.aSvcRows = D.services.filter(s => A.svcCat === 'All' || s.cat === A.svcCat).map(s => ({ name: s.name, cat: s.cat, durT: fDur(s.dur), price: s.price, stylesT: s.styles.join(', ') || '—', op: s.active ? 1 : 0.5, tg: s.active ? '#0A7CC0' : '#BFE2F7', tj: s.active ? 'flex-end' : 'flex-start',
+      onToggle: () => this.upd(d => { const x = d.services.find(y => y.id === s.id); x.active = !x.active; }, s.active ? s.name + ' hidden from customers' : s.name + ' is live', 'a'),
+      onEdit: () => this.setA({ modal: { kind: 'sv', id: s.id, d: { name: s.name, cat: s.cat, price: String(s.price), dur: String(s.dur), desc: s.desc, styles: s.styles.join(', '), active: s.active } } }) }));
+    v.newSvc = () => this.setA({ modal: { kind: 'sv', id: null, d: { name: '', cat: A.svcCat === 'All' ? 'Hair' : A.svcCat, price: '', dur: '30', desc: '', styles: '', active: true } } });
+
+    // Customers
+    const cmap = {};
+    D.bookings.forEach(b => { const c = cust(b), key = b.cust === 'me' ? 'me' : c.name; (cmap[key] = cmap[key] || { name: c.name, contact: [c.phone, c.email].filter(Boolean).join(' · '), bs: [] }).bs.push(b); });
+    v.cq = A.cq; v.onCq = e => this.setA({ cq: e.target.value });
+    const cql = A.cq.trim().toLowerCase();
+    v.custRows = Object.entries(cmap).filter(([k, c]) => !cql || (c.name + ' ' + c.contact).toLowerCase().includes(cql)).map(([key, c]) => {
+      const done = c.bs.filter(b => b.status === 'completed'), last = done.map(b => b.date).sort().pop();
+      return { name: c.name, contact: c.contact, visits: done.length, count: c.bs.length, lastT: last ? fD(last) : '—', spendT: money(done.reduce((a, b) => a + b.total, 0)), open: A.openCust === key, onClick: () => this.setA({ openCust: A.openCust === key ? null : key }),
+        list: c.bs.slice().sort((a, b) => -sortB(a, b)).map(b => ({ dateT: fD(b.date) + ' ' + m2t(b.start), svc: svcOf(b), status: b.status, onClick: openBk(b.id) })) };
+    }).sort((a, b) => a.name.localeCompare(b.name));
+
+    // Offers & announcements
+    const annStatus = a => !a.active ? 'Paused' : a.end < today ? 'Expired' : a.start > today ? 'Scheduled' : 'Live';
+    v.annRows = D.anns.map(a => { const st = annStatus(a), tgt = byId(a.target);
+      return { tag: TYPES[a.type] + (a.important ? ' · Important' : ''), title: a.title, text: a.text,
+        meta: fD(a.start) + ' – ' + fD(a.end) + ' · ' + a.place.map(p => (PLACES.find(x => x[0] === p) || [p, p])[1]).join(', ') + (a.type === 'offer' && +a.pct > 0 ? ' · ' + a.pct + '% off ' + (tgt ? tgt.name : a.target ? 'all ' + a.target : '') : ''),
+        statusT: st, sbg: st === 'Live' ? '#0A7CC0' : '#E6F5FF', sfg: st === 'Live' ? '#FFFFFF' : '#0B4A70', rule: a.important ? '#FFB400' : a.type === 'offer' ? '#F0A0BF' : '#DDEEF9',
+        tg: a.active ? '#0A7CC0' : '#BFE2F7', tj: a.active ? 'flex-end' : 'flex-start', onT: a.active ? 'Active' : 'Paused',
+        onToggle: () => this.upd(d => { const x = d.anns.find(y => y.id === a.id); x.active = !x.active; }, a.active ? 'Paused — hidden from customers' : 'Activated', 'a'),
+        onEdit: () => this.setA({ modal: { kind: 'an', id: a.id, d: { ...a, place: [...a.place], pct: String(a.pct || 0) } } }),
+        onDel: () => this.upd(d => { d.anns = d.anns.filter(y => y.id !== a.id); }, 'Message deleted', 'a') }; });
+    v.newAnn = () => this.setA({ modal: { kind: 'an', id: null, d: { type: 'notice', title: '', text: '', start: today, end: kd(7), important: false, active: true, place: ['home','notif'], pct: '0', target: '' } } });
+
+    // Settings
+    v.timeOpts = []; for (let m = 360; m <= 1380; m += 30) v.timeOpts.push(m2t(m));
+    v.hoursRows = [1,2,3,4,5,6,0].map(d => { const h = D.hours[d]; return { d: DL[d], isOpen: !h.closed, closed: h.closed, open: h.open, close: h.close, tg: !h.closed ? '#0A7CC0' : '#BFE2F7', tj: !h.closed ? 'flex-end' : 'flex-start',
+      onToggle: () => this.upd(x => { x.hours[d].closed = !h.closed; }, DL[d] + (h.closed ? ' now open' : ' now closed'), 'a'),
+      onOpen: e => { const val = e.target.value; this.upd(x => { x.hours[d].open = val; }, DL[d] + ' opens ' + val, 'a'); },
+      onClose: e => { const val = e.target.value; this.upd(x => { x.hours[d].close = val; }, DL[d] + ' closes ' + val, 'a'); } }; });
+    v.spRows = D.specials.slice().sort((a, b) => a.date < b.date ? -1 : 1).map(s => ({ dateT: fD(s.date), t: s.closed ? 'Closed' : s.open + ' – ' + s.close, note: s.note || '', onDel: () => this.upd(d => { d.specials = d.specials.filter(x => x.id !== s.id); }, 'Special date removed', 'a') }));
+    v.sp = A.sp;
+    const spf = k => e => { const val = e.target.value; this.setState(s => ({ a: { ...s.a, sp: { ...s.a.sp, [k]: val } } })); };
+    v.spF = { date: spf('date'), open: spf('open'), close: spf('close'), note: spf('note') };
+    v.spTg = A.sp.closed ? '#0A7CC0' : '#BFE2F7'; v.spTj = A.sp.closed ? 'flex-end' : 'flex-start'; v.spOpen = !A.sp.closed;
+    v.spToggle = () => this.setState(s => ({ a: { ...s.a, sp: { ...s.a.sp, closed: !s.a.sp.closed } } }));
+    v.addSp = () => { const sp = A.sp; if (!sp.date) return; this.upd(d => { d.specials = d.specials.filter(x => x.date !== sp.date); d.specials.push({ id: 'sp' + Date.now(), ...sp }); }, 'Special hours saved for ' + fD(sp.date), 'a'); };
+
+    // Modals
+    const M = A.modal;
+    v.modalOn = !!M; v.closeModal = () => this.setA({ modal: null });
+    v.modalTitle = M ? { bk: 'Booking', man: 'New booking', blk: 'Block time', sv: M.id ? 'Edit service' : 'New service', an: M.id ? 'Edit message' : 'New message' }[M.kind] : '';
+    const mb = M && M.kind === 'bk' && D.bookings.find(b => b.id === M.id);
+    v.bkOn = !!mb;
+    if (mb) { const c = cust(mb);
+      v.bk = { whenT: fDL(mb.date) + ' · ' + m2t(mb.start) + ' – ' + m2t(mb.start + mb.dur), name: c.name, contact: [c.phone, c.email].filter(Boolean).join(' · ') || 'No contact details', durT: fDur(mb.dur), totalT: money(mb.total), hasNote: !!mb.note, note: mb.note, ...astat(mb), canConfirm: mb.status === 'pending', canComplete: mb.status === 'confirmed' || mb.status === 'pending', canChange: mb.status === 'confirmed' || mb.status === 'pending' };
+      v.bkItems = mb.items.map(i => ({ name: i.name, styleT: i.style ? ' · ' + i.style : '', priceT: money(i.price) }));
+    } else { v.bk = {}; v.bkItems = []; }
+    v.bkConfirm = () => setStatus(mb.id, 'confirmed', 'Booking confirmed');
+    v.bkComplete = () => setStatus(mb.id, 'completed', 'Marked completed');
+    v.bkCancel = () => { setStatus(mb.id, 'cancelled', 'Booking cancelled'); this.setA({ modal: null }); };
+    v.resOn = !!(M && M.res); v.res = (M && M.res) || {};
+    v.startRes = () => this.setM({ res: { date: mb.date, time: '' } });
+    v.onResDate = e => { const val = e.target.value; this.setM({ res: { date: val, time: '' } }); };
+    v.onResTime = e => { const val = e.target.value; this.setM({ res: { ...M.res, time: val } }); };
+    const rs = M && M.res && mb ? slotsFor(D, M.res.date, mb.dur, mb.id).filter(x => x.ok) : [];
+    v.resOpts = [{ v: '', l: rs.length ? 'Choose time' : 'No free times' }].concat(rs.map(x => ({ v: x.t, l: x.t })));
+    v.resSave = () => { const r = M.res; if (!r.time) return; this.upd(d => { const b = d.bookings.find(x => x.id === mb.id); b.date = r.date; b.start = t2m(r.time); b.status = 'confirmed'; if (b.cust === 'me') d.notifs.unshift({ id: 'n' + Date.now(), kind: 'Rescheduled', title: 'Your appointment was moved', text: svcOf(b) + ' is now ' + fD(r.date) + ' at ' + r.time + '.', when: 'Just now', read: false }); }, 'Rescheduled to ' + fD(r.date) + ' ' + r.time, 'a'); this.setM({ res: null }); };
+
+    const md = M && M.kind === 'man' ? M.d : null;
+    v.manOn = !!md; v.man = md || {};
+    v.manF = {}; ['name','phone','svc','date','time'].forEach(k => v.manF[k] = e => { const val = e.target.value; this.setMD(k, val, k === 'svc' || k === 'date' ? { time: '' } : null); });
+    v.svcOpts = act.map(s => ({ v: s.id, l: s.name + ' · ' + fDur(s.dur) + ' · £' + s.price }));
+    const ms = md && byId(md.svc), mslots = md && ms ? slotsFor(D, md.date, ms.dur, null).filter(x => x.ok) : [];
+    v.manTimeOpts = [{ v: '', l: mslots.length ? 'Choose time' : 'No free times' }].concat(mslots.map(x => ({ v: x.t, l: x.t })));
+    v.hasManErr = !!(md && M.err); v.manErr = (M && M.err) || '';
+    v.manSave = () => { if (!md.name.trim() || !ms || !md.time) { this.setM({ err: 'Add a name, service and an available time.' }); return; } const p = priceOf(D, ms).p; this.upd(d => { d.bookings.push({ id: 'b' + Date.now(), cust: { name: md.name.trim(), phone: md.phone, email: '' }, items: [{ id: ms.id, name: ms.name, price: p, dur: ms.dur, style: '' }], date: md.date, start: t2m(md.time), dur: ms.dur, total: p, status: 'confirmed', note: 'Added by salon' }); }, 'Booking added', 'a'); this.setA({ modal: null }); };
+
+    const bd = M && M.kind === 'blk' ? M.d : null;
+    v.blkOn = !!bd; v.blk = bd || {};
+    v.blkF = {}; ['date','start','end','reason'].forEach(k => v.blkF[k] = e => { const val = e.target.value; this.setMD(k, val); });
+    v.blkSave = () => { if (t2m(bd.end) <= t2m(bd.start)) { this.flash('End time must be after start', 'a'); return; } this.upd(d => { d.blocks.push({ id: 'bl' + Date.now(), ...bd }); }, 'Time blocked — customers can no longer book it', 'a'); this.setA({ modal: null }); };
+
+    const sd = M && M.kind === 'sv' ? M.d : null;
+    v.svOn = !!sd; v.sv = sd || {}; v.catOpts = CATS;
+    v.svF = {}; ['name','cat','price','dur','desc','styles'].forEach(k => v.svF[k] = e => { const val = e.target.value; this.setMD(k, val); });
+    v.svTg = sd && sd.active ? '#0A7CC0' : '#BFE2F7'; v.svTj = sd && sd.active ? 'flex-end' : 'flex-start';
+    v.svToggle = () => this.setMD('active', !sd.active);
+    v.hasSvErr = !!(sd && M.err); v.svCanDel = !!(sd && M.id);
+    v.svSave = () => {
+      const price = parseFloat(sd.price), dur = parseInt(sd.dur, 10);
+      if (!sd.name.trim() || !(price >= 0) || !(dur > 0)) { this.setM({ err: true }); return; }
+      const styles = sd.styles.split(',').map(x => x.trim()).filter(Boolean), id = M.id;
+      this.upd(d => {
+        if (id) { const s = d.services.find(x => x.id === id); Object.assign(s, { name: sd.name.trim(), cat: sd.cat, price, dur, desc: sd.desc, styles, active: sd.active }); }
+        else { let nid = slug(sd.name) || 'service'; while (d.services.some(x => x.id === nid)) nid += '-2'; d.services.push({ id: nid, name: sd.name.trim(), cat: sd.cat, price, dur, desc: sd.desc, styles, active: sd.active, popular: false }); }
+      }, id ? 'Saved — customers now see £' + price : 'Service added', 'a');
+      this.setA({ modal: null });
+    };
+    v.svDel = () => { const id = M.id; this.upd(d => { d.services = d.services.filter(x => x.id !== id); d.me.favs = d.me.favs.filter(x => x !== id); }, 'Service deleted', 'a'); this.setA({ modal: null }); };
+
+    const ad = M && M.kind === 'an' ? M.d : null;
+    v.anOn = !!ad; v.an = ad || {};
+    v.anF = {}; ['type','title','text','start','end','pct','target'].forEach(k => v.anF[k] = e => { const val = e.target.value; this.setMD(k, val); });
+    v.typeOpts = Object.entries(TYPES).map(([k, l]) => ({ v: k, l }));
+    v.anImpTg = ad && ad.important ? '#0A7CC0' : '#BFE2F7'; v.anImpTj = ad && ad.important ? 'flex-end' : 'flex-start';
+    v.anImp = () => this.setMD('important', !ad.important);
+    v.anIsOffer = !!(ad && ad.type === 'offer');
+    v.targetOpts = [{ v: '', l: 'No automatic discount' }].concat(CATS.map(c => ({ v: c, l: 'All ' + c + ' services' }))).concat(D.services.map(s => ({ v: s.id, l: s.name })));
+    v.anPlaces = ad ? PLACES.map(([k, l]) => { const on = ad.place.includes(k); return achip(l, on, () => this.setMD('place', on ? ad.place.filter(x => x !== k) : [...ad.place, k])); }) : [];
+    v.hasAnErr = !!(ad && M.err); v.anCanDel = !!(ad && M.id);
+    v.anSave = () => {
+      if (!ad.title.trim() || !ad.start || !ad.end || ad.end < ad.start) { this.setM({ err: true }); return; }
+      const id = M.id, rec = { ...ad, title: ad.title.trim(), pct: +ad.pct || 0 };
+      this.upd(d => { if (id) { const i = d.anns.findIndex(x => x.id === id); d.anns[i] = { ...rec, id }; } else d.anns.unshift({ ...rec, id: 'a' + Date.now(), active: true }); }, id ? 'Message updated' : 'Published to the customer app', 'a');
+      this.setA({ modal: null });
+    };
+    v.anDel = () => { const id = M.id; this.upd(d => { d.anns = d.anns.filter(x => x.id !== id); }, 'Message deleted', 'a'); this.setA({ modal: null }); };
+
+    const nar = !!this.state.narrow;
+    Object.assign(v, { aDir: nar ? 'column' : 'row', sideW: nar ? 'auto' : '210px', sideDir: nar ? 'row' : 'column', sideAlign: nar ? 'center' : 'stretch', sidePad: nar ? 'calc(8px + env(safe-area-inset-top, 0px)) 10px 8px' : '24px 14px', logoPad: nar ? '0 8px 0 0' : '0 8px 18px', mainMinW: nar ? '760px' : '0px', mainPad: nar ? '18px 16px 40px' : '26px 30px 40px', loginPad: nar ? '24px' : '120px', splashOn: false });
+
+    const ua = navigator.userAgent || '', ios = /iphone|ipad|ipod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1), android = /android/i.test(ua);
+    const standalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
+    const inApp = /FBAN|FBAV|Instagram|Line\/|WhatsApp|Snapchat|Twitter|LinkedInApp|GSA\//i.test(ua);
+    const iosSafari = ios && /Safari/i.test(ua) && !/CriOS|FxiOS|EdgiOS|OPiOS/i.test(ua);
+    let hid = false; try { hid = localStorage.getItem('elanpro-admin-install-hide') === '1'; } catch (e) {}
+    v.canPrompt = !!this.state.canPrompt && !inApp;
+    v.showInstall = !standalone && !this.state.installed && !hid && !this.state.hideInstall && (ios || android || v.canPrompt);
+    v.installText = inApp ? 'You are viewing this inside another app. Tap its ⋯ / share menu and choose “Open in browser” (Safari on iPhone, Chrome on Android), then add it to your home screen.'
+      : v.canPrompt ? 'Add it to your home screen — it opens full screen, like an app.'
+      : iosSafari ? 'Tap the Share button (square with an up arrow) in Safari’s toolbar, scroll down and choose “Add to Home Screen”, then “Add”.'
+      : ios ? 'Open this page in Safari, tap Share (square with an up arrow), then “Add to Home Screen”. In Chrome on iPhone: tap Share → “Add to Home Screen”.'
+      : 'In Chrome, tap the ⋮ menu (top right) and choose “Install app” or “Add to Home screen”.';
+    v.doInstall = async () => { const d = this._deferred; if (!d) return; d.prompt(); try { await d.userChoice; } catch (e) {} this._deferred = null; this.setState({ canPrompt: false }); };
+    v.dismissInstall = () => { try { localStorage.setItem('elanpro-admin-install-hide', '1'); } catch (e) {} this.setState({ hideInstall: true }); };
+    return v;
+  }
+
+  buildSplash() {
+    const h = React.createElement;
+    const a = (name, dur, delay, extra) => ({ animation: name + ' ' + dur + 's cubic-bezier(.2,.7,.2,1) ' + delay + 's both', ...(extra || {}) });
+    const mono = h('svg', { width: 96, height: 96, viewBox: '0 0 100 100', style: { color: '#E6307A', overflow: 'visible' } },
+      h('rect', { x: 5, y: 5, width: 90, height: 90, fill: 'none', stroke: 'currentColor', strokeWidth: 1.2, pathLength: 360, strokeDasharray: 360, style: a('epFrame', 1.1, 0.2) }),
+      h('text', { x: 33, y: 70, textAnchor: 'middle', fontFamily: 'Italiana', fontSize: 46, fill: 'currentColor', style: a('epFade', 0.7, 0.8) }, 'E'),
+      h('line', { x1: 50, y1: 30, x2: 50, y2: 74, stroke: 'currentColor', strokeWidth: 0.8, style: a('epGrow', 0.5, 1.1, { transformOrigin: '50px 52px' }) }),
+      h('text', { x: 67, y: 70, textAnchor: 'middle', fontFamily: 'Italiana', fontSize: 46, fill: 'currentColor', style: a('epFade', 0.7, 0.95) }, 'P'),
+      h('line', { x1: 30, y1: 28, x2: 38, y2: 21, stroke: '#FFB400', strokeWidth: 2, style: a('epFade', 0.4, 1.5) }));
+    return h('div', { style: { position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 26, background: '#FFEAF2', ...a('epOut', 0.6, 3.5) } },
+      mono,
+      h('div', { style: { fontFamily: 'Italiana', fontSize: 30, color: '#6B1238', paddingLeft: '.2em', ...a('epTrack', 1.0, 1.6) } }, 'ÉLANPRO'),
+      h('div', { style: { width: 36, height: 1, background: '#FFB400', ...a('epRule', 0.6, 2.3) } }),
+      h('div', { style: { fontFamily: 'Jost', fontSize: 11, letterSpacing: '.36em', color: '#8F4B68', ...a('epFade', 0.6, 2.5) } }, 'HAIR · LADIES · GENTS · KIDS'));
+  }
+}
+</script>
+</body>
+</html>
