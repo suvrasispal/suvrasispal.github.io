@@ -1,0 +1,26 @@
+# Apache — copy to the site root as ".htaccess"
+
+Options -Indexes
+DirectoryIndex index.html
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "same-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=()"
+</IfModule>
+
+AddType image/vnd.adobe.photoshop .psd
+
+# ---------------------------------------------------------------------------
+# ACCESS CONTROL. The page itself has none — anyone who reaches the URL can use
+# it. If this is on a public address, uncomment the block below so the server
+# demands credentials before it sends any of the page.
+#
+# Create the password file first, outside the web root:
+#     htpasswd -c /etc/apache2/tca.htpasswd yourname
+# ---------------------------------------------------------------------------
+# AuthType Basic
+# AuthName "The Confidence Academy — restricted"
+# AuthUserFile /etc/apache2/tca.htpasswd
+# Require valid-user

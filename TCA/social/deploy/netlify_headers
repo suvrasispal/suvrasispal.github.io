@@ -1,0 +1,13 @@
+# Netlify — copy to the site root as "_headers"
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: same-origin
+  Permissions-Policy: geolocation=(), microphone=()
+
+# ---------------------------------------------------------------------------
+# ACCESS CONTROL. The page itself has none. Use the site's built-in password
+# protection (Site configuration -> Access & security -> Visitor access), which
+# challenges the request at the edge before any file is served.
+# ---------------------------------------------------------------------------
