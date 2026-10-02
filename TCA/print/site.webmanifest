@@ -1,0 +1,15 @@
+{
+  "name": "TCA Print Studio",
+  "short_name": "TCA Print",
+  "description": "Admin-only flyer and pull-up banner templates for The Confidence Academy.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F4F6FB",
+  "theme_color": "#00247D",
+  "icons": [
+    { "src": "favicon-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "favicon-512x512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icon-192-maskable.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" }
+  ]
+}
