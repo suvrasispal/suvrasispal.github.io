@@ -55,21 +55,22 @@ input[type=date].input { -webkit-appearance: none; appearance: none; min-height:
 
 .cert-body { position: absolute; left: 100px; right: 100px; top: 70px; display: flex; flex-direction: column; align-items: center; text-align: center; }
 .durga { height: 92px; width: auto; display: block; }
-.c-event { margin-top: 2px; font-family: Ovo, serif; font-size: 27px; line-height: 32px; letter-spacing: 0.03em; white-space: nowrap; }
-.c-heading { margin-top: 8px; font-family: Forum, serif; font-size: 72px; line-height: 1; letter-spacing: 0.01em; text-transform: uppercase; color: #141414; white-space: nowrap; }
+.c-event { margin-top: 2px; font-family: Ovo, serif; font-size: 27px; line-height: 32px; letter-spacing: 0.03em; white-space: nowrap; min-height: 32px; display: flex; justify-content: center; align-items: baseline; gap: 10px; }
+.c-year.is-blank { display: inline-block; width: 80px; height: 26px; border-bottom: 2px solid #c9a957; align-self: flex-end; margin-bottom: 4px; }
+.c-heading { margin-top: 22px; font-family: Forum, serif; font-size: 72px; line-height: 1; letter-spacing: 0.01em; text-transform: uppercase; color: #141414; white-space: nowrap; }
 .c-ribbon { margin-top: 4px; position: relative; width: 324px; height: 48px; }
 .c-ribbon img { position: absolute; left: 0; top: 0; width: 324px; height: 48px; display: block; }
 .c-ribbon-text { position: absolute; left: 44px; right: 44px; top: 0; height: 48px; display: flex; align-items: center; justify-content: center; font-family: Ovo, serif; font-size: 21px; letter-spacing: 0.03em; text-transform: uppercase; white-space: nowrap; }
 .c-presented { margin-top: 12px; font-family: Ovo, serif; font-size: 17px; line-height: 20px; white-space: nowrap; }
-.c-name { width: 600px; min-height: 62px; display: flex; align-items: flex-end; justify-content: center; font-family: Yellowtail, cursive; font-size: 54px; line-height: normal; color: #b28a35; white-space: nowrap; }
+.c-name { width: 600px; min-height: 82px; display: flex; align-items: flex-end; justify-content: center; font-family: Yellowtail, cursive; font-size: 54px; line-height: normal; color: #b28a35; white-space: nowrap; }
 .c-divider { margin-top: -2px; width: 432px; height: 11px; display: block; }
-.c-line { margin-top: 24px; max-width: 760px; font-family: Ovo, serif; font-size: 18px; line-height: 28px; display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; column-gap: 7px; }
+.c-line { margin-top: 34px; max-width: 760px; font-family: Ovo, serif; font-size: 18px; line-height: 28px; display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; column-gap: 7px; }
 .c-competition { color: #8d6b22; }
 .c-blank { display: inline-block; width: 220px; height: 18px; border-bottom: 1px solid #1a1a1a; }
 
 .cert-foot { position: absolute; left: 110px; right: 110px; bottom: 68px; height: 168px; display: grid; grid-template-columns: minmax(0, 1fr) 150px minmax(0, 1fr); align-items: start; }
-.foot-left { display: flex; justify-content: center; gap: 24px; padding-top: 12px; }
-.foot-right { display: flex; justify-content: center; padding-top: 12px; min-width: 0; }
+.foot-left { display: flex; justify-content: center; gap: 24px; padding-top: 24px; }
+.foot-right { display: flex; justify-content: center; padding-top: 24px; min-width: 0; }
 .sign { flex: 1 1 0; max-width: 210px; display: flex; flex-direction: column; align-items: center; text-align: center; }
 .sign-space { height: 36px; width: 100%; }
 .sign-value { display: flex; align-items: flex-end; justify-content: center; padding-bottom: 4px; box-sizing: border-box; font-family: Ovo, serif; font-size: 17px; }
