@@ -1,5 +1,6 @@
 /* App layout + certificate. Tokens come from modernist.css */
-body { margin: 0; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; overflow-x: hidden; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); }
 a { color: var(--color-accent-700); }
 a:hover { color: var(--color-accent); }
 [hidden] { display: none !important; }
@@ -9,9 +10,12 @@ a:hover { color: var(--color-accent); }
 .app-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 24px; border-bottom: 2px solid var(--color-text); background: var(--color-bg); }
 .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
 .brand-logo { height: 32px; width: auto; display: block; }
-.brand-name { font-weight: 800; font-size: 16px; letter-spacing: -0.01em; white-space: nowrap; }
+.brand-name { font-weight: 800; font-size: 16px; letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
 .tag { flex-shrink: 0; }
-.export-btn { justify-content: flex-start; min-width: 160px; }
+.export-btn { flex-shrink: 0; justify-content: flex-start; gap: 8px; min-width: 76px; min-height: 40px; }
+.input { box-sizing: border-box; width: 100%; min-width: 0; max-width: 100%; }
+input[type=date].input { -webkit-appearance: none; appearance: none; min-height: 40px; }
+.field { min-width: 0; }
 
 .workspace { flex: 1; display: flex; flex-wrap: wrap; align-items: stretch; }
 .panel { flex: 0 0 340px; max-width: 100%; box-sizing: border-box; border-right: 2px solid var(--color-text); padding: 24px; display: flex; flex-direction: column; gap: 24px; }
@@ -36,7 +40,7 @@ a:hover { color: var(--color-accent); }
 
 .preview { flex: 1 1 480px; min-width: 0; background: var(--color-surface); padding: 32px; box-sizing: border-box; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
 .preview-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
-.cert-box { position: relative; box-shadow: var(--shadow-md); }
+.cert-box { position: relative; box-shadow: var(--shadow-md); overflow: hidden; flex-shrink: 0; }
 
 /* Certificate — fixed 1123×794 px = A4 landscape at 96dpi */
 .cert { position: absolute; left: 0; top: 0; width: 1123px; height: 794px; transform-origin: 0 0; background: #fff; color: #1a1a1a; overflow: hidden; }
@@ -79,7 +83,20 @@ a:hover { color: var(--color-accent); }
 .sponsor-logo img { display: block; max-width: 100%; max-height: 76px; width: auto; height: auto; }
 .sponsor-sep { width: 1px; flex: 0 0 1px; background: #c9a957; }
 
-@media (max-width: 760px) {
-  .panel { flex-basis: 100%; border-right: 0; border-bottom: 2px solid var(--color-text); }
-  .preview { padding: 16px; }
+@media (max-width: 900px) {
+  .workspace { flex-direction: column; flex-wrap: nowrap; }
+  .panel { flex: none; width: 100%; border-right: 0; border-bottom: 2px solid var(--color-text); padding: 20px 16px; }
+  .preview { flex: none; width: 100%; padding: 16px; }
+}
+@media (max-width: 560px) {
+  .app-header { padding: 10px 16px; gap: 12px; }
+  .brand { gap: 10px; }
+  .brand-logo { height: 28px; }
+  .brand-name { font-size: 15px; }
+  .brand-tag { display: none; }
+  .input { font-size: 16px; }
+  .slot-actions .btn-sm { min-height: 40px; }
+}
+@media (max-width: 400px) {
+  .row-2, .row-year { grid-template-columns: minmax(0, 1fr); }
 }
