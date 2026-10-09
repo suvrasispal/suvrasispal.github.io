@@ -1,0 +1,85 @@
+/* App layout + certificate. Tokens come from modernist.css */
+body { margin: 0; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); }
+a { color: var(--color-accent-700); }
+a:hover { color: var(--color-accent); }
+[hidden] { display: none !important; }
+.nowrap { white-space: nowrap; }
+
+.app { min-height: 100vh; display: flex; flex-direction: column; }
+.app-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 24px; border-bottom: 2px solid var(--color-text); background: var(--color-bg); }
+.brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.brand-logo { height: 32px; width: auto; display: block; }
+.brand-name { font-weight: 800; font-size: 16px; letter-spacing: -0.01em; white-space: nowrap; }
+.tag { flex-shrink: 0; }
+.export-btn { justify-content: flex-start; min-width: 160px; }
+
+.workspace { flex: 1; display: flex; flex-wrap: wrap; align-items: stretch; }
+.panel { flex: 0 0 340px; max-width: 100%; box-sizing: border-box; border-right: 2px solid var(--color-text); padding: 24px; display: flex; flex-direction: column; gap: 24px; }
+.group { display: flex; flex-direction: column; gap: 12px; }
+.group-title { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; border-top: 2px solid var(--color-text); padding-top: 8px; }
+.group-title.spread { display: flex; justify-content: space-between; }
+.muted-weight { font-weight: 500; }
+.row { display: grid; gap: 12px; }
+.row-year { grid-template-columns: minmax(0, 1fr) 96px; }
+.row-2 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.hint { margin: 0; font-size: 12px; line-height: 1.5; color: var(--color-neutral-700); text-wrap: pretty; }
+.hint-ruled { border-top: 2px solid var(--color-text); padding-top: 12px; }
+
+.slot { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 12px; align-items: center; }
+.slot-thumb { width: 72px; height: 52px; box-sizing: border-box; border: 1px solid var(--color-text); background: #fff; display: flex; align-items: center; justify-content: center; padding: 4px; }
+.slot-thumb img { display: block; max-width: 100%; max-height: 42px; width: auto; height: auto; }
+.slot-thumb:empty::before { content: ""; width: 18px; height: 18px; border: 1.5px solid var(--color-text); opacity: .5; }
+.slot-body { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.slot-label { font-size: 13px; font-weight: 600; }
+.slot-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+.btn-sm { font-size: 13px; padding: 5px 10px; justify-content: flex-start; cursor: pointer; }
+
+.preview { flex: 1 1 480px; min-width: 0; background: var(--color-surface); padding: 32px; box-sizing: border-box; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.preview-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
+.cert-box { position: relative; box-shadow: var(--shadow-md); }
+
+/* Certificate — fixed 1123×794 px = A4 landscape at 96dpi */
+.cert { position: absolute; left: 0; top: 0; width: 1123px; height: 794px; transform-origin: 0 0; background: #fff; color: #1a1a1a; overflow: hidden; }
+.rule { position: absolute; background: #b99238; }
+.rule-h { height: 1px; }
+.rule-v { width: 1px; }
+.orn { position: absolute; display: block; }
+
+.cert-body { position: absolute; left: 100px; right: 100px; top: 70px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.durga { height: 92px; width: auto; display: block; }
+.c-event { margin-top: 2px; font-family: Ovo, serif; font-size: 27px; line-height: 32px; letter-spacing: 0.03em; white-space: nowrap; }
+.c-heading { margin-top: 8px; font-family: Forum, serif; font-size: 72px; line-height: 1; letter-spacing: 0.01em; text-transform: uppercase; color: #141414; white-space: nowrap; }
+.c-ribbon { margin-top: 4px; position: relative; width: 324px; height: 48px; }
+.c-ribbon img { position: absolute; left: 0; top: 0; width: 324px; height: 48px; display: block; }
+.c-ribbon-text { position: absolute; left: 44px; right: 44px; top: 0; height: 48px; display: flex; align-items: center; justify-content: center; font-family: Ovo, serif; font-size: 21px; letter-spacing: 0.03em; text-transform: uppercase; white-space: nowrap; }
+.c-presented { margin-top: 12px; font-family: Ovo, serif; font-size: 17px; line-height: 20px; white-space: nowrap; }
+.c-name { width: 600px; min-height: 62px; display: flex; align-items: flex-end; justify-content: center; font-family: Yellowtail, cursive; font-size: 54px; line-height: normal; color: #b28a35; white-space: nowrap; }
+.c-divider { margin-top: -2px; width: 432px; height: 11px; display: block; }
+.c-line { margin-top: 24px; max-width: 760px; font-family: Ovo, serif; font-size: 18px; line-height: 28px; display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; column-gap: 7px; }
+.c-competition { color: #8d6b22; }
+.c-blank { display: inline-block; width: 220px; height: 18px; border-bottom: 1px solid #1a1a1a; }
+
+.cert-foot { position: absolute; left: 110px; right: 110px; bottom: 68px; height: 168px; display: grid; grid-template-columns: minmax(0, 1fr) 150px minmax(0, 1fr); align-items: start; }
+.foot-left { display: flex; justify-content: center; gap: 24px; padding-top: 12px; }
+.foot-right { display: flex; justify-content: center; padding-top: 12px; min-width: 0; }
+.sign { flex: 1 1 0; max-width: 210px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.sign-space { height: 36px; width: 100%; }
+.sign-value { display: flex; align-items: flex-end; justify-content: center; padding-bottom: 4px; box-sizing: border-box; font-family: Ovo, serif; font-size: 17px; }
+.sign-rule { width: 100%; height: 2px; background: #c9a957; }
+.sign-label { margin-top: 8px; font-family: Ovo, serif; font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; }
+
+.medal { position: relative; width: 129px; height: 168px; justify-self: center; }
+.medal-img { position: absolute; left: 0; top: 0; width: 129px; height: 168px; display: block; }
+.medal-logo { position: absolute; left: 21px; top: 38px; width: 86px; height: auto; display: block; }
+
+.sponsors { flex: 1 1 auto; min-width: 0; max-width: 360px; display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: -6px; }
+.sponsors-label { font-family: Ovo, serif; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d6b22; }
+.sponsor-logos { width: 100%; height: 76px; display: flex; align-items: stretch; justify-content: center; gap: 16px; }
+.sponsor-logo { flex: 1 1 0; min-width: 0; max-width: 200px; display: flex; align-items: center; justify-content: center; }
+.sponsor-logo img { display: block; max-width: 100%; max-height: 76px; width: auto; height: auto; }
+.sponsor-sep { width: 1px; flex: 0 0 1px; background: #c9a957; }
+
+@media (max-width: 760px) {
+  .panel { flex-basis: 100%; border-right: 0; border-bottom: 2px solid var(--color-text); }
+  .preview { padding: 16px; }
+}
