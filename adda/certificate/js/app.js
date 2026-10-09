@@ -121,7 +121,21 @@
       .finally(function () { btn.disabled = false; label.textContent = 'PDF'; });
   });
 
+  var header = document.querySelector('.app-header'), dock = $('exportDock');
+  var mq = window.matchMedia('(max-width: 900px)');
+  function placeBtn() {
+    if (!mq.matches) {
+      if (btn.parentNode !== header) header.appendChild(btn);
+      btn.classList.remove('is-floating');
+      return;
+    }
+    if (btn.parentNode !== dock) dock.appendChild(btn);
+    var docked = dock.getBoundingClientRect().bottom <= window.innerHeight - 16;
+    btn.classList.toggle('is-floating', !docked);
+  }
+
   if (window.ResizeObserver) new ResizeObserver(fit).observe(preview);
-  window.addEventListener('resize', fit);
-  render(); fit();
+  window.addEventListener('resize', function () { fit(); placeBtn(); });
+  window.addEventListener('scroll', placeBtn, { passive: true });
+  render(); fit(); placeBtn();
 })();
