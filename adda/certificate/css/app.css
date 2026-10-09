@@ -1,12 +1,12 @@
 /* App layout + certificate. Tokens come from modernist.css */
 html { -webkit-text-size-adjust: 100%; }
-body { margin: 0; overflow-x: hidden; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); }
+body { margin: 0; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); }
 a { color: var(--color-accent-700); }
 a:hover { color: var(--color-accent); }
 [hidden] { display: none !important; }
 .nowrap { white-space: nowrap; }
 
-.app { min-height: 100vh; display: flex; flex-direction: column; }
+.app { overflow-x: clip; min-height: 100vh; display: flex; flex-direction: column; }
 .app-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 24px; border-bottom: 2px solid var(--color-text); background: var(--color-bg); }
 .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
 .brand-logo { height: 32px; width: auto; display: block; }
@@ -36,12 +36,12 @@ input[type=date].input { -webkit-appearance: none; appearance: none; min-height:
 .slot-body { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .slot-label { font-size: 13px; font-weight: 600; }
 .slot-actions { display: flex; gap: 6px; flex-wrap: wrap; }
-.btn-sm { font-size: 13px; padding: 5px 10px; justify-content: flex-start; cursor: pointer; }
+.btn-sm { font-size: 13px; padding: 5px 10px; justify-content: flex-start; cursor: pointer; white-space: nowrap; width: auto; flex: 0 0 auto; }
 
 .preview { flex: 1 1 480px; min-width: 0; background: var(--color-surface); padding: 32px; box-sizing: border-box; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
 .preview-bar { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .export-dock { display: flex; justify-content: flex-end; }
-.export-btn.is-floating { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 50; box-shadow: var(--shadow-lg); animation: fab-in .18s ease-out; }
+.export-btn.is-floating { position: fixed !important; left: auto; top: auto; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 50; box-shadow: var(--shadow-lg); animation: fab-in .18s ease-out; }
 @keyframes fab-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 .preview-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
 .cert-box { position: relative; box-shadow: var(--shadow-md); overflow: hidden; flex-shrink: 0; }
@@ -87,7 +87,7 @@ input[type=date].input { -webkit-appearance: none; appearance: none; min-height:
 .sponsor-logo img { display: block; max-width: 100%; max-height: 76px; width: auto; height: auto; }
 .sponsor-sep { width: 1px; flex: 0 0 1px; background: #c9a957; }
 
-@media (max-width: 900px) {
+@media (max-width: 960px) {
   .workspace { flex-direction: column; flex-wrap: nowrap; }
   .panel { flex: none; width: 100%; border-right: 0; border-bottom: 2px solid var(--color-text); padding: 20px 16px; }
   .preview { flex: none; width: 100%; padding: 16px; }
