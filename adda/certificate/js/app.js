@@ -122,7 +122,7 @@
   });
 
   var header = document.querySelector('.app-header'), dock = $('exportDock');
-  var mq = window.matchMedia('(max-width: 900px)');
+  var mq = window.matchMedia('(max-width: 960px)');
   function placeBtn() {
     if (!mq.matches) {
       if (btn.parentNode !== header) header.appendChild(btn);
@@ -130,12 +130,17 @@
       return;
     }
     if (btn.parentNode !== dock) dock.appendChild(btn);
-    var docked = dock.getBoundingClientRect().bottom <= window.innerHeight - 16;
+    var vh = (window.visualViewport && window.visualViewport.height) || window.innerHeight || document.documentElement.clientHeight;
+    var docked = dock.getBoundingClientRect().bottom <= vh - 16;
     btn.classList.toggle('is-floating', !docked);
   }
 
   if (window.ResizeObserver) new ResizeObserver(fit).observe(preview);
   window.addEventListener('resize', function () { fit(); placeBtn(); });
-  window.addEventListener('scroll', placeBtn, { passive: true });
+  document.addEventListener('scroll', placeBtn, { passive: true, capture: true });
+  window.addEventListener('orientationchange', function () { setTimeout(function () { fit(); placeBtn(); }, 200); });
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', placeBtn);
+  if (mq.addEventListener) mq.addEventListener('change', placeBtn); else if (mq.addListener) mq.addListener(placeBtn);
+  if (window.IntersectionObserver) new IntersectionObserver(placeBtn, { threshold: [0, 0.5, 1] }).observe(dock);
   render(); fit(); placeBtn();
 })();
