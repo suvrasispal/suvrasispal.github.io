@@ -39,6 +39,10 @@ input[type=date].input { -webkit-appearance: none; appearance: none; min-height:
 .btn-sm { font-size: 13px; padding: 5px 10px; justify-content: flex-start; cursor: pointer; }
 
 .preview { flex: 1 1 480px; min-width: 0; background: var(--color-surface); padding: 32px; box-sizing: border-box; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.preview-bar { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.export-dock { display: flex; justify-content: flex-end; }
+.export-btn.is-floating { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 50; box-shadow: var(--shadow-lg); animation: fab-in .18s ease-out; }
+@keyframes fab-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 .preview-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
 .cert-box { position: relative; box-shadow: var(--shadow-md); overflow: hidden; flex-shrink: 0; }
 
@@ -87,6 +91,7 @@ input[type=date].input { -webkit-appearance: none; appearance: none; min-height:
   .workspace { flex-direction: column; flex-wrap: nowrap; }
   .panel { flex: none; width: 100%; border-right: 0; border-bottom: 2px solid var(--color-text); padding: 20px 16px; }
   .preview { flex: none; width: 100%; padding: 16px; }
+  .preview-bar, .export-dock { min-height: 40px; }
 }
 @media (max-width: 560px) {
   .app-header { padding: 10px 16px; gap: 12px; }
