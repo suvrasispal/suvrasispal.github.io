@@ -56,7 +56,8 @@
   }
 
   function fit() {
-    var w = preview.clientWidth - (window.innerWidth <= 760 ? 32 : 64);
+    var cs = getComputedStyle(preview);
+    var w = preview.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
     var s = Math.max(0.2, Math.min(1, w / CERT_W));
     cert.style.transform = 'scale(' + s + ')';
     certBox.style.width = Math.round(CERT_W * s) + 'px';
@@ -101,7 +102,7 @@
   var btn = $('exportBtn'), label = $('exportLabel');
   btn.addEventListener('click', function () {
     if (!window.htmlToImage || !window.jspdf) { alert('PDF tools are still loading — try again in a moment.'); return; }
-    btn.disabled = true; label.textContent = 'Exporting…';
+    btn.disabled = true; label.textContent = '…';
     (document.fonts ? document.fonts.ready : Promise.resolve())
       .then(getFontCSS)
       .then(function (css) {
@@ -117,7 +118,7 @@
         pdf.save('certificate-' + slug + '.pdf');
       })
       .catch(function (err) { console.error(err); alert('Export failed: ' + err.message); })
-      .finally(function () { btn.disabled = false; label.textContent = 'Export PDF'; });
+      .finally(function () { btn.disabled = false; label.textContent = 'PDF'; });
   });
 
   if (window.ResizeObserver) new ResizeObserver(fit).observe(preview);
