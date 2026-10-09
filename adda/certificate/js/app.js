@@ -14,7 +14,8 @@
   }
 
   function render() {
-    $('c-eventLine').textContent = [state.eventName, state.year].filter(function (x) { return x && x.trim(); }).join(' ');
+    $('c-eventLine').textContent = state.eventName.trim();
+    var yr = state.year.trim(); $('c-year').textContent = yr; $('c-year').classList.toggle('is-blank', !yr);
     $('c-heading').textContent = state.heading;
     $('c-subheading').textContent = state.subheading;
 
