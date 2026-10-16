@@ -1,8 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-GB">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- seo -->
+<meta name="description" content="Photos and highlights from past events organised by Adda Slough in Slough, Berkshire.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#071935">
+<meta property="og:site_name" content="Adda Slough">
+<meta property="og:locale" content="en_GB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Past event · Adda Slough">
+<meta property="og:description" content="Photos and highlights from past events organised by Adda Slough in Slough, Berkshire.">
+<meta property="og:image" content="https://adda-slough.org/assets/images/durga-pujo-pandal.jpg">
+<meta property="og:image:alt" content="Adda Slough Durga Pujo pandal">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@AddaSlough_org">
+<meta name="twitter:title" content="Past event · Adda Slough">
+<meta name="twitter:description" content="Photos and highlights from past events organised by Adda Slough in Slough, Berkshire.">
+<meta name="twitter:image" content="https://adda-slough.org/assets/images/durga-pujo-pandal.jpg">
+<link rel="preconnect" href="https://media.adda-slough.org" crossorigin>
+<link rel="dns-prefetch" href="https://media.adda-slough.org">
+<script src="js/seo.js"></script>
+<!-- /seo -->
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
 <link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48.png">
 <link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
@@ -97,7 +117,16 @@ class Component extends DCLogic {
     this.setState({ id: new URLSearchParams(location.search).get('id') || this.props.eventId || 'durga-pujo-2025' });
     this.onReady = () => this.forceUpdate(); window.addEventListener('adda-ready', this.onReady);
   }
-  componentDidUpdate() { const e = this.cur; if (e && this.probed !== e.img) { this.probed = e.img; this.setState({ bad: false, alt: '' }); const im = new Image(); im.onerror = () => { const r = window.ADDA && window.ADDA.remote(e.img); if (!r) return this.setState({ bad: true }); const im2 = new Image(); im2.onload = () => this.setState({ alt: r }); im2.onerror = () => this.setState({ bad: true }); im2.src = r; }; im.src = e.img; } if (e && document.title.indexOf(e.title) !== 0) document.title = e.title + ' · Adda Slough'; }
+  componentDidUpdate() { const e = this.cur; if (e && this.probed !== e.img) { this.probed = e.img; this.setState({ bad: false, alt: '' }); const im = new Image(); im.onerror = () => { const r = window.ADDA && window.ADDA.remote(e.img); if (!r) return this.setState({ bad: true }); const im2 = new Image(); im2.onload = () => this.setState({ alt: r }); im2.onerror = () => this.setState({ bad: true }); im2.src = r; }; im.src = e.img; } if (e && this.seoFor !== e.id && window.ADDA_SEO) { this.seoFor = e.id; this.applySEO(e); } }
+  applySEO(e) {
+    const para = (e.text || []).find(t => t.indexOf('## ') !== 0);
+    const desc = para ? (para.length > 155 ? para.slice(0, 152).replace(/\s+\S*$/, '') + '…' : para) : e.title + ' — ' + e.subTitle + ' organised by Adda Slough, the Bengali community and charity in Slough, Berkshire. Photos and highlights.';
+    const d = e.date ? new Date(e.date) : null; const iso = d && !isNaN(d) ? d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0') : '';
+    const path = 'Event.dc.html?id=' + encodeURIComponent(e.id);
+    const crumbs = { '@type': 'BreadcrumbList', itemListElement: [['Home', 'Home.dc.html'], [e.catTitle, e.catHref], [e.title, path]].map(([n, u], i) => ({ '@type': 'ListItem', position: i + 1, name: n, item: 'https://adda-slough.org/' + u })) };
+    const graph = [crumbs]; if (iso) graph.push({ '@type': 'Event', name: e.title, startDate: iso, eventStatus: 'https://schema.org/EventScheduled', eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode', description: desc, image: [e.img], location: { '@type': 'Place', name: 'Slough', address: { '@type': 'PostalAddress', addressLocality: 'Slough', addressRegion: 'Berkshire', addressCountry: 'GB' } }, organizer: { '@type': 'Organization', name: 'Adda Slough', url: 'https://adda-slough.org/Home.dc.html' } });
+    window.ADDA_SEO({ title: e.title + ' · ' + e.catTitle + ' · Adda Slough', description: desc, path, image: e.img, jsonld: { '@context': 'https://schema.org', '@graph': graph } });
+  }
   componentWillUnmount() { window.removeEventListener('adda-ready', this.onReady); }
   renderVals() {
     const A = window.ADDA; const all = A ? A.ALL_EVENTS : [];

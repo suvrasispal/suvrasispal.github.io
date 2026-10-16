@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /developer/
+Disallow: /scripts/
+
+Sitemap: https://adda-slough.org/sitemap.xml

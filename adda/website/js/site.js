@@ -113,7 +113,6 @@
     I('Media', 'Asian Voice · Oct 2020', P.print + '#asian-voice', 'Print coverage of ADDA Slough.', 'newspaper'),
     I('Media', 'Digital coverage', P.digital, 'ABP News, Republic Bangla TV, S NEWZ and our YouTube channel.', 'tv video online youtube'),
     I('Media', 'YouTube channel', 'https://www.youtube.com/@addaslough5239', 'Watch ADDA videos on YouTube.', 'video watch'),
-    I('Live', 'Adda Live', 'Live.dc.html', 'Watch Adda Slough events live and catch up on previous live streams.', 'live stream streaming watch online broadcast video recording'),
     I('Contact', 'Contact us', P.contact, '31 Finefield Walk, Slough SL1 2QR · addasloughinformation@gmail.com', 'email phone call address help enquiry'),
     I('Forms', 'Membership form', P.contact + '#membership', 'Become a member of Adda Slough.', 'join member volunteer'),
     I('Forms', 'Sponsorship form', P.contact + '#sponsorship', 'Sponsor an event or book a stall.', 'sponsor stall business advertise'),

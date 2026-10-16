@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-GB">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, follow">
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
 <link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48.png">
 <link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
@@ -17,8 +18,6 @@
 <link rel="stylesheet" href="css/modernist.css">
 <link rel="stylesheet" href="css/theme.css">
 <script src="js/site.js"></script>
-<script src="js/live.js"></script>
-<style>@keyframes adda-live-pulse{0%{box-shadow:0 0 0 0 rgba(106,178,58,.7)}70%{box-shadow:0 0 0 7px rgba(106,178,58,0)}100%{box-shadow:0 0 0 0 rgba(106,178,58,0)}}@media (prefers-reduced-motion: reduce){[data-live-dot]{animation:none!important}}</style>
 </helmet>
 <div aria-hidden="true" style="height:{{ spacerH }}"></div>
 <header ref="{{ rootRef }}" style="position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--adda-white);border-bottom:1px solid color-mix(in srgb,var(--color-text) 12%,transparent);box-shadow:{{ shadow }};transition:box-shadow .25s">
@@ -29,15 +28,12 @@
       <nav aria-label="Main" style="margin-left:auto;margin-right:52px;display:flex;align-items:stretch;height:{{ barH }}">
         <sc-for list="{{ menus }}" as="m" hint-placeholder-count="6">
           <sc-if value="{{ m.isLink }}" hint-placeholder-val="{{ true }}">
-            <a href="{{ m.href }}" aria-current="{{ m.cur }}" aria-label="{{ m.aria }}" title="{{ m.tip }}" style="display:flex;align-items:center;gap:8px;padding:0 14px;font-size:15px;font-weight:600;color:{{ m.ink }};text-decoration:none;box-shadow:inset 0 -3px 0 {{ m.bar }};transition:color .2s,box-shadow .2s" style-hover="color:var(--color-accent);box-shadow:inset 0 -3px 0 var(--color-accent-2-300)"><sc-if value="{{ m.dot }}" hint-placeholder-val="{{ false }}"><span data-live-dot="" aria-hidden="true" style="flex:none;width:8px;height:8px;border-radius:50%;background:var(--adda-leaf);animation:adda-live-pulse 2s ease-out infinite"></span></sc-if>{{ m.label }}</a>
+            <a href="{{ m.href }}" aria-current="{{ m.cur }}" style="display:flex;align-items:center;gap:8px;padding:0 14px;font-size:15px;font-weight:600;color:{{ m.ink }};text-decoration:none;box-shadow:inset 0 -3px 0 {{ m.bar }};transition:color .2s,box-shadow .2s" style-hover="color:var(--color-accent);box-shadow:inset 0 -3px 0 var(--color-accent-2-300)">{{ m.label }}</a>
           </sc-if>
           <sc-if value="{{ m.hasMenu }}" hint-placeholder-val="{{ false }}">
             <button type="button" onClick="{{ m.toggle }}" aria-expanded="{{ m.expanded }}" aria-controls="mega-panel" style="display:flex;align-items:center;gap:6px;padding:0 14px;background:{{ m.bg }};border:0;box-shadow:inset 0 -3px 0 {{ m.bar }};font:inherit;font-size:15px;font-weight:600;color:{{ m.ink }};cursor:pointer;transition:color .2s,box-shadow .2s,background .2s" style-hover="color:var(--color-accent)">{{ m.label }}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true" style="transform:{{ m.rot }};transition:transform .2s"><path d="m6 9 6 6 6-6"></path></svg></button>
           </sc-if>
         </sc-for>
-        <sc-if value="{{ adminBtn }}" hint-placeholder-val="{{ false }}">
-          <a href="{{ adminHref }}" class="btn btn-primary" style="align-self:center;margin-left:10px;min-height:40px;padding:8px 14px;font-size:14px;gap:8px;white-space:nowrap"><span aria-hidden="true" style="width:8px;height:8px;border-radius:50%;background:var(--adda-leaf)"></span>{{ adminLabel }}</a>
-        </sc-if>
       </nav>
     </sc-if>
     <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
@@ -103,7 +99,7 @@
       <nav aria-label="Main" style="padding:8px clamp(20px,5vw,48px) 48px">
         <sc-for list="{{ mob }}" as="m" hint-placeholder-count="0">
           <div style="border-bottom:1px solid color-mix(in srgb,var(--color-text) 10%,transparent)">
-            <sc-if value="{{ m.isLink }}" hint-placeholder-val="{{ false }}"><a href="{{ m.href }}" aria-label="{{ m.aria }}" style="display:flex;flex-direction:column;justify-content:center;gap:2px;min-height:64px;font-size:22px;font-weight:700;color:{{ m.ink }};text-decoration:none"><span style="display:flex;align-items:center;gap:12px"><sc-if value="{{ m.dot }}" hint-placeholder-val="{{ false }}"><span data-live-dot="" aria-hidden="true" style="flex:none;width:10px;height:10px;border-radius:50%;background:var(--adda-leaf);animation:adda-live-pulse 2s ease-out infinite"></span></sc-if>{{ m.label }}</span><sc-if value="{{ m.dot }}" hint-placeholder-val="{{ false }}"><span style="font-size:15px;font-weight:600;color:var(--adda-leaf-700);padding-bottom:10px">Live now · {{ m.liveTitle }}</span></sc-if></a></sc-if>
+            <sc-if value="{{ m.isLink }}" hint-placeholder-val="{{ false }}"><a href="{{ m.href }}" style="display:flex;align-items:center;min-height:64px;font-size:22px;font-weight:700;color:{{ m.ink }};text-decoration:none">{{ m.label }}</a></sc-if>
             <sc-if value="{{ m.hasMenu }}" hint-placeholder-val="{{ false }}">
               <button type="button" onClick="{{ m.toggle }}" aria-expanded="{{ m.expanded }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;min-height:64px;padding:0;background:transparent;border:0;font:inherit;font-size:22px;font-weight:700;color:{{ m.ink }};cursor:pointer;text-align:left">{{ m.label }}<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true" style="transform:{{ m.rot }};transition:transform .2s"><path d="m6 9 6 6 6-6"></path></svg></button>
               <sc-if value="{{ m.isOpen }}" hint-placeholder-val="{{ false }}">
@@ -120,9 +116,6 @@
             </sc-if>
           </div>
         </sc-for>
-        <sc-if value="{{ adminMob }}" hint-placeholder-val="{{ false }}">
-          <a href="{{ adminHref }}" class="btn btn-primary" style="margin-top:20px;min-height:52px;font-size:17px;gap:10px"><span aria-hidden="true" style="width:10px;height:10px;border-radius:50%;background:var(--adda-leaf)"></span>{{ adminLabel }}</a>
-        </sc-if>
         <a href="SignIn.dc.html" style="display:flex;align-items:center;min-height:56px;font-size:17px;font-weight:600;color:var(--color-text);text-decoration:none">Member sign-in</a>
         <div style="margin-top:12px;display:flex;flex-direction:column;gap:6px;font-size:15px"><a href="mailto:addasloughinformation@gmail.com" style="word-break:break-all">addasloughinformation@gmail.com</a><span>31 Finefield Walk, Slough SL1 2QR</span></div>
       </nav>
@@ -130,7 +123,7 @@
   </sc-if>
 </header>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;560px&quot;},&quot;current&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;about&quot;,&quot;events&quot;,&quot;charity&quot;,&quot;media&quot;,&quot;live&quot;,&quot;contact&quot;,&quot;none&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;560px&quot;},&quot;current&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;about&quot;,&quot;events&quot;,&quot;charity&quot;,&quot;media&quot;,&quot;contact&quot;,&quot;none&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 const L = (label, href) => ({ label, href });
 const EV = (id) => 'Event.dc.html?id=' + id;
 const MENUS = [
@@ -151,7 +144,6 @@ const MENUS = [
     { title: 'Coverage', href: 'Media.dc.html', items: [L('All coverage', 'Media.dc.html'), L('Print', 'Print.dc.html'), L('Digital & TV', 'Digital.dc.html'), L('ABP News video', 'Digital.dc.html#abp-news')] },
     { title: 'Follow us', href: 'https://www.youtube.com/@addaslough5239', items: [L('YouTube', 'https://www.youtube.com/@addaslough5239'), L('Facebook', 'https://www.facebook.com/adda.slough'), L('Instagram', 'https://www.instagram.com/addaslough/')] }
   ] },
-  { key: 'live', label: 'Adda Live', href: 'Live.dc.html' },
   { key: 'contact', label: 'Contact', href: 'Contact.dc.html' }
 ];
 class Component extends DCLogic {
@@ -180,10 +172,6 @@ class Component extends DCLogic {
       else if (e.key === '/' && !typing) { e.preventDefault(); this.openSearch(); }
     };
     this.onReady = () => this.forceUpdate();
-    this.onLive = (e) => { this.live = e.detail; this.forceUpdate(); };
-    this.onLiveReady = () => this.watchLive();
-    window.addEventListener('adda-live', this.onLive); window.addEventListener('adda-live-ready', this.onLiveReady);
-    this.watchLive();
     window.addEventListener('resize', this.onResize); window.addEventListener('scroll', this.onScroll, { passive: true });
     document.addEventListener('mousedown', this.onDoc); window.addEventListener('keydown', this.onKeyG); window.addEventListener('adda-ready', this.onReady);
     this.measure(); this.onScroll();
@@ -193,10 +181,7 @@ class Component extends DCLogic {
     clearInterval(this.pxTimer); window.removeEventListener('scroll', this.pxScroll); window.removeEventListener('resize', this.pxScroll);
     window.removeEventListener('resize', this.onResize); window.removeEventListener('scroll', this.onScroll);
     document.removeEventListener('mousedown', this.onDoc); window.removeEventListener('keydown', this.onKeyG); window.removeEventListener('adda-ready', this.onReady);
-    window.removeEventListener('adda-live', this.onLive); window.removeEventListener('adda-live-ready', this.onLiveReady);
-    if (this.unwatchLive) this.unwatchLive();
   }
-  watchLive() { if (!this.unwatchLive && window.AddaLive) { this.unwatchLive = window.AddaLive.watch(); this.live = window.AddaLive.get(); this.forceUpdate(); } }
   measure() { if (!this.root) return; const bar = this.root.firstElementChild && this.root.children[1]; const h = bar ? bar.offsetHeight + 1 : this.root.offsetHeight; if (h && Math.abs(h - this.state.h) > 1) this.setState({ h }); }
   openSearch() { this.setState({ sOpen: true, open: null, mobile: false }, () => setTimeout(() => this.input && this.input.focus(), 60)); }
   go(url) { this.setState({ sOpen: false }); window.location.href = url; }
@@ -211,21 +196,17 @@ class Component extends DCLogic {
     const idx = Math.min(Math.max(sel, 0), Math.max(0, list.length - 1));
     const hasQ = !!q.trim();
     const openMenu = MENUS.find(m => m.key === open && m.groups);
-    const LV = this.live || {}, onAir = !!LV.live, airTitle = onAir ? LV.live.title : '';
-    const owns = !!(LV.active && LV.active.isOwner), adminShow = !!LV.admin && (!onAir || owns);
-    const liveBits = (m) => m.key !== 'live' ? { dot: false, aria: m.label, tip: '', liveTitle: '' } : { href: onAir ? 'Live.dc.html#now' : m.href, dot: onAir, aria: onAir ? 'Adda Live, live now: ' + airTitle : m.label, tip: onAir ? 'Live now: ' + airTitle : '', liveTitle: airTitle };
     return {
       rootRef: (el) => { this.root = el; }, inputRef: (el) => { this.input = el; },
       spacerH: (small ? 81 : 97) + 'px', barH, logoH: small ? '56px' : '69px', formTop: small ? '16px' : '24px',
       shadow: scrolled || open || mobile ? '0 1px 2px rgba(23,35,74,.04),0 8px 24px rgba(23,35,74,.07)' : 'none',
       isDesktop, isMobile: !isDesktop,
-      adminBtn: w >= 1240 && adminShow, adminMob: adminShow, adminLabel: owns ? 'Manage stream' : 'Start streaming', adminHref: owns ? 'Live.dc.html#now' : 'Live.dc.html#start',
-      menus: MENUS.map(m => { const on = m.key === open, isCur = m.key === cur; return { ...m, ...liveBits(m), isLink: !m.groups, hasMenu: !!m.groups, cur: isCur ? 'page' : 'false', expanded: on ? 'true' : 'false', rot: on ? 'rotate(180deg)' : 'none',
+      menus: MENUS.map(m => { const on = m.key === open, isCur = m.key === cur; return { ...m, isLink: !m.groups, hasMenu: !!m.groups, cur: isCur ? 'page' : 'false', expanded: on ? 'true' : 'false', rot: on ? 'rotate(180deg)' : 'none',
         ink: on || isCur ? 'var(--color-accent)' : 'var(--color-text)', bar: on || isCur ? 'var(--color-accent-2)' : 'transparent', bg: on ? 'var(--color-accent-100)' : 'transparent',
         toggle: (e) => { e.stopPropagation(); this.setState({ open: on ? null : m.key, sOpen: false }); } }; }),
       hasOpen: isDesktop && !!openMenu, open: openMenu || { groups: [] },
       closeAll: () => this.setState({ open: null, mobile: false }),
-      mob: MENUS.map(m => { const on = m.key === mobSec; return { ...m, ...liveBits(m), isLink: !m.groups, hasMenu: !!m.groups, isOpen: on, expanded: on ? 'true' : 'false', rot: on ? 'rotate(180deg)' : 'none', ink: m.key === cur ? 'var(--color-accent)' : 'var(--color-text)', overview: m.label + ' overview', toggle: () => this.setState({ mobSec: on ? null : m.key }) }; }),
+      mob: MENUS.map(m => { const on = m.key === mobSec; return { ...m, isLink: !m.groups, hasMenu: !!m.groups, isOpen: on, expanded: on ? 'true' : 'false', rot: on ? 'rotate(180deg)' : 'none', ink: m.key === cur ? 'var(--color-accent)' : 'var(--color-text)', overview: m.label + ' overview', toggle: () => this.setState({ mobSec: on ? null : m.key }) }; }),
       showMobile: !isDesktop && mobile, mobOpen: mobile, mobClosed: !mobile, mobExpanded: mobile ? 'true' : 'false', mobAria: mobile ? 'Close menu' : 'Open menu',
       toggleMobile: () => this.setState({ mobile: !mobile, sOpen: false }),
       sOpen, q, inTab: sOpen ? '0' : '-1', inOp: sOpen ? 1 : 0,

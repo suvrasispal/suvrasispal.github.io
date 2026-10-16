@@ -1,8 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-GB">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- seo -->
+<meta name="description" content="Sign in to the Adda Slough members area.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://adda-slough.org/SignIn.dc.html">
+<meta name="theme-color" content="#071935">
+<meta property="og:site_name" content="Adda Slough">
+<meta property="og:locale" content="en_GB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Member sign-in · Adda Slough">
+<meta property="og:description" content="Sign in to the Adda Slough members area.">
+<meta property="og:url" content="https://adda-slough.org/SignIn.dc.html">
+<meta property="og:image" content="https://adda-slough.org/assets/images/durga-pujo-pandal.jpg">
+<meta property="og:image:alt" content="Adda Slough Durga Pujo pandal">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@AddaSlough_org">
+<meta name="twitter:title" content="Member sign-in · Adda Slough">
+<meta name="twitter:description" content="Sign in to the Adda Slough members area.">
+<meta name="twitter:image" content="https://adda-slough.org/assets/images/durga-pujo-pandal.jpg">
+<link rel="preconnect" href="https://media.adda-slough.org" crossorigin>
+<link rel="dns-prefetch" href="https://media.adda-slough.org">
+<!-- /seo -->
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
 <link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48.png">
 <link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
@@ -14,10 +35,9 @@
 <body>
 <x-dc>
 <helmet>
-<title>Sign in · Adda Slough</title>
+<title>Member sign-in · Adda Slough</title>
 <link rel="stylesheet" href="css/modernist.css">
 <link rel="stylesheet" href="css/theme.css">
-<script src="js/live.js"></script>
 <style>body{margin:0;background:var(--color-bg);overflow-x:hidden}</style>
 </helmet>
 <dc-import name="SiteHeader" current="none" hint-size="100%,97px" style="display:block"></dc-import>
@@ -44,13 +64,6 @@
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   state = { email: '', pass: '', show: false, tried: false, sent: false, failMsg: '' };
-  async signIn(id, pass) {
-    try {
-      if (!window.AddaLive) throw new Error('Sign-in is still loading. Please try again.');
-      await window.AddaLive.login(id, pass);
-      window.location.href = 'Live.dc.html';
-    } catch (e) { this.setState({ sent: false, failMsg: e.message || 'Sign-in failed. Please try again.' }); }
-  }
   renderVals() {
     const { email, pass, show, tried, sent, failMsg } = this.state;
     const eBad = tried && !email.trim(), pBad = tried && !pass;
@@ -59,7 +72,7 @@ class Component extends DCLogic {
       emailErr: eBad, passErr: pBad, emailInv: eBad ? 'true' : 'false', passInv: pBad ? 'true' : 'false',
       onEmail: (e) => this.setState({ email: e.target.value, sent: false, failMsg: '' }), onPass: (e) => this.setState({ pass: e.target.value, sent: false, failMsg: '' }),
       toggleShow: () => this.setState({ show: !show }),
-      submit: (e) => { e.preventDefault(); const ok = !!(email.trim() && pass); this.setState({ tried: true, sent: ok, failMsg: '' }); if (ok) this.signIn(email.trim(), pass); }
+      submit: (e) => { e.preventDefault(); const ok = !!(email.trim() && pass); this.setState({ tried: true, sent: ok, failMsg: '' }); }
     };
   }
 }
