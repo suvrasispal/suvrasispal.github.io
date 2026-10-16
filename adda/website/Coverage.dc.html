@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48.png">
+<link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
+<script src="js/img-fallback.js"></script>
+<script>if(location.protocol==='file:')document.write('<script src="js/offline-bundle.js"><\/script>')</script>
+<script src="support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="css/modernist.css">
+<link rel="stylesheet" href="css/theme.css">
+<style>html{scroll-behavior:smooth;scroll-padding-top:120px}body{margin:0;background:var(--color-bg);overflow-x:hidden}</style>
+</helmet>
+<dc-import name="SiteHeader" current="media" hint-size="100%,97px" style="display:block"></dc-import>
+<main id="main">
+  <header data-hero="" style="position:relative;overflow:hidden;background:var(--color-accent-900);color:var(--adda-white);min-height:clamp(420px,62vh,660px);display:flex;align-items:flex-end"><img src="images/hindu-deity-with-gold-crown.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block"></img><div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,25,53,.86) 0%,rgba(7,25,53,.58) 60%,rgba(7,25,53,.32) 100%),linear-gradient(180deg,rgba(7,25,53,.25),rgba(7,25,53,.55))"></div><div style="position:relative;width:100%;box-sizing:border-box;max-width:1200px;margin:0 auto;padding:clamp(32px,6vw,88px) clamp(20px,5vw,48px) clamp(32px,5vw,56px);display:flex;flex-direction:column;gap:18px;padding-top:clamp(64px,12vh,140px);text-shadow:0 1px 14px rgba(7,25,53,.45)">
+    <sc-if value="{{ isSub }}" hint-placeholder-val="{{ false }}"><nav aria-label="Breadcrumb" style="display:flex;gap:8px;font-size:14px"><a href="Media.dc.html">Media</a><span aria-hidden="true">/</span><span aria-current="page">{{ title }}</span></nav></sc-if>
+    <sc-if value="{{ isHub }}" hint-placeholder-val="{{ true }}"><span style="display:flex;align-items:center;gap:12px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--adda-white)"><span aria-hidden="true" style="width:28px;height:2px;background:var(--color-accent-2)"></span>Media coverage</span></sc-if>
+    <h1 style="font-size:clamp(42px,6.4vw,80px);line-height:1;letter-spacing:-.035em;margin:0">{{ title }}</h1>
+    <p style="margin:0;font-size:clamp(18px,1.6vw,21px);line-height:1.6;max-width:34em">{{ lead }}</p>
+    <nav aria-label="Media sections" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3">
+        <a href="{{ t.href }}" aria-current="{{ t.cur }}" style="min-height:44px;padding:0 18px;display:flex;align-items:center;font-size:15px;font-weight:700;text-decoration:none;background:{{ t.bg }};color:{{ t.ink }};box-shadow:inset 0 0 0 1px {{ t.ring }}">{{ t.label }}</a>
+      </sc-for>
+    </nav>
+  </div><a href="https://unsplash.com/photos/hindu-deity-with-gold-crown-B3Knp6y8q4M" target="_blank" rel="noopener" style="position:absolute;right:12px;bottom:10px;z-index:1;font-size:9px;color:rgba(255,255,255,.85);text-decoration:none">Photo: Tanuj Adhikary / Unsplash</a></header>
+
+  <sc-if value="{{ showQuote }}" hint-placeholder-val="{{ true }}">
+    <section aria-label="Featured coverage" style="background:var(--adda-white)">
+      <div style="max-width:1200px;margin:0 auto;padding:clamp(48px,7vw,96px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(32px,5vw,72px);align-items:center">
+        <a href="http://timesofindia.indiatimes.com/articleshow/123806647.cms" target="_blank" rel="noopener" style="display:block;overflow:hidden;background:var(--color-surface);box-shadow:0 2px 6px rgba(23,35,74,.05),0 20px 50px rgba(23,35,74,.10)"><img src="https://media.adda-slough.org/public/images/media/print/times-of-india-10-sep-2025.jpg" alt="The Times of India clipping, 10 September 2025" loading="lazy" style="width:100%;height:auto;display:block"></img></a>
+        <figure style="margin:0;display:flex;flex-direction:column;gap:18px">
+          <span style="font-size:14px;font-weight:700;color:var(--color-accent-2-800)">The Times of India · 10 September 2025</span>
+          <blockquote style="margin:0;font-family:var(--font-heading);font-weight:700;font-size:clamp(24px,2.8vw,36px);line-height:1.2;letter-spacing:-.015em">Durga Puja celebrations unite Bengali diaspora in England.</blockquote>
+          <figcaption style="font-size:16px;line-height:1.6">The first UK Pujo in a marquee pandal, with a Bengali tea-stall and Chandannagar-style lights.</figcaption>
+          <a href="http://timesofindia.indiatimes.com/articleshow/123806647.cms" target="_blank" rel="noopener" style="font-weight:700;min-height:44px;display:flex;align-items:center">Read the article ↗</a>
+        </figure>
+      </div>
+    </section>
+  </sc-if>
+
+  <section aria-label="{{ listLabel }}" style="max-width:1200px;margin:0 auto;padding:clamp(48px,7vw,96px) clamp(20px,5vw,48px)">
+    <sc-if value="{{ isHub }}" hint-placeholder-val="{{ true }}"><h2 style="font-size:clamp(28px,3.6vw,44px);letter-spacing:-.02em;margin:0 0 28px">In print</h2></sc-if>
+    <sc-if value="{{ showPrint }}" hint-placeholder-val="{{ true }}">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:clamp(28px,3vw,40px) clamp(20px,2.4vw,32px)">
+        <sc-for list="{{ print }}" as="p" hint-placeholder-count="0">
+          <a id="{{ p.id }}" href="{{ p.href }}" target="{{ p.target }}" rel="noopener" style="display:flex;flex-direction:column;gap:12px;text-decoration:none;color:var(--color-text)" style-hover="color:var(--color-accent)">
+            <div style="aspect-ratio:3/4;overflow:hidden;background:var(--adda-white);box-shadow:0 1px 2px rgba(23,35,74,.05),0 6px 20px rgba(23,35,74,.05);transition:box-shadow .3s" style-hover="box-shadow:0 2px 6px rgba(23,35,74,.07),0 18px 44px rgba(23,35,74,.13)">
+              <sc-if value="{{ p.hasImg }}" hint-placeholder-val="{{ true }}"><img src="{{ p.img }}" alt="{{ p.alt }}" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block"></img></sc-if>
+              <sc-if value="{{ p.noImg }}" hint-placeholder-val="{{ false }}"><div style="height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:20px;background:var(--color-accent-2-100)"><span style="font-size:24px;font-weight:800;line-height:1.1;color:var(--color-accent-800)">{{ p.pub }}</span></div></sc-if>
+            </div>
+            <span style="font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--color-accent-2-800)">{{ p.pub }} · {{ p.date }}</span>
+            <span style="font-size:18px;font-weight:800;line-height:1.25">{{ p.title }}</span>
+          </a>
+        </sc-for>
+      </div>
+    </sc-if>
+    <sc-if value="{{ isHub }}" hint-placeholder-val="{{ true }}"><h2 style="font-size:clamp(28px,3.6vw,44px);letter-spacing:-.02em;margin:clamp(56px,8vw,96px) 0 12px">Digital &amp; TV</h2></sc-if>
+    <sc-if value="{{ showDigital }}" hint-placeholder-val="{{ true }}">
+      <ul style="list-style:none;margin:0;padding:0">
+        <sc-for list="{{ digital }}" as="d" hint-placeholder-count="3">
+          <li id="{{ d.id }}" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 32px;padding:24px 0;border-bottom:1px solid color-mix(in srgb,var(--color-text) 12%,transparent)">
+            <span style="display:flex;flex-direction:column;gap:4px"><span style="font-size:clamp(22px,2.4vw,28px);font-weight:800;letter-spacing:-.01em">{{ d.name }}</span><span style="font-size:15px">{{ d.desc }}</span></span>
+            <sc-if value="{{ d.hasVideo }}" hint-placeholder-val="{{ false }}"><div style="flex:1 1 100%;order:3;max-width:880px"><video controls="" preload="metadata" playsInline="{{ true }}" src="{{ d.video }}" aria-label="{{ d.name }} video" style="width:100%;aspect-ratio:16/9;display:block;background:var(--color-accent-900)"></video></div></sc-if>
+            <a href="{{ d.link }}" target="_blank" rel="noopener" style="font-weight:700;min-height:44px;display:flex;align-items:center;gap:8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"></path><path d="m10 15 5-3-5-3z"></path></svg>{{ d.linkLabel }}</a>
+          </li>
+        </sc-for>
+      </ul>
+      <div style="margin-top:36px;display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;padding:28px 0">
+        <a class="btn btn-primary" href="https://www.youtube.com/@addaslough5239" target="_blank" rel="noopener">Adda Slough on YouTube ↗</a>
+        <a href="https://www.facebook.com/adda.slough" target="_blank" rel="noopener" style="font-weight:700">Facebook</a>
+        <a href="https://www.instagram.com/addaslough/" target="_blank" rel="noopener" style="font-weight:700">Instagram</a>
+      </div>
+    </sc-if>
+  </section>
+</main>
+<dc-import name="SiteFooter" hint-size="100%,520px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;view&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;hub&quot;,&quot;print&quot;,&quot;digital&quot;],&quot;default&quot;:&quot;hub&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const MP = 'https://media.adda-slough.org/public/images/media/print/';
+const PRINT = [
+  { id: 'times-of-india', pub: 'The Times of India', date: '10 Sep 2025', title: 'Durga Puja celebrations unite Bengali diaspora in England', img: MP + 'times-of-india-10-sep-2025.jpg', href: 'http://timesofindia.indiatimes.com/articleshow/123806647.cms', ext: 1 },
+  { id: 'anandabazar', pub: 'Anandabazar', date: '04 May 2023', title: 'মনে মনে হারিয়ে যাই, ভুলেই যাই এটা লন্ডনের পুজোমণ্ডপ', img: MP + 'anandabazar-04-may-2023.jpg', href: 'https://www.anandabazar.com/ananda-utsav/beyond-bengal/durga-puja-2019-bengali-citizen-of-london-sharers-her-emotions-about-the-upcoming-festival-dgtl-1.1047745', ext: 1 },
+  { id: 'bangla-post', pub: 'Bangla Post', date: '17 Feb 2022', title: 'Bangla Post coverage of Adda Slough', img: MP + 'bangla-post-17-feb-2022.jpg', href: MP + 'bangla-post-17-feb-2022.jpg', ext: 1 },
+  { id: 'asian-voice', pub: 'Asian Voice', date: '02 Oct 2020', title: 'Asian Voice News coverage of Adda Slough', img: MP + 'asian-voice-news-02-oct-2020.jpg', href: MP + 'asian-voice-news-02-oct-2020.jpg', ext: 1 },
+  { id: 'bangla-post-2021', pub: 'Bangla Post', date: 'Oct 2021', title: 'Bangla Post coverage of Adda Slough', href: '#bangla-post-2021' },
+  { id: 'bangla-post-2019', pub: 'Bangla Post', date: 'Nov 2019', title: 'Bangla Post coverage of Adda Slough', href: '#bangla-post-2019' },
+  { id: 'slough-observer', pub: 'Slough Observer', date: 'Jan 2015', title: 'Slough Observer coverage of Adda Slough', href: '#slough-observer' }
+];
+const DIGITAL = [
+  { id: 'abp-news', name: 'ABP News', desc: 'Video coverage of Adda Slough · 2 August 2022.', video: 'https://media.adda-slough.org/public/videos/media/digital/abp-news-2022-08-02.mp4' },
+  { id: 'republic-bangla', name: 'Republic Bangla TV', desc: 'Television coverage of Adda Slough.' },
+  { id: 's-newz', name: 'S NEWZ', desc: 'Digital coverage of Adda Slough.' }
+];
+const VIEWS = {
+  hub: { title: 'Media', lead: 'Find out about the media coverage of events organised by the Adda Slough community, in print and digital.' },
+  print: { title: 'Print', lead: 'Adda Slough in newspapers, in the UK and in India.' },
+  digital: { title: 'Digital', lead: 'Adda Slough on television, online news and our own channels.' }
+};
+class Component extends DCLogic {
+  renderVals() {
+    const v = VIEWS[this.props.view] ? this.props.view : 'hub';
+    const tab = (k, label, href) => ({ label, href, cur: k === v ? 'page' : 'false', bg: k === v ? 'var(--adda-white)' : 'transparent', ink: k === v ? 'var(--color-accent-800)' : 'var(--adda-white)', ring: k === v ? 'var(--adda-white)' : 'rgba(255,255,255,.55)' });
+    return {
+      title: VIEWS[v].title, lead: VIEWS[v].lead, isHub: v === 'hub', isSub: v !== 'hub',
+      tabs: [tab('hub', 'All coverage', 'Media.dc.html'), tab('print', 'Print', 'Print.dc.html'), tab('digital', 'Digital', 'Digital.dc.html')],
+      showQuote: v !== 'digital', showPrint: v !== 'digital', showDigital: v !== 'print',
+      listLabel: v === 'digital' ? 'Digital coverage' : 'Print coverage',
+      print: PRINT.map(p => ({ ...p, hasImg: !!p.img, noImg: !p.img, alt: p.pub + ' clipping, ' + p.date, target: p.ext ? '_blank' : '_self' })),
+      digital: DIGITAL.map(d => ({ ...d, hasVideo: !!d.video, link: d.video || 'https://www.youtube.com/@addaslough5239/videos', linkLabel: d.video ? 'Open video ↗' : 'Watch on YouTube' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

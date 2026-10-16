@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48.png">
+<link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
+<script src="js/img-fallback.js"></script>
+<script>if(location.protocol==='file:')document.write('<script src="js/offline-bundle.js"><\/script>')</script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Past event · Adda Slough</title>
+<link rel="stylesheet" href="css/modernist.css">
+<link rel="stylesheet" href="css/theme.css">
+<script src="js/site.js"></script>
+<style>body{margin:0;background:var(--color-bg);overflow-x:hidden}</style>
+</helmet>
+<dc-import name="SiteHeader" current="events" hint-size="100%,97px" style="display:block"></dc-import>
+<main id="main">
+  <sc-if value="{{ found }}" hint-placeholder-val="{{ false }}">
+    <section data-hero="" style="position:relative;overflow:hidden;background:var(--color-accent-900);color:var(--adda-white);min-height:clamp(420px,62vh,660px);display:flex;align-items:flex-end"><img src="images/bokeh-photography-of-lighted-candle.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 50%;display:block"></img><div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,25,53,.86) 0%,rgba(7,25,53,.58) 60%,rgba(7,25,53,.32) 100%),linear-gradient(180deg,rgba(7,25,53,.25),rgba(7,25,53,.55))"></div><div style="position:relative;width:100%;box-sizing:border-box;max-width:1200px;margin:0 auto;padding:clamp(32px,6vw,80px) clamp(20px,5vw,48px) clamp(48px,7vw,96px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(32px,5vw,72px);align-items:start;padding-top:clamp(64px,12vh,140px);text-shadow:0 1px 14px rgba(7,25,53,.45)">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <nav aria-label="Breadcrumb" style="display:flex;flex-wrap:wrap;gap:8px;font-size:14px"><a href="Events.dc.html">Events</a><span aria-hidden="true">/</span><a href="{{ ev.catHref }}">{{ ev.catTitle }}</a><span aria-hidden="true">/</span><a href="{{ subHref }}">{{ ev.subTitle }}</a></nav>
+        <h1 style="font-size:clamp(38px,5.6vw,72px);line-height:1.02;letter-spacing:-.035em;margin:0">{{ ev.title }}</h1>
+        <sc-if value="{{ hasDate }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:15px;font-weight:700;letter-spacing:.1em;text-transform:uppercase">{{ ev.date }}</p></sc-if>
+        <sc-if value="{{ hasNote }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:clamp(18px,1.6vw,21px);line-height:1.6">{{ ev.note }}</p></sc-if>
+        <p style="margin:0;font-size:16px;line-height:1.6">Part of Adda Slough’s {{ ev.subTitle }} celebrations. <a href="{{ subHref }}" style="font-weight:700">About {{ ev.subTitle }} →</a></p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:4px">
+          <a class="btn btn-primary" href="Events.dc.html">Upcoming events</a>
+          <a class="btn btn-secondary" href="https://www.facebook.com/adda.slough" target="_blank" rel="noopener">More photos on Facebook ↗</a>
+        </div>
+        <nav aria-label="Previous and next" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px;padding-top:20px;border-top:1px solid color-mix(in srgb,var(--color-text) 12%,transparent)">
+          <sc-if value="{{ hasPrev }}" hint-placeholder-val="{{ false }}"><a href="{{ prev.href }}" style="display:flex;flex-direction:column;gap:4px;text-decoration:none;min-height:44px"><span style="font-size:13px;font-weight:600;color:var(--adda-white)">← Newer</span><span style="font-weight:700">{{ prev.title }}</span></a></sc-if>
+          <sc-if value="{{ noPrev }}" hint-placeholder-val="{{ true }}"><span></span></sc-if>
+          <sc-if value="{{ hasNext }}" hint-placeholder-val="{{ false }}"><a href="{{ next.href }}" style="display:flex;flex-direction:column;gap:4px;text-align:right;text-decoration:none;min-height:44px"><span style="font-size:13px;font-weight:600;color:var(--adda-white)">Older →</span><span style="font-weight:700">{{ next.title }}</span></a></sc-if>
+        </nav>
+      </div>
+      <div style="background:var(--color-surface);box-shadow:0 2px 6px rgba(23,35,74,.05),0 24px 60px rgba(23,35,74,.10)">
+        <sc-for list="{{ heroList }}" as="h" hint-placeholder-count="0"><img src="{{ h.src }}" loading="lazy" alt="{{ h.title }}" style="width:100%;height:auto;max-height:80vh;object-fit:contain;display:block"></img></sc-for>
+        <sc-if value="{{ imgBad }}" hint-placeholder-val="{{ false }}"><div style="aspect-ratio:4/5;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;padding:28px;background:var(--color-accent-2-100)"><span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--adda-white)">{{ ev.subTitle }}</span><span style="font-size:32px;font-weight:800;line-height:1.05;color:var(--color-accent-800)">{{ ev.title }}</span></div></sc-if>
+      </div>
+    </div><a href="https://unsplash.com/photos/bokeh-photography-of-lighted-candle-KIrCjwEH5dA" target="_blank" rel="noopener" style="position:absolute;right:12px;bottom:10px;z-index:1;font-size:9px;color:rgba(255,255,255,.85);text-decoration:none">Photo: wilson mathew / Unsplash</a></section>
+    <sc-if value="{{ hasText }}" hint-placeholder-val="{{ false }}">
+      <section aria-label="About this event" style="background:var(--adda-white);border-bottom:1px solid color-mix(in srgb,var(--color-text) 12%,transparent)">
+        <div style="max-width:1200px;margin:0 auto;padding:clamp(48px,7vw,96px) clamp(20px,5vw,48px);display:flex;flex-direction:column;gap:18px;max-width:880px">
+          <sc-for list="{{ textBlocks }}" as="t" hint-placeholder-count="0">
+            <sc-if value="{{ t.isHead }}" hint-placeholder-val="{{ false }}"><h2 style="font-size:clamp(24px,2.8vw,34px);letter-spacing:-.02em;margin:16px 0 0">{{ t.body }}</h2></sc-if>
+            <sc-if value="{{ t.isPara }}" hint-placeholder-val="{{ true }}"><p style="margin:0;font-size:17px;line-height:1.75;text-wrap:pretty">{{ t.body }}</p></sc-if>
+          </sc-for>
+        </div>
+      </section>
+    </sc-if>
+    <sc-if value="{{ hasGallery }}" hint-placeholder-val="{{ false }}">
+      <section aria-labelledby="gal-title" style="background:var(--color-bg)">
+        <div style="max-width:1200px;margin:0 auto;padding:clamp(48px,7vw,96px) clamp(20px,5vw,48px)">
+          <h2 id="gal-title" style="font-size:clamp(26px,3.2vw,40px);letter-spacing:-.02em;margin:0 0 28px">Gallery</h2>
+          <ul style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(calc(50% - 8px),260px),1fr));gap:16px">
+            <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="0"><li style="aspect-ratio:1;overflow:hidden;background:var(--color-surface)"><a href="{{ g }}" target="_blank" rel="noopener"><img src="{{ g }}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></img></a></li></sc-for>
+          </ul>
+        </div>
+      </section>
+    </sc-if>
+    <sc-if value="{{ hasMore }}" hint-placeholder-val="{{ false }}">
+      <section aria-labelledby="more-title" style="background:var(--adda-white)">
+        <div style="max-width:1200px;margin:0 auto;padding:clamp(48px,7vw,96px) clamp(20px,5vw,48px)">
+          <h2 id="more-title" style="font-size:clamp(26px,3.2vw,40px);letter-spacing:-.02em;margin:0 0 28px">More {{ ev.subTitle }}</h2>
+          <ul style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(calc(50% - 10px),200px),1fr));gap:24px 20px">
+            <sc-for list="{{ more }}" as="m" hint-placeholder-count="0">
+              <li><a href="{{ m.href }}" style="display:flex;flex-direction:column;gap:10px;text-decoration:none;color:var(--color-text)" style-hover="color:var(--color-accent)">
+                <div style="aspect-ratio:4/5;overflow:hidden;background:var(--color-accent-2-100)"><img src="{{ m.img }}" alt="" loading="lazy" onError="{{ m.hide }}" style="width:100%;height:100%;object-fit:cover;display:block"></img></div>
+                <span style="font-size:16px;font-weight:800;line-height:1.25">{{ m.title }}</span>
+              </a></li>
+            </sc-for>
+          </ul>
+        </div>
+      </section>
+    </sc-if>
+  </sc-if>
+  <sc-if value="{{ missing }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width:1200px;margin:0 auto;padding:clamp(48px,8vw,120px) clamp(20px,5vw,48px);display:flex;flex-direction:column;gap:18px">
+      <h1 style="font-size:clamp(36px,5vw,64px);letter-spacing:-.03em;margin:0">Event not found</h1>
+      <p style="margin:0;font-size:18px">This event may have moved. Browse <a href="Events.dc.html#past" style="font-weight:700">past events</a> or use the search at the top.</p>
+    </section>
+  </sc-if>
+</main>
+<dc-import name="SiteFooter" hint-size="100%,520px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { id: '', bad: false, alt: '' };
+  componentDidMount() {
+    this.setState({ id: new URLSearchParams(location.search).get('id') || this.props.eventId || 'durga-pujo-2025' });
+    this.onReady = () => this.forceUpdate(); window.addEventListener('adda-ready', this.onReady);
+  }
+  componentDidUpdate() { const e = this.cur; if (e && this.probed !== e.img) { this.probed = e.img; this.setState({ bad: false, alt: '' }); const im = new Image(); im.onerror = () => { const r = window.ADDA && window.ADDA.remote(e.img); if (!r) return this.setState({ bad: true }); const im2 = new Image(); im2.onload = () => this.setState({ alt: r }); im2.onerror = () => this.setState({ bad: true }); im2.src = r; }; im.src = e.img; } if (e && document.title.indexOf(e.title) !== 0) document.title = e.title + ' · Adda Slough'; }
+  componentWillUnmount() { window.removeEventListener('adda-ready', this.onReady); }
+  renderVals() {
+    const A = window.ADDA; const all = A ? A.ALL_EVENTS : [];
+    const ev = all.find(e => e.id === this.state.id); this.cur = ev;
+    if (!ev) return { found: false, missing: !!A && !!this.state.id, ev: {}, prev: {}, next: {}, more: [] };
+    const series = all.filter(e => e.sub === ev.sub); const i = series.indexOf(ev);
+    const prev = series[i - 1], next = series[i + 1];
+    return {
+      found: true, missing: false, ev, subHref: ev.catHref + '#' + ev.sub, hasNote: !!ev.note && !(ev.text || []).length, hasDate: !!ev.date,
+      hasText: !!(ev.text || []).length, textBlocks: (ev.text || []).map(t => t.indexOf('## ') === 0 ? { isHead: true, isPara: false, body: t.slice(3) } : { isHead: false, isPara: true, body: t }),
+      hasGallery: !!(ev.gallery || []).length, gallery: ev.gallery || [],
+      heroList: this.state.bad ? [] : [{ ...ev, src: this.state.alt || ev.img }], imgBad: this.state.bad, onErr: () => this.setState({ bad: true }),
+      prev: prev || {}, next: next || {}, hasPrev: !!prev, noPrev: !prev, hasNext: !!next,
+      more: series.filter(e => e !== ev).slice(0, 6).map(e => ({ ...e, hide: (x) => { x.target.style.visibility = 'hidden'; } })), hasMore: series.length > 1
+    };
+  }
+}
+</script>
+</body>
+</html>

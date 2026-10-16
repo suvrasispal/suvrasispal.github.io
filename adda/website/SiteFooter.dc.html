@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48.png">
+<link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
+<script src="js/img-fallback.js"></script>
+<script>if(location.protocol==='file:')document.write('<script src="js/offline-bundle.js"><\/script>')</script>
+<script src="support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="css/modernist.css">
+<link rel="stylesheet" href="css/theme.css">
+</helmet>
+<footer style="background:var(--color-accent-800);color:var(--adda-white)">
+  <div style="max-width:1200px;margin:0 auto;padding:clamp(56px,8vw,96px) clamp(20px,5vw,48px) 0">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:40px 32px;padding-bottom:56px">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <a href="Home.dc.html" aria-label="Adda Slough home" style="align-self:flex-start;line-height:0"><img src="assets/images/addalogo.png" alt="Adda Slough" style="height:72px;width:auto;display:block"></img></a>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:color-mix(in srgb,var(--adda-white) 86%,transparent)">A charitable trust from Slough, UK, organising charity, cultural and sports events throughout the year.</p>
+        <p style="margin:0;font-size:14px;font-weight:600">Charity Registration Number: 1183906</p>
+      </div>
+      <sc-for list="{{ cols }}" as="c" hint-placeholder-count="3">
+        <nav aria-label="{{ c.title }}" style="display:flex;flex-direction:column">
+          <h2 style="margin:0 0 12px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-2)">{{ c.title }}</h2>
+          <sc-for list="{{ c.links }}" as="l" hint-placeholder-count="4">
+            <a href="{{ l.href }}" target="{{ l.target }}" rel="noopener" style="display:flex;align-items:center;min-height:36px;font-size:15px;color:var(--adda-white);text-decoration:none" style-hover="color:var(--color-accent-2-300);text-decoration:underline;text-underline-offset:4px">{{ l.label }}</a>
+          </sc-for>
+        </nav>
+      </sc-for>
+      <div style="display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.55">
+        <h2 style="margin:0 0 6px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-2)">Contact</h2>
+        <span>31 Finefield Walk, Slough, Berkshire SL1 2QR, United Kingdom</span>
+        <a href="mailto:addasloughinformation@gmail.com" style="color:var(--adda-white);word-break:break-all">addasloughinformation@gmail.com</a>
+        <a href="tel:07823602447" style="color:var(--adda-white)">Neel · 07823 602447</a>
+        <a href="tel:07523645992" style="color:var(--adda-white)">Prady · 07523 645992</a>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 24px;padding:20px 0 28px;border-top:1px solid color-mix(in srgb,var(--adda-white) 18%,transparent);font-size:14px">
+      <span>© 2026 adda-slough.org · All rights reserved</span>
+      <a href="Terms.dc.html" style="color:var(--adda-white)">Terms &amp; Conditions</a>
+      <a href="Privacy.dc.html" style="color:var(--adda-white)">Privacy Policy</a>
+      <a href="SignIn.dc.html" style="color:var(--adda-white)">Member sign-in</a>
+      <div style="margin-left:auto;display:flex;gap:4px">
+        <a href="https://www.facebook.com/adda.slough" target="_blank" rel="noopener" aria-label="Facebook" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:var(--adda-white)" style-hover="color:var(--color-accent-2)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+        <a href="https://www.instagram.com/addaslough/" target="_blank" rel="noopener" aria-label="Instagram" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:var(--adda-white)" style-hover="color:var(--color-accent-2)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><path d="M17.5 6.5h.01"></path></svg></a>
+        <a href="https://www.youtube.com/@addaslough5239" target="_blank" rel="noopener" aria-label="YouTube" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:var(--adda-white)" style-hover="color:var(--color-accent-2)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"></path><path d="m10 15 5-3-5-3z"></path></svg></a>
+        <a href="https://x.com/AddaSlough_org" target="_blank" rel="noopener" aria-label="X (Twitter)" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:var(--adda-white)" style-hover="color:var(--color-accent-2)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4l16 16"></path><path d="M20 4 4 20"></path></svg></a>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:10px;padding:14px 0 18px;border-top:1px solid color-mix(in srgb,var(--adda-white) 10%,transparent);font-size:12px;letter-spacing:.04em;color:color-mix(in srgb,var(--adda-white) 70%,transparent)">Powered by<a href="https://nexyraconsulting.co.uk" target="_blank" rel="noopener" aria-label="Nexyra Consulting (opens in a new tab)" style="display:block;line-height:0;opacity:.85" style-hover="opacity:1"><img src="assets/images/nexyra-logo-white.svg" alt="Nexyra Consulting" style="height:30px;width:auto;display:block"></img></a></div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;520px&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const L = (label, href, ext) => ({ label, href, target: ext ? '_blank' : '_self' });
+    return {
+      cols: [
+        { title: 'Explore', links: [L('About Adda Slough', 'About.dc.html'), L('ADDA Family', 'About.dc.html#family'), L('Events', 'Events.dc.html'), L('Past events', 'Events.dc.html#past'), L('Charity', 'Charity.dc.html'), L('Media', 'Media.dc.html')] },
+        { title: 'Take part', links: [L('Durga Pujo 2026', 'Events.dc.html#durga-pujo'), L('Programme registration', 'Registration.dc.html'), L('Sponsor Bhog', 'Events.dc.html#bhog'), L('Membership', 'Contact.dc.html#membership'), L('Sponsorship & stalls', 'Contact.dc.html#sponsorship'), L('Contact us', 'Contact.dc.html')] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

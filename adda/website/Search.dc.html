@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48.png">
+<link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
+<script src="js/img-fallback.js"></script>
+<script>if(location.protocol==='file:')document.write('<script src="js/offline-bundle.js"><\/script>')</script>
+<script src="support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Search · Adda Slough</title>
+<link rel="stylesheet" href="css/modernist.css">
+<link rel="stylesheet" href="css/theme.css">
+<script src="js/site.js"></script>
+<style>body{margin:0;background:var(--color-bg);overflow-x:hidden}</style>
+</helmet>
+<dc-import name="SiteHeader" current="none" hint-size="100%,97px" style="display:block"></dc-import>
+<header data-hero="" style="position:relative;overflow:hidden;background:var(--color-accent-900);color:var(--adda-white);min-height:clamp(360px,48vh,520px);display:flex;align-items:flex-end"><img src="images/a-circular-arrangement-of-candles-on-a-floor.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 50%;display:block"></img><div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,25,53,.86) 0%,rgba(7,25,53,.58) 60%,rgba(7,25,53,.32) 100%),linear-gradient(180deg,rgba(7,25,53,.25),rgba(7,25,53,.55))"></div><div style="position:relative;width:100%;box-sizing:border-box;max-width:1200px;margin:0 auto;padding:clamp(64px,12vh,140px) clamp(20px,5vw,48px) clamp(40px,6vw,72px);text-shadow:0 1px 14px rgba(7,25,53,.45)">
+  <h1 style="font-size:clamp(40px,6vw,72px);line-height:1;letter-spacing:-.035em;margin:0 0 28px">Search</h1>
+  <form role="search" onSubmit="{{ submit }}" style="display:flex;max-width:760px;text-shadow:none;background:var(--adda-white);box-shadow:0 1px 2px rgba(23,35,74,.06),0 8px 28px rgba(23,35,74,.07)">
+    <label for="q" style="position:absolute;left:-9999px">Search the website</label>
+    <input id="q" ref="{{ inRef }}" type="search" value="{{ q }}" onChange="{{ onQ }}" placeholder="Search events, pages, people…" autocomplete="off" style="flex:1;min-width:0;height:60px;padding:0 20px;border:0;outline:none;background:transparent;font:inherit;font-size:18px;color:var(--color-text)"></input>
+    <button type="submit" class="btn btn-primary" style="height:60px;min-width:60px;padding:0 20px">Search</button>
+  </form></div><a href="https://unsplash.com/photos/a-circular-arrangement-of-candles-on-a-floor-cM8X2DDvnGE" target="_blank" rel="noopener" style="position:absolute;right:12px;bottom:10px;z-index:1;font-size:9px;color:rgba(255,255,255,.85);text-decoration:none">Photo: Suchandra Roy Chowdhury / Unsplash</a></header>
+<main id="main" style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,48px) clamp(64px,9vw,120px)">
+
+  <sc-if value="{{ hasQ }}" hint-placeholder-val="{{ false }}">
+    <div style="margin-top:36px;display:flex;flex-direction:column;gap:24px">
+      <sc-if value="{{ hasExact }}" hint-placeholder-val="{{ false }}">
+        <p style="margin:0;font-size:17px"><strong>{{ countLabel }}</strong> for “{{ q }}”</p>
+        <div role="group" aria-label="Filter results" style="display:flex;flex-wrap:wrap;gap:8px">
+          <sc-for list="{{ chips }}" as="c" hint-placeholder-count="0">
+            <button type="button" onClick="{{ c.pick }}" aria-pressed="{{ c.pressed }}" style="min-height:40px;padding:0 14px;background:{{ c.bg }};color:{{ c.ink }};border:0;box-shadow:inset 0 0 0 1px {{ c.ring }};font:inherit;font-size:14px;font-weight:700;cursor:pointer">{{ c.label }} · {{ c.n }}</button>
+          </sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{ noExact }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <p style="margin:0;font-size:20px;font-weight:800">No exact match found for “{{ q }}”.</p>
+          <p style="margin:0;font-size:17px">{{ relatedLead }}</p>
+        </div>
+      </sc-if>
+      <ul style="list-style:none;margin:0;padding:0;max-width:820px">
+        <sc-for list="{{ results }}" as="r" hint-placeholder-count="0">
+          <li style="border-top:1px solid color-mix(in srgb,var(--color-text) 12%,transparent)">
+            <a href="{{ r.url }}" style="display:flex;flex-direction:column;gap:6px;padding:20px 0;text-decoration:none;color:var(--color-text)" style-hover="color:var(--color-accent)">
+              <span style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent-2-800)">{{ r.section }}</span>
+              <span style="font-size:21px;font-weight:800;line-height:1.25">{{ r.title }}</span>
+              <span style="font-size:15px;line-height:1.5;color:var(--color-text)">{{ r.desc }}</span>
+            </a>
+          </li>
+        </sc-for>
+      </ul>
+    </div>
+  </sc-if>
+
+  <div style="margin-top:48px;display:flex;flex-direction:column;gap:14px">
+    <span style="font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-2-800)">{{ popularLabel }}</span>
+    <div style="display:flex;flex-wrap:wrap;gap:8px 24px">
+      <sc-for list="{{ popular }}" as="p" hint-placeholder-count="5"><a href="{{ p.url }}" style="font-weight:700;min-height:44px;display:flex;align-items:center">{{ p.title }}</a></sc-for>
+    </div>
+  </div>
+</main>
+<dc-import name="SiteFooter" hint-size="100%,520px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { q: '', filter: 'All' };
+  componentDidMount() {
+    const q = new URLSearchParams(location.search).get('q') || '';
+    this.setState({ q });
+    this.onReady = () => this.forceUpdate(); window.addEventListener('adda-ready', this.onReady);
+    if (!q) setTimeout(() => this.inp && this.inp.focus(), 100);
+  }
+  componentWillUnmount() { window.removeEventListener('adda-ready', this.onReady); }
+  renderVals() {
+    const A = window.ADDA; const { q, filter } = this.state;
+    const r = A && q.trim() ? A.search(q, 60) : { exact: [], related: [] };
+    const secs = {}; r.exact.forEach(x => { secs[x.section] = (secs[x.section] || 0) + 1; });
+    const list = r.exact.length ? r.exact.filter(x => filter === 'All' || x.section === filter) : r.related.slice(0, 8);
+    const pop = ['Durga Pujo 2026', 'Durga Pujo 2026 programme registration', 'Sponsor Bhog', 'Adda Aid', 'ADDA Family', 'Contact us'];
+    const chip = (label, n) => ({ label, n: String(n), pressed: filter === label ? 'true' : 'false', bg: filter === label ? 'var(--color-accent)' : 'transparent', ink: filter === label ? 'var(--adda-white)' : 'var(--color-accent)', ring: filter === label ? 'var(--color-accent)' : 'color-mix(in srgb,var(--color-accent) 40%,transparent)', pick: () => this.setState({ filter: label }) });
+    return {
+      q, inRef: (el) => { this.inp = el; },
+      onQ: (e) => this.setState({ q: e.target.value, filter: 'All' }),
+      submit: (e) => { e.preventDefault(); history.replaceState(null, '', '?q=' + encodeURIComponent(q.trim())); },
+      hasQ: !!q.trim(), hasExact: r.exact.length > 0, noExact: !!q.trim() && !r.exact.length,
+      relatedLead: r.related.length ? 'You may be looking for:' : 'Try a different word, or browse the popular pages below.',
+      countLabel: r.exact.length + (r.exact.length === 1 ? ' result' : ' results'),
+      chips: r.exact.length ? [chip('All', r.exact.length), ...Object.keys(secs).map(s => chip(s, secs[s]))] : [],
+      results: list, popularLabel: q.trim() ? 'Popular pages' : 'Popular right now',
+      popular: A ? pop.map(t => A.INDEX.find(x => x.title === t)).filter(Boolean) : []
+    };
+  }
+}
+</script>
+</body>
+</html>

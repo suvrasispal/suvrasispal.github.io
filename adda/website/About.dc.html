@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48.png">
+<link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
+<script src="js/img-fallback.js"></script>
+<script>if(location.protocol==='file:')document.write('<script src="js/offline-bundle.js"><\/script>')</script>
+<script src="support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>About Us · Adda Slough</title>
+<meta name="description" content="Our mission, metrics and meet the team behind Adda Slough.">
+<link rel="stylesheet" href="css/modernist.css">
+<link rel="stylesheet" href="css/theme.css">
+<style>html{scroll-behavior:smooth;scroll-padding-top:120px}body{margin:0;background:var(--color-bg);overflow-x:hidden}@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}@media print{[data-protected]{background-image:none!important}}</style>
+</helmet>
+<dc-import name="SiteHeader" current="about" hint-size="100%,97px" style="display:block"></dc-import>
+<main id="main">
+  <header data-hero="" style="position:relative;min-height:clamp(520px,82vh,860px);display:flex;align-items:flex-end;overflow:hidden;background:var(--color-accent-900);color:var(--adda-white)">
+    <img src="images/lit-oil-lamps-on-decorative-tray.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%;display:block"></img><div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,25,53,.30) 0%,rgba(7,25,53,.58) 45%,rgba(7,25,53,.90) 100%)"></div>
+    <div style="position:relative;width:100%;max-width:1200px;margin:0 auto;padding:clamp(96px,14vh,180px) clamp(20px,5vw,48px) clamp(40px,7vw,88px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px clamp(32px,5vw,72px);align-items:end">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <span style="display:flex;align-items:center;gap:12px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--adda-white);text-shadow:0 1px 12px rgba(7,25,53,.6)"><span aria-hidden="true" style="width:28px;height:2px;background:var(--adda-white)"></span>About us</span>
+        <h1 style="font-size:clamp(46px,7.4vw,96px);line-height:.98;letter-spacing:-.035em;margin:0;color:var(--adda-white);text-shadow:0 2px 24px rgba(7,25,53,.35)">About Adda Slough</h1>
+        <p style="margin:0;font-size:15px;font-weight:700;text-shadow:0 1px 12px rgba(7,25,53,.6)">Charity Registration Number: 1183906</p>
+      </div>
+      <p style="margin:0;font-size:clamp(17px,1.4vw,19px);line-height:1.7;color:var(--adda-white);text-shadow:0 1px 14px rgba(7,25,53,.55);max-width:34em">Adda Slough originated from the very idea of gathering for an extended, relaxed and unlimited exchange of views in August 2012 by a close group of families. Later with the time as our reach extended, we started organizing cultural and sports events throughout the year, not only friends but for the community as well. The aim was to promote community integration and cohesion.</p>
+    </div>
+  <a href="https://unsplash.com/photos/lit-oil-lamps-on-decorative-tray-xisPXJqwQkA" target="_blank" rel="noopener" style="position:absolute;right:12px;bottom:10px;z-index:1;font-size:9px;color:rgba(255,255,255,.85);text-decoration:none">Photo: Udayaditya Barua / Unsplash</a></header>
+
+  <section id="mission" aria-labelledby="mission-title" style="background:var(--adda-white)">
+    <div style="max-width:1200px;margin:0 auto;padding:clamp(64px,9vw,120px) clamp(20px,5vw,48px)">
+      <span style="display:flex;align-items:center;gap:12px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-2-800);margin-bottom:16px"><span aria-hidden="true" style="width:28px;height:2px;background:var(--color-accent-2)"></span>Adda Slough mission</span>
+      <h2 id="mission-title" style="font-size:clamp(30px,4.2vw,54px);line-height:1.06;letter-spacing:-.025em;margin:0 0 clamp(36px,5vw,64px);max-width:16em;color:var(--color-accent)">To promote cultural integration and sports within the community.</h2>
+      <ol style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:32px clamp(24px,4vw,56px)">
+        <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="3">
+          <li style="display:flex;flex-direction:column;gap:12px;padding-top:20px;border-top:1px solid color-mix(in srgb,var(--color-text) 14%,transparent)">
+            <span style="font-size:14px;font-weight:700;color:var(--color-accent-2-800);font-feature-settings:'tnum' 1">{{ p.n }}</span>
+            <h3 style="font-size:24px;letter-spacing:-.01em;margin:0">{{ p.title }}</h3>
+            <p style="margin:0;font-size:16px;line-height:1.6">{{ p.copy }}</p>
+          </li>
+        </sc-for>
+      </ol>
+      <p style="margin:clamp(36px,5vw,56px) 0 0;font-size:18px;line-height:1.6;max-width:40em">To maintain fun and frolic in our lives, we from ADDA organize the below events and eagerly look forward to all of your presence to make them even more glorious. <a href="Events.dc.html" style="font-weight:700">See our events →</a></p>
+    </div>
+  </section>
+
+  <section id="metrics" aria-labelledby="metric-title" style="max-width:1200px;margin:0 auto;padding:clamp(56px,8vw,96px) clamp(20px,5vw,48px)">
+    <span id="metric-title" style="display:flex;align-items:center;gap:12px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-2-800);margin-bottom:24px"><span aria-hidden="true" style="width:28px;height:2px;background:var(--color-accent-2)"></span>Adda Slough metric</span>
+    <dl style="margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:32px">
+      <sc-for list="{{ stats }}" as="s" hint-placeholder-count="3">
+        <div style="display:flex;flex-direction:column-reverse;gap:6px">
+          <dt style="font-size:16px">{{ s.label }}</dt>
+          <dd style="margin:0;font-family:var(--font-heading);font-size:clamp(52px,7vw,96px);font-weight:800;line-height:.95;letter-spacing:-.04em;color:var(--color-accent)">{{ s.num }}</dd>
+        </div>
+      </sc-for>
+    </dl>
+  </section>
+
+  <section id="family" aria-labelledby="family-title" style="background:var(--adda-white)">
+    <div style="max-width:1200px;margin:0 auto;padding:clamp(64px,9vw,120px) clamp(20px,5vw,48px)">
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 32px;margin-bottom:clamp(28px,4vw,48px)">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <span style="display:flex;align-items:center;gap:12px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-2-800)"><span aria-hidden="true" style="width:28px;height:2px;background:var(--color-accent-2)"></span>{{ familyCount }} families</span>
+          <h2 id="family-title" style="font-size:clamp(32px,4.4vw,56px);line-height:1.04;letter-spacing:-.025em;margin:0">Adda Slough Family</h2>
+        </div>
+        <div class="field" style="width:min(100%,320px);margin:0">
+          <label for="family-find">Find a family</label>
+          <input id="family-find" class="input" type="search" value="{{ q }}" onChange="{{ onQ }}" placeholder="Type a name" autocomplete="off"></input>
+        </div>
+      </div>
+      <ul onContextMenu="{{ block }}" onDragStart="{{ block }}" style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(calc(50% - 8px),200px),1fr));gap:clamp(24px,3vw,36px) clamp(16px,2vw,24px)">
+        <sc-for list="{{ family }}" as="f" hint-placeholder-count="0">
+          <li style="display:flex;flex-direction:column;gap:10px">
+            <div data-protected="" role="img" aria-label="{{ f.names }}" style="position:relative;aspect-ratio:1/1;overflow:hidden;background-color:var(--color-surface);background-image:{{ f.bg }};background-size:cover;background-position:center;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none"><div aria-hidden="true" style="position:absolute;inset:0;background:transparent"></div></div>
+            <span style="font-size:15px;font-weight:600;line-height:1.35">{{ f.names }}</span>
+          </li>
+        </sc-for>
+      </ul>
+      <sc-if value="{{ none }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:17px">No family matches “{{ q }}”.</p></sc-if>
+    </div>
+  </section>
+</main>
+<dc-import name="SiteFooter" hint-size="100%,520px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const P = 'https://media.adda-slough.org/public/images/org/people/';
+const FAMILY = [['amf001.jpg', 'Neel, Oindrila, Oviyan & Nimisha'], ['amf002.jpg', 'Prady & Indrani'], ['amf003.jpg', 'Prasenjit & Esha'], ['amf004.jpg', 'Debraj, Chaitali & Reyansh'], ['amf005.jpg', 'Anumita, Tojo & Eshana'], ['amf006.jpg', 'Kiaan, Kiyara, Lahori & Samrat'], ['amf007.jpg', 'Abhishek, Ridhaana & Ritwika'], ['amf008.jpg', 'Deeptanal, Debarati & Devadyuti'], ['amf009.jpg', 'Aritra, Mitul, Anmesh & Anumegha'], ['amf010.jpg', 'Arun, Chameli, Anvita & Anika'], ['amf012.jpg', 'Lisa, Leoan, Monideepa & Utpal'], ['amf013.jpg', 'Arijeet, Bandana & Arunava'], ['amf014.jpg', 'Dhiraj & Noopur'], ['amf015.jpg', 'Abhijit Ayetri & Ananya'], ['amf016.png', 'Sudipta & Suhasini'], ['amf017.png', 'Sandip, Ishita & Vivaan'], ['amf018.jpg', 'Aparajita, Raman, Abhinav & Nayontara'], ['amf019.jpg', 'Suvrasis & Juri'], ['amf020.png', 'Sandip, Monica, Ivy & Adi'], ['amf022.jpg', 'Ishita & Saikat'], ['amf023.jpg', 'Souvik, Malini & Arjun'], ['amf024.jpg', 'Archan, Nabanita & Ayush'], ['amf031.jpg', 'Abhishek Roy'], ['amf032.jpg', 'Paromita, Sourav & Parav'], ['amf033.jpg', 'Sandipan, Ria & Risan'], ['amf034.jpg', 'Munmun, Byomkesh, Koyna & Akshita'], ['amf035.jpg', 'Debalok, Saonli & Diwisha'], ['amf036.jpg', 'Poulami, Virat, Vanshika & Vamika'], ['amf037.jpg', 'VaniShree , Rajamarthandan & Dakshayani'], ['amf038.jpg', 'Arindam, Anushreya, Anahi & Ayra'], ['amf039.jpg', 'Sauvik & Tanisha'], ['amf040.jpg', 'Siddhartha, Pritha & Divisha'], ['apf001.png', 'Abhisek, Ishan & Jessica'], ['apf002.jpg', 'Rupali, Indranil & Ayushman']];
+class Component extends DCLogic {
+  state = { q: '' };
+  componentDidMount() {
+    this.onKey = (e) => { const k = (e.key || '').toLowerCase(); if ((e.ctrlKey || e.metaKey) && (k === 's' || k === 'u')) e.preventDefault(); };
+    window.addEventListener('keydown', this.onKey);
+  }
+  componentWillUnmount() { window.removeEventListener('keydown', this.onKey); }
+  renderVals() {
+    const q = this.state.q.trim().toLowerCase();
+    const list = FAMILY.filter(([, n]) => !q || n.toLowerCase().includes(q)).map(([f, names]) => ({ bg: 'url("' + P + f + '"), url("' + (window.ADDA_REMOTE ? window.ADDA_REMOTE(P + f) : '') + '")', names }));
+    return {
+      pillars: [
+        { n: '01', title: 'Cultural integration', copy: 'By organising Pujo and participating and volunteering in the different cultural event.' },
+        { n: '02', title: 'Promote sports', copy: 'By organizing Cricket, Football and Badminton tournaments.' },
+        { n: '03', title: 'Social responsibility', copy: 'Helping communities by supporting them through their needs.' }
+      ],
+      stats: [{ num: '84', label: 'Events' }, { num: '9200', label: 'Followers' }],
+      familyCount: String(FAMILY.length), q: this.state.q, onQ: (e) => this.setState({ q: e.target.value }),
+      family: list, none: list.length === 0,
+      block: (e) => e.preventDefault()
+    };
+  }
+}
+</script>
+</body>
+</html>

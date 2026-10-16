@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48.png">
+<link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
+<script src="js/img-fallback.js"></script>
+<script>if(location.protocol==='file:')document.write('<script src="js/offline-bundle.js"><\/script>')</script>
+<script src="support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Events · Adda Slough</title>
+<meta name="description" content="Find out about the latest and historical events in the Adda Slough community: Festivals, Cultural, Sports &amp; Other.">
+<link rel="stylesheet" href="css/modernist.css">
+<link rel="stylesheet" href="css/theme.css">
+<style>html{scroll-behavior:smooth;scroll-padding-top:120px}body{margin:0;background:var(--color-bg);overflow-x:hidden}@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}</style>
+</helmet>
+
+<dc-import name="SiteHeader" current="events" hint-size="100%,97px" style="display:block"></dc-import>
+
+<main id="main">
+  <header data-hero="" style="position:relative;overflow:hidden;background:var(--color-accent-900);color:var(--adda-white);min-height:clamp(420px,62vh,660px);display:flex;align-items:flex-end"><img src="assets/images/durga-pujo-pandal.jpg" alt="Adda Slough Durga Pujo pandal with Maa Durga and family" style="position:absolute;left:0;right:0;top:-150px;width:100%;height:calc(100% + 150px);object-fit:cover;object-position:center 40%;display:block"></img><div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,25,53,.86) 0%,rgba(7,25,53,.58) 60%,rgba(7,25,53,.32) 100%),linear-gradient(180deg,rgba(7,25,53,.25),rgba(7,25,53,.55))"></div><div style="position:relative;width:100%;box-sizing:border-box;max-width:1200px;margin:0 auto;padding:clamp(40px,7vw,96px) clamp(20px,5vw,48px) clamp(32px,5vw,56px);display:flex;flex-direction:column;gap:20px;padding-top:clamp(64px,12vh,140px);text-shadow:0 1px 14px rgba(7,25,53,.45)">
+    <span style="display:flex;align-items:center;gap:12px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--adda-white)"><span aria-hidden="true" style="width:28px;height:2px;background:var(--color-accent-2)"></span>Events</span>
+    <h1 style="font-size:clamp(42px,6.4vw,80px);line-height:1;letter-spacing:-.035em;margin:0;max-width:13em">Upcoming events</h1>
+    <p style="margin:0;font-size:clamp(18px,1.6vw,21px);line-height:1.6;max-width:34em">Find out about the latest/historical events in the Adda Slough community - Festivals, Cultural, Sports &amp; Other.</p>
+    <nav aria-label="On this page" style="display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:8px;font-size:15px;font-weight:700">
+      <a href="#durga-pujo" style="min-height:44px;display:flex;align-items:center">Durga Pujo 2026</a>
+      <a href="#bhog" style="min-height:44px;display:flex;align-items:center">Sponsor Bhog</a>
+      <a href="#madhubanti-bagchi" style="min-height:44px;display:flex;align-items:center">Madhubanti Bagchi</a>
+      <a href="#past" style="min-height:44px;display:flex;align-items:center">Past events</a>
+    </nav>
+  </div></header>
+
+  <section id="durga-pujo" aria-labelledby="dp-title" style="background:var(--adda-white)">
+    <div style="max-width:1200px;margin:0 auto;padding:clamp(56px,8vw,112px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(36px,5vw,72px);align-items:start">
+      <div style="aspect-ratio:4/3;overflow:hidden;background:var(--color-surface)"><img src="https://media.adda-slough.org/public/images/events/festivals/durga-pujo/durga-pujo-2026.jpg" alt="Durga Pujo 2026 poster" style="width:100%;height:100%;object-fit:cover;display:block"></img></div>
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <span class="tag tag-marigold" style="align-self:flex-start">Festival · Upcoming</span>
+        <h2 id="dp-title" style="font-size:clamp(34px,4.6vw,58px);line-height:1.02;letter-spacing:-.03em;margin:0;color:var(--color-accent)">Durga Pujo 2026</h2>
+        <p style="margin:0;font-size:18px;line-height:1.6">Adda Durga Puja brings the true essence of Bengal’s Durga Puja to London, with traditional puja, authentic Bengali food, cultural programmes, and joyful community gatherings. An unforgettable celebration—you simply cannot afford to miss!</p>
+        <ol aria-label="Pujo days" style="list-style:none;margin:4px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid color-mix(in srgb,var(--color-text) 14%,transparent);border-bottom:1px solid color-mix(in srgb,var(--color-text) 14%,transparent)">
+          <sc-for list="{{ days }}" as="d" hint-placeholder-count="5">
+            <li style="padding:12px 0 14px;display:flex;flex-direction:column;gap:2px"><span style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase">{{ d.dow }}</span><span style="font-size:clamp(22px,2.4vw,28px);font-weight:800;line-height:1.05;color:var(--color-accent)">{{ d.n }}</span></li>
+          </sc-for>
+        </ol>
+        <dl style="margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px 20px;font-size:16px;line-height:1.5">
+          <dt style="font-weight:700">When</dt><dd style="margin:0">Friday 16 – Tuesday 20 October 2026</dd>
+          <dt style="font-weight:700">Where</dt><dd style="margin:0">Slough Cricket Club, Upton Court Road, Slough SL3 7LT · <a href="https://www.google.com/maps/search/?api=1&amp;query=Slough+Cricket+Club+Upton+Court+Road+SL3+7LT" target="_blank" rel="noopener" style="font-weight:700">Directions</a></dd>
+        </dl>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:4px">
+          <a class="btn btn-primary" href="Registration.dc.html">Register to perform
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </a>
+          <a class="btn btn-secondary" href="#bhog">Sponsor Bhog</a>
+          <button type="button" class="btn btn-ghost" onClick="{{ calPujo }}">Add to calendar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="bhog" aria-labelledby="bhog-title" style="max-width:1200px;margin:0 auto;padding:clamp(56px,8vw,112px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(36px,5vw,72px);align-items:center">
+    <div style="display:flex;flex-direction:column;gap:18px;order:1">
+      <span style="display:flex;align-items:center;gap:12px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-2-800)"><span aria-hidden="true" style="width:28px;height:2px;background:var(--color-accent-2)"></span>Durga Pujo 2026</span>
+      <h2 id="bhog-title" style="font-size:clamp(30px,3.8vw,48px);line-height:1.06;letter-spacing:-.02em;margin:0">✨ Sponsor Bhog, Share Blessings this Durga Puja! 🙏✨</h2>
+      <p style="margin:0;font-size:17px;line-height:1.65">Celebrate with Adda Slough! Sponsor Bhog, get Maa Durga’s blessings and share Prasad with family and friends.</p>
+      <div style="padding:20px 0;border-top:1px solid color-mix(in srgb,var(--color-text) 14%,transparent);border-bottom:1px solid color-mix(in srgb,var(--color-text) 14%,transparent);display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 20px">
+        <span style="display:flex;flex-direction:column;gap:2px"><strong style="font-size:18px">Bhog + Puja + Meal</strong><span style="font-size:15px">Family: max 2 adults &amp; 2 kids</span></span>
+        <span style="font-size:36px;font-weight:800;letter-spacing:-.02em;color:var(--color-accent)">£61</span>
+      </div>
+      <p style="margin:0;font-size:15px">All packages are listed on the poster.</p>
+      <a class="btn btn-primary" href="Contact.dc.html#sponsorship" style="align-self:flex-start">Sponsor Bhog</a>
+    </div>
+    <div style="order:2;display:flex;justify-content:center"><img src="https://media.adda-slough.org/public/images/promotions/durga-pujo-2026-3.jpg" alt="Sponsor Bhog poster listing all Bhog packages" loading="lazy" style="width:100%;max-width:440px;height:auto;display:block;box-shadow:0 2px 6px rgba(23,35,74,.05),0 24px 60px rgba(23,35,74,.10)"></img></div>
+  </section>
+
+  <section id="madhubanti-bagchi" aria-labelledby="mb-title" style="background:var(--adda-white)">
+    <div style="max-width:1200px;margin:0 auto;padding:clamp(56px,8vw,112px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(36px,5vw,72px);align-items:start">
+      <div style="aspect-ratio:4/3;overflow:hidden;background:var(--color-surface)"><img src="https://media.adda-slough.org/public/images/events/cultural-and-other/cultural/madhubanti-bagchi-2026.jpg" alt="Madhubanti Bagchi 2026" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></img></div>
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <span class="tag tag-sky" style="align-self:flex-start">Cultural · Upcoming</span>
+        <h2 id="mb-title" style="font-size:clamp(34px,4.6vw,58px);line-height:1.02;letter-spacing:-.03em;margin:0;color:var(--color-accent)">Madhubanti Bagchi 2026</h2>
+        <p style="margin:0;font-size:18px;line-height:1.6">UK, are you ready? Adda and Alrich Events presents, for the first time ever, Bollywood’s sensational singer Madhubanti Bagchi is coming to the UK! Get ready to experience her soulful voice live and groove to chartbusters like “Aaj Ki Raat,” “Uyi …</p>
+        <dl style="margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px 20px;font-size:16px;line-height:1.5">
+          <dt style="font-weight:700">When</dt><dd style="margin:0">Saturday 31 October 2026, 18:00 to 22:00</dd>
+          <dt style="font-weight:700">Where</dt><dd style="margin:0">Hexagon, Main House, Queen Walk, Reading RG1 7QF</dd>
+        </dl>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:4px">
+          <a class="btn btn-primary" href="https://whatsonreading.com/venues/hexagon/whats-on/madhubanti-bagchi" target="_blank" rel="noopener">Book tickets
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" aria-hidden="true"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg>
+          </a>
+          <button type="button" class="btn btn-ghost" onClick="{{ calMb }}">Add to calendar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="past" aria-labelledby="past-title" style="max-width:1200px;margin:0 auto;padding:clamp(64px,9vw,120px) clamp(20px,5vw,48px)">
+    <span style="display:flex;align-items:center;gap:12px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-2-800);margin-bottom:14px"><span aria-hidden="true" style="width:28px;height:2px;background:var(--color-accent-2)"></span>Events · Historical</span>
+    <h2 id="past-title" style="font-size:clamp(32px,4.4vw,56px);line-height:1.04;letter-spacing:-.025em;margin:0 0 clamp(32px,5vw,48px)">Events - Historical</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(24px,3vw,36px)">
+      <sc-for list="{{ past }}" as="p" hint-placeholder-count="0">
+        <div style="display:flex;flex-direction:column;gap:16px"><a href="{{ p.href }}" style="display:flex;flex-direction:column;gap:16px;text-decoration:none;color:var(--color-text)" style-hover="color:var(--color-accent)">
+          <div style="aspect-ratio:4/3;overflow:hidden;background:var(--color-surface)"><img src="{{ p.img }}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease" style-hover="transform:scale(1.04)"></img></div>
+          <span style="display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:24px;font-weight:800;letter-spacing:-.01em">{{ p.title }}<span aria-hidden="true" style="color:var(--color-accent)">→</span></span>
+          <span style="font-size:15px;line-height:1.5;margin-top:-8px">{{ p.desc }}</span>
+        </a>
+        <ul style="list-style:none;margin:-4px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:4px 18px">
+          <sc-for list="{{ p.subs }}" as="s" hint-placeholder-count="0"><li><a href="{{ s.href }}" style="font-size:15px;font-weight:700;min-height:40px;display:flex;align-items:center">{{ s.label }}</a></li></sc-for>
+        </ul></div>
+      </sc-for>
+    </div>
+  </section>
+</main>
+
+<dc-import name="SiteFooter" hint-size="100%,520px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const M = 'https://media.adda-slough.org/public/images/';
+function ics(id, title, loc, dt) {
+  const s = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Adda Slough//EN', 'BEGIN:VEVENT', 'UID:' + id + '@adda-slough.org', 'DTSTAMP:20260926T000000Z', ...dt, 'SUMMARY:' + title, 'LOCATION:' + loc.replace(/,/g, '\\,'), 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+  const url = URL.createObjectURL(new Blob([s], { type: 'text/calendar' }));
+  const a = document.createElement('a'); a.href = url; a.download = id + '.ics'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+const PAST = [
+        { href: 'Festivals.dc.html', img: M + 'events/festivals.jpg', title: 'Festivals', desc: 'Durga Pujo, Kali Pujo and Saraswati Pujo.', subs: [['Durga Pujo', 'Festivals.dc.html#durga-pujo'], ['Kali Pujo', 'Festivals.dc.html#kali-pujo'], ['Saraswati Pujo', 'Festivals.dc.html#saraswati-pujo']] },
+        { href: 'Cultural.dc.html', img: M + 'events/cultural-and-other.jpg', title: 'Cultural & Other', desc: 'Concerts, shows and community gatherings.', subs: [['Cultural', 'Cultural.dc.html#cultural'], ['Other', 'Cultural.dc.html#other']] },
+        { href: 'Sports.dc.html', img: M + 'events/sports-and-leisure.jpg', title: 'Sports & Leisure', desc: 'Cricket, football, badminton and table tennis.', subs: [['Badminton & Table Tennis', 'Sports.dc.html#badminton-and-table-tennis'], ['Cricket', 'Sports.dc.html#cricket'], ['Football', 'Sports.dc.html#football']] }
+      ];
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      days: [['Fri', '16'], ['Sat', '17'], ['Sun', '18'], ['Mon', '19'], ['Tue', '20']].map(([dow, n]) => ({ dow, n })),
+      calPujo: () => ics('durga-pujo-2026', 'Durga Pujo 2026 · Adda Slough', 'Slough Cricket Club, Upton Court Road, Slough SL3 7LT', ['DTSTART;VALUE=DATE:20261016', 'DTEND;VALUE=DATE:20261021']),
+      calMb: () => ics('madhubanti-bagchi-2026', 'Madhubanti Bagchi 2026', 'Hexagon, Queen Walk, Reading RG1 7QF', ['DTSTART:20261031T180000', 'DTEND:20261031T220000']),
+      past: PAST.map(p => ({ ...p, subs: p.subs.map(([label, href]) => ({ label, href })) }))
+    };
+  }
+}
+</script>
+</body>
+</html>

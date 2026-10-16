@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48.png">
+<link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
+<script src="js/img-fallback.js"></script>
+<script>if(location.protocol==='file:')document.write('<script src="js/offline-bundle.js"><\/script>')</script>
+<script src="support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Sign in · Adda Slough</title>
+<link rel="stylesheet" href="css/modernist.css">
+<link rel="stylesheet" href="css/theme.css">
+<script src="js/live.js"></script>
+<style>body{margin:0;background:var(--color-bg);overflow-x:hidden}</style>
+</helmet>
+<dc-import name="SiteHeader" current="none" hint-size="100%,97px" style="display:block"></dc-import>
+<main id="main" data-parallax="" style="position:relative;overflow:hidden;background:var(--color-accent-900);min-height:calc(100vh - 97px)"><img src="images/a-circular-arrangement-of-candles-on-a-floor.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 50%;display:block"></img><div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,25,53,.86) 0%,rgba(7,25,53,.58) 60%,rgba(7,25,53,.32) 100%),linear-gradient(180deg,rgba(7,25,53,.25),rgba(7,25,53,.55))"></div><div style="position:relative;max-width:1200px;margin:0 auto;padding:clamp(40px,7vw,104px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:clamp(40px,6vw,96px);align-items:start">
+  <div data-hero="" style="display:flex;flex-direction:column;gap:18px;color:var(--adda-white);text-shadow:0 1px 14px rgba(7,25,53,.45)">
+    <span style="display:flex;align-items:center;gap:12px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--adda-white)"><span aria-hidden="true" style="width:28px;height:2px;background:var(--color-accent-2)"></span>Members</span>
+    <h1 style="font-size:clamp(40px,6vw,72px);line-height:1;letter-spacing:-.035em;margin:0">Sign in</h1>
+    <p style="margin:0;font-size:18px;line-height:1.6;max-width:28em">Sign in to search or edit your Durga Pujo registration and manage your membership.</p>
+    <p style="margin:0;font-size:16px">Not registered yet? <a href="Registration.dc.html" style="font-weight:700">Register for a programme</a> or <a href="Contact.dc.html#membership" style="font-weight:700">become a member</a>.</p>
+  </div>
+  <form noValidate="{{ true }}" onSubmit="{{ submit }}" style="display:flex;flex-direction:column;gap:20px;background:var(--adda-white);padding:clamp(24px,4vw,40px);box-shadow:0 1px 2px rgba(23,35,74,.05),0 12px 36px rgba(23,35,74,.08)">
+    <div class="field" style="margin:0"><label for="s-email">User ID</label><input id="s-email" class="input" type="text" autocomplete="username" autoCapitalize="none" spellCheck="{{ false }}" value="{{ email }}" onChange="{{ onEmail }}" aria-invalid="{{ emailInv }}" style="width:100%;box-sizing:border-box"></input>
+      <sc-if value="{{ emailErr }}" hint-placeholder-val="{{ false }}"><p style="margin:6px 0 0;font-size:14px;font-weight:600;color:var(--color-accent-2-800)">Enter your user ID</p></sc-if></div>
+    <div class="field" style="margin:0"><label for="s-pass">Password</label><input id="s-pass" class="input" type="{{ passType }}" autocomplete="current-password" value="{{ pass }}" onChange="{{ onPass }}" aria-invalid="{{ passInv }}" style="width:100%;box-sizing:border-box"></input>
+      <sc-if value="{{ passErr }}" hint-placeholder-val="{{ false }}"><p style="margin:6px 0 0;font-size:14px;font-weight:600;color:var(--color-accent-2-800)">Enter your password</p></sc-if></div>
+    <label style="display:flex;align-items:center;gap:10px;font-size:15px;min-height:44px;cursor:pointer"><input type="checkbox" checked="{{ show }}" onChange="{{ toggleShow }}" style="width:18px;height:18px;accent-color:var(--color-accent)"></input>Show password</label>
+    <button type="submit" class="btn btn-primary">Sign in</button>
+    <sc-if value="{{ failed }}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin:0;font-size:15px;font-weight:600;color:var(--color-accent-2-800)">{{ failMsg }}</p></sc-if>
+    <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}"><p role="status" style="margin:0;font-size:15px;line-height:1.5;padding:14px 16px;background:var(--color-accent-100)">Checking your details… If you can’t sign in, email <a href="mailto:addasloughinformation@gmail.com">addasloughinformation@gmail.com</a>.</p></sc-if>
+  </form>
+</div><a href="https://unsplash.com/photos/a-circular-arrangement-of-candles-on-a-floor-cM8X2DDvnGE" target="_blank" rel="noopener" style="position:absolute;right:12px;bottom:10px;z-index:1;font-size:9px;color:rgba(255,255,255,.85);text-decoration:none">Photo: Suchandra Roy Chowdhury / Unsplash</a></main>
+<dc-import name="SiteFooter" hint-size="100%,520px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { email: '', pass: '', show: false, tried: false, sent: false, failMsg: '' };
+  async signIn(id, pass) {
+    try {
+      if (!window.AddaLive) throw new Error('Sign-in is still loading. Please try again.');
+      await window.AddaLive.login(id, pass);
+      window.location.href = 'Live.dc.html';
+    } catch (e) { this.setState({ sent: false, failMsg: e.message || 'Sign-in failed. Please try again.' }); }
+  }
+  renderVals() {
+    const { email, pass, show, tried, sent, failMsg } = this.state;
+    const eBad = tried && !email.trim(), pBad = tried && !pass;
+    return {
+      email, pass, passType: show ? 'text' : 'password', show, sent, failed: !!failMsg, failMsg,
+      emailErr: eBad, passErr: pBad, emailInv: eBad ? 'true' : 'false', passInv: pBad ? 'true' : 'false',
+      onEmail: (e) => this.setState({ email: e.target.value, sent: false, failMsg: '' }), onPass: (e) => this.setState({ pass: e.target.value, sent: false, failMsg: '' }),
+      toggleShow: () => this.setState({ show: !show }),
+      submit: (e) => { e.preventDefault(); const ok = !!(email.trim() && pass); this.setState({ tried: true, sent: ok, failMsg: '' }); if (ok) this.signIn(email.trim(), pass); }
+    };
+  }
+}
+</script>
+</body>
+</html>

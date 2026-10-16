@@ -1,0 +1,21 @@
+# Cloudflare Pages project: the website (this folder) plus the /api functions in functions/.
+# Deploy: npx wrangler pages deploy . .
+name = "adda-slough"
+pages_build_output_dir = "."
+compatibility_date = "2026-09-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "adda-live"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+[vars]
+SITE_ORIGIN = "https://adda-slough.org"
+AWS_REGION = "eu-west-1"
+IVS_CHANNEL_ARN = "arn:aws:ivs:eu-west-1:ACCOUNT_ID:channel/CHANNEL_ID"
+IVS_INGEST_ENDPOINT = "REPLACE.global-contribute.live-video.net"
+IVS_PLAYBACK_URL = "https://REPLACE.eu-west-1.playback.live-video.net/api/video/v1/eu-west-1.ACCOUNT_ID.channel.CHANNEL_ID.m3u8"
+RECORDINGS_BASE_URL = "https://REPLACE.cloudfront.net"
+
+# Secrets: set with `npx wrangler pages secret put <NAME>`, never commit them:
+#   AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, HOOK_SECRET

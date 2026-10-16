@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48.png">
+<link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
+<script src="js/img-fallback.js"></script>
+<script>if(location.protocol==='file:')document.write('<script src="js/offline-bundle.js"><\/script>')</script>
+<script src="support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Contact Us · Adda Slough</title>
+<meta name="description" content="Contact the Adda Slough team for related queries. Email us for cultural, sports &amp; other events, sponsorship, stall booking.">
+<link rel="stylesheet" href="css/modernist.css">
+<link rel="stylesheet" href="css/theme.css">
+<style>html{scroll-behavior:smooth;scroll-padding-top:120px}body{margin:0;background:var(--color-bg);overflow-x:hidden}</style>
+</helmet>
+<dc-import name="SiteHeader" current="contact" hint-size="100%,97px" style="display:block"></dc-import>
+<main id="main">
+  <header data-hero="" style="position:relative;overflow:hidden;background:var(--color-accent-900);color:var(--adda-white);min-height:clamp(420px,62vh,660px);display:flex;align-items:flex-end"><img src="images/bokeh-photography-of-lighted-candle.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 50%;display:block"></img><div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,25,53,.86) 0%,rgba(7,25,53,.58) 60%,rgba(7,25,53,.32) 100%),linear-gradient(180deg,rgba(7,25,53,.25),rgba(7,25,53,.55))"></div><div style="position:relative;width:100%;box-sizing:border-box;max-width:1200px;margin:0 auto;padding:clamp(40px,7vw,96px) clamp(20px,5vw,48px) clamp(32px,5vw,56px);display:flex;flex-direction:column;gap:20px;padding-top:clamp(64px,12vh,140px);text-shadow:0 1px 14px rgba(7,25,53,.45)">
+    <span style="display:flex;align-items:center;gap:12px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--adda-white)"><span aria-hidden="true" style="width:28px;height:2px;background:var(--color-accent-2)"></span>Contact us</span>
+    <h1 style="font-size:clamp(42px,6.4vw,80px);line-height:1;letter-spacing:-.035em;margin:0">Want to get in touch?</h1>
+    <p style="margin:0;font-size:clamp(18px,1.6vw,21px);line-height:1.6;max-width:34em">Please use the forms below or you can email us at <a href="mailto:addasloughinformation@gmail.com" style="font-weight:700;word-break:break-all">addasloughinformation@gmail.com</a></p>
+  </div><a href="https://unsplash.com/photos/bokeh-photography-of-lighted-candle-KIrCjwEH5dA" target="_blank" rel="noopener" style="position:absolute;right:12px;bottom:10px;z-index:1;font-size:9px;color:rgba(255,255,255,.85);text-decoration:none">Photo: wilson mathew / Unsplash</a></header>
+
+  <section aria-label="Contact details" style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,48px) clamp(48px,7vw,88px)">
+    <dl style="margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:28px clamp(24px,4vw,56px)">
+      <div style="display:flex;flex-direction:column;gap:8px;padding-top:18px;border-top:2px solid var(--color-accent-2)">
+        <dt style="font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-2-800)">Address</dt>
+        <dd style="margin:0;font-size:17px;line-height:1.6">31 Finefield Walk<br>Slough, Berkshire<br>SL1 2QR, United Kingdom</dd>
+        <dd style="margin:0"><a href="https://www.google.com/maps/search/?api=1&amp;query=31+Finefield+Walk+Slough+SL1+2QR" target="_blank" rel="noopener" style="font-weight:700;min-height:40px;display:inline-flex;align-items:center">Open in Maps ↗</a></dd>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;padding-top:18px;border-top:2px solid var(--color-accent-2)">
+        <dt style="font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-2-800)">Call</dt>
+        <sc-for list="{{ phones }}" as="p" hint-placeholder-count="4">
+          <dd style="margin:0;font-size:17px"><a href="{{ p.tel }}" style="display:inline-flex;gap:10px;min-height:36px;align-items:center;text-decoration:none"><span style="color:var(--color-text);min-width:76px">{{ p.name }} -</span><span style="font-weight:700;text-decoration:underline;text-underline-offset:4px">{{ p.num }}</span></a></dd>
+        </sc-for>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;padding-top:18px;border-top:2px solid var(--color-accent-2)">
+        <dt style="font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-2-800)">Email</dt>
+        <dd style="margin:0;font-size:17px;word-break:break-all"><a href="mailto:addasloughinformation@gmail.com" style="font-weight:700">addasloughinformation@gmail.com</a></dd>
+      </div>
+    </dl>
+  </section>
+
+  <section id="form" aria-labelledby="form-title" style="background:var(--adda-white)">
+    <span id="membership"></span><span id="sponsorship"></span><span id="enquiry"></span>
+    <div style="max-width:880px;margin:0 auto;padding:clamp(56px,8vw,104px) clamp(20px,5vw,48px)">
+      <h2 id="form-title" style="font-size:clamp(30px,4vw,48px);letter-spacing:-.025em;margin:0 0 24px">Send us a message</h2>
+      <div role="tablist" aria-label="Form type" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-bottom:1px solid color-mix(in srgb,var(--color-text) 14%,transparent);margin-bottom:32px">
+        <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3">
+          <button type="button" role="tab" aria-selected="{{ t.sel }}" onClick="{{ t.pick }}" style="min-height:52px;padding:0 4px;background:transparent;border:0;box-shadow:inset 0 -3px 0 {{ t.bar }};font:inherit;font-size:clamp(15px,1.6vw,17px);font-weight:700;color:{{ t.ink }};cursor:pointer;text-align:left">{{ t.label }}</button>
+        </sc-for>
+      </div>
+
+      <sc-if value="{{ done }}" hint-placeholder-val="{{ false }}">
+        <div role="status" style="display:flex;flex-direction:column;gap:14px;padding:32px 0">
+          <h3 style="font-size:28px;margin:0;color:var(--adda-leaf-700)">Thank you, {{ firstName }}.</h3>
+          <p style="margin:0;font-size:17px;line-height:1.6">Your {{ tabLower }} form has been received. The Adda Slough team will get back to you at {{ form.email }}.</p>
+          <button type="button" class="btn btn-secondary" onClick="{{ reset }}" style="align-self:flex-start">Send another message</button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ notDone }}" hint-placeholder-val="{{ true }}">
+        <form noValidate="{{ true }}" onSubmit="{{ submit }}" style="display:flex;flex-direction:column;gap:22px">
+                    <sc-if value="{{ hasErrors }}" hint-placeholder-val="{{ false }}">
+            <div ref="{{ sumRef }}" tabindex="-1" role="alert" style="padding:18px 20px;background:var(--color-accent-2-100);box-shadow:inset 3px 0 0 var(--color-accent-2-700);outline:none">
+              <strong style="display:block;margin-bottom:8px;color:var(--color-accent-2-900)">Please check the following:</strong>
+              <ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px"><sc-for list="{{ errorList }}" as="e" hint-placeholder-count="0"><li><a href="{{ e.href }}" style="color:var(--color-accent-2-900);font-weight:600">{{ e.msg }}</a></li></sc-for></ul>
+            </div>
+          </sc-if>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:22px 24px">
+            <sc-for list="{{ fields }}" as="f" hint-placeholder-count="8">
+              <div class="field" style="margin:0;grid-column:{{ f.span }}">
+                <label for="{{ f.id }}">{{ f.label }}</label>
+                <sc-if value="{{ f.isInput }}" hint-placeholder-val="{{ true }}"><input id="{{ f.id }}" class="input" type="{{ f.type }}" autocomplete="{{ f.ac }}" value="{{ f.value }}" onChange="{{ f.on }}" aria-invalid="{{ f.inv }}" aria-describedby="{{ f.errId }}" style="width:100%;box-sizing:border-box;border-color:{{ f.bc }}"></input></sc-if>
+                <sc-if value="{{ f.isSelect }}" hint-placeholder-val="{{ false }}"><select id="{{ f.id }}" class="input" value="{{ f.value }}" onChange="{{ f.on }}" aria-invalid="{{ f.inv }}" style="width:100%;box-sizing:border-box;border-color:{{ f.bc }}"><option value="">Select a Country</option><sc-for list="{{ countries }}" as="c" hint-placeholder-count="0"><option value="{{ c }}">{{ c }}</option></sc-for></select></sc-if>
+                <sc-if value="{{ f.isArea }}" hint-placeholder-val="{{ false }}"><textarea id="{{ f.id }}" class="input" rows="5" value="{{ f.value }}" onChange="{{ f.on }}" style="width:100%;box-sizing:border-box;min-height:140px;padding:12px;font:inherit;resize:vertical"></textarea></sc-if>
+                <sc-if value="{{ f.hasErr }}" hint-placeholder-val="{{ false }}"><p id="{{ f.errId }}" style="margin:6px 0 0;font-size:14px;font-weight:600;color:var(--color-accent-2-800)">{{ f.err }}</p></sc-if>
+              </div>
+            </sc-for>
+          </div>
+          <button type="submit" class="btn btn-primary" style="align-self:flex-start;min-width:180px">Submit
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </button>
+        </form>
+      </sc-if>
+    </div>
+  </section>
+</main>
+<dc-import name="SiteFooter" hint-size="100%,520px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const TABS = [['membership', 'Membership', 'Join the Adda Slough family.'], ['sponsorship', 'Sponsorship', 'Sponsor Bhog or an event, or book a stall.'], ['enquiry', 'Enquiry', 'Questions about events or anything else.']];
+const FIELDS = [
+  ['name', 'Name *', 'text', 'name', 1], ['email', 'Email *', 'email', 'email', 1], ['address1', 'Address 1', 'text', 'address-line1'], ['address2', 'Address 2', 'text', 'address-line2'],
+  ['city', 'City *', 'text', 'address-level2', 1], ['postcode', 'Post Code', 'text', 'postal-code'], ['country', 'Country *', 'select', 'country-name', 1], ['phone', 'Phone *', 'tel', 'tel', 1], ['message', 'Enquiry/Message', 'area', 'off']
+];
+const EMPTY = { name: '', email: '', address1: '', address2: '', city: '', postcode: '', country: '', phone: '', message: '' };
+const NOT = new Set(['EU', 'EZ', 'UN', 'QO', 'ZZ', 'XA', 'XB', 'XK', 'AC', 'CP', 'DG', 'EA', 'IC', 'TA', 'CQ']);
+let COUNTRIES = ['United Kingdom'];
+try { const dn = new Intl.DisplayNames(['en-GB'], { type: 'region' }); const out = []; for (let a = 65; a < 91; a++) for (let b = 65; b < 91; b++) { const c = String.fromCharCode(a, b); if (NOT.has(c)) continue; const n = dn.of(c); if (n && n !== c) out.push(n); } COUNTRIES = [...new Set(out)].sort((x, y) => x.localeCompare(y)); } catch (e) {}
+function validate(f) {
+  const e = {};
+  if (!f.name.trim()) e.name = 'Enter your name';
+  if (!f.email.trim()) e.email = 'Enter your email address'; else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.trim())) e.email = 'Enter an email address like name@example.com';
+  if (!f.city.trim()) e.city = 'Enter your city';
+  if (!f.country) e.country = 'Select a country';
+  if (!f.phone.trim()) e.phone = 'Enter your phone number'; else if (f.phone.replace(/\D/g, '').length < 7) e.phone = 'Enter a phone number with at least 7 digits';
+  return e;
+}
+class Component extends DCLogic {
+  state = { tab: 'membership', form: { ...EMPTY }, errors: {}, tried: false, done: false };
+  componentDidMount() {
+    this.onHash = () => { const h = (location.hash || '').slice(1); if (TABS.some(t => t[0] === h)) { this.setState({ tab: h }); const el = document.getElementById('form'); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 110 }); } };
+    this.onHash(); window.addEventListener('hashchange', this.onHash);
+  }
+  componentWillUnmount() { window.removeEventListener('hashchange', this.onHash); }
+  renderVals() {
+    const { tab, form, errors, done } = this.state;
+    const t = TABS.find(x => x[0] === tab);
+    const errorList = FIELDS.filter(([k]) => errors[k]).map(([k]) => ({ msg: errors[k], href: '#c-' + k }));
+    return {
+      tabs: TABS.map(([k, label]) => ({ label, sel: k === tab ? 'true' : 'false', bar: k === tab ? 'var(--color-accent)' : 'transparent', ink: k === tab ? 'var(--color-accent)' : 'var(--color-text)', pick: () => this.setState({ tab: k }) })),
+      tabIntro: t[2], tabLower: t[1].toLowerCase(), countries: COUNTRIES,
+      fields: FIELDS.map(([k, label, type, ac]) => ({ id: 'c-' + k, label, type, ac, value: form[k], isInput: type !== 'select' && type !== 'area', isSelect: type === 'select', isArea: type === 'area', span: type === 'area' ? '1 / -1' : 'auto',
+        inv: errors[k] ? 'true' : 'false', hasErr: !!errors[k], err: errors[k] || '', errId: 'c-' + k + '-err', bc: errors[k] ? 'var(--color-accent-2-700)' : 'var(--color-divider)',
+        on: (e) => { const v = e.target.value; this.setState(s => { const f = { ...s.form, [k]: v }; return { form: f, errors: s.tried ? validate(f) : s.errors }; }); } })),
+      errorList, hasErrors: errorList.length > 0, sumRef: (el) => { this.sum = el; },
+      submit: (e) => { e.preventDefault(); const errs = validate(this.state.form); if (Object.keys(errs).length) this.setState({ errors: errs, tried: true }, () => this.sum && this.sum.focus()); else this.setState({ done: true, errors: {} }); },
+      done, notDone: !done, form, firstName: form.name.trim().split(' ')[0],
+      reset: () => this.setState({ form: { ...EMPTY }, errors: {}, tried: false, done: false }),
+      phones: [['Neel', '07823602447'], ['Prady', '07523645992'], ['Prasenjit', '07429545437'], ['Samrat', '07584207131']].map(([name, num]) => ({ name, num, tel: 'tel:' + num.replace(/\s/g, '') }))
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+/* ADDA brand layer over Modernist — retunes the system tokens to the logo's palette.
+   Navy (logo outline) = primary accent; Marigold (the "A") = secondary; Leaf (the "da") + Sky (the drum strap) = supporting marks. */
+:root {
+  --color-bg: #fbf8f2;
+  --color-surface: #f3ede2;
+  --color-text: #17234a;
+  --color-divider: color-mix(in srgb, #17234a 32%, transparent);
+
+  --color-accent: #123f8c;
+  --color-accent-100: #eef3fb;
+  --color-accent-200: #d9e4f6;
+  --color-accent-300: #b5caec;
+  --color-accent-400: #7f9fd6;
+  --color-accent-500: #3c6bc0;
+  --color-accent-600: #0d3475;
+  --color-accent-700: #0b2a5e;
+  --color-accent-800: #09214a;
+  --color-accent-900: #071935;
+
+  --color-accent-2: #f2a31b;
+  --color-accent-2-100: #fff6e6;
+  --color-accent-2-200: #fde9c4;
+  --color-accent-2-300: #fad48a;
+  --color-accent-2-400: #f6bc4e;
+  --color-accent-2-500: #f2a31b;
+  --color-accent-2-600: #d98a06;
+  --color-accent-2-700: #a86500;
+  --color-accent-2-800: #7a4800;
+  --color-accent-2-900: #4d2e00;
+
+  --adda-leaf: #6ab23a;
+  --adda-leaf-100: #eef7e6;
+  --adda-leaf-700: #3d7419;
+  --adda-sky: #4aaee6;
+  --adda-sky-100: #e8f5fc;
+  --adda-sky-700: #16648f;
+  --adda-white: #ffffff;
+}
+body { font-size: 17px; line-height: 1.6; text-wrap: pretty; -webkit-font-smoothing: antialiased; }
+a { color: var(--color-accent); }
+/* Text links (option 2b · marigold): colour change only. Skips buttons, cards, image/icon links. */
+a:not(.btn):not([style*="text-decoration: none"]):not([style*="line-height: 0"]):not([style*="display: block"]):not([style*="width: 44px"]) { transition: color .15s; }
+a:not(.btn):not([style*="text-decoration: none"]):not([style*="line-height: 0"]):not([style*="display: block"]):not([style*="width: 44px"]):is(:hover, :focus-visible) { color: var(--color-accent-2-700) !important; }
+:is([data-hero], footer) a:not(.btn):not([style*="text-decoration: none"]):not([style*="line-height: 0"]):not([style*="display: block"]):not([style*="width: 44px"]):is(:hover, :focus-visible),
+a:not(.btn):not([style*="text-decoration: none"]):not([style*="line-height: 0"]):not([style*="display: block"]):not([style*="width: 44px"])[style*="color: var(--adda-white)"]:is(:hover, :focus-visible) { color: var(--color-accent-2) !important; }
+
+/* Buttons (option 1b · logo sky blue) */
+.btn { min-height: 44px; font-size: 15px; padding: 10px 18px; justify-content: flex-start; border-width: 2px; transition: background-color .15s, color .15s, border-color .15s; }
+.btn.btn-primary { color: #fff; border-color: var(--color-accent); }
+.btn.btn-primary:hover { background: var(--adda-sky); border-color: var(--adda-sky); color: var(--color-text); }
+.btn.btn-primary:active { background: color-mix(in srgb, var(--adda-sky) 82%, #17234a); border-color: transparent; color: var(--color-text); }
+.btn-secondary { border: 2px solid var(--color-accent); color: var(--color-accent); }
+.btn.btn-secondary:hover { background: var(--adda-sky-100); color: var(--color-accent); }
+.btn.btn-secondary:active { background: color-mix(in srgb, var(--adda-sky) 30%, #fff); color: var(--color-accent); }
+.btn-marigold { background: var(--color-accent-2); color: var(--color-accent-800); border-color: var(--color-accent-2); }
+.btn.btn-marigold:hover { background: var(--adda-sky); border-color: var(--adda-sky); color: var(--color-text); }
+.btn.btn-marigold:active { background: color-mix(in srgb, var(--adda-sky) 82%, #17234a); color: var(--color-text); }
+.btn.btn-ghost:hover { background: var(--adda-sky-100); color: var(--color-accent); }
+.input { min-height: 48px; font-size: 16px; background: var(--adda-white); border: 2px solid var(--color-divider); }
+.field > label { font-size: 14px; font-weight: 600; color: var(--color-text); }
+.tag { font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+.tag-leaf { background: var(--adda-leaf-100); color: var(--adda-leaf-700); }
+.tag-sky { background: var(--adda-sky-100); color: var(--adda-sky-700); }
+.tag-marigold { background: var(--color-accent-2-100); color: var(--color-accent-2-800); }
+
+/* Full-bleed photo heroes */
+[data-hero] a:not(.btn) { color: #fff; }
+[data-hero] h1, [data-hero] h2, [data-hero] h3 { color: #fff; }
+[data-hero] .btn-secondary { color: #fff; border-color: #fff; background: transparent; }
+[data-hero] .btn.btn-secondary:hover { background: var(--adda-sky); border-color: var(--adda-sky); color: var(--color-text); }
+[data-hero] .btn-ghost { color: #fff; }

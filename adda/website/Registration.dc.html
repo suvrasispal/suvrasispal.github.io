@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48.png">
+<link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
+<script src="js/img-fallback.js"></script>
+<script>if(location.protocol==='file:')document.write('<script src="js/offline-bundle.js"><\/script>')</script>
+<script src="support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Durga Pujo 2026 programme registration · Adda Slough</title>
+<meta name="description" content="Register to perform or compete at Adda Slough Durga Pujo 2026.">
+<link rel="stylesheet" href="css/modernist.css">
+<link rel="stylesheet" href="css/theme.css">
+<style>html{scroll-behavior:smooth;scroll-padding-top:120px}body{margin:0;background:var(--color-bg);overflow-x:hidden}</style>
+</helmet>
+<dc-import name="SiteHeader" current="events" hint-size="100%,97px" style="display:block"></dc-import>
+<main id="main">
+  <header data-hero="" style="position:relative;overflow:hidden;background:var(--color-accent-900);color:var(--adda-white);min-height:clamp(420px,62vh,660px);display:flex;align-items:flex-end"><img src="images/a-group-of-people-standing-on-top-of-a-stage.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block"></img><div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,25,53,.86) 0%,rgba(7,25,53,.58) 60%,rgba(7,25,53,.32) 100%),linear-gradient(180deg,rgba(7,25,53,.25),rgba(7,25,53,.55))"></div><div style="position:relative;width:100%;box-sizing:border-box;max-width:1200px;margin:0 auto;padding:clamp(32px,6vw,80px) clamp(20px,5vw,48px) clamp(32px,5vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(32px,5vw,64px);align-items:center;padding-top:clamp(64px,12vh,140px);text-shadow:0 1px 14px rgba(7,25,53,.45)">
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <nav aria-label="Breadcrumb" style="display:flex;flex-wrap:wrap;gap:8px;font-size:14px"><a href="Events.dc.html">Events</a><span aria-hidden="true">/</span><a href="Events.dc.html#durga-pujo">Durga Pujo 2026</a><span aria-hidden="true">/</span><span aria-current="page">Registration</span></nav>
+      <h1 style="font-size:clamp(40px,6vw,76px);line-height:1;letter-spacing:-.035em;margin:0">Your talent, our stage.</h1>
+      <p style="margin:0;font-size:clamp(18px,1.6vw,21px);line-height:1.6;max-width:32em">Adda is calling all artists and performers to be part of the biggest celebration of culture. Register for a Durga Pujo 2026 programme below.</p>
+      <p style="margin:0;font-size:15px">Already registered? <a href="SignIn.dc.html" style="font-weight:700">Search or edit your registration</a></p>
+    </div>
+    <div style="display:flex;justify-content:center"><img src="https://media.adda-slough.org/public/images/promotions/durga-pujo-2026-1.jpg" alt="Your talent, our stage: Durga Pujo 2026 poster" style="width:100%;max-width:380px;height:auto;display:block;box-shadow:0 2px 6px rgba(23,35,74,.05),0 24px 60px rgba(23,35,74,.10)"></img></div>
+  </div><a href="https://unsplash.com/photos/a-group-of-people-standing-on-top-of-a-stage-fdjwbcX0BXE" target="_blank" rel="noopener" style="position:absolute;right:12px;bottom:10px;z-index:1;font-size:9px;color:rgba(255,255,255,.85);text-decoration:none">Photo: Prateek Saxena / Unsplash</a></header>
+
+  <section aria-labelledby="reg-title" style="background:var(--adda-white)">
+    <div style="max-width:880px;margin:0 auto;padding:clamp(56px,8vw,104px) clamp(20px,5vw,48px)">
+      <h2 id="reg-title" style="font-size:clamp(30px,4vw,48px);letter-spacing:-.025em;margin:0 0 12px">Programme registration</h2>
+      <p style="margin:0 0 32px;font-size:16px">Fields marked * are required.</p>
+
+      <sc-if value="{{ done }}" hint-placeholder-val="{{ false }}">
+        <div role="status" style="display:flex;flex-direction:column;gap:14px;padding:12px 0 24px">
+          <h3 style="font-size:28px;margin:0;color:var(--adda-leaf-700)">You’re registered for {{ form.programme }}.</h3>
+          <p style="margin:0;font-size:17px;line-height:1.6">Thank you, {{ form.name }}. We’ll contact you at {{ form.email }} with the programme details.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:12px"><button type="button" class="btn btn-secondary" onClick="{{ reset }}">Register another programme</button><a class="btn btn-ghost" href="Events.dc.html#durga-pujo">Back to Durga Pujo 2026</a></div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ notDone }}" hint-placeholder-val="{{ true }}">
+        <form noValidate="{{ true }}" onSubmit="{{ submit }}" style="display:flex;flex-direction:column;gap:28px">
+          <sc-if value="{{ hasErrors }}" hint-placeholder-val="{{ false }}">
+            <div ref="{{ sumRef }}" tabindex="-1" role="alert" style="padding:18px 20px;background:var(--color-accent-2-100);box-shadow:inset 3px 0 0 var(--color-accent-2-700);outline:none">
+              <strong style="display:block;margin-bottom:8px;color:var(--color-accent-2-900)">Please check the following:</strong>
+              <ul style="margin:0;padding-left:20px"><sc-for list="{{ errorList }}" as="e" hint-placeholder-count="0"><li><a href="{{ e.href }}" style="color:var(--color-accent-2-900);font-weight:600">{{ e.msg }}</a></li></sc-for></ul>
+            </div>
+          </sc-if>
+          <fieldset id="programmes" style="border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:12px">
+            <legend id="r-programme" style="font-size:15px;font-weight:700;margin-bottom:12px;padding:0">Programme *</legend>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:10px">
+              <sc-for list="{{ programmes }}" as="p" hint-placeholder-count="7">
+                <label style="display:flex;align-items:flex-start;gap:12px;padding:16px;min-height:44px;background:{{ p.bg }};box-shadow:inset 0 0 0 {{ p.ringW }} {{ p.ring }};cursor:pointer;transition:box-shadow .2s,background .2s">
+                  <input type="radio" name="programme" value="{{ p.value }}" checked="{{ p.checked }}" onChange="{{ p.pick }}" style="margin:3px 0 0;width:18px;height:18px;accent-color:var(--color-accent);flex:none"></input>
+                  <span style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:800;font-size:16px">{{ p.name }}</span><span style="font-size:14px">{{ p.sub }}</span></span>
+                </label>
+              </sc-for>
+            </div>
+            <sc-if value="{{ progErr }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:14px;font-weight:600;color:var(--color-accent-2-800)">Choose a programme</p></sc-if>
+          </fieldset>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:22px 24px">
+            <sc-for list="{{ fields }}" as="f" hint-placeholder-count="4">
+              <div class="field" style="margin:0">
+                <label for="{{ f.id }}">{{ f.label }}</label>
+                <input id="{{ f.id }}" class="input" type="{{ f.type }}" autocomplete="{{ f.ac }}" value="{{ f.value }}" onChange="{{ f.on }}" aria-invalid="{{ f.inv }}" style="width:100%;box-sizing:border-box;border-color:{{ f.bc }}"></input>
+                <sc-if value="{{ f.hasErr }}" hint-placeholder-val="{{ false }}"><p style="margin:6px 0 0;font-size:14px;font-weight:600;color:var(--color-accent-2-800)">{{ f.err }}</p></sc-if>
+              </div>
+            </sc-for>
+          </div>
+          <div class="field" style="margin:0">
+            <label for="r-notes">Notes (sound / stage set-up requirements)</label>
+            <textarea id="r-notes" class="input" rows="4" value="{{ form.notes }}" onChange="{{ onNotes }}" style="width:100%;box-sizing:border-box;min-height:120px;padding:12px;font:inherit;resize:vertical"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="align-self:flex-start;min-width:200px">Submit registration
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </button>
+        </form>
+      </sc-if>
+    </div>
+  </section>
+</main>
+<dc-import name="SiteFooter" hint-size="100%,520px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const PROGRAMMES = [['Solo/Group Performance', 'Solo / group performance', 'Cultural programme'], ['Antakshari (Gaata Rahe Mera Dil)', 'Antakshari', 'Gaata Rahe Mera Dil'], ['Bollywood Quiz (Puchho Zara Puchho)', 'Bollywood Quiz', 'Puchho Zara Puchho'], ['Little Champ (Taare Zameen Par)', 'Little Champ', 'Taare Zameen Par'], ['Sit & Draw (Satrangi Re)', 'Sit & Draw', 'Satrangi Re'], ['Sharod Shriman & Shrimati', 'Sharod Shriman & Shrimati', 'Competition'], ['Brain Teaser (Bheja Fry)', 'Brain Teaser', 'Bheja Fry']];
+const FIELDS = [['name', 'Name / Group name *', 'text', 'name'], ['contactName', 'Contact name', 'text', 'name'], ['phone', 'Contact no. *', 'tel', 'tel'], ['email', 'Email *', 'email', 'email']];
+const EMPTY = { programme: '', name: '', contactName: '', phone: '', email: '', notes: '' };
+function validate(f) {
+  const e = {};
+  if (!f.programme) e.programme = 'Choose a programme';
+  if (!f.name.trim()) e.name = 'Enter your name or group name';
+  if (!f.phone.trim()) e.phone = 'Enter a contact number'; else if (f.phone.replace(/\D/g, '').length < 7) e.phone = 'Enter a contact number with at least 7 digits';
+  if (!f.email.trim()) e.email = 'Enter your email address'; else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.trim())) e.email = 'Enter an email address like name@example.com';
+  return e;
+}
+class Component extends DCLogic {
+  state = { form: { ...EMPTY }, errors: {}, tried: false, done: false };
+  set(k, v) { this.setState(s => { const f = { ...s.form, [k]: v }; return { form: f, errors: s.tried ? validate(f) : s.errors }; }); }
+  renderVals() {
+    const { form, errors, done } = this.state;
+    const order = [['programme', 'r-programme'], ['name', 'r-name'], ['phone', 'r-phone'], ['email', 'r-email']];
+    const errorList = order.filter(([k]) => errors[k]).map(([k, id]) => ({ msg: errors[k], href: '#' + id }));
+    return {
+      form, done, notDone: !done, progErr: !!errors.programme,
+      programmes: PROGRAMMES.map(([value, name, sub]) => { const on = form.programme === value; return { value, name, sub, checked: on, bg: on ? 'var(--color-accent-100)' : 'var(--color-bg)', ring: on ? 'var(--color-accent)' : (errors.programme ? 'var(--color-accent-2-700)' : 'transparent'), ringW: on || errors.programme ? '2px' : '0', pick: () => this.set('programme', value) }; }),
+      fields: FIELDS.map(([k, label, type, ac]) => ({ id: 'r-' + k, label, type, ac, value: form[k], inv: errors[k] ? 'true' : 'false', hasErr: !!errors[k], err: errors[k] || '', bc: errors[k] ? 'var(--color-accent-2-700)' : 'var(--color-divider)', on: (e) => this.set(k, e.target.value) })),
+      onNotes: (e) => this.set('notes', e.target.value),
+      errorList, hasErrors: errorList.length > 0, sumRef: (el) => { this.sum = el; },
+      submit: (e) => { e.preventDefault(); const errs = validate(this.state.form); if (Object.keys(errs).length) this.setState({ errors: errs, tried: true }, () => this.sum && this.sum.focus()); else this.setState({ done: true }); },
+      reset: () => this.setState({ form: { ...EMPTY }, errors: {}, tried: false, done: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48.png">
+<link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
+<script src="js/img-fallback.js"></script>
+<script>if(location.protocol==='file:')document.write('<script src="js/offline-bundle.js"><\/script>')</script>
+<script src="support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="css/modernist.css">
+<link rel="stylesheet" href="css/theme.css">
+<style>body{margin:0;background:var(--color-bg);overflow-x:hidden}</style>
+</helmet>
+<dc-import name="SiteHeader" current="charity" hint-size="100%,97px" style="display:block"></dc-import>
+<main id="main">
+  <header data-hero="" style="position:relative;overflow:hidden;background:var(--color-accent-900);color:var(--adda-white);min-height:clamp(420px,62vh,660px);display:flex;align-items:flex-end"><img src="images/lighted-candle-on-brown-round-holder.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 50%;display:block"></img><div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,25,53,.86) 0%,rgba(7,25,53,.58) 60%,rgba(7,25,53,.32) 100%),linear-gradient(180deg,rgba(7,25,53,.25),rgba(7,25,53,.55))"></div><div style="position:relative;width:100%;box-sizing:border-box;max-width:1200px;margin:0 auto;padding:clamp(32px,6vw,80px) clamp(20px,5vw,48px) clamp(32px,5vw,48px);display:flex;flex-direction:column;gap:18px;padding-top:clamp(64px,12vh,140px);text-shadow:0 1px 14px rgba(7,25,53,.45)">
+    <nav aria-label="Breadcrumb" style="display:flex;flex-wrap:wrap;gap:8px;font-size:14px"><a href="Charity.dc.html">Charity</a><span aria-hidden="true">/</span><span aria-current="page">{{ title }}</span></nav>
+    <h1 style="font-size:clamp(42px,6.4vw,80px);line-height:1;letter-spacing:-.035em;margin:0">{{ title }}</h1>
+    <p style="margin:0;font-size:clamp(18px,1.6vw,21px);line-height:1.6;max-width:36em">{{ lead }}</p>
+  </div><a href="https://unsplash.com/photos/lighted-candle-on-brown-round-holder-H4ilfu3vftk" target="_blank" rel="noopener" style="position:absolute;right:12px;bottom:10px;z-index:1;font-size:9px;color:rgba(255,255,255,.85);text-decoration:none">Photo: Umesh Soni / Unsplash</a></header>
+  <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,48px)"><div style="overflow:hidden;background:var(--color-surface)"><img src="{{ img }}" loading="lazy" alt="{{ title }}" style="width:100%;height:auto;max-height:78vh;object-fit:contain;display:block;margin:0 auto"></img></div></div>
+  <section style="max-width:1200px;margin:0 auto;padding:clamp(48px,7vw,88px) clamp(20px,5vw,48px);display:flex;flex-direction:column;gap:18px">
+    <sc-for list="{{ points }}" as="p" hint-placeholder-count="0">
+      <div style="display:flex;flex-direction:column;gap:8px;max-width:44em;padding-top:18px;border-top:1px solid color-mix(in srgb,var(--color-text) 12%,transparent)">
+        <h2 style="font-size:24px;margin:0">{{ p.title }}</h2>
+        <p style="margin:0;font-size:17px;line-height:1.7">{{ p.copy }}</p>
+        <a href="{{ p.href }}" style="font-weight:700;min-height:40px;display:flex;align-items:center">Read the full story →</a>
+      </div>
+    </sc-for>
+    <a class="btn btn-secondary" href="Charity.dc.html" style="align-self:flex-start;margin-top:12px">All charity work</a>
+  </section>
+  <nav aria-label="Other years" style="background:var(--adda-white)">
+    <div style="max-width:1200px;margin:0 auto;padding:clamp(40px,6vw,64px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px 40px">
+      <sc-for list="{{ others }}" as="o" hint-placeholder-count="2">
+        <a href="{{ o.href }}" style="display:flex;flex-direction:column;gap:4px;padding:20px 0;border-top:2px solid var(--adda-leaf);text-decoration:none;color:var(--color-text)" style-hover="color:var(--color-accent)"><span style="font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--adda-leaf-700)">Adda Aid</span><span style="font-size:22px;font-weight:800">{{ o.year }} →</span></a>
+      </sc-for>
+    </div>
+  </nav>
+</main>
+<dc-import name="SiteFooter" hint-size="100%,520px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;year&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;2022&quot;,&quot;2021&quot;,&quot;2020&quot;],&quot;default&quot;:&quot;2020&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const YEARS = {
+  2022: { lead: 'Adda Aid in 2022: our charity and community support work.', points: [] },
+  2021: { lead: 'Adda Aid in 2021: our charity and community support work.', points: [] },
+  2020: { lead: 'Covid-19 support in Slough, and relief for Bengal after super cyclone Amphan.', points: [
+    { title: 'Covid-19 in Slough', copy: 'With Slough Mitra Mandal, Slough food bank, Slough Hindu Temple and Sewa Day, and the help of Slough council and Thames Valley police, Adda Slough delivered food supplies, essential commodities and medicines to the elderly, the vulnerable, health workers and stranded Indian students, reaching a total of 50,000 in collaboration with others.', href: 'Charity.dc.html#covid' },
+    { title: 'Super cyclone Amphan', copy: 'Adda raised funds globally and teamed up with Kolkata Mary Ward Social Centre to bring rice, lentils, clothes, utensils, medical, hygiene and shelter items to Gangasagar, Gosaba, Basirhat and Diamond Harbour.', href: 'Charity.dc.html#amphan' },
+    { title: 'College Street books', copy: 'Working with booksellers and publishers to help reprint textbooks lost at Kolkata’s Boi Para after the cyclone.', href: 'Charity.dc.html#books' }
+  ] }
+};
+class Component extends DCLogic {
+  renderVals() {
+    const y = YEARS[this.props.year] ? String(this.props.year) : '2020';
+    return {
+      title: 'Adda Aid ' + y, lead: YEARS[y].lead, points: YEARS[y].points,
+      img: 'https://media.adda-slough.org/public/images/charities/adda-aid-' + y + '.jpg',
+      others: Object.keys(YEARS).filter(k => k !== y).sort().reverse().map(k => ({ year: k, href: 'AddaAid' + k + '.dc.html' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48.png">
+<link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
+<script src="js/img-fallback.js"></script>
+<script>if(location.protocol==='file:')document.write('<script src="js/offline-bundle.js"><\/script>')</script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="css/modernist.css">
+<link rel="stylesheet" href="css/theme.css">
+<script src="js/site.js"></script>
+<script src="js/live.js"></script>
+<style>@keyframes adda-live-pulse{0%{box-shadow:0 0 0 0 rgba(106,178,58,.7)}70%{box-shadow:0 0 0 7px rgba(106,178,58,0)}100%{box-shadow:0 0 0 0 rgba(106,178,58,0)}}@media (prefers-reduced-motion: reduce){[data-live-dot]{animation:none!important}}</style>
+</helmet>
+<div aria-hidden="true" style="height:{{ spacerH }}"></div>
+<header ref="{{ rootRef }}" style="position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--adda-white);border-bottom:1px solid color-mix(in srgb,var(--color-text) 12%,transparent);box-shadow:{{ shadow }};transition:box-shadow .25s">
+  <a href="#main" style="position:absolute;left:-9999px;top:12px;z-index:5;background:var(--color-accent);color:var(--adda-white);padding:10px 16px;font-weight:600;text-decoration:none" style-focus="left:16px">Skip to main content</a>
+  <div style="position:relative;max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,48px);height:{{ barH }};display:flex;align-items:center;gap:16px">
+    <a href="Home.dc.html" aria-label="Adda Slough home" style="flex:none;line-height:0"><img src="assets/images/addalogo.png" alt="Adda Slough, Bringing Friends Closer" style="height:{{ logoH }};width:auto"></img></a>
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <nav aria-label="Main" style="margin-left:auto;margin-right:52px;display:flex;align-items:stretch;height:{{ barH }}">
+        <sc-for list="{{ menus }}" as="m" hint-placeholder-count="6">
+          <sc-if value="{{ m.isLink }}" hint-placeholder-val="{{ true }}">
+            <a href="{{ m.href }}" aria-current="{{ m.cur }}" aria-label="{{ m.aria }}" title="{{ m.tip }}" style="display:flex;align-items:center;gap:8px;padding:0 14px;font-size:15px;font-weight:600;color:{{ m.ink }};text-decoration:none;box-shadow:inset 0 -3px 0 {{ m.bar }};transition:color .2s,box-shadow .2s" style-hover="color:var(--color-accent);box-shadow:inset 0 -3px 0 var(--color-accent-2-300)"><sc-if value="{{ m.dot }}" hint-placeholder-val="{{ false }}"><span data-live-dot="" aria-hidden="true" style="flex:none;width:8px;height:8px;border-radius:50%;background:var(--adda-leaf);animation:adda-live-pulse 2s ease-out infinite"></span></sc-if>{{ m.label }}</a>
+          </sc-if>
+          <sc-if value="{{ m.hasMenu }}" hint-placeholder-val="{{ false }}">
+            <button type="button" onClick="{{ m.toggle }}" aria-expanded="{{ m.expanded }}" aria-controls="mega-panel" style="display:flex;align-items:center;gap:6px;padding:0 14px;background:{{ m.bg }};border:0;box-shadow:inset 0 -3px 0 {{ m.bar }};font:inherit;font-size:15px;font-weight:600;color:{{ m.ink }};cursor:pointer;transition:color .2s,box-shadow .2s,background .2s" style-hover="color:var(--color-accent)">{{ m.label }}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true" style="transform:{{ m.rot }};transition:transform .2s"><path d="m6 9 6 6 6-6"></path></svg></button>
+          </sc-if>
+        </sc-for>
+        <sc-if value="{{ adminBtn }}" hint-placeholder-val="{{ false }}">
+          <a href="{{ adminHref }}" class="btn btn-primary" style="align-self:center;margin-left:10px;min-height:40px;padding:8px 14px;font-size:14px;gap:8px;white-space:nowrap"><span aria-hidden="true" style="width:8px;height:8px;border-radius:50%;background:var(--adda-leaf)"></span>{{ adminLabel }}</a>
+        </sc-if>
+      </nav>
+    </sc-if>
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+      <button type="button" onClick="{{ toggleMobile }}" aria-expanded="{{ mobExpanded }}" aria-controls="site-menu" aria-label="{{ mobAria }}" style="margin-left:auto;margin-right:52px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:transparent;border:0;color:var(--color-text);cursor:pointer">
+        <sc-if value="{{ mobClosed }}" hint-placeholder-val="{{ true }}"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg></sc-if>
+        <sc-if value="{{ mobOpen }}" hint-placeholder-val="{{ false }}"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></sc-if>
+      </button>
+    </sc-if>
+
+    <form role="search" onSubmit="{{ submit }}" style="position:absolute;right:clamp(20px,5vw,48px);top:{{ formTop }};height:48px;width:{{ sw }};max-width:calc(100% - 2 * clamp(20px,5vw,48px));display:flex;align-items:center;background:var(--adda-white);border:1px solid {{ sBorder }};transition:width .35s cubic-bezier(.2,.7,.2,1),border-color .2s;z-index:3">
+      <input ref="{{ inputRef }}" type="search" value="{{ q }}" onChange="{{ onQ }}" onKeyDown="{{ onKey }}" tabindex="{{ inTab }}" aria-label="Search the website" aria-expanded="{{ ddExpanded }}" aria-controls="search-suggest" autocomplete="off" placeholder="Search events, pages, people…" style="flex:1;min-width:0;height:46px;padding:0 0 0 16px;border:0;outline:none;background:transparent;font:inherit;font-size:16px;color:var(--color-text);opacity:{{ inOp }};transition:opacity .2s"></input>
+      <sc-if value="{{ sOpen }}" hint-placeholder-val="{{ false }}">
+        <button type="button" onClick="{{ closeSearch }}" aria-label="Close search" style="flex:none;width:40px;height:46px;display:flex;align-items:center;justify-content:center;background:transparent;border:0;color:var(--color-text);cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
+      </sc-if>
+      <button type="button" onClick="{{ iconClick }}" aria-label="{{ iconAria }}" style="flex:none;width:46px;height:46px;display:flex;align-items:center;justify-content:center;background:{{ iconBg }};border:0;color:{{ iconInk }};cursor:pointer;transition:background .2s" style-hover="color:var(--color-accent)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" aria-hidden="true"><circle cx="11" cy="11" r="7.5"></circle><path d="m20.5 20.5-4.2-4.2"></path></svg>
+      </button>
+      <sc-if value="{{ showDD }}" hint-placeholder-val="{{ false }}">
+        <div id="search-suggest" style="position:absolute;left:-1px;right:-1px;top:calc(100% + 8px);background:var(--adda-white);box-shadow:0 2px 6px rgba(23,35,74,.06),0 18px 48px rgba(23,35,74,.16);max-height:min(70vh,520px);overflow-y:auto">
+          <sc-if value="{{ noExact }}" hint-placeholder-val="{{ false }}"><p style="margin:0;padding:14px 18px 4px;font-size:14px;line-height:1.45"><strong>No exact match found.</strong> You may be looking for:</p></sc-if>
+          <ul role="listbox" aria-label="Suggestions" style="list-style:none;margin:0;padding:6px 0">
+            <sc-for list="{{ sugg }}" as="s" hint-placeholder-count="0">
+              <li role="option" aria-selected="{{ s.sel }}">
+                <a href="{{ s.url }}" onMouseEnter="{{ s.hover }}" onClick="{{ closeSearch }}" style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;align-items:baseline;padding:10px 18px;background:{{ s.bg }};text-decoration:none;color:var(--color-text)">
+                  <span style="font-size:16px;font-weight:700;line-height:1.3">{{ s.title }}</span>
+                  <span style="font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--color-accent-2-800)">{{ s.section }}</span>
+                  <span style="grid-column:1 / -1;font-size:14px;line-height:1.4;color:color-mix(in srgb,var(--color-text) 78%,transparent)">{{ s.desc }}</span>
+                </a>
+              </li>
+            </sc-for>
+          </ul>
+          <sc-if value="{{ nothing }}" hint-placeholder-val="{{ false }}"><p style="margin:0;padding:8px 18px 14px;font-size:15px">Nothing close to “{{ q }}”. Try “pujo”, “charity” or “contact”.</p></sc-if>
+          <a href="{{ allHref }}" style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-top:1px solid color-mix(in srgb,var(--color-text) 10%,transparent);font-size:15px;font-weight:700;text-decoration:none">See all results for “{{ q }}”<span aria-hidden="true">→</span></a>
+        </div>
+      </sc-if>
+    </form>
+  </div>
+
+  <sc-if value="{{ hasOpen }}" hint-placeholder-val="{{ false }}">
+    <div id="mega-panel" style="position:absolute;left:0;right:0;top:100%;background:var(--adda-white);border-top:1px solid color-mix(in srgb,var(--color-text) 10%,transparent);box-shadow:0 24px 48px rgba(23,35,74,.12);max-height:calc(100vh - {{ barH }});overflow-y:auto">
+      <div style="max-width:1200px;margin:0 auto;padding:36px clamp(20px,5vw,48px) 44px;display:grid;grid-template-columns:minmax(200px,1fr) minmax(0,3fr);gap:48px">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <span style="display:flex;align-items:center;gap:12px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-2-800)"><span aria-hidden="true" style="width:28px;height:2px;background:var(--color-accent-2)"></span>{{ open.kicker }}</span>
+          <a href="{{ open.href }}" onClick="{{ closeAll }}" style="font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1.1;color:var(--color-text);text-decoration:none" style-hover="color:var(--color-accent)">{{ open.label }} →</a>
+          <p style="margin:0;font-size:15px;line-height:1.55;color:color-mix(in srgb,var(--color-text) 82%,transparent)">{{ open.intro }}</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px 32px">
+          <sc-for list="{{ open.groups }}" as="g" hint-placeholder-count="0">
+            <div style="display:flex;flex-direction:column">
+              <a href="{{ g.href }}" onClick="{{ closeAll }}" style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent);text-decoration:none;padding-bottom:10px;margin-bottom:6px;border-bottom:1px solid color-mix(in srgb,var(--color-text) 12%,transparent)">{{ g.title }}</a>
+              <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="0">
+                <a href="{{ it.href }}" onClick="{{ closeAll }}" style="display:flex;align-items:center;min-height:38px;font-size:15px;color:var(--color-text);text-decoration:none" style-hover="color:var(--color-accent);text-decoration:underline;text-underline-offset:4px">{{ it.label }}</a>
+              </sc-for>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showMobile }}" hint-placeholder-val="{{ false }}">
+    <div id="site-menu" style="position:absolute;left:0;right:0;top:100%;height:calc(100dvh - {{ barH }});overflow-y:auto;overscroll-behavior:contain;background:var(--adda-white);border-top:1px solid color-mix(in srgb,var(--color-text) 10%,transparent)">
+      <nav aria-label="Main" style="padding:8px clamp(20px,5vw,48px) 48px">
+        <sc-for list="{{ mob }}" as="m" hint-placeholder-count="0">
+          <div style="border-bottom:1px solid color-mix(in srgb,var(--color-text) 10%,transparent)">
+            <sc-if value="{{ m.isLink }}" hint-placeholder-val="{{ false }}"><a href="{{ m.href }}" aria-label="{{ m.aria }}" style="display:flex;flex-direction:column;justify-content:center;gap:2px;min-height:64px;font-size:22px;font-weight:700;color:{{ m.ink }};text-decoration:none"><span style="display:flex;align-items:center;gap:12px"><sc-if value="{{ m.dot }}" hint-placeholder-val="{{ false }}"><span data-live-dot="" aria-hidden="true" style="flex:none;width:10px;height:10px;border-radius:50%;background:var(--adda-leaf);animation:adda-live-pulse 2s ease-out infinite"></span></sc-if>{{ m.label }}</span><sc-if value="{{ m.dot }}" hint-placeholder-val="{{ false }}"><span style="font-size:15px;font-weight:600;color:var(--adda-leaf-700);padding-bottom:10px">Live now · {{ m.liveTitle }}</span></sc-if></a></sc-if>
+            <sc-if value="{{ m.hasMenu }}" hint-placeholder-val="{{ false }}">
+              <button type="button" onClick="{{ m.toggle }}" aria-expanded="{{ m.expanded }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;min-height:64px;padding:0;background:transparent;border:0;font:inherit;font-size:22px;font-weight:700;color:{{ m.ink }};cursor:pointer;text-align:left">{{ m.label }}<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true" style="transform:{{ m.rot }};transition:transform .2s"><path d="m6 9 6 6 6-6"></path></svg></button>
+              <sc-if value="{{ m.isOpen }}" hint-placeholder-val="{{ false }}">
+                <div style="padding:0 0 18px;display:flex;flex-direction:column;gap:14px">
+                  <a href="{{ m.href }}" style="font-weight:700;min-height:40px;display:flex;align-items:center">{{ m.overview }} →</a>
+                  <sc-for list="{{ m.groups }}" as="g" hint-placeholder-count="0">
+                    <div style="display:flex;flex-direction:column">
+                      <a href="{{ g.href }}" style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent-2-800);text-decoration:none;min-height:32px;display:flex;align-items:center">{{ g.title }}</a>
+                      <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="0"><a href="{{ it.href }}" style="display:flex;align-items:center;min-height:44px;padding-left:12px;font-size:17px;color:var(--color-text);text-decoration:none">{{ it.label }}</a></sc-for>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </sc-if>
+          </div>
+        </sc-for>
+        <sc-if value="{{ adminMob }}" hint-placeholder-val="{{ false }}">
+          <a href="{{ adminHref }}" class="btn btn-primary" style="margin-top:20px;min-height:52px;font-size:17px;gap:10px"><span aria-hidden="true" style="width:10px;height:10px;border-radius:50%;background:var(--adda-leaf)"></span>{{ adminLabel }}</a>
+        </sc-if>
+        <a href="SignIn.dc.html" style="display:flex;align-items:center;min-height:56px;font-size:17px;font-weight:600;color:var(--color-text);text-decoration:none">Member sign-in</a>
+        <div style="margin-top:12px;display:flex;flex-direction:column;gap:6px;font-size:15px"><a href="mailto:addasloughinformation@gmail.com" style="word-break:break-all">addasloughinformation@gmail.com</a><span>31 Finefield Walk, Slough SL1 2QR</span></div>
+      </nav>
+    </div>
+  </sc-if>
+</header>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;560px&quot;},&quot;current&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;about&quot;,&quot;events&quot;,&quot;charity&quot;,&quot;media&quot;,&quot;live&quot;,&quot;contact&quot;,&quot;none&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const L = (label, href) => ({ label, href });
+const EV = (id) => 'Event.dc.html?id=' + id;
+const MENUS = [
+  { key: 'about', label: 'About', href: 'About.dc.html', kicker: 'Who we are', intro: 'A charitable trust from Slough, UK, started in August 2012 by a close group of families. Charity Registration Number 1183906.', groups: [
+    { title: 'About Adda Slough', href: 'About.dc.html', items: [L('Our story', 'About.dc.html'), L('Our mission', 'About.dc.html#mission'), L('Adda Slough in numbers', 'About.dc.html#metrics'), L('Adda Slough Family', 'About.dc.html#family')] }
+  ] },
+  { key: 'events', label: 'Events', href: 'Events.dc.html', kicker: 'What’s on', intro: 'The latest and historical events in the Adda Slough community: Festivals, Cultural, Sports & Other.', groups: [
+    { title: 'Upcoming', href: 'Events.dc.html', items: [L('Durga Pujo 2026', 'Events.dc.html#durga-pujo'), L('Programme registration', 'Registration.dc.html'), L('Sponsor Bhog', 'Events.dc.html#bhog'), L('Madhubanti Bagchi 2026', 'Events.dc.html#madhubanti-bagchi')] },
+    { title: 'Festivals', href: 'Festivals.dc.html', items: [L('Durga Pujo', 'Festivals.dc.html#durga-pujo'), L('Kali Pujo', 'Festivals.dc.html#kali-pujo'), L('Saraswati Pujo', 'Festivals.dc.html#saraswati-pujo')] },
+    { title: 'Cultural & Other', href: 'Cultural.dc.html', items: [L('Cultural', 'Cultural.dc.html#cultural'), L('Other', 'Cultural.dc.html#other'), L('Lagnajita Chakraborty Live 2025', EV('lagnajita-chakraborty-live-2025')), L('Somlata & The Aces 2024', EV('somlata-and-the-aces-2024'))] },
+    { title: 'Sports & Leisure', href: 'Sports.dc.html', items: [L('Badminton & Table Tennis', 'Sports.dc.html#badminton-and-table-tennis'), L('Cricket', 'Sports.dc.html#cricket'), L('Football', 'Sports.dc.html#football')] }
+  ] },
+  { key: 'charity', label: 'Charity', href: 'Charity.dc.html', kicker: 'Adda Aid', intro: 'Giving back: Covid-19 support in Slough, Cyclone Amphan relief in Bengal and more.', groups: [
+    { title: 'Our work', href: 'Charity.dc.html', items: [L('Adda Aid', 'Charity.dc.html'), L('Covid-19 in Slough', 'Charity.dc.html#covid'), L('Super cyclone Amphan', 'Charity.dc.html#amphan'), L('College Street books', 'Charity.dc.html#books')] },
+    { title: 'By year', href: 'Charity.dc.html#years', items: [L('Adda Aid 2022', 'AddaAid2022.dc.html'), L('Adda Aid 2021', 'AddaAid2021.dc.html'), L('Adda Aid 2020', 'AddaAid2020.dc.html')] }
+  ] },
+  { key: 'media', label: 'Media', href: 'Media.dc.html', kicker: 'In the news', intro: 'Media coverage of events organised by the Adda Slough community, in print and digital.', groups: [
+    { title: 'Coverage', href: 'Media.dc.html', items: [L('All coverage', 'Media.dc.html'), L('Print', 'Print.dc.html'), L('Digital & TV', 'Digital.dc.html'), L('ABP News video', 'Digital.dc.html#abp-news')] },
+    { title: 'Follow us', href: 'https://www.youtube.com/@addaslough5239', items: [L('YouTube', 'https://www.youtube.com/@addaslough5239'), L('Facebook', 'https://www.facebook.com/adda.slough'), L('Instagram', 'https://www.instagram.com/addaslough/')] }
+  ] },
+  { key: 'live', label: 'Adda Live', href: 'Live.dc.html' },
+  { key: 'contact', label: 'Contact', href: 'Contact.dc.html' }
+];
+class Component extends DCLogic {
+  state = { w: typeof window !== 'undefined' ? window.innerWidth : 1280, scrolled: false, open: null, mobile: false, mobSec: null, sOpen: false, q: '', sel: -1, h: 97 };
+  startParallax() {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const pick = () => Array.from(document.querySelectorAll('[data-hero] > img:first-child, [data-parallax] > img'));
+    let els = [], tick = false;
+    const run = () => {
+      tick = false; const vh = window.innerHeight;
+      els.forEach(img => { const box = img.parentElement.getBoundingClientRect(); if (box.bottom < -50 || box.top > vh + 50) return; const p = (box.top + box.height / 2 - vh / 2) / (vh + box.height); img.style.transform = 'translate3d(0,' + (p * box.height * -0.24).toFixed(1) + 'px,0) scale(1.16)'; });
+    };
+    this.pxScroll = () => { if (!tick) { tick = true; requestAnimationFrame(run); } };
+    this.pxScan = () => { els = pick(); els.forEach(img => { img.style.willChange = 'transform'; img.style.transformOrigin = 'center'; }); this.pxScroll(); };
+    this.pxScan(); this.pxTimer = setInterval(this.pxScan, 1500);
+    window.addEventListener('scroll', this.pxScroll, { passive: true }); window.addEventListener('resize', this.pxScroll);
+  }
+  componentDidMount() {
+    this.startParallax();
+    this.onResize = () => { this.setState({ w: window.innerWidth }); this.measure(); };
+    this.onScroll = () => { const s = window.scrollY > 4; if (s !== this.state.scrolled) this.setState({ scrolled: s }); };
+    this.onDoc = (e) => { if ((this.state.sOpen || this.state.open) && this.root && !this.root.contains(e.target)) this.setState({ sOpen: false, open: null }); };
+    this.onKeyG = (e) => {
+      const t = e.target, typing = t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT');
+      if (e.key === 'Escape') this.setState({ sOpen: false, open: null, mobile: false });
+      else if (e.key === '/' && !typing) { e.preventDefault(); this.openSearch(); }
+    };
+    this.onReady = () => this.forceUpdate();
+    this.onLive = (e) => { this.live = e.detail; this.forceUpdate(); };
+    this.onLiveReady = () => this.watchLive();
+    window.addEventListener('adda-live', this.onLive); window.addEventListener('adda-live-ready', this.onLiveReady);
+    this.watchLive();
+    window.addEventListener('resize', this.onResize); window.addEventListener('scroll', this.onScroll, { passive: true });
+    document.addEventListener('mousedown', this.onDoc); window.addEventListener('keydown', this.onKeyG); window.addEventListener('adda-ready', this.onReady);
+    this.measure(); this.onScroll();
+  }
+  componentDidUpdate() { this.measure(); }
+  componentWillUnmount() {
+    clearInterval(this.pxTimer); window.removeEventListener('scroll', this.pxScroll); window.removeEventListener('resize', this.pxScroll);
+    window.removeEventListener('resize', this.onResize); window.removeEventListener('scroll', this.onScroll);
+    document.removeEventListener('mousedown', this.onDoc); window.removeEventListener('keydown', this.onKeyG); window.removeEventListener('adda-ready', this.onReady);
+    window.removeEventListener('adda-live', this.onLive); window.removeEventListener('adda-live-ready', this.onLiveReady);
+    if (this.unwatchLive) this.unwatchLive();
+  }
+  watchLive() { if (!this.unwatchLive && window.AddaLive) { this.unwatchLive = window.AddaLive.watch(); this.live = window.AddaLive.get(); this.forceUpdate(); } }
+  measure() { if (!this.root) return; const bar = this.root.firstElementChild && this.root.children[1]; const h = bar ? bar.offsetHeight + 1 : this.root.offsetHeight; if (h && Math.abs(h - this.state.h) > 1) this.setState({ h }); }
+  openSearch() { this.setState({ sOpen: true, open: null, mobile: false }, () => setTimeout(() => this.input && this.input.focus(), 60)); }
+  go(url) { this.setState({ sOpen: false }); window.location.href = url; }
+  searchUrl(q) { return 'Search.dc.html?q=' + encodeURIComponent(q.trim()); }
+  renderVals() {
+    const { w, scrolled, open, mobile, mobSec, sOpen, q, sel } = this.state;
+    const A = window.ADDA; const cur = this.props.current ?? 'home';
+    const isDesktop = w >= 1080; const small = w < 480;
+    const barH = small ? '80px' : '96px';
+    const r = A && q.trim() ? A.search(q, 6) : { exact: [], related: [] };
+    const list = (r.exact.length ? r.exact : r.related).slice(0, 6);
+    const idx = Math.min(Math.max(sel, 0), Math.max(0, list.length - 1));
+    const hasQ = !!q.trim();
+    const openMenu = MENUS.find(m => m.key === open && m.groups);
+    const LV = this.live || {}, onAir = !!LV.live, airTitle = onAir ? LV.live.title : '';
+    const owns = !!(LV.active && LV.active.isOwner), adminShow = !!LV.admin && (!onAir || owns);
+    const liveBits = (m) => m.key !== 'live' ? { dot: false, aria: m.label, tip: '', liveTitle: '' } : { href: onAir ? 'Live.dc.html#now' : m.href, dot: onAir, aria: onAir ? 'Adda Live, live now: ' + airTitle : m.label, tip: onAir ? 'Live now: ' + airTitle : '', liveTitle: airTitle };
+    return {
+      rootRef: (el) => { this.root = el; }, inputRef: (el) => { this.input = el; },
+      spacerH: (small ? 81 : 97) + 'px', barH, logoH: small ? '56px' : '69px', formTop: small ? '16px' : '24px',
+      shadow: scrolled || open || mobile ? '0 1px 2px rgba(23,35,74,.04),0 8px 24px rgba(23,35,74,.07)' : 'none',
+      isDesktop, isMobile: !isDesktop,
+      adminBtn: w >= 1240 && adminShow, adminMob: adminShow, adminLabel: owns ? 'Manage stream' : 'Start streaming', adminHref: owns ? 'Live.dc.html#now' : 'Live.dc.html#start',
+      menus: MENUS.map(m => { const on = m.key === open, isCur = m.key === cur; return { ...m, ...liveBits(m), isLink: !m.groups, hasMenu: !!m.groups, cur: isCur ? 'page' : 'false', expanded: on ? 'true' : 'false', rot: on ? 'rotate(180deg)' : 'none',
+        ink: on || isCur ? 'var(--color-accent)' : 'var(--color-text)', bar: on || isCur ? 'var(--color-accent-2)' : 'transparent', bg: on ? 'var(--color-accent-100)' : 'transparent',
+        toggle: (e) => { e.stopPropagation(); this.setState({ open: on ? null : m.key, sOpen: false }); } }; }),
+      hasOpen: isDesktop && !!openMenu, open: openMenu || { groups: [] },
+      closeAll: () => this.setState({ open: null, mobile: false }),
+      mob: MENUS.map(m => { const on = m.key === mobSec; return { ...m, ...liveBits(m), isLink: !m.groups, hasMenu: !!m.groups, isOpen: on, expanded: on ? 'true' : 'false', rot: on ? 'rotate(180deg)' : 'none', ink: m.key === cur ? 'var(--color-accent)' : 'var(--color-text)', overview: m.label + ' overview', toggle: () => this.setState({ mobSec: on ? null : m.key }) }; }),
+      showMobile: !isDesktop && mobile, mobOpen: mobile, mobClosed: !mobile, mobExpanded: mobile ? 'true' : 'false', mobAria: mobile ? 'Close menu' : 'Open menu',
+      toggleMobile: () => this.setState({ mobile: !mobile, sOpen: false }),
+      sOpen, q, inTab: sOpen ? '0' : '-1', inOp: sOpen ? 1 : 0,
+      sw: sOpen ? (isDesktop ? 'min(620px, calc(100% - 300px))' : 'calc(100% - 2 * clamp(20px,5vw,48px))') : '48px',
+      sBorder: sOpen ? 'color-mix(in srgb,var(--color-text) 22%,transparent)' : 'transparent',
+      iconBg: sOpen ? 'var(--color-accent)' : 'transparent', iconInk: sOpen ? 'var(--adda-white)' : 'var(--color-text)', iconAria: sOpen ? 'Search' : 'Open search',
+      iconClick: () => { if (!sOpen) this.openSearch(); else if (hasQ) this.go(this.searchUrl(q)); else this.input && this.input.focus(); },
+      closeSearch: () => this.setState({ sOpen: false }),
+      onQ: (e) => this.setState({ q: e.target.value, sel: -1 }),
+      onKey: (e) => {
+        if (e.key === 'ArrowDown') { e.preventDefault(); this.setState({ sel: sel < 0 ? 0 : Math.min(idx + 1, list.length - 1) }); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); this.setState({ sel: Math.max(idx - 1, 0) }); }
+        else if (e.key === 'Enter') { e.preventDefault(); if (sel >= 0 && list[idx]) this.go(list[idx].url); else if (hasQ) this.go(this.searchUrl(q)); }
+      },
+      submit: (e) => { e.preventDefault(); if (hasQ) this.go(this.searchUrl(q)); },
+      showDD: sOpen && hasQ, ddExpanded: sOpen && hasQ ? 'true' : 'false',
+      noExact: hasQ && !r.exact.length && list.length > 0, nothing: hasQ && !list.length,
+      sugg: list.map((s, i) => ({ ...s, sel: sel >= 0 && i === idx ? 'true' : 'false', bg: sel >= 0 && i === idx ? 'var(--color-accent-100)' : 'transparent', hover: () => this.setState({ sel: i }) })),
+      allHref: this.searchUrl(q)
+    };
+  }
+}
+</script>
+</body>
+</html>
