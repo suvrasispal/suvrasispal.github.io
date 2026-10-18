@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Suvrasis Pal — Brand &amp; Digital Leader</title>
+<meta name="description" content="Suvrasis Pal — Brand &amp; Digital Leader. Building meaningful brands, digital products and experiences at the intersection of strategy, design, technology and emerging AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="hero">
+  <canvas class="hero__bg" aria-hidden="true"></canvas>
+  <div class="hero__sweep" aria-hidden="true"></div>
+  <div class="hero__scrim"></div>
+
+  <nav class="nav" aria-label="Primary">
+    <button class="nav__toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+    <span class="nav__brand">SP<span>.</span></span>
+    <div class="nav__links" id="navLinks">
+      <a href="https://suvrasispal.github.io/portfolio/#about">About</a>
+      <a href="https://suvrasispal.github.io/portfolio/#work">Work</a>
+      <a href="https://suvrasispal.github.io/portfolio/#contact">Contact</a>
+    </div>
+    <a class="nav__cta" href="https://suvrasispal.github.io/portfolio/#contact" aria-label="Let's talk">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7a8.5 8.5 0 0 1-.9-3.8 8.38 8.38 0 0 1 8.5-8.5 8.5 8.5 0 0 1 8.5 8.5z"></path></svg>
+    </a>
+  </nav>
+
+  <div class="hero__inner">
+    <p class="kicker">Portfolio — Brand &amp; Digital Leader</p>
+    <h1 class="title"><span>SUVRASIS</span><span>PAL<span class="dot">.</span></span></h1>
+    <p class="lede">Building meaningful brands, digital products and experiences at the intersection of strategy, design, technology and emerging AI.</p>
+    <div class="actions">
+      <a class="btn btn--primary" href="https://suvrasispal.github.io/portfolio/#contact">Start a conversation ↗</a>
+      <a class="btn btn--ghost" href="https://suvrasispal.github.io/portfolio/">Explore ↓</a>
+    </div>
+  </div>
+</header>
+<script>
+  (function(){
+    var canvas=document.querySelector('.hero__bg');
+    var hero=document.querySelector('.hero');
+    var ctx=canvas.getContext('2d');
+    var dpr=Math.min(window.devicePixelRatio||1,2);
+    var parts=[];
+    function rnd(a,b){return a+Math.random()*(b-a);}
+    function resize(){
+      var r=hero.getBoundingClientRect();
+      canvas.width=Math.max(1,r.width*dpr);
+      canvas.height=Math.max(1,r.height*dpr);
+    }
+    function build(){
+      var n=Math.round(Math.min(190,(canvas.width*canvas.height)/(18000*dpr)));
+      parts=[];
+      for(var i=0;i<n;i++){
+        parts.push({x:Math.random(),y:Math.random(),r:rnd(0.4,1.9)*dpr,s:rnd(0.00004,0.00024),
+          drift:rnd(-0.00007,0.00007),a:rnd(0.2,0.9),tw:rnd(0.4,1.6),ph:rnd(0,6.28),big:Math.random()<0.12});
+      }
+    }
+    resize();build();
+    var t0=performance.now();
+    function frame(t){
+      var dt=(t-t0)/1000,W=canvas.width,H=canvas.height;
+      ctx.clearRect(0,0,W,H);
+      for(var i=0;i<parts.length;i++){
+        var p=parts[i];
+        p.y-=p.s;p.x+=p.drift;
+        if(p.y<-0.02){p.y=1.02;p.x=Math.random();}
+        if(p.x<-0.02)p.x=1.02;if(p.x>1.02)p.x=-0.02;
+        var px=p.x*W,py=p.y*H,tw=0.55+0.45*Math.sin(dt*p.tw+p.ph),alpha=p.a*tw;
+        if(p.big){
+          var g=ctx.createRadialGradient(px,py,0,px,py,p.r*6);
+          g.addColorStop(0,'rgba(255,190,225,'+alpha+')');
+          g.addColorStop(1,'rgba(255,190,225,0)');
+          ctx.fillStyle=g;ctx.beginPath();ctx.arc(px,py,p.r*6,0,6.2832);ctx.fill();
+        }else{
+          ctx.fillStyle='rgba(255,236,248,'+alpha+')';
+          ctx.beginPath();ctx.arc(px,py,p.r,0,6.2832);ctx.fill();
+        }
+      }
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+    var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){resize();build();},150);});
+
+    var nav=document.querySelector('.nav');
+    var btn=nav.querySelector('.nav__toggle');
+    btn.addEventListener('click',function(){
+      var open=nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open?'true':'false');
+    });
+  })();
+</script>
+</body>
+</html>
